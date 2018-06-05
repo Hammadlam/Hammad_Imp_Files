@@ -1,0 +1,92 @@
+﻿@model HandleErrorInfo
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Error</title>
+    <link href="./Free Funky 404 for Website Template _ Home __ w3layouts_files/css" rel="stylesheet" type="text/css">
+    <link href="~/Content/dbtheme/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .logo h1 {
+            font-size: 26px;
+            color: #bd4646;
+            text-align: center;
+            margin-bottom: 1px;
+            text-shadow: 3px 3px 1px #cccccc;
+        }
+
+        .logo p {
+            color: #B1A18D;
+            font-size: 16px;
+            margin-top: 1px;
+            text-align: center;
+        }
+
+            .logo p span {
+                color: lightgreen;
+            }
+
+        .sub a {
+            color: #ff7a00;
+            text-decoration: none;
+            padding: 5px;
+            font-size: 13px;
+            font-family: arial, serif;
+            font-weight: bold;
+        }
+
+        .footer {
+            color: white;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+            .footer a {
+                color: #ff7a00;
+            }
+    </style>
+</head>
+
+<body>
+    <!---728x90--->
+
+    <div class="row">
+        <br />
+        <div class="wrap">
+            <div class="logo">
+                <h1>Something Went Wrong</h1>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="wrap">
+            <div class="logo">
+                @{
+                    if (Model.Exception.Message != null || Model.Exception.Message != "")
+                    {
+                        if (Model.Exception.Message.Contains("?"))
+                        {
+                            string[] message = Model.Exception.Message.Split('?');
+                            <p>@message[0]</p>
+                            <p>@message[1]</p>
+                        }
+                        else
+                        {
+                            <p>@Model.Exception.Message</p>
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

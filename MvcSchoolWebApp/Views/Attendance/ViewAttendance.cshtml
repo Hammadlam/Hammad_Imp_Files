@@ -1,0 +1,169 @@
+﻿ 
+@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "ViewAttendance";
+}
+<section class="content">
+    <!-- Info boxes -->
+    @*@using (Html.BeginForm())
+    {*@
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div style="border: 1px solid #d2d6de;">
+
+                        <div class="ibox-title ">
+                            <ul id="vert_menu">
+                                <li>
+                                    <input type="radio" id="r1" name="r">
+                                    <label for="r1">
+                                        Academics
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="r2" name="r">
+                                    <label for="r2">
+                                        Time Management
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <input type="radio" id="r3" name="r">
+                                    <label for="r3">
+                                        Student Attendance
+                                    </label>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="ibox-content">
+                            <div class="row">
+                                <form role="form" name="viewAttendanceForm" id="viewAttendanceForm">
+                                    <div class="row ">
+                                        @{
+                                            try
+                                            {
+                                                var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                                if (user_dtl[0].user_earea == "1000"|| user_dtl[0].user_earea == "2000"|| user_dtl[0].user_earea == "3000"|| user_dtl[0].user_earea == "4000")
+                                                {
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Campus</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusVA", @id = "txtCampusVA", @required = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Class/Level</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassVA", @id = "txtClassVA", @required = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Section</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.sectionid, Model.section,"Section", new { @class = "form-control m-b", @name = "txtSectionVA", @id = "txtSectionVA", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Student Name</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.stdnameID, Model.stdname, "Student", new { @class = "form-control m-b", @name = "txtnameVA", @id = "txtnameVA", @required = true })
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                                Response.Flush();
+                                            }
+
+                                        }
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Pick a Month</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateVA", @id = "ViewAttendaceDateVA", @required = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Subject</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "txtSubjectVA", @id = "txtSubjectVA" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Total Present</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.total_present, "Present", new { @class = "form-control m-b", @name = "txtPresentVA", @id = "txtPresentVA", @readonly = true})
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Total Absent</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.total_absent, "Absent", new { @class = "form-control m-b", @name = "txtAbsentVA", @id = "txtAbsentVA", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <input id="veiwAttendance" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger form-submitbtn" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox " style="border: 1px solid #d2d6de; display:none;" id="attendanceView_div">
+                    <div class="ibox-content">
+                        <div class="attendanceView_jqGrid">
+                            <table id="attendanceView_table"></table>
+                            <div id="pager_list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                            @*}*@
+</section>
+
+

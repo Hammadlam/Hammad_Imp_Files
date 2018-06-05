@@ -1,0 +1,115 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "CampusStrength";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Admissions
+                                </label>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Campus Strength
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+
+                            <form id="campusStrengthForm" role="form" name="campusStrengthForm">
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusStrength", @id = "txtCampusStrength", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 camp-strength" style="display:none;">
+                                        <div class="col-md-7">
+                                            <label>Total Strength:</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="lbltotal">  </label>                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 camp-strength" style="display:none;">
+                                        <div class="col-md-7">
+                                            <label>Total No. of Boys:</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="lblboys">  </label>                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 camp-strength" style="display:none;">
+                                        <div class="col-md-7">
+                                            <label>Total No. of Girls:</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="lblgirls">  </label>                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="campusStrengthshowGrid" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " >
+                <div class="ibox-content" style="border: 1px solid #d2d6de; display:none;" id="campusStrength_div" >
+                    <div class="campusStrength_jqGrid m-b">
+                        <table id="campusStrength_table"></table>
+                        <div id="campusStrength_pager_list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

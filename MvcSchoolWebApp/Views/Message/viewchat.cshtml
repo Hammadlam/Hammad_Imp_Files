@@ -1,0 +1,415 @@
+﻿
+@{
+    ViewBag.Title = "viewchat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    #btn-send {
+        float: right;
+        width: 8%;
+        position: relative;
+        margin-top: 4%;
+        cursor: default;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    #txtAreaMsg {
+        height: 65px;
+        resize: none;
+    }
+
+    #msgbox {
+        float: left;
+        width: 90%;
+    }
+
+    .img-load {
+        float: right;
+        height: 50px;
+    }
+    @@media(max-width:1100px) {
+        .img-load {
+            width: 9%;
+            padding: 2%;
+        }
+    }
+    @@media(max-width:870px) {
+        .img-load {
+            width: 8%;
+            padding: 1%;
+        }
+    }
+    
+    @@media(min-width:1100px) {
+        .img-load {
+            width: 10%;
+            padding: 3%;
+        }
+    
+    }
+    
+
+    .hide-text {
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .input-block-level {
+        display: block;
+        width: 100%;
+        min-height: 30px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .btn-file {
+        margin-top: -30px;
+        overflow: hidden;
+        position: relative;
+        vertical-align: middle;
+    }
+
+        .btn-file > input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            transform: translate(-300px, 0) scale(4);
+            font-size: 23px;
+            direction: ltr;
+            cursor: pointer;
+        }
+
+    .fileupload .uneditable-input {
+        display: inline-block;
+        margin-bottom: 0px;
+        vertical-align: middle;
+        cursor: text;
+    }
+
+    .fileupload .thumbnail {
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+        .fileupload .thumbnail > img {
+            display: inline-block;
+            vertical-align: middle;
+            max-height: 100%;
+        }
+
+    .fileupload .btn {
+        vertical-align: middle;
+    }
+
+    .fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists {
+        display: none;
+    }
+
+    .fileupload-inline .fileupload-controls {
+        display: inline;
+    }
+
+    .fileupload-new .input-append .btn-file {
+        -webkit-border-radius: 0 3px 3px 0;
+        -moz-border-radius: 0 3px 3px 0;
+        border-radius: 0 3px 3px 0;
+    }
+
+    .thumbnail-borderless .thumbnail {
+        border: none;
+        padding: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .fileupload-new.thumbnail-borderless .thumbnail {
+        border: 1px solid #ddd;
+    }
+</style>
+
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox chat-view">
+
+                <div class="ibox-title">
+                    <p class="pull-right text-muted" style="font-size:18px">@ViewBag.Subject</p>
+
+                    <label style="color:#d43f3a;"> Falconhouse Grammar School Discussion Forum </label>
+                    <a onclick="CloseDis();"> Delete Conversation </a><br />
+                    <label> @ViewBag.Sender </label>
+                </div>
+                <div class="ibox-content">
+
+
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="chat-discussion animated fadeInRight">
+                                @if (ViewBag.DisplayMsg != null)
+                                {
+                                    foreach (var item in ViewBag.DisplayMsg)
+                                    {
+
+                                        <div class="chat-message left">
+                                            <img class="message-avatar" src="@Url.Content(item.imgpath)" alt="">
+                                            <div class="message">
+                                                <a class="message-author" href="#"> @item.UserName </a>
+                                                <span class="message-date">  @item.MsgDate </span>
+                                                <span class="message-content" style="text-align:left">
+                                                    @Html.Raw(item.Message)
+                                                    @if (item.filepath != "")
+                                                    {
+                                                        <a href="@Url.Action("DownloadAttachment","Message", new { path = item.filepath })" download>Attachment </a>
+                                                    }
+                                                </span>
+
+                                                <a class="message-content pull-right" style="text-align:left;margin-top:-2%" onclick="GetRecordId(this);" value=@item.RecordNo>
+                                                    delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="fileupload fileupload-new" id="file-uploader" data-provides="fileupload">
+                <span class="btn btn-primary btn-file" id="btn-upload">
+                    <span class="fileupload-new">Attach File...</span>
+                    <span class="fileupload-exists">Filename:</span>
+                    <input type="file" name="postedFile" id="fileUpload" />
+                </span>
+                <span class="fileupload-preview" style="vertical-align:super;"></span>
+                <a href="#" class="close fileupload-exists" id="btn-close" data-dismiss="fileupload" style="float: none">×</a>
+            </div>
+        </div>
+        <div class="col-lg-12 form-group">
+            <div id="msgbox">
+                <div class="ibox float-e-margins" style="border-style:ridge">
+                    <div class="ibox-content no-padding txtArea" style="overflow-y:scroll;height: 150px;">
+                        <div id="txtAreaMsg" class="summernote" name="txtAreaMsg">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="img-load">
+                <img src="~/Content/dbtheme/dist/img/loadbar.gif" class="img-responsive" id="img-loading" style="display:none;"/>
+            </div>
+
+            <div id="btn-send">
+                <i class="fa fa-paper-plane-o fa-3x" style="color:rgb(197, 197, 197);" id="btn-reply" onclick="replymsg();" type="submit"> </i>
+            </div>
+        </div>
+    </div>
+
+    <div id="ConfirmDelPopUp" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 50%; margin-left: 25%;">
+                <!-- dialog body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    Are You sure You Want To Delete?
+                </div>
+                <!-- dialog buttons -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="confirmMsgDel();" class="btn btn-primary">Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="ConfirmChatDissPopUp" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- dialog body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    Are You Sure You Want To Close This Disscussion ?
+                    You Will No Longer Receive Any Message In Context Of This Discussion.
+                </div>
+                <!-- dialog buttons -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="CloseDisSubmit();" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>
+<script>
+
+    function scrolltobottom()
+    {
+        $(".chat-discussion").animate({ scrollTop: $('.chat-discussion').prop("scrollHeight") }, "slow");
+    }
+
+    function clearFileInputField() {
+        $('#btn-close').trigger('click');
+
+    }
+
+    $(document).ready(function (e) {
+        
+        $.ajax({
+            type: 'POST',
+            url: '/Message/DisplayMsg',
+            success: function (result) {
+            },
+            error: function (err, result) {
+            }
+        });
+    });
+
+    var height = $(".wrapper").height() - 350;
+    $(".chat-discussion").css('height', height + 'px');
+    scrolltobottom();
+    var RecordId;
+    function replymsg() {
+        debugger
+        var gettext = $('#txtAreaMsg').code();
+        var plaintext = "<p>" + gettext + "</p>";
+        var data = "";
+        if ($.trim(gettext) != "") {
+            $('#img-loading').css('display', 'block');
+            var files = $("#fileUpload").get(0).files;
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append(files[x], files[x]);
+                    }
+                }
+                else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+            $.ajax({
+                type: "POST",
+                url: '/Message/ReplyMessage?message=' + plaintext,
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (result) {
+                    $('#btn-reply').css('cursor', 'default');
+                    $('#btn-reply').css('color', 'rgb(197, 197, 197)');
+                    $('#txtAreaMsg').code('');
+                    $('#img-loading').css('display', 'none');
+                    clearFileInputField();
+                    $('.chat-discussion').load(document.URL + ' .chat-discussion');
+                    scrolltobottom();
+                },
+                error: function (xhr, status, p3, p4) {
+                    $('#btn-reply').css('cursor', 'default');
+                    $('#btn-reply').css('color', 'rgb(197, 197, 197)');
+                    $('#img-loading').css('display', 'none');
+                    var err = "Error " + " " + status + " " + p3 + " " + p4;
+                    if (xhr.responseText && xhr.responseText[0] == "{")
+                        err = JSON.parse(xhr.responseText).Message;
+                    console.log(err);
+                    scrolltobottom();
+                }
+            });
+        }
+        else {
+            show_err_alert_js('You Cannot Send an Empty Message');
+        }
+    }
+
+
+    $(".txtArea").on('input', function (e) {
+        var gettext = $("#txtAreaMsg").code();
+        var plainText = $("<p>" + gettext + "</p>").text();
+        if (plainText != "") {
+            $('#btn-reply').css('cursor', 'pointer');
+            $('#btn-reply').css('color', '#428bca');
+        }
+        else {
+            $('#btn-reply').css('cursor', 'default');
+            $('#btn-reply').css('color', 'rgb(197, 197, 197)');
+        }
+    });
+
+    function GetRecordId(anchor) {
+        var value = anchor.getAttribute('value')
+
+        RecordId = value;
+
+        $('#ConfirmDelPopUp').modal('show');
+    }
+
+    function confirmMsgDel() {
+
+        var value = RecordId;
+
+        $.ajax({
+            type: 'POST',
+            url: '/Message/DelMsg',
+            data: "sendrcdid=" + value,
+            success: function (result) {
+                $('#ConfirmDelPopUp').modal('hide');
+                if (result == "success") {
+
+                    window.location.href = "/Message/viewchat";
+                }
+                else if (result == "failed") {
+                    show_err_alert_js('You can only Delete Your Message');
+                }
+
+            },
+            error: function (err, result) {
+            }
+        });
+    }
+
+    function CloseDis() {
+        $('#ConfirmChatDissPopUp').modal('show');
+    }
+
+    function CloseDisSubmit() {
+        $.ajax({
+            type: 'POST',
+            url: '/Message/CloseDiscussion',
+            success: function (result) {
+                $('#ConfirmChatDissPopUp').modal('hide');
+                if (result == "success") {
+                    window.location.href = "/dashboard/Index";
+                }
+                else {
+                    show_err_alert_js('Error Occured! Please try again');
+                }
+            },
+            error: function (err, result) {
+            }
+        });
+    }
+</script>
+

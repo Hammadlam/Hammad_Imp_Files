@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Error</title>
+    <link href="./Free Funky 404 for Website Template _ Home __ w3layouts_files/css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .logo h1 {
+            font-size: 100px;
+            color: #FF7A00;
+            text-align: center;
+            margin-bottom: 1px;
+            text-shadow: 3px 3px 1px #cccccc;
+        }
+
+        .logo p {
+            color: #B1A18D;
+            font-size: 22px;
+            margin-top: 0px;
+            text-align: center;
+        }
+
+            .logo p span {
+                color: lightgreen;
+            }
+
+        .sub a {
+            color: #ff7a00;
+            text-decoration: none;
+            padding: 5px;
+            font-size: 13px;
+            font-family: arial, serif;
+            font-weight: bold;
+        }
+
+        .footer {
+            color: white;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+            .footer a {
+                color: #ff7a00;
+            }
+    </style>
+</head>
+
+<body>
+    <!---728x90--->
+    <div class="row">
+        <br />
+        <div class="wrap">
+            <div class="logo">
+                <h1>404 Error</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="wrap">
+            <div class="logo">
+                <p> The Page you are looking for is not Found!</p>
+                <div class="sub">
+                    <p> @Html.ActionLink("Back to Home", "Index", "dashboard", null, null) </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

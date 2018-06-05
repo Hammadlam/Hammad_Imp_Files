@@ -1,0 +1,141 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "Index";
+}
+<section class="content">
+    <!-- Info boxes -->
+@*@using (Html.BeginForm())
+{*@
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Lesson Plan
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    @{
+                                        try
+                                        {
+                                            @System.Web.HttpContext.Current.Session["download"].ToString();
+                                        }
+                                        catch (Exception)
+                                        {
+
+                                            //Response.Redirect("~/login");
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'> window.location.href = '" + url + "' </script>");
+                                            Response.Flush();
+                                        }
+                                    }
+                                </label>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" id="downloadform" name="form">
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                           @{
+                                               @*if (HttpContext.Current.Session["User_Role"].ToString() == "student")
+                                               {
+                                                @Html.DropDownListFor(model => model.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampus", @id = "txtCampusDI", @required = true, @readonly = true, @disabled = true })
+                                               }
+                                               else
+                                               {*@
+                                                @Html.DropDownListFor(model => model.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampus", @id = "txtCampusDI", @required = true })
+                                               @*}*@
+                                        }
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Class/Level</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassDI", @id = "txtClassDI", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Section</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionDI", @id = "txtSectionDI", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Subject</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "txtSubjectDI", @id = "txtSubjectDI", @required = true })
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="btnviewdown" type="submit" value="Submit" name="btnsubmit" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " id="download" style="display:none;">
+                <div id="dvborder">
+                    <div class="ibox-content">
+                        <div class="jqGrid_wrapper">
+                            <table id="table_list_down"></table>
+                            <div id="pager_list_down"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@*}*@
+</section>
+

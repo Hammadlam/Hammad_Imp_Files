@@ -1,0 +1,19 @@
+select distinct ib.groupid, ib.recordno, ib.status, ib.msgid, ib.recordno, ib.unread, 
+msg.subject, grp.grouptxt from schgrpinbox ib 
+inner join schgrpdtl grp on ib.groupid = grp.groupid
+inner join schgrpmsg msg on ib.groupid = msg.groupid and ib.msgid = msg.msgid and ib.recordno = msg.recordno
+where ib.recip = '30003' and ib.status <> 'X'
+and ib.recordno in 
+(select max(ib.recordno) from schgrpinbox ib where ib.status <> 'X' and ib.recip = '30003' group by ib.groupid)
+
+
+select distinct ib.groupid, max(ib.recordno) as sqlrecordno, ib.status, ib.msgid, ib.recordno, ib.unread, 
+msg.subject, grp.grouptxt from schgrpinbox ib 
+left join schgrpdtl grp on grp.groupid = ib.groupid
+inner join schgrpmsg msg on ib.groupid = msg.groupid and ib.msgid = msg.msgid and ib.recordno = msg.recordno
+where 
+ib.recip = '30003' and ib.status <> 'X' and ib.groupid = grp.groupid
+and ib.recordno in 
+(select max(ib.recordno) from schgrpinbox ib where ib.status <> 'X' and ib.recip = '30003' group by ib.groupid)
+group by ib.status, ib.msgid, ib.recordno, ib.unread, 
+ib.groupid, msg.subject, grp.grouptxt

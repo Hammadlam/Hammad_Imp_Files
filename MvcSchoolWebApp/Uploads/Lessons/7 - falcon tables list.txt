@@ -1,0 +1,53 @@
+Tables:
+
+
+
+
+earea -> stdarea                                               (DONE)
+eesubarea -> stdsubarea					       (DONE)
+eegroup -> stdgroup					        (DONE)
+eesubgroup -> stdsubgroup 					(DONE)
+emp0210 - > std0210							(DATA)
+emp0220 -> std0220							(DONE)
+emp0011 -> std0011							(DATA)
+apl0011 -> stdapl0011							(DATA)
+empmain -> stdmain
+emppers and empadd -> stdpers
+empfamily -> stdfamily
+stdfeestructure
+stdacdresults
+stdaplmain
+stdaplpers
+stdaplfamily
+
+
+******************************************************************
+Schcampus
+Schclass
+schsection
+Schsubject
+Schresult
+Schresulttyp
+schweeklyplan
+schactivitygrade
+schactivitygradkey
+lessonplan
+lessonplancategory
+schlessonplancom
+schclassgroup
+schclassquota
+schgroup
+imageobj
+imagetype
+inbox
+chatview
+timetable
+timetablecategory
+calndr
+usr01
+menuprof
+menuprofdtl
+flexobjhdr
+flexobjdtl
+
+

@@ -1,0 +1,221 @@
+﻿@model MvcSchoolWebApp.Models.ESSModel
+@{
+    ViewBag.Title = "resignationRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    @using (Html.BeginForm("resignRequest", "ESS", FormMethod.Post))
+    {
+        <form id="resignReqForm" role="form" name="resignReqForm">
+            <!-- Info boxes -->
+            <div class="row">
+
+                <div class="col-lg-12">
+
+                    <div class="ibox float-e-margins">
+                        <div id="dvborder">
+
+                            <div class="ibox-title ">
+
+                                <ul id="vert_menu">
+                                    <li>
+                                        <input type="radio" id="r1" name="r">
+                                        <label for="r1">
+                                            Employee Self Service
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="r2" name="r">
+                                        <label for="r2">
+                                            Resignation Request
+                                        </label>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="ibox-content">
+                                <div class="row">
+
+
+                                    <div class="row ">
+
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Employee Id</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.empid, "Employee Code", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtempidRR", @id = "txtempidRR", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Date</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.begdate, "Date", new { @Value = ViewBag.date, @class = "form-control m-b", @name = "txtbegdateRR", @id = "txtbegdateRR", @required = true, @readonly = true })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Joining Date</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.joindate, "Date", new { @Value = ViewBag.joindate, @class = "form-control m-b", @name = "txtjoindateRR", @id = "txtjoindateRR", @required = true, @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Confirmation Date</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.confrdate, "Date", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtconfrdateRR", @id = "txtconfrdateRR", @required = true, @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Designation</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.design, "Designation", new { @Value = ViewBag.design, @class = "form-control m-b", @name = "txtdesigRR", @id = "txtdesigRR", @required = true, @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Department</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.dept, "Department", new { @Value = ViewBag.dept, @class = "form-control m-b", @name = "txtdeptRR", @id = "txtdeptRR", @required = true, @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="prodiv4">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div id="dvborder">
+                            <div class="ibox-title">
+                                <h3>
+                                    Resignation Details
+                                </h3>
+                            </div>
+                            <div class="ibox-content">
+                                <form id="resignDtlForm" role="form">
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Resignation Type</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.loanid, Model.loantyp, new { @class = "form-control m-b", @name = "txtResigntypRR", @id = "txtResigntypRR", @required = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="col-md-5">
+                                                <label>Reason</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextAreaFor(m => m.reason, new { @placeholder = "Reason for Leaving/Resigning", @class = "form-control m-b", @name = "txtReasonRR", @id = "txtReasonRR", @required = true, @style = "resize:vertical; height: 200px;" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5 form-group">
+                                                <input id="btnresignRequest" type="submit" value="Submit" name="btnresignRequest" class="btn btn-sm btn-danger" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span style="color:green">@ViewBag.Message</span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+                        <h3>
+                            Resignation Status
+                        </h3>
+                    </div>
+
+                    <div class="ibox-content">
+                        <form id="resignStatusForm" role="form" name="resignStatusForm">
+                            <div class="row">
+                                <div class="col-md-3"><label>Approver</label></div>
+                                <div class="col-md-3"><label>Accepted</label></div>
+                                <div class="col-md-3"><label>Rejected</label></div>
+                                <div class="col-md-3"><label>Comments</label></div>
+                            </div>
+                            @{
+                                var items = ViewBag.trackinglist;
+                                bool accepted = false;
+                                if (items != null)
+                                {
+                                    int i = 0;
+                                    foreach (var list in items)
+                                    {
+                                        i++;
+                                        <div class="row">
+                                            <div class="col-md-3"> <label> @list.appvrid </label> </div>
+                                            @if (list.loan_status == "01" || list.loan_status == "02")
+                                            {
+                                                <div class="col-md-3"><label><input type="radio" name="@i" value="CEO" style="display:inline" checked disabled></label></div>
+                                                <div class="col-md-3"><label><input type="radio" name="@i" value="CEO" style="display:inline" disabled></label></div>
+                                            }
+                                            else if (list.loan_status == "04" || list.loan_status == "05")
+                                            {
+                                                <div class="col-md-3"><label><input type="radio" name="@i" value="CEO" style="display:inline"></label></div>
+                                                <div class="col-md-3"><label><input type="radio" name="@i" value="CEO" style="display:inline"></label></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-3"><label><input type="radio" name="@i" value="CEO" style="display:inline"></label></div>
+                                                <div class="col-md-3"><label><input type="radio" name="@i" value="CEO" style="display:inline" checked></label></div>
+                                            }
+                                            <div class="col-md-3"> <textarea class="form-control m-b" style="resize:none;" disabled> @list.comments </textarea> </div>
+                                        </div>
+                                    }
+                                }
+
+                            }
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

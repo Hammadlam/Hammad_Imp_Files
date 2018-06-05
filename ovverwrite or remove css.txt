@@ -1,0 +1,13 @@
+site.min.css
+.wrapper{padding:0 20px}
+
+
+adminlte.min.css
+.sidebar-menu .treeview-menu>li>a {
+    padding: 5px 5px 4px 30px;
+    display: block;
+    font-size: 14px;
+}
+
+
+    

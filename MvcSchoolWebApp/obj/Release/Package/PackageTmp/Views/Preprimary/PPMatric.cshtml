@@ -1,0 +1,155 @@
+﻿@model MvcSchoolWebApp.Models.PPMatricModel
+@{
+    ViewBag.Title = "Pre-Primary Matric";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <!-- Info boxes -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div style="border: 1px solid #d2d6de;">
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Student Evaluation
+                                </label>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Pre-Primary Matric
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" name="ppmform" id="ppmform">
+                                @*<div class="row ">*@
+                                @{
+                                    try
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="col-md-5">
+                                                    <label>Campus</label>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "ppmCampus", @id = "ppmCampus", @required = true })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="col-md-5">
+                                                    <label>Class/Level</label>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "ppmClass", @id = "ppmClass", @required = true })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="col-md-5">
+                                                    <label>Section</label>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "ppmSection", @id = "ppmSection", @required = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="col-md-5">
+                                                        <label>Subject</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "ppmSubject", @id = "ppmSubject", @required = true })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="col-md-5">
+                                                        <label>Teacher Name</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.teacher, new { @placeholder = "Teacher", @class = "form-control m-b", @name = "ppmTeacher", @id = "ppmTeacher", @readonly = true })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="col-md-5">
+                                                        <label>Date</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.date, "Date", new { @Value = ViewBag.date, placeholder = "Month", @class = "date-day form-control m-b", @name = "ppmDate", @id = "ppmDate" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        string url = "/dashboard";
+                                        Response.Write("<script type='text/javascript'>");
+                                        Response.Write("window.location.href = '" + url + "'</script>");
+                                        Response.Flush();
+                                    }
+
+                                }
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="ppmsubmit" type="submit" value="Submit" name="ppmsubmit" class="btn btn-sm btn-danger form-submitbtn" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                        @*</div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="prodiv">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="ppm_upload_div" style="display:none;">
+                    <div class="ibox-content">
+                        <div class="ppmac_jqGrid">
+                            <table id="ppmac_table"></table>
+                            <div id="pager_list"></div>
+                        </div>
+                        <form role="form">
+                            <div class="row ">
+                                <div class="col-md-2">
+                                    <button id="btnUploadMarksppm" name="btnUploadMarksppm" class="btn btn-sm btn-danger form-submitbtn" type="submit"><strong>Submit Marks</strong></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

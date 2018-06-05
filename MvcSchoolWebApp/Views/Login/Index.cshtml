@@ -1,0 +1,151 @@
+﻿
+@model MvcSchoolWebApp.Models.Users
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SNS</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link href="~/Content/LoginForm/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/LoginForm/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/LoginForm/css/form-elements.css" rel="stylesheet" />
+    <link href="~/Content/LoginForm/css/style.css" rel="stylesheet" />
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="~/Content/Avatar/jij_1.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/LoginForm/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/LoginForm/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/LoginForm/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/LoginForm/ico/apple-touch-icon-57-precomposed.png">
+
+    <style>
+        .img-box {
+            border-radius: 4px 0px 0px 4px;
+        }
+
+        .text-primary {
+            font-family: serif;
+            font-weight: 800;
+            color: #c82254;
+            font-size: 32px;
+        }
+
+        #myModal2 {
+            position: fixed;
+            width: 60%;
+            height: 10%;
+            margin-top: 10%;
+            margin-left: 20%;
+            /*overflow-y: hidden;*/
+            display:none;
+            /*z-index:3000;*/
+        }
+        .modal2 {
+            background:none;
+        }
+    </style>
+
+</head>
+<body>
+    @* Popup Start *@
+    <div class="modal2" id="myModal2" data-backdrop="static" role="dialog">
+        <p class="alert @ViewBag.cssclass"> @ViewBag.message_popup <button type="button" class="close" data-dismiss="modal">&times;</button></p>
+    </div>
+    @* Popup End*@
+
+    <div class="wrapper" id="wrap">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+        <!-- Top content -->
+            <div class="top-content">
+                <div class="inner-bg">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-7 col-md-offset-5 form-box">
+                                @* image *@
+                               
+                                @* login box start *@
+                                <div class="form-top col-md-offset-5 login-div-1">
+                                    <div class="form-top-left">
+                                        <h3>Login</h3>
+                                        <p>Enter your username and password to log on:</p>
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-lock"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-bottom col-md-offset-5 login-div-2">
+                                    <form role="form" action="" method="post" class="login-form">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-username">Username</label>
+                                            @Html.TextBoxFor(model => model.userName, new { @placeholder = "Username...", @class = "input form-username form-control", @type = "text", @name = "form-username", @required = true })
+                                            @Html.ValidationMessageFor(model => model.userName)
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-password">Password</label>
+                                            @Html.TextBoxFor(model => model.userPassword, new { @placeholder = "Password...", @class = "input form-password form-control", @type = "password", @name = "form-password", @required = true })
+                                            @Html.ValidationMessageFor(model => model.userPassword)
+                                        </div>
+                                        <button type="submit" class="btn form-control">Sign In</button>
+                                    </form>
+                                </div>
+                                @* login box End *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+
+    <!-- Javascript -->
+    
+
+    <script src="~/Content/LoginForm/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/Content/LoginForm/js/jquery.backstretch.min.js"></script>
+    <script src=@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.js")></script>
+    <script src="~/Content/LoginForm/js/scripts.js"></script>
+    <script src="~/Content/js/jstz-1.0.4.min.js"></script>
+    <script src="~/Content/LoginForm/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/popup.js"></script> 
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var timezone = jstz.determine();
+            var name = timezone.name();
+
+            $.ajax({
+                type: 'Get',
+                url: '@Url.Action("usertimezone", "Login")',
+                data: { timezoneid: name },
+                contentType: "application/json; charset=utf-8"
+
+            });
+        });
+        @ViewBag.call_alert
+    </script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+

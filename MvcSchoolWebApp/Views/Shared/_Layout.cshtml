@@ -1,0 +1,1410 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112268042-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112268042-1');
+
+    </script>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SNS</title>
+    <link rel="shortcut icon" href="~/Content/Avatar/jij_1.ico" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-1.2.2.css?n=1">
+    <!-- Theme style -->
+
+    <link rel="stylesheet" href="~/Content/dbtheme/dist/css/AdminLTE.min.css?n=1">
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/Content/dbtheme/dist/css/skins/_all-skins.min.css?n=1">
+
+
+    <link href="~/Content/css/animate.css?n=1" rel="stylesheet">
+    <link href="~/Content/css/style.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/style.min.css?n=1" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/dbtheme/bootstrap/css/bootstrap.min.css?n=1">
+    <link href="~/Content/css/jquery-ui.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/ui.jqgrid.css?n=1" rel="stylesheet" />
+    <link href="~/Content/dbtheme/bootstrap/css/bootstrap-datepicker.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/jqgrid.css?n=1" rel="stylesheet" />
+
+    <link href="~/Content/dbtheme/plugins/fullcalendar/fullcalendar.min.css?n=1" rel="stylesheet" />
+    <link href="~/Content/dbtheme/plugins/fullcalendar/fullcalendar.print.css?n=1" rel="stylesheet" media="print" />
+    <link href="~/Content/dbtheme/plugins/daterangepicker/daterangepicker.css?n=1" rel="stylesheet" />
+    <!---text Editor-->
+    <link href="~/Content/css/summernote.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/summernote-bs3.css?n=1" rel="stylesheet" />
+
+    <!-------Dropzone-Assignmentpage-->
+    <link href="~/Content/css/basic.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/dropzone.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/jasny-bootstrap.min.css?n=1" rel="stylesheet" />
+
+    <link href="~/Content/css/breadcrum.css?n=1" rel="stylesheet" />
+    <link href="~/Content/css/custom.css?n=1" rel="stylesheet">
+
+    <link href="~/Content/Avatar/avatar.css?n=1" rel="stylesheet" />
+    <link href="~/Content/iChecks/custom.css?n=1" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css?n=1" rel="stylesheet" />
+
+    <link href="~/Content/Avatar/style.css?n=1" rel="stylesheet" />
+
+
+
+    <link href="~/Content/dbtheme/dist/css/file-upload.css?n=1" rel="stylesheet" />
+
+    <style>
+.skin-blue .main-header li.user-header {
+    background-color: #223480;
+}
+.skin-blue .main-header .logo {
+    background-color: #f9a814e0;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+}
+.skin-blue .main-header .navbar {
+    background-color: #223480;
+}
+        .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #223480;
+}
+        .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+    color: #fff;
+    background: #f9a814e0;
+    border-left-color: #13a6ec;
+}
+
+
+
+
+
+
+        #btn-signout > a:hover, #btn-profile > a:hover {
+            background-color: #d2322d;
+        }
+
+        #myModal2 {
+            position: fixed;
+            width: 60%;
+            height: 10%;
+            margin-top: 10%;
+            margin-left: 20%;
+        }
+
+        .modal2 {
+            background: none;
+        }
+
+        #myModal3 {
+            position: fixed;
+            width: 60%;
+            height: 10%;
+            margin-top: 10%;
+            margin-left: 20%;
+            /*overflow-y: hidden;*/
+            /*z-index:3000;*/
+        }
+
+        #myModal4 {
+            position: fixed;
+            width: 60%;
+            height: 10%;
+            margin-top: 10%;
+            margin-left: 20%;
+        }
+
+        .modal3 {
+            background: none;
+        }
+
+        .modal-dialog {
+            position: static;
+        }
+
+        .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+            padding: 0;
+            padding-left: 10px;
+            padding-top: 2px;
+        }
+
+        .msg-time {
+            color: #1a0dab;
+            font-family: monospace;
+            font-size: 13px;
+        }
+    </style>
+
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+    @*Popup Start *@
+    <div class="modal2" id="myModal2" data-backdrop="static" role="dialog">
+        <p class="alert @ViewBag.cssclass"> @ViewBag.message_popup <button type="button" class="close" data-dismiss="modal">×</button></p>
+    </div>
+    @* Popup End*@
+
+    @*Popup Start *@
+    <div class="modal3" id="myModal3" data-backdrop="static" role="dialog">
+        <p class="alert alert-danger"> <span id="error-msg"></span> <button type="button" class="close" data-dismiss="modal">×</button></p>
+    </div>
+    @* Popup End*@
+    @*Popup Start *@
+    <div class="modal3" id="myModal4" data-backdrop="static" role="dialog">
+        <p class="alert alert-success"> <span id="suc-msg"></span> <button type="button" class="close" data-dismiss="modal">×</button></p>
+    </div>
+    @* Popup End*@
+
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="~/dashboard/index" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b><img src="~/Content/dbtheme/dist/img/jij.gif" height="40" width="40" class="img-circle logoadjust" />@*SNS*@</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>@*<img src="~/Content/dbtheme/dist/img/jij.gif" height="40" width="40" class="img-circle logoadjust" /> *@ ERManager</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+
+                        <li class="dropdown messages-menu" title="Message">
+                            <a href="~/Home/Email"><i class="fa fa-envelope-o"></i></a>
+                        </li>
+
+                        @*<li class="dropdown messages-menu">
+                                <a href="~/Home/Email"><i class="fa fa-calendar-o"></i></a>
+                            </li>*@
+
+                        <li class="dropdown messages-menu" title="Annual Calendar">
+                            <a href="~/Event/Index"><i class="fa fa-calendar"></i></a>
+                        </li>
+
+                        @{
+                            var lst = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                            if (lst[0].earea.ToString().Trim() == "1000" || lst[0].earea.ToString().Trim() == "2000")
+                            {
+                                <li class="dropdown messages-menu" title="Publish Result">
+                                    <a href="~/Result/PublishResult">
+                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            }
+                        }
+
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu" title="Notifications">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">@ViewBag.TotalNotification</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Notifications</li>
+                                <li>
+                                    <ul class="menu">
+                                        @if (ViewBag.msglist != null)
+                                        {
+                                            foreach (var item in ViewBag.msglist)
+                                            {
+                                                string alldata = item.MsgId + "?" + item.Groupid + "?" + item.recordno;
+                                                if (item.unread == true)
+                                                {
+                                                    <li style="background-color:#e5e5e5;border:1px solid #ffffff;">
+                                                        <a id="MsgSubject" onclick="GetMsgid(this);" value=@alldata>
+                                                            <label style="font-weight:600; color:#ca434d;">@item.senderId</label><br />
+                                                            @item.Subject
+                                                            <p class="pull-right msg-time"> @item.msgdate </p>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a href="/Message/viewchat" id="MsgSubject" onclick="GetMsgid(this);" value=@alldata>
+
+                                                            <label style="font-weight:600; color:#ca434d;">@item.senderId</label><br />
+                                                            @item.Subject
+                                                            <p class="pull-right msg-time"> @item.msgdate <br /> @item.msgtime </p>
+                                                        </a>
+
+                                                    </li>
+                                                }
+
+
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown messages-menu" title="Change Password">
+                            <a href="#" onclick="passpopup()">
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                        <!-- User Account: style can be found in dropdown.less -->
+
+                        <li class="dropdown user user-menu" title="Options">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @{
+                                    try
+                                    {
+                                        var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                        if (user_dtl[0].user_image == "")
+                                        {
+                                            <img src="~/Content/Avatar/avatar2.png" class="user-image" alt="User Image">
+                                        }
+                                        else if (user_dtl[0].user_image != "")
+                                        {
+                                            <img src="@Url.Content(user_dtl[0].user_image)" class="user-image" alt="User Image">
+
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                        string url = "/dashboard";
+                                        Response.Write("<script type='text/javascript'>");
+                                        Response.Write("window.location.href = '" + url + "'</script>");
+                                    }
+                                }
+                            </a>
+                            <ul class="dropdown-menu" style="margin-top:0px;">
+                                <li class="user-header">
+                                    @{
+                                        try
+                                        {
+                                            var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                            if (user_dtl[0].user_image == "")
+                                            {
+                                                <img src="~/Content/Avatar/avatar2.png" class="img-circle" alt="User Image">
+                                                <p>
+                                                    @user_dtl[0].user_fullname
+                                                </p>
+                                            }
+                                            else if (user_dtl[0].user_image != "")
+                                            {
+                                                <img src="@Url.Content(user_dtl[0].user_image)" class="img-circle" alt="User Image">
+                                                <p>
+                                                    @user_dtl[0].user_fullname
+                                                </p>
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'>");
+                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                        }
+                                    }
+                                </li>
+                                <!-- Menu Body -->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    @{
+                                        try
+                                        {
+                                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+
+                                            if (list[0].earea.Trim() != "4000")
+                                            {
+                                                <div class="pull-left" id="btn-profile">
+                                                    <a href="~/Home/Profiles" title="Profile" class="btn btn-danger btn-flat">Profile</a>
+                                                </div>
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'>");
+                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                        }
+                                    }
+
+                                    <div class="pull-right" id="btn-signout">
+                                        <a class="btn btn-danger btn-flat" title="Sign Out" onclick="destroy_session()">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Control Sidebar Toggle Button -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    @{
+                        try
+                        {
+                            var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                            if (user_dtl[0].user_image == "")
+                            {
+                                <div class="pull-left image">
+                                    <img src="~/Content/Avatar/avatar2.png" class="img-circle" alt="User Image">
+                                </div>
+                            }
+                            else if (user_dtl[0].user_image != "")
+                            {
+                                <div class="pull-left image">
+                                    <img src="@Url.Content(user_dtl[0].user_image)" class="img-circle" alt="User Image">
+                                </div>
+
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
+                    }
+
+                    <div class="pull-left info">
+                        @{
+                            try
+                            {
+                                var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                if (user_dtl[0].user_fullname != null || user_dtl[0].user_fullname == "")
+                                {
+                                    <p> @user_dtl[0].user_fullname</p>
+                                }
+                                else
+                                {
+                                    <p>User</p>
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                string url = "/dashboard";
+                                Response.Write("<script type='text/javascript'>");
+                                Response.Write("window.location.href = '" + url + "'</script>");
+                            }
+                        }
+                        <a href="#">
+                            <i class="fa fa-circle text-success"></i>
+                            @{
+                                try
+                                {
+                                    var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                    @user_dtl[0].user_role;
+                                }
+                                catch (Exception)
+                                {
+                                    string url = "/dashboard";
+                                    Response.Write("<script type='text/javascript'>");
+                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                }
+                            }
+                        </a>
+                    </div>
+                </div>
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="treeview">
+                        <a href="~/dashboard/index">
+                            <i class="fa fa-home"></i> <span>Home</span>
+
+                        </a>
+                    </li>
+
+                    <li class="active treeview">
+                        <a href="#">
+                            <i class="fa fa-book"></i> <span>Academics</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            @{
+                                try
+                                {
+                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                    if (list[0].menustat == "X")
+                                    {
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-graduation-cap"></i> <span>Admission</span>
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li>
+                                                    <a href="~/Admission/CampusStrength">
+                                                        <i class="fa fa-users"></i>Campus Strength
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Admission/CampusCapacity">
+                                                        <i class="fa fa-users"></i>Campus Capacity
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Admission/CampusStatus">
+                                                        <i class="fa fa-users"></i>Admission Status
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    string url = "/dashboard";
+                                    Response.Write("<script type='text/javascript'>");
+                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                }
+                            }
+                            @{
+                                try
+                                {
+                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                    if (list[30].menustat == "X")
+                                    {
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-info-circle"></i>
+                                                <span>Personal Information</span>
+
+
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                @{
+                                                    var lists = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+
+                                                    if (lists[3].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a onclick="redirectpersonalinfo(this);" value="Employee Personal">
+                                                                <i class="fa fa-male"></i>Employee Personal
+                                                            </a>
+                                                        </li>
+
+                                                    }
+                                                }
+                                                <li>
+                                                    <a onclick="popup()">
+                                                        <i class="fa fa-user"></i>Student Personal
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                                        }
+                                                    }
+                                                    catch (Exception)
+                                                    {
+                                                        string url = "/dashboard";
+                                                        Response.Write("<script type='text/javascript'>");
+                                                        Response.Write("window.location.href = '" + url + "'</script>");
+                                                    }
+
+                            }
+
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-user"></i> <span>Student Performance</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+
+                                <ul class="treeview-menu">
+
+                                    <li>
+                                        <a onclick="Demo(this);" value="Weekly Test"><i class="fa fa-pencil-square-o"></i>Weekly Test</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Demo(this);" value="Periodical Test"><i class="fa fa-pencil-square-o"></i>Periodical Test</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Demo(this);" value="Mid/First Term"><i class="fa fa-pencil-square-o"></i>Mid/First Term</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Demo(this);" value="Final Term"><i class="fa fa-pencil-square-o"></i>Final Term</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/FinalReport/FinalReport"><i class="fa fa-file-text"></i>Final Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            @{
+                                try
+                                {
+                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                    if (list[32].menustat == "X")
+                                    {
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-user"></i> <span>Student Evaluation</span>
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li>
+                                                    <a href="~/Attendance/MarkAttendance">
+                                                        <i class="fa fa-check-square-o"></i>Mark Attendance
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Home/MarksUpload">
+                                                        <i class="fa fa-upload"></i>Marks Submission
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Home/ActivityGrade">
+                                                        <i class="fa fa-check-square-o"></i>Grade Activities
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Preprimary/PPCambridge">
+                                                        <i class="fa fa-check-square-o"></i>Pre-Primary Cambridge
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Preprimary/PPMatric">
+                                                        <i class="fa fa-check-square-o"></i>Pre-Primary Matric
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    string url = "/dashboard";
+                                    Response.Write("<script type='text/javascript'>");
+                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                }
+                            }
+
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-calendar"></i> <span>Timetable</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    @{
+                                        try
+                                        {
+                                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                            if (list[16].menustat == "X")
+                                            {
+                                                <li>
+                                                    <a href="~/TimeTable/UploadTimetable">
+                                                        <i class="fa fa-calendar-times-o"></i>Upload Timetable
+                                                    </a>
+                                                </li>
+                                            }
+                                            if (list[17].menustat == "X")
+                                            {
+                                                <li>
+                                                    <a href="~/TimeTable/MasterTimetable">
+                                                        <i class="fa fa-calendar-times-o"></i>Master Timetable
+                                                    </a>
+                                                </li>
+                                            }
+                                            if (list[18].menustat == "X")
+                                            {
+                                                <li>
+                                                    <a href="~/TimeTable/TeacherTimetable">
+                                                        <i class="fa fa-calendar-times-o"></i>Teacher Timetable
+                                                    </a>
+                                                </li>
+                                            }
+                                            if (list[19].menustat == "X")
+                                            {
+                                                <li>
+                                                    <a href="~/TimeTable/ClassTimetable">
+                                                        <i class="fa fa-calendar-times-o"></i>Class Timetable
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'>");
+                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                        }
+                                    }
+                                </ul>
+                            </li>
+
+                            @{
+                                try
+                                {
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-pie-chart"></i>
+                                            <span>Lesson Plan</span>
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            @{
+                                                var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                                try
+                                                {
+                                                    if (list[20].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a href="~/Home/Assignment">
+                                                                <i class="fa fa-upload"></i>Upload Assignment
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    string url = "/dashboard";
+                                                    Response.Write("<script type='text/javascript'>");
+                                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                                }
+
+                                                <li>
+                                                    <a onclick="down(this);" value="Home Assignment">
+                                                        <i class="fa fa-file"></i>Home Assignment
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onclick="down(this);" value="Class Assignment">
+                                                        <i class="fa fa-pencil"></i>Class Assigment
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onclick="down(this);" value="Project">
+                                                        <i class="fa fa-tasks"></i>Projects
+                                                    </a>
+                                                </li>
+                                                if (list[24].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/download/WeeklyPlan">
+                                                            <i class="fa fa-tasks"></i>Daily Lesson Plan
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    string url = "/dashboard";
+                                                    Response.Write("<script type='text/javascript'>");
+                                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                                }
+                            }
+
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-clock-o"></i> <span>Time Management</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="~/Attendance/ViewAttendance">
+                                            <i class="fa fa-user"></i>Student Attendance
+                                        </a>
+                                    </li>
+                                    @{
+                                        try
+                                        {
+                                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                            if (list[26].menustat == "X")
+                                            {
+                                                <li class="treeview">
+                                                    <a href="~/home/Teacher_Evalution">
+                                                        <i class="fa fa-male"></i>Employee Attendance
+
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'>");
+                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                        }
+                                    }
+                                </ul>
+                            </li>
+
+                            @{
+                                try
+                                {
+                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                    if (list[36].menustat == "X")
+                                    {
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-calendar"></i> <span>Fees</span>
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li>
+                                                    <a href="~/Fee/Feechalan">
+                                                        <i class="fa fa-calendar-times-o"></i>Fee Challan
+                                                    </a>
+                                                </li>
+                                                @{
+                                                    try
+                                                    {
+                                                        if (list[28].menustat == "X")
+                                                        {
+                                                            <li>
+                                                                <a href="~/Fee/Feehistory">
+                                                                    <i class="fa fa-calendar-times-o"></i>Fee History
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    catch (Exception)
+                                                    {
+                                                        string url = "/dashboard";
+                                                        Response.Write("<script type='text/javascript'>");
+                                                        Response.Write("window.location.href = '" + url + "'</script>");
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                                        }
+                                                    }
+                                                    catch (Exception)
+                                                    {
+                                                        string url = "/dashboard";
+                                                        Response.Write("<script type='text/javascript'>");
+                                                        Response.Write("window.location.href = '" + url + "'</script>");
+                                                    }
+                            }
+                        </ul>
+                    </li>
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                            if (list[42].menustat == "X")
+                            {
+                                <li class="active treeview">
+                                    <a href="#">
+                                        <i class="fa fa-user"></i> <span>Employee Self Service</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        @{
+                                            try
+                                            {
+                                                if (list[44].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/ESS/payslip">
+                                                            <i class="fa"><img src="~/Content/dbtheme/dist/img/payslip.png" class="img-responsive" /></i>Employee Pay Slip
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[45].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/ESS/purRequisit">
+                                                            <i class="fa fa-users"></i>Purchase Requisition
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="~/ESS/leaveRequest">
+                                                            <i class="fa fa-users"></i>Leave Request
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[46].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/ESS/loanRequest">
+                                                            <i class="fa fa-money"></i>Loan Request
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[47].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/ESS/freeshipRequest">
+                                                            <i class="fa fa-money"></i>Freeship Request
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                    }
+
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+
+                            if (list[43].menustat == "X")
+                            {
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-user-md"></i> <span>Managerial Self Service</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        @{
+                                            try
+                                            {
+                                                if (list[48].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/MSS/leaveApproval">
+                                                            <i class="fa fa-users"></i>Leave Approval
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[49].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/MSS/loanApproval">
+                                                            <i class="fa fa-money"></i>Loan Approval
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[50].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/MSS/freeshipApproval">
+                                                            <i class="fa fa-money"></i>Freeship Approval
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
+                    }
+
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                            if (list[37].menustat == "X")
+                            {
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-file"></i> <span>Reports</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+
+                                        <li><a href="~/home/finance"> <i class="fa fa-line-chart"></i>Finance</a></li>
+                                        <li>
+                                            <a href="~/home/purchase">
+                                                <i class="fa fa-archive"></i>Purchase & Inventory
+                                            </a>
+                                        </li>
+                                        <li><a href="~/home/sales"><i class="fa fa-bar-chart"></i>Sales</a></li>
+                                        <li>
+                                            <a href="~/home/human_resource">
+                                                <i class="fa fa-users"></i>Human Resource
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
+                    }
+
+                    
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="body-content">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>
+                Powered by                        <a href="http://Supernova.com.pk">
+                    ERManager CS
+                </a>.
+            </strong> All rights
+            reserved.
+        </footer>
+        <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+        <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Alert</h4>
+                        <small class="font-bold">Notice for submission of Fee. </small>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <strong>Dear Parent</strong> You Child fee has not been submitted due to which you child might not to
+                            be able to appear in final exams . You are advice to please submit your child fee and all other dues.
+                        </p>
+                        <div class="form-group"><label>Reply</label> <input type="email" placeholder="Enter your Message" class="form-control"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal inmodal" id="StudentProfile" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Alert</h4>
+                        <small class="font-bold">Select the Category</small>
+                    </div>
+                    <div class="modal-body">
+                        <form id="popupform_prsnlinfo" name="popupform" method="post" action="">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="radio i-checks"><label> <input type="radio" checked="" id="clswsprsnl" value="Class Wise Personal" name="a"> <i></i> Class Wise Personal </label></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="radio i-checks"><label><input type="radio" value="Student Wise Personal" id="stdwsprsnl" name="a"><i></i> Student Wise Personal</label></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-4 col-md-offset-8">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                    <input type="submit" name="submit" value="Submit" class="btn btn-danger">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal inmodal" id="ChangePassword" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Change Account Password</h4>
+                    </div>
+                    <form id="passpopupform" name="popupform" method="post" action="">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label> Old Password </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="password" style="padding:2px;" class="form-control m-b" placeholder="Old Password" id="txtoldpass" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label> New Password </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="password" style="padding:2px;" class="form-control m-b" placeholder="New Password" id="txtnewpass" pattern=".{8,}" title="Password Must be 8 Characters Long" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label> Confirm Password </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="password" style="padding:2px;" class="form-control m-b" placeholder="Confirm Password" id="txtconpass" pattern=".{8,}" title="Password Must be 8 Characters Long" required />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="pass-validator" style="font-size:11px;"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-8">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                    <input type="submit" value="Save" class="btn btn-danger" name="savepass" id="savepass" disabled />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <!-- jQuery 2.2.3 -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>
+
+
+    <!-- Bootstrap 3.3.6 -->
+
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1")></script>
+    <!-- FastClick -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/fastclick/fastclick.js?n=1")></script>
+    <!-- AdminLTE App -->
+    <script src=@Url.Content("~/Content/dbtheme/dist/js/app.min.js?n=1")></script>
+    <!-- Sparkline -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/sparkline/jquery.sparkline.min.js?n=1")></script>
+    <!-- jvectormap -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js?n=1")></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/slimScroll/jquery.slimscroll.min.js?n=1")></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src=@Url.Content("~/Content/js/Chart.min.js?n=1")></script>
+
+    <script src=@Url.Content("~/Content/js/jquery.monthpicker.min.js?n=1")></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- AdminLTE for demo purposes -->
+    <script src=@Url.Content("~/Content/dbtheme/dist/js/demo.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/jquery.metisMenu.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/jquery.peity.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/grid.locale-en.js?n=1")></script>
+
+    <script src=@Url.Content("~/Content/js/jquery.jqGrid.min.js?n=1")></script>
+    @*<script src=@Url.Content("~/Content/js/pace.min.js?n=1")></script>*@
+    <script src=@Url.Content("~/Content/js/jquery-ui.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap-datepicker.js?n=1")></script>
+    <script src=@Url.Content("~/Scripts/jquery.validate.min.js")></script>
+
+    <script src=@Url.Content("~/Content/js/summernote.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/jasny-bootstrap.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/dropzone.js?n=1")></script>
+
+    <script src=@Url.Content("~/Content/js/jquery.validate.min.js")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/daterangepicker/moment.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/fullcalendar/fullcalendar.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/daterangepicker/daterangepicker.js")></script>
+
+    <script src=@Url.Content("~/Content/js/ChangePassword.js?n=1")></script>
+    <script src=@Url.Content("~/Content/iChecks/icheck.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/Avatar/avatar1.js?n=1")></script>
+    <script src=@Url.Content("~/Content/Avatar/resample.js?n=1")></script>
+
+    <script src=@Url.Content("~/Content/js/jquery.validate.min.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/popup.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/Bootstrapmodal.js?n=1")></script>
+
+    <script src=@Url.Content("~/Content/dbtheme/dist/js/file-upload.js")></script>
+
+    <!-- Data Tables -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/jquery.dataTables.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.bootstrap.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.responsive.js?n=1")></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.tableTools.min.js?n=1")></script>
+
+    @*******************************Pages Scripts**********************************@
+    <script src=@Url.Content("~/Content/js/CampusCapacity.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/CampusStatus.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/CampusStrength.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/AttendanceUpload.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/ViewAttendance.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/studentdashboardjs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/TeacherDashboard.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/download.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/WeeklyLesson.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/EventSchedular.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/FeeChalan.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/feehistoryjs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/feestatusjs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/ActivityGrade.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/AssignmentUpload.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/Email.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/Finance.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/Human_Resource.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/MarksUpload.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/Purchase.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/Sales.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/TeacherAttendance.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/ClassWisepersonal.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/StudentProfile.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/PPCambridge.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/PPMatric.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/customjs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/PublishResult.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/ClassTimetablejs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/MasterTimetablejs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/TeacherTimetablejs.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/UploadTimeTable.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/loanRequest.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/loanAppr.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/leaveRequest.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/leaveAppr.js?n=1")></script>
+    <script src=@Url.Content("~/Content/js/purRequisit.js?n=1")></script>
+    @*******************************Pages Scripts**********************************@
+
+
+    <script type="text/javascript">
+        @ViewBag.scriptcall2
+        @ViewBag.call_alert
+
+        function destroy_session() {
+            window.location.href = "/dashboard/destroy_session";
+        }
+
+        $(document).ready(function () {
+
+            $('.summernote').summernote();
+            $('.note-toolbar .note-fontsize, .note-toolbar .note-color, .note-toolbar .note-para .dropdown-menu li:first, .note-toolbar .note-line-height').remove();
+            $('#press').click(function () {
+                $('#myModal').modal('show');
+            });
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+
+        var edit = function () {
+            $('.click2edit').summernote({ focus: true });
+        };
+        var save = function () {
+            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+            $('.click2edit').destroy();
+        };
+
+        function popup() {
+            $('.summernote').summernote();
+            $('#StudentProfile').modal('show');
+        }
+
+        function passpopup() {
+            $('.summernote').summernote();
+            $('#ChangePassword').modal('show');
+        }
+
+        function Demo(anchor) {
+            var value = anchor.getAttribute('value')
+            $.ajax({
+                type: 'POST',
+                url: '/result/fncresulttype',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                    //alert("Error in assigning dataToSave" + err.responseText);
+                }
+            });
+        }
+
+        function down(anchor) {
+            var value = anchor.getAttribute('value')
+            $.ajax({
+                type: 'POST',
+                url: '/download/fundownload',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                }
+            });
+        }
+
+        function redirectpersonalinfo(anchor) {
+            var value = anchor.getAttribute('value');
+            $.ajax({
+                type: 'POST',
+                url: '/personalinfo/funcpersonal',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                }
+            });
+        }
+
+        $("#popupform_prsnlinfo").submit(function (e) {
+            e.preventDefault();
+            var value = $("#popupform_prsnlinfo input:radio:checked").val();
+            $.ajax({
+                type: 'POST',
+                url: '/personalinfo/funcpersonal',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    debugger
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                }
+            });
+        });
+
+        function GetMsgid(anchor) {
+            var value = anchor.getAttribute('value')
+
+            $.ajax({
+                type: 'POST',
+                url: '/Message/GetMsgId',
+                data: "sendmsgid=" + value,
+                success: function (result) {
+                    if (result != "") {
+                        var getid = result;
+                        window.location.href = getid;
+                    }
+                },
+                error: function (err, result) {
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $(".treeview ul li").on('click', 'li', function () {
+                debugger
+                $(".treeview").removeClass("active");
+                // adding classname 'active' to current click li 
+                $(this).parent("treeview").addClass("active");
+            });
+        });
+
+    </script>
+
+    <script src=@Url.Content("~/Content/js/custom-chart.js?n=1")></script>
+
+    <script src=@Url.Content("~/Content/js/FinalReport.js?n=1")></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1")></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

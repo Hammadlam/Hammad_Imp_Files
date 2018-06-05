@@ -1,0 +1,106 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "ActivityGrade";
+}
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Student Evaluation
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Grade Activities
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" id="activityform" name="form">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusAG", @id = "txtCampusAG", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Class/Level</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassAG", @id = "txtClassAG", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Section</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionAG", @id = "txtSectionAG", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5 form-group">
+                                            <input id="showGridactivity" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " id="activity_div" style="display:none;">
+                <div id="dvborder">
+                    <div class="ibox-content">
+                        <div class="jqGrid_wrapper">
+                            <table id="table_list_activity"></table>
+                            <div id="pager_activity"></div>
+                        </div>
+                        <form role="form" method="post" id="submitmarks_form">
+                            <div class="row ">
+                                <div class="col-md-2">
+                                    <button name="btnSubmitActivity" id="submitActivity" class="btn btn-sm btn-danger form-submitbtn" type="submit"><strong>Submit</strong></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

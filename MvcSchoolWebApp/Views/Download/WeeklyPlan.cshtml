@@ -1,0 +1,392 @@
+﻿
+@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "Daily Lesson Plan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #txttopicwlp {
+        left: 1%;
+        padding-right: 6%;
+    }
+
+    #custom-textarea, #txtresourcewlp {
+        left: 3.5%;
+        padding-right: 5.5%;
+    }
+
+    #txtdemoclass {
+        left: -5%;
+    }
+
+    .myradio {
+        left: -40px;
+    }
+
+    #txtevaluation {
+        left: 1%;
+    }
+
+    #txtCommentsWP {
+        height: 150px;
+    }
+    /*#custom-textarea {
+    left : -3.5%;
+    }*/
+</style>
+<section class="content">
+    <!-- Info boxes -->
+@using (Html.BeginForm("WeeklyPlan", "Download", FormMethod.Post))
+{
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Lesson Plan
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Daily Lesson Plan
+                                </label>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            @*<form role="form" id="downloadform" name="form">*@
+                            @*<form role="form" id="weeklyplanform" name="weeklyplanform">*@
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusWP", @id = "txtCampusWP", @required = true })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Class/Level</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassWP", @id = "txtClassWP", @required = true })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Section</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionWP", @id = "txtSectionWP", @required = true })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label for="txtSubjectDI">Subject</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "txtSubjectWP", @id = "txtSubjectWP", @required = true })
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Date</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @*@Html.DropDownListFor(m => m.week, Model.weeklist, "Week", new { @class = "form-control m-b", @name = "txtWeekWP", @id = "txtWeekWP", @required = true })*@
+                                            @Html.TextBoxFor(model => model.begdate, "Date", new { @Value = ViewBag.date, @class = "date-day form-control m-b", @name = "txtbegdateWP", @id = "txtbegdateWP", @required = true })
+                                            @*@Html.TextBoxFor(m => m.week, new { @class = "form-control m-b", @name = "txtWeekWP", @id = "txtWeekWP", @placeholder = "Week", @required = true })*@
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <div class="col-md-3 pull-right">
+                                            <button type="submit" class="btn btn-danger" id="btn-editlesson">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </div>
+                                        @*<div class="col-md-5">
+                                            <label>To Date</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.enddate, "Date", new { @Value = DateTime.Now.ToString("dd-MMMM-yyyy"), @class = "date-day form-control m-b", @name = "txtenddateWP", @id = "txtenddateWP", @required = true })
+                                        </div>*@
+                                    </div>
+
+                                </div>
+
+                                @*<div class="row">
+                                    <div class="col-md-4 pull-right">
+                                        <div class="col-md-3 pull-right">
+                                                <button type="submit" class="btn btn-danger" id="btn-editlesson">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>*@
+                            @*</form>*@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+        <div class="ibox-content">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="col-md-2">
+                            <label>Teacher Name</label>
+                        </div>
+                        <div class="col-md-9" id="txttopicwlp">
+                            @Html.DropDownListFor(m => m.studentid, Model.student, new { @class = "form-control m-b", @name = "txtteacherWP", @id = "txtteacherWP", @placeholder = "Teacher ID", @required = true, @readonly = true })
+                            @*@Html.TextBoxFor(m => m.teachername, new { @class = "form-control m-b", @name = "txtteacherWP", @id = "txtteacherWP", @placeholder = "Teacher ID", @required = true, @readonly = true })*@
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="col-md-2">
+                            <label>Topic</label>
+                        </div>
+                        <div class="col-md-9" id="txttopicwlp">
+                            @Html.TextBoxFor(m => m.topic, new { @class = "form-control m-b", @name = "txtTopicWP", @id = "txtTopicWP", @placeholder = "Topic", @required = true })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <label>Objective</label>
+                        </div>
+                        <div class="col-md-10" id="custom-textarea">
+                            @Html.TextAreaFor(m => m.objective, new { @class = "form-control m-b", @name = "txtObjectWP", @id = "txtObjectWP", @required = true, @style = "resize:vertical" })
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <label> Resource </label>
+                        </div>
+                        <div class="col-md-10" id="txtresourcewlp">
+                            @Html.TextBoxFor(m => m.resource, new { @class = "form-control m-b", @name = "txtResourceWP", @id = "txtResourceWP", @placeholder = "Resource", @required = true })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <label> Evaluation </label>
+                        </div>
+                        <div class="col-md-10" id="custom-textarea">
+                            @Html.TextAreaFor(m => m.evaluation, new { @class = "form-control m-b", @name = "txtEvalutionWP", @id = "txtEvalutionWP", @required = true, @style = "resize:vertical" })
+                        </div>
+                    </div>
+                    @*<div class="col-md-4">
+                            <div class="col-md-5">
+                                <label> Time Break-up </label>
+                            </div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(m => m.eval_time_break_id, Model.eval_time_break, "Time Break", new { @class = "form-control m-b", @name = "tb_evaluation", @id = "tb_evaluation", @required = true })
+                            </div>
+                        </div>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-9 col-md-offset-3" id="txtdemoclass">
+                            <h3>Teaching Methodology</h3>
+                            @*<div class="radio i-checks myradio"><label> <input type="radio" value="Recap" name="Methodology" checked> Recap </label></div>
+                                <div class="radio i-checks myradio"><label> <input type="radio" value="Eliciting" name="Methodology"> Eliciting </label></div>
+                                <div class="radio i-checks myradio"><label> <input type="radio" value="Brain Storming" name="Methodology"> Brain Storming </label></div>*@
+
+                            <label> <input type="radio" name="Methodology" value="Recap" style="display:inline" checked>  Recap </label> <br>
+                            <label><input type="radio" name="Methodology" value="Eliciting" style="display:inline"> Eliciting </label> <br>
+                            <label><input type="radio" name="Methodology" value="Brain-Storming" style="display:inline"> Brain Storming </label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-5">
+                            <label> Time Break-up </label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(m => m.tm_time_break_id, Model.tm_time_break, "Time Break", new { @class = "form-control m-b", @name = "tb_teachmethod", @id = "tb_teachmethod", @required = true })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-9 col-md-offset-3" id="txtdemoclass">
+                            <h3> Reading & Discussion </h3>
+                            @*<div class="radio i-checks myradio"><label> <input type="radio" value="Individual-Task" name="rd" checked > Individual Task </label></div>
+                                <div class="radio i-checks myradio"><label> <input type="radio" value="Pair-Work" name="rd" > Pair Work </label></div>
+                                <div class="radio i-checks myradio"><label> <input type="radio" value="Group-Work" name="rd"> Group Work </label></div>*@
+
+                            <label> <input type="radio" name="rd" value="Individual-Task" style="display:inline" checked> Individual Task </label> <br>
+                            <label><input type="radio" name="rd" value="Pair-Work" style="display:inline"> Pair Work </label> <br>
+                            <label><input type="radio" name="rd" value="Group-Work" style="display:inline"> Group Work </label>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-5">
+                            <label> Time Break-up </label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(m => m.rd_time_break_id, Model.rd_time_break, "Time Break", new { @class = "form-control m-b", @name = "tb_readdisc", @id = "tb_readdisc", @required = true })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <label> Written Work </label>
+                        </div>
+                        <div class="col-md-10" id="custom-textarea">
+                            @Html.TextAreaFor(m => m.writtenwork, new { @class = "form-control m-b", @name = "txtWorkWP", @id = "txtWorkWP", @required = true, @style = "resize:vertical" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-5">
+                            <label> Time Break-up </label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(m => m.ww_time_break_id, Model.ww_time_break, "Time Break", new { @class = "form-control m-b", @name = "tb_writtenwork", @id = "tb_writtenwork", @required = true })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <label> Wrap up </label>
+                        </div>
+                        <div class="col-md-10" id="custom-textarea">
+                            @Html.TextAreaFor(m => m.wrapup, new { @class = "form-control m-b", @name = "txtWrapWP", @id = "txtWrapWP", @required = true, @style = "resize:vertical" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-5">
+                            <label> Time Break-up </label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(m => m.wu_time_break_id, Model.wu_time_break, "Time Break", new { @class = "form-control m-b", @name = "tb_wrapup", @id = "tb_wrapup", @required = true })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row ">
+                    <div class="col-md-9" id="txtevaluation">
+                        <div class="col-md-5  col-md-offset-2">
+                            <label> Evaluation of Students' Learning </label>
+                            @Html.TextAreaFor(m => m.evaluationstdid, new { @class = "form-control m-b", @name = "txtStudentLearnWP", @id = "txtStudentLearnWP",  @style = "resize:vertical" })
+                        </div>
+                        <div class="col-md-5">
+                            <label> Evaluation of Teaching </label>
+                            @Html.TextAreaFor(m => m.evaluationteacherid, new { @class = "form-control m-b", @name = "txtTeachingWP", @id = "txtTeachingWP",  @style = "resize:vertical" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <label>
+                                Principal Comments @{ 
+                                    var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                    if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000")
+                                    { <label> (Previous) </label> } }
+                            </label>
+                        </div>
+                        <div class="col-md-10" id="custom-textarea">
+                            @Html.TextAreaFor(m => m.princ_comments, new { @class = "form-control m-b", @name = "txtCommentsWP", @id = "txtCommentsWP", @style = "resize:vertical", @readonly = true })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                @{
+                    if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000")
+                    {
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="col-md-2">
+                                    <label> New Comment </label>
+                                </div>
+                                <div class="col-md-10" id="custom-textarea">
+                                    @Html.TextAreaFor(m => m.princ_comments_new, new { @class = "form-control m-b", @name = "txtCommentsnewWP", @id = "txtCommentsnewWP", @required = true, @style = "resize:vertical" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+                <br />
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-10 col-md-offset-2" id="custom-textarea">
+                            <input id="btnviewdown" type="submit" value="Submit" name="btnsubmit" class="btn btn-sm btn-danger" />
+                        </div>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+            </div>
+            }
+</section>
+
+
+

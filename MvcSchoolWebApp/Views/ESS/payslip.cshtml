@@ -1,0 +1,153 @@
+﻿@model MvcSchoolWebApp.Models.ESSModel
+@{
+    ViewBag.Title = "payslip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Employee Self Service
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Employee Pay Slip
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            @using (Html.BeginForm("payslip", "ESS", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <form id="frm_payslip">
+                                    <div class="row ">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Employee Id</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.empid, new { @type = "text", @class = "form-control m-b", @name = "txtempidPS", @id = "txtempidPS", @placeholder = "Employee Id", @requried = "true", @readonly = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>From Date</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.begdate, new { @type = "text", @class = "date-day form-control m-b", @name = "txtbegdatePS", @id = "txtbegdatePS", @requried = "true"})
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>To Date</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.enddate, new { @type = "text", @class = "date-day form-control m-b", @name = "txtenddatePS", @id = "txtenddatePS", @requried = "true" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @*<div class="row ">
+
+                                            <div class="col-md-4">
+                                                <div class="col-md-5">
+                                                    <label>esubarea</label>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <input type="text" placeholder="esubarea" class="form-control m-b" name="txtesubareaPS" id="txtesubareaPS" />
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="row ">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Society</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.society, new { @type = "text", @class = "form-control m-b", @name = "txteareaPS", @id = "txteareaPS", @requried = "true", @disabled = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="row ">
+
+                                            <div class="col-md-4">
+                                                <div class="col-md-5">
+                                                    <label>eesubgrp</label>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <input type="text" placeholder="eesubgrp" class="form-control m-b" name="txteesubgrpPS" id="txteesubgrpPS" />
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <input id="btnformPS" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>
+<script>
+    
+    @*$("#frm_payslip").submit(function (e) {
+    debugger
+    e.preventDefault();
+    var param = new Array();
+    param[0] = $("#txtbegdatePS").val();
+    param[1] = $("#txtenddatePS").val();
+    param[2] = $("#txtesubareaPS").val();
+    param[3] = $("#txteesubgrpPS").val();
+    var paramvalues = param[0] + ',' + param[1] + ',' + param[2] + ',' + param[3];
+    window.location.href = '@Url.Action("getsquery", "ESS") ' + '?param=' + paramvalues;*@
+
+    //$.post("/ESS/getsquery", $.param(param, true));
+    //$.ajax({
+    //    type: "POST",
+    //    url: encodeURI("../ESS/getsquery"),
+    //    data: {
+    //        param: param
+    //    },
+    //    success: function (data) {
+    //        show_alert_js('Success');
+    //    },
+    //    error: function (data) {
+    //        show_err_alert_js('Found Some Error! Please Try Again');
+    //    },
+    //    dataType: "json"
+    //});
+//});
+</script>
+
+
+<script src=@Url.Content("~/Content/js/PaySlip.js?n=1")></script>

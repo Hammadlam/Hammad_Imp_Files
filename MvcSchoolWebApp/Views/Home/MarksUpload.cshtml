@@ -1,0 +1,208 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "MarksUpload";
+}
+<style>
+    #info_dialog {
+        width: 20% !important;
+        margin: 30% 20% 20% 40%;
+        height: auto !important;
+        z-index: 1000;
+        display: block;
+        top: 0px !important;
+        left:0px !important;
+    } 
+</style>
+<section class="content">
+    <!-- Info boxes -->
+@*@using (Html.BeginForm())
+{*@
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div style="border: 1px solid #d2d6de;">
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Student Evaluation
+                                </label>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Marks Submission
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" name="marksuploadform" id="marksuploadform">
+
+                                @* Basic Info *@
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusMU", @id = "txtCampusMU", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Class/Level</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassMU", @id = "txtClassMU", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Section</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionMU", @id = "txtSectionMU", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Teacher Name</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.teachername, new { @class = "form-control m-b", @name = "txtTeacherMU", @id = "txtTeacherMU", @readonly = true, @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Subject</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "txtSubjectMU", @id = "txtSubjectMU", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Module</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.moduleid, Model.module, "Module", new { @class = "form-control m-b", @name = "txtModuleMU", @id = "txtModuleMU", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Total Marks</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.marks,"Marks", new { @class = "form-control m-b", @name = "txtMarksMU", @id = "txtMarksMU", @required = "true", @pattern = "[^a-zA-Z]+", @title = "Digits Only" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Total Marks(P2)</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.marksp2, "Marks", new { @class = "form-control m-b", @name = "txtMarksMUP2", @id = "txtMarksMUP2", @pattern = "[^a-zA-Z]+", @title = "Digits Only" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Total Marks(P3)</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.marksp3, "Marks", new { @class = "form-control m-b", @name = "txtMarksMUP3", @id = "txtMarksMUP3", @pattern = "[^a-zA-Z]+", @title = "Digits Only" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>
+                                                Date
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.date, "Date", new { @Value = DateTime.Now.ToString("dd-MMMM-yyyy"), @class = "date-day form-control m-b", @name = "txtDateMU", @id = "txtDateMU", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="showGrid1" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                        <div class="col-md-7">
+                                            @*<div class="form-group"><button id="showGrid1" class="btn btn-sm btn-danger form-submitbtn" type="submit"><strong>Enter</strong></button> </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-lg-12">
+            <div class="ibox " style="border: 1px solid #d2d6de; display:none;"  id="marks_div" >
+                <div class="ibox-content">
+                    <div class="marks_jqGrid m-b">
+                        <table id="marks_table"></table>
+                        <div id="pager_list"></div>
+                    </div>
+                    <form role="form" id="UploadMarksForm">
+                        <div class="row ">
+                            <div class="col-md-2">
+                                <button id="btnUploadMarks" name="btnUploadMarks" class="btn btn-sm btn-danger form-submitbtn" type="submit"><strong>Submit Marks</strong></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@*}*@
+</section>
+
+
+<script type="text/javascript">
+    @*@ViewBag.scriptcall2*@
+    @ViewBag.scriptcall3
+</script>

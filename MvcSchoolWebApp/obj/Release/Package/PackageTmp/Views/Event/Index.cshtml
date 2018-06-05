@@ -1,0 +1,54 @@
+﻿
+<section class="content">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div id="calender"></div>
+
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            @{
+                                                var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+                                                if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000")
+                                                {
+                                                    <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                                                        <span class="glyphicon glyphicon-remove"></span> Remove
+                                                    </button>
+
+                                                }
+                                            }
+                     
+                                          
+
+                                            <p id="pDetails"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

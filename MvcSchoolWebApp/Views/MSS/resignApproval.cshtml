@@ -1,0 +1,262 @@
+﻿@model MvcSchoolWebApp.Models.ESSModel 
+@{
+    ViewBag.Title = "resignApproval";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #loancontent {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+</style>
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Managerial Self Service
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Resignation Approval
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content" id="resigapp_div">
+                        <div class="resigapp_jqGrid m-b">
+                            <table id="resigapp_table"></table>
+                            <div id="resigapp_pager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("resigRecommend", "MSS", FormMethod.Post))
+    {
+        <div class="modal inmodal" id="ResigRecodPopup" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">Resignation Detail</h4>
+                    </div>
+                    <form id="resigpopupform" name="resigpopupform" method="post" action="">
+                        <div class="modal-body" id="resigcontent">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Employee Id</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.empid, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecEmpidRAP", @id = "txtrecEmpidRAP", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Request Number</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.recordno, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecreqnoRAPP", @id = "txtrecreqnoRAPP", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Employee Name</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.empname, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecEmpnameRAPP", @id = "txtrecEmpnameRAPP", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Joining Date</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.joindate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecjoinRAPP", @id = "txtrecjoinRAPP", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Designation</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.design, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecdesigRAPP", @id = "txtrecdesigRAPP", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Exit Interview Date</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.enddate, "Date", new { @Value = DateTime.Now.ToString("dd-MMMM-yyyy hh:ii"), placeholder = "Date", @class = "form-control m-b", @name = "txtenddateRAPP", @id = "txtenddateRAPP", @required = true })
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Comments</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.coments, "Enter Coments", new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtRecodComments", @id = "txtRecodComments", @required = true })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                    <input type="submit" value="Accept" class="btn btn-primary" name="btnRecsubmit"
+                                           id="btnRecsubmit" />
+                                    <button type="button" class="btn btn-danger" name="btnrecodRecrej" id="btnrecodRecrej">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("ApprovalAsPerPolicyRAPP", "MSS", FormMethod.Post))
+    {
+        <div class="modal inmodal" id="RAPPAppPopup" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">Resignation Detail</h4>
+                    </div>
+                    <form id="RAPPpopupform" name="RAPPpopupform" method="post" action="">
+                        <div class="modal-body" id="RAPPcontent">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Employee Id</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.empid, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigEmpid", @id = "txtresigEmpid", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Request Number</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.recordno, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigresigreqno", @id = "txtresigresigreqno", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Employee Name</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.empname, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigEmpname", @id = "txtresigEmpname", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Joining Date</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.joindate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigresigjoin", @id = "txtresigresigjoin", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Designation</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.design, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigresigdesig", @id = "txtresigresigdesig", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Request Date</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.begdate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigresigappbdate", @id = "txtresigresigappbdate", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Exit Interview</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.enddate, "Date", new { @Value = DateTime.Now.ToString("dd-MMMM-yyyy hh:ii"), placeholder = "Date", @class = "form-control m-b", @name = "txtendateRAPP", @id = "txtendateRAPP", @required = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Comments</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.coments, "Enter Coments", new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtresigRecodComments", @id = "txtresigRecodComments", @required = true })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-warning" name="btnloanAccpt" id="btnloanAccpt">Accept</button>
+                                    <input type="submit" value="Accepted Per Policy" class="btn btn-success" name="btnloancsubmit"
+                                           id="btnloancsubmit" />
+                                    <button type="button" class="btn btn-danger" name="btnloanRecrej" id="btnloanRecrej">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</section>

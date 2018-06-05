@@ -1,0 +1,202 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "MasterDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    @@media only screen and (max-width: 400px) {
+
+        .adj-minscreen {
+            /*height:400px!important;
+            width:200px;*/
+        }
+    }
+</style>
+<section class="content-header">
+    <h1>
+        Dashboard
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        @*<div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="fa fa-file-text"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Test Result</span>
+                        <span class="info-box-number">87<small>%</small></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>*@
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+
+                <span class="info-box-icon bg-green"><i class="fa fa-graduation-cap"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Admission</span>
+                    <span class="info-box-number">1050</span>
+                </div>
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+
+                <span class="info-box-icon bg-red"><i class="fa fa-briefcase"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Attendance</span>
+                    <span class="info-box-number">0</span>
+                </div>
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Students</span>
+                    <span class="info-box-number">@ViewBag.TotalStidents</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-2 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-stats-bars"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">OUTSTANDING FEES</span>
+                    <span class="info-box-number">@ViewBag.TotalStidents</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+
+                    <h4 class="col-md-3"> </h4>
+
+                    <div class="">
+
+
+                    </div>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <h4>Revenue Graph</h4>
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.DropDownListFor(m => m.campusid, Model.campus, new { @class = "form-control m-b", @name = "txtCampusAD-2", @id = "txtCampusAD-2", @required = true })
+                            </div>
+
+                            <div class="chart">
+                                <canvas id="revenue-chart" class="adj-minscreen" height="110"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./box-body -->
+                <div class="box-footer">
+                    <div class="row">
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+
+                    <h4 class="col-md-3"> </h4>
+
+                    <div class="">
+
+
+                    </div>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <h4>Campus Strength</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="barchartContainer" class="adj-minscreen" height="110"></div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <!-- /.row -->
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="barchartContainer" style="height:380px; width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ./box-body -->
+                <div class="box-footer">
+                    <div class="row">
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>

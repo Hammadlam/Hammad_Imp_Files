@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ParamView</title>
+</head>
+<body>
+    <div>
+        <button type="submit" onclick="getinputva();" style="margin:0% 2% 2% 10%" >Submit</button>
+    </div>
+
+    <script src="~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/Content/dbtheme/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+    debugger
+   function getinputva()
+    {
+
+        $.ajax({
+            url: '@Url.Action("SendParam", "Home")',
+            type: "GET",
+            //data: { "country": countryId },
+            success: function (sendParam) {
+
+                var getvalues = new Array();
+
+                for (var i = 0; i < sendParam; i++) {
+
+                    getvalues[i] = [document.getElementById('txt' + i).value];
+                }
+
+                alert(getvalues);
+                //alert(sendParam);
+                window.location.href = "/Home/getValues?getValues=" + getvalues;
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+    }
+    </script>
+    <div> 
+    </div>
+</body>
+</html>

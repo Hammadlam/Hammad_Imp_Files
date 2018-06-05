@@ -1,0 +1,144 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "FinalReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <!-- Info boxes -->
+    @*@using (Html.BeginForm())
+        {*@
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Student Performance
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Final Report
+                                </label>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" id="FinalReportForm" name="form">
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusRF", @id = "txtCampusRF", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Class/Level</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class", new { @class = "form-control m-b", @name = "txtClassRF", @id = "txtClassRF", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Section</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionRF", @id = "txtSectionRF", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Student Name</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.studentid, Model.stdname, "Student", new { @class = "form-control m-b", @name = "txtnameRF", @id = "txtnameRF", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Session</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(m => m.subjectid, new { @class = "form-control m-b", @placeholder = "Session", @name = "txtSessionRF", @id = "txtSessionRF", @required = true, @pattern = "[^a-zA-Z]+", @title = "This Field can only contain Numbers" })
+                                            @*@Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "txtSubjectRF", @id = "txtSubjectRF", @required = true })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Module</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.moduleid, Model.module, "Module", new { @class = "form-control m-b", @name = "txtModuleRF", @id = "txtModuleRF", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Report Name</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.reptid, Model.reports, "Report", new { @class = "form-control m-b", @name = "txtRptId", @id = "txtRptId", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5 form-group">
+                                            <input id="showGridRF1" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*}*@
+</section>
+<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>
+<script>
+    $(document).ready(function (e) {
+        $("#txtClassRF")[0].selectedIndex = 0;
+        $("#txtRptId")[0].selectedIndex = 0;
+        $("#txtModuleRF")[0].selectedIndex = 0;
+        $("#txtSectionRF")[0].selectedIndex = 0;
+        $("#txtnameRF")[0].selectedIndex = 0;
+        //$("#txtnameRF").empty();// = 0;
+    });
+</script>

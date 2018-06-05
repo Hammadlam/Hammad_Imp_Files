@@ -1,0 +1,117 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "CampusCapacity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content">
+    <!-- Info boxes -->
+@*@using (Html.BeginForm())
+{*@
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Admissions
+                                </label>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Campus Capacity
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+
+                            <form id="campusCapacityForm" role="form" name="campusCapacityForm">
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus,  new { @class = "form-control m-b", @name = "txtCampusCC", @id = "txtCampusCC", @required = true })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 camp-capacity" style="display:none;">
+                                        <div class="col-md-7">
+                                            <label>Total Capacity:</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="lbltotalcap">  </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 camp-capacity" style="display:none;">
+                                        <div class="col-md-7">
+                                            <label>Total Seats Occupied:</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="lbloccupied">  </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 camp-capacity" style="display:none;">
+                                        <div class="col-md-7">
+                                            <label>Total Seats Available:</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="lblavailable">  </label>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="campusCapacityshowGrid" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " style="border: 1px solid #d2d6de; display:none;" id="campusCapacity_div">
+                <div class="ibox-content" id="campusCapacity_div">
+                    <div class="campusCapacity_jqGrid m-b">
+                        <table id="campusCapacity_table"></table>
+                        <div id="campusCapacity_pager_list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@*}*@
+</section>
+

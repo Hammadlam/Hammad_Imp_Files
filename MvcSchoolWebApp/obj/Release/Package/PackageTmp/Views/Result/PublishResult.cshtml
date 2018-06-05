@@ -1,0 +1,121 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Data Tables -->
+<link href="~/Content/dbtheme/plugins/datatables/dataTables.bootstrap.css?n=1" rel="stylesheet">
+<link href="~/Content/dbtheme/plugins/datatables/dataTables.responsive.css?n=1" rel="stylesheet">
+<link href="~/Content/dbtheme/plugins/datatables/dataTables.tableTools.min.css?n=1" rel="stylesheet">
+
+<style>
+    /*.dataTables_length {
+        margin-top:-3px;
+    }*/
+    .dataTables_filter {
+        display: none;
+    }
+
+    .DTTT_container {
+        display: none;
+    }
+
+    input[type=radio] {
+        display: block;
+    }
+
+    .btn-getpublishresult {
+        margin-top: 5px;
+    }
+    /*.dataTables_wrapper {
+        margin-top:-34px;
+    }*/
+</style>
+
+<section class="content">
+    <div class="animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><label>Publish Results</label></h5>
+                    </div>
+
+                    <div class="ibox-content">
+                        @using (Html.BeginForm("PublishResult", "Result", FormMethod.Post))
+                        {
+                            <form id="publishresult1">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(model => model.campusid, Model.campus, "Campus", new { @placeholder = "Campus", @class = "form-control", @id = "txtcampuspr", @name = "txtcampuspr", @required = true })
+                                    </div>
+                                    @*<div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.classesid, Model.classes, "Class", new { @placeholder = "Class", @class = "form-control", @id = "txtclasspr", @name = "txtclasspr", @required = true })
+                                        </div>*@
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(model => model.moduleid, Model.module, "Module", new { @placeholder = "Module", @class = "form-control", @id = "txtmodulepr", @name = "txtmodulepr", @required = true })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-4 btn-getpublishresult">
+                                        <input type="submit" value="Submit" class="btn btn-danger pull-right" />
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                        <form id="publishresult">
+                            <table class="table table-striped table-bordered table-hover dataTables-example" summary="none">
+                                <thead>
+                                    <tr> 
+                                        <th>Class</th>
+                                        <th>Section</th>
+                                        <th>Publish</th>
+                                        <th>Un-Publish</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var lst = ViewBag.resultlist as List<MvcSchoolWebApp.Data.PublishResultClass>;
+                                        if (lst != null)
+                                        {
+                                            for (int i = 0; i < lst.Count; i++)
+                                            {
+                                                <tr class="gradeX">
+                                                    <td> <input type="hidden" name="cls @i" value="@lst[i].classid" /> @lst[i].classes </td>
+                                                    <td> <input type="hidden" name="sec @i" value="@lst[i].sectionid" /> @lst[i].section </td>
+                                                    @if (lst[i].status == "rp")
+                                                    {
+                                                        <td class="center"><input type="radio" name="pub @i" value="publish" checked="checked" /></td>
+                                                        <td class="center"><input type="radio" name="pub @i" value="unpublish" /></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="center"><input type="radio" name="pub @i" value="publish" /></td>
+                                                        <td class="center"><input type="radio" name="pub @i" value="unpublish" checked="checked" /></td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
+
+
+                                    }
+                                </tbody>
+                                @*<tfoot>
+                                        <tr>
+                                            <th>Rendering engine</th>
+                                            <th>Browser</th>
+                                            <th>Platform(s)</th>
+                                            <th>Engine version</th>
+                                            <th>CSS grade</th>
+                                        </tr>
+                                    </tfoot>*@
+                            </table>
+                            <input type="submit" value="Publish" class="btn btn-danger" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,150 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "Attendance";
+}
+
+<section class="content">
+    <!-- Info boxes -->
+    @*@using (Html.BeginForm())
+    {*@
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+
+                        <div class="ibox-title ">
+
+                            <ul id="vert_menu">
+                                <li>
+                                    <input type="radio" id="r1" name="r">
+                                    <label for="r1">
+                                        Academics
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="r2" name="r">
+                                    <label for="r2">
+                                        Student Evaluation
+                                    </label>
+                                </li>
+
+                                <li>
+                                    <input type="radio" id="r3" name="r">
+                                    <label for="r3">
+                                        Mark Attendance
+                                    </label>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="ibox-content">
+                            <div class="row">
+
+                                <form id="attendanceForm" role="form" name="attendanceForm">
+                                    <div class="row ">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Campus</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusMA", @id = "txtCampusMA", @required = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Class/Level</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassMA", @id = "txtClassMA", @required = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Section</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionMA", @id = "txtSectionMA", @required = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Teacher Name</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.teachername, new { @class = "form-control m-b", @name = "txtTeacherMA", @id = "txtTeacherMA", @readonly = true, @required = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+
+                                            <div class="col-md-5">
+                                                <label>Subject</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.subjectid, Model.subject, "Subject", new { @class = "form-control m-b", @name = "txtSubjectMA", @id = "txtSubjectMA" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Date </label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.date, "Date", new { @Value = ViewBag.date, @class = "date-day form-control m-b", @name = "txtDateMA", @id = "txtDateMA", @required = true})
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <input id="showGridMA" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox " style="border: 1px solid #d2d6de; display:none;" id="attendance_div">
+                    <div class="ibox-content" id="attendance_div">
+                        <div class="attendance_jqGrid m-b">
+                            <table id="attendance_table"></table>
+                        </div>
+                        <form role="form" method="post" id="submitattd_form">
+                            <div class="row ">
+                                <div class="col-md-2">
+                                    <button name="btnUploadAttendance" id="submitattendance" class="btn btn-sm btn-danger form-submitbtn" type="submit"><strong>Submit Attendance</strong></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    @*}*@
+</section>
+
+
+

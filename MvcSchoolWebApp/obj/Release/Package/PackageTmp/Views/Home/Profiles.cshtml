@@ -1,0 +1,452 @@
+﻿
+@model MvcSchoolWebApp.Models.Profile
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using ( Html.BeginForm())
+{
+  
+
+    <section class="content">
+    <!-- Info boxes -->
+
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+
+                    <div class="ibox-title">
+                        <h3>
+                            Basic Info
+                        </h3>
+
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form">
+
+                                @* Basic Info *@
+                                <div class="row ">
+                                    <div class="col-md-2">
+                                        <div class="avatar-upload ">
+                                            <img src="@Url.Content(Model.image)" id="profile-avatar" alt="Image for Profile">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <div class="col-md-4">
+                                                    <label>Id:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>@Html.DisplayFor(model => model.roleid, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <div class="col-md-4">
+                                                    <label>School:</label>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>@Html.DisplayFor(model => model.school, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="col-md-5">
+                                                    <label>Campus:</label>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>@Html.DisplayFor(model => model.campus, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <div class="col-md-4">
+                                                    <label>Department:</label>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>@Html.DisplayFor(model => model.status, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="col-md-5">
+                                                    <label>Status:</label>
+                                                </div>
+
+                                                <div class="col-md-6" id="depart">
+                                                    <label>@Html.DisplayFor(model => model.department, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                                <div class="col-md-4">
+                                                    <label>From Date:</label>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>@Html.DisplayFor(model => model.fromdate, new { @class = "labeldata" })</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="col-md-5">
+                                                    <label>To Date:</label>
+                                                </div>
+
+                                                <div class="col-md-7">
+                                                    <label>@Html.DisplayFor(model => model.todate, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title">
+                        <h3>
+                            Personal Info
+                        </h3>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form">
+
+                                @* Personal Info *@
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Title:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.title, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Initials:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label class="labeldata">-</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>First Name:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.firstname, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Father Name:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.fathername, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Middle Name:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.middlename, new {@class = "labeldata"})</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Second Name:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.secondname, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Last Name:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.lastname, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+
+                    @* Additional Info *@
+                    <div class="ibox-title">
+                        <h3>
+                            Additional Info
+                        </h3>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form">
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Id Number:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.nic, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Birth Date:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.dob, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Gender:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                        
+                                            <label>@Html.DisplayFor(model => model.gender, new {@class = "labeldata"})</label>
+                                      
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Birth Place:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.birthplace, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Nationality:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.nationality, new { @class = "labeldata" })</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Country of Birth:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.birthcountry, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    @* Address Info *@
+                    <div class="ibox-title">
+                        <h3>
+                            Address
+                        </h3>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div role="form">
+
+                                <div class="row">
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>Address Type:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.addtype, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>C/O:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.careof, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>Street 1:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.paddress, new { @class = "labeldata" })</label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>Street 2:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.paddress2, new { @class = "labeldata" })</label>
+ 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>ZIP Code/City:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>@Html.DisplayFor(model => model.zipcode, new { @class = "labeldata" })</label>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label>@Html.DisplayFor(model => model.city, new { @class = "labeldata" })</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>District:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.district, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>Country:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.birthcountry, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="col-md-5">
+                                            <label>Phone:</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <label>@Html.DisplayFor(model => model.phone, new { @class = "labeldata" })</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+}
+
+

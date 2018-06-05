@@ -1,0 +1,291 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@*custom-chart.js*@
+
+<style>
+    @@media only screen and (max-width: 400px) {
+
+        .adj-minscreen {
+            /*height:400px!important;
+            width:200px;*/
+        }
+    }
+</style>
+<section class="content-header">
+    <h1>
+        Dashboard
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+        @*<div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-file-text"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Test Result</span>
+                    <span class="info-box-number">87<small>%</small></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>*@
+        <!-- /.col -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+
+                <span class="info-box-icon bg-green"><i class="fa fa-graduation-cap"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Admission</span>
+                    <span class="info-box-number">1050</span>
+                </div>
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+
+                <span class="info-box-icon bg-red"><i class="fa fa-briefcase"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Attendance</span>
+                    <span class="info-box-number">0</span>
+                </div>
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Students</span>
+                    <span class="info-box-number">@ViewBag.TotalStidents</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    @*<div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+
+                    <h4 class="col-md-3"> </h4>
+
+                    <div class="">
+                      
+
+                    </div>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="col-md-4">
+                                <h4>Revenue Graph</h4>
+                            </div>
+                            <div class="form-group col-md-3">
+
+                                @Html.DropDownListFor(m => m.campusid, Model.campus, new { @class = "form-control m-b", @name = "txtCampusAD-2", @id = "txtCampusAD-2", @required = true })
+
+
+                            </div>
+
+                            <div class="chart">
+                                <canvas id="revenue-chart" class="adj-minscreen" height="120"></canvas>
+                            </div>
+
+                        </div>
+
+                        <!-- /.col -->
+                        <div class="col-md-4">
+
+                            <div class="col-md-7">
+                                <h4>Admission Graph</h4>
+                            </div>
+
+                            <canvas id="admission-chart" height="240"></canvas>
+                            <!-- /.progress-group -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./box-body -->
+                <div class="box-footer">
+                    <div class="row">
+
+
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>*@
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <!-- MAP & BOX PANE -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    @*<h4 class="col-md-3">Revenue Graph</h4>
+                        <div class="col-md-6"></div>
+                        <h4 class="col-md-3">Total Students Graph</h4>*@
+                    <h4 class="col-md-3"> </h4>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <h4>Total Students Graph</h4>
+                            </div>
+                            @*<div class="form-group col-md-3">
+
+                                @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusAD-2", @id = "txtCampusAD-2", @required = true })
+
+
+                            </div>*@
+                                
+                            <div class="chart">
+                                <canvas id="total-students-chart" class="adj-minscreen" height="120"></canvas>
+                            </div>
+
+                        </div>
+
+                        @*<div class="col-md-4">
+
+                                <h4 class="col-md-8">Total Students Graph</h4>
+
+                                <canvas id="no-of-student-chart" height="260"></canvas>
+
+                            </div>*@
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <div class="row">
+
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <!-- TABLE: LATEST ORDERS -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        @*<div class="col-md-4">
+
+            </div>*@
+        <!-- /.col -->
+    </div>
+    
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <!-- MAP & BOX PANE -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    @*<h4 class="col-md-3">Revenue Graph</h4>
+                        <div class="col-md-6"></div>
+                        <h4 class="col-md-3">Total Students Graph</h4>*@
+                    <h4 class="col-md-3"> </h4>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="col-md-4">
+                                <h4>Average Test Graph</h4>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                @Html.DropDownListFor(m => m.campusid, Model.campus, new { @class = "form-control m-b", @name = "txtCampusAD", @id = "txtCampusAD", @required = true })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.DropDownListFor(m => m.moduleid, Model.module, new { @class = "form-control m-b", @name = "txtModuleAD", @id = "txtModuleAD", @required = true })
+                            </div>
+
+                            <div class="col-md-6 chart" id="graph-container" >
+                                <canvas id="cam-test-result-chart" height="120"></canvas>
+                                <!-- /.chart-responsive -->
+                            </div> 
+                            <div class="col-md-6 chart">
+                                <canvas id="mat-test-result-chart" height="120"></canvas>
+                                <!-- /.chart-responsive -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <div class="row">
+
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <!-- TABLE: LATEST ORDERS -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        @*<div class="col-md-4">
+
+            </div>*@
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+</section>
+<!-- /.content -->
+

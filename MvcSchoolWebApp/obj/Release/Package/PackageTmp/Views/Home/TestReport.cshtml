@@ -1,0 +1,201 @@
+﻿
+@model MvcSchoolWebApp.Models.Report
+
+@*@{
+        ViewBag.Title = "TestReport";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+
+@*@using (Html.BeginForm())*@
+
+@using (Html.BeginForm())
+
+{
+
+    <section class="content">
+        <!-- Info boxes -->
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+
+                        <div class="ibox-title ">
+                            <ul id="vert_menu">
+                                <li>
+                                    <input type="radio" id="r1" name="r">
+                                    <label for="r1">
+                                        Reports
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="r2" name="r">
+                                    <label for="r2">
+                                        Test ReportView
+                                    </label>
+                                </li>
+
+
+                            </ul>
+
+
+                        </div>
+
+                        <div class="ibox-content">
+                            <div class="row">
+                                <form role="form" action="" method="post" class="login-form">
+                                    <div class="row ">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Reports Name</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <select id="reportid" name="reportid" class="form-control m-b">
+                                                    <option value="">Select Reports</option>
+                                                    <option value="Gl001">Chart of Account</option>
+                                                    
+                                                    <option value="SM0001">Customer Master List</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-4">
+
+                                            <div class="col-md-5 form-group">
+
+                                                <button type="submit" class="btn form-control btn-primary">submit</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+}
+
+
+@*dynamic view section*@
+<section class="content">
+    <!-- Info boxes -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" action="" method="post" class="login-form">
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            @*<label>Reports Name</label>*@
+
+
+
+                                        </div>
+                                        <div class="col-md-7">
+                                            @*<select id="reportid" name="reportid" class="form-control m-b">
+                                                    <option value="">Select Reports</option>
+                                                    <option value="Gl001">Chart of Account</option>
+                                                    <option value="SM0001">Customer Mater List</option>
+
+                                                </select>*@
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*<div class="row ">
+                                        <div class="col-md-4">
+
+                                            <div class="col-md-5 form-group">
+
+                                                <button type="submit" class="btn form-control btn-primary">submit</button>
+                                            </div>
+                                        </div>
+
+                                    </div>*@
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<div>
+    <button type="submit" onclick="getinputva();" class="btn btn-primary">submit text Box values</button>
+</div>
+
+<script type="text/javascript">
+
+   function getinputva()
+    {
+
+        $.ajax({
+            url: '@Url.Action("SendParam", "Home")',
+            type: "GET",
+            //data: { "country": countryId },
+            success: function (sendParam) {
+
+                var getvalues = new Array();
+
+                for (var i = 0; i < sendParam; i++) {
+
+                    getvalues[i] = [document.getElementById('txt' + i).value];
+                }
+
+                alert(getvalues);
+                //alert(sendParam);
+                window.location.href = "/Home/getValues?getValues=" + getvalues;
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+   }
+
+    @*function dynamicfieldgen()
+    {
+        debugger
+
+        var get = document.getElementById("reportid").value;
+     @{
+         string displayval = "<script>document.getElementById('reportid').value;</script>";
+         Response.Write("hi abdul");
+     }
+    }*@
+
+</script>

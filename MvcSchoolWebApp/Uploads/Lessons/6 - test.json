@@ -1,0 +1,838 @@
+{
+  "Name": "Test",
+  "Databases": [
+    {
+      "ServerName": "SERVER\\SNS2012",
+      "Name": "ERManager10c_Dev_vb6",
+      "CompatibilityLevel": "CompatLevel90",
+      "SizeMB": 979.4375,
+      "Status": "Completed",
+      "ServerVersion": "11.0.2218.0",
+      "AssessmentRecommendations": [
+        {
+          "CompatibilityLevel": "CompatLevel100",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00312",
+          "Title": "Remove references to undocumented system tables",
+          "Impact": "Many system tables that were undocumented in prior releases have changed or no longer exist; therefore, using these tables may cause errors after upgrading to SQL Server 2008.",
+          "Recommendation": "The list of undocumented system tables that are removed is provided in the below article.\n Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254) The \"Corrective Action\" provides the alternative replacements for some of the unsupported objects that can be used to modify your applications.",
+          "MoreInfo": "- NamedTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703911)\n- SchemaObjectFunctionTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703927)\n- Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.Show Table Catalog Missing Entries",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 3, Column 26.\n Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 13, Column 6."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel110",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00312",
+          "Title": "Remove references to undocumented system tables",
+          "Impact": "Many system tables that were undocumented in prior releases have changed or no longer exist; therefore, using these tables may cause errors after upgrading to SQL Server 2008.",
+          "Recommendation": "The list of undocumented system tables that are removed is provided in the below article.\n Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254) The \"Corrective Action\" provides the alternative replacements for some of the unsupported objects that can be used to modify your applications.",
+          "MoreInfo": "- NamedTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703911)\n- SchemaObjectFunctionTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703927)\n- Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.Show Table Catalog Missing Entries",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 3, Column 26.\n Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 13, Column 6."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00312",
+          "Title": "Remove references to undocumented system tables",
+          "Impact": "Many system tables that were undocumented in prior releases have changed or no longer exist; therefore, using these tables may cause errors after upgrading to SQL Server 2008.",
+          "Recommendation": "The list of undocumented system tables that are removed is provided in the below article.\n Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254) The \"Corrective Action\" provides the alternative replacements for some of the unsupported objects that can be used to modify your applications.",
+          "MoreInfo": "- NamedTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703911)\n- SchemaObjectFunctionTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703927)\n- Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.Show Table Catalog Missing Entries",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 3, Column 26.\n Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 13, Column 6."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00312",
+          "Title": "Remove references to undocumented system tables",
+          "Impact": "Many system tables that were undocumented in prior releases have changed or no longer exist; therefore, using these tables may cause errors after upgrading to SQL Server 2008.",
+          "Recommendation": "The list of undocumented system tables that are removed is provided in the below article.\n Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254) The \"Corrective Action\" provides the alternative replacements for some of the unsupported objects that can be used to modify your applications.",
+          "MoreInfo": "- NamedTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703911)\n- SchemaObjectFunctionTableReference Class (https://go.microsoft.com/fwlink/?LinkID=703927)\n- Remove references to undocumented system tables (https://go.microsoft.com/fwlink/?LinkID=708254)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.Show Table Catalog Missing Entries",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 3, Column 26.\n Table sysobjects has changed or does not longer exist after SQL Server 2005. Using it may cause errors. For more details, please see: Line 13, Column 6."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel100",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00306",
+          "Title": "Deprecated data types TEXT, IMAGE or NTEXT",
+          "Impact": "These data types are checked as deprecated. In some cases, using TEXT, IMAGE or NTEXT might harm performance.",
+          "Recommendation": "Deprecated data types are marked to be discontinued on next versions of SQL Server, should use new data types such as: (varchar(max), nvarchar(max), varbinary(max) and etc.)",
+          "MoreInfo": "ntext, text, and image (Transact-SQL) (https://go.microsoft.com/fwlink/?LinkId=798558)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.cryrptfile.rptfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.cryrptfile.rptfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tafter",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tafter uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tbefore",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tbefore uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tquery1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tquery1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tresult",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tresult uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5."
+            },
+            {
+              "Name": "dbo.fileobject.fileobject",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.fileobject.fileobject uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.formid.formlist",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.formid.formlist uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5."
+            },
+            {
+              "Name": "dbo.graphfile.graphfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.graphfile.graphfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.imageobj.imageobj",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.imageobj.imageobj uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            },
+            {
+              "Name": "dbo.LogTable.Logstring2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.LogTable.Logstring2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel110",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00306",
+          "Title": "Deprecated data types TEXT, IMAGE or NTEXT",
+          "Impact": "These data types are checked as deprecated. In some cases, using TEXT, IMAGE or NTEXT might harm performance.",
+          "Recommendation": "Deprecated data types are marked to be discontinued on next versions of SQL Server, should use new data types such as: (varchar(max), nvarchar(max), varbinary(max) and etc.)",
+          "MoreInfo": "ntext, text, and image (Transact-SQL) (https://go.microsoft.com/fwlink/?LinkId=798558)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.cryrptfile.rptfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.cryrptfile.rptfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tafter",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tafter uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tbefore",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tbefore uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tquery1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tquery1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tresult",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tresult uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5."
+            },
+            {
+              "Name": "dbo.fileobject.fileobject",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.fileobject.fileobject uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.formid.formlist",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.formid.formlist uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5."
+            },
+            {
+              "Name": "dbo.graphfile.graphfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.graphfile.graphfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.imageobj.imageobj",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.imageobj.imageobj uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            },
+            {
+              "Name": "dbo.LogTable.Logstring2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.LogTable.Logstring2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00306",
+          "Title": "Deprecated data types TEXT, IMAGE or NTEXT",
+          "Impact": "These data types are checked as deprecated. In some cases, using TEXT, IMAGE or NTEXT might harm performance.",
+          "Recommendation": "Deprecated data types are marked to be discontinued on next versions of SQL Server, should use new data types such as: (varchar(max), nvarchar(max), varbinary(max) and etc.)",
+          "MoreInfo": "ntext, text, and image (Transact-SQL) (https://go.microsoft.com/fwlink/?LinkId=798558)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.cryrptfile.rptfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.cryrptfile.rptfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tafter",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tafter uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tbefore",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tbefore uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tquery1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tquery1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tresult",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tresult uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5."
+            },
+            {
+              "Name": "dbo.fileobject.fileobject",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.fileobject.fileobject uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.formid.formlist",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.formid.formlist uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5."
+            },
+            {
+              "Name": "dbo.graphfile.graphfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.graphfile.graphfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.imageobj.imageobj",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.imageobj.imageobj uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            },
+            {
+              "Name": "dbo.LogTable.Logstring2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.LogTable.Logstring2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "Deprecated",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00306",
+          "Title": "Deprecated data types TEXT, IMAGE or NTEXT",
+          "Impact": "These data types are checked as deprecated. In some cases, using TEXT, IMAGE or NTEXT might harm performance.",
+          "Recommendation": "Deprecated data types are marked to be discontinued on next versions of SQL Server, should use new data types such as: (varchar(max), nvarchar(max), varbinary(max) and etc.)",
+          "MoreInfo": "ntext, text, and image (Transact-SQL) (https://go.microsoft.com/fwlink/?LinkId=798558)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.cryrptfile.rptfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.cryrptfile.rptfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tafter",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tafter uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 9, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tbefore",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tbefore uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 8, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tquery1",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tquery1 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 6, Column 5."
+            },
+            {
+              "Name": "dbo.dtransdtlt.tresult",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.dtransdtlt.tresult uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 7, Column 5."
+            },
+            {
+              "Name": "dbo.fileobject.fileobject",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.fileobject.fileobject uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.formid.formlist",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.formid.formlist uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 4, Column 5."
+            },
+            {
+              "Name": "dbo.graphfile.graphfile",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.graphfile.graphfile uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 3, Column 5."
+            },
+            {
+              "Name": "dbo.imageobj.imageobj",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.imageobj.imageobj uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            },
+            {
+              "Name": "dbo.LogTable.Logstring2",
+              "ObjectType": "Column",
+              "ImpactDetail": "Object dbo.LogTable.Logstring2 uses deprecated data type TEXT, IMAGE or NTEXT which will be discontinued for future versions of SQL Server. For more details, please see: Line 5, Column 5."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel100",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viwacdoc",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viwacdoc] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 16, Column 1."
+            },
+            {
+              "Name": "dbo.vwAppEducation",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwAppEducation] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.VwApplReferences",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[VwApplReferences] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 10, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpLoanSummary2",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpLoanSummary2] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 5, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpPFLoanData",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpPFLoanData] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1."
+            },
+            {
+              "Name": "dbo.vwForeCast",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwForeCast] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel110",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viwacdoc",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viwacdoc] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 16, Column 1."
+            },
+            {
+              "Name": "dbo.vwAppEducation",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwAppEducation] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.VwApplReferences",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[VwApplReferences] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 10, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpLoanSummary2",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpLoanSummary2] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 5, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpPFLoanData",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpPFLoanData] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1."
+            },
+            {
+              "Name": "dbo.vwForeCast",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwForeCast] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viwacdoc",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viwacdoc] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 16, Column 1."
+            },
+            {
+              "Name": "dbo.vwAppEducation",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwAppEducation] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.VwApplReferences",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[VwApplReferences] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 10, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpLoanSummary2",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpLoanSummary2] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 5, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpPFLoanData",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpPFLoanData] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1."
+            },
+            {
+              "Name": "dbo.vwForeCast",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwForeCast] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Information",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00333",
+          "Title": "Unqualified Join(s) detected",
+          "Impact": "Starting with database compatibility level 90 and higher, in rare occasions, the 'unqualified join' syntax can cause 'missing join predicate' warnings, leading to long running queries.",
+          "Recommendation": "An example of \"Unqualified join\" is\n \nselect * from table1, table2\nwhere table1.col1 = table2.col1\n\n Use  explicit JOIN syntax in all cases. SQL Server supports the below explicit joins:\n - LEFT OUTER JOIN or LEFT JOIN\n- RIGHT OUTER JOIN or RIGHT JOIN\n- FULL OUTER JOIN or FULL JOIN\n- INNER JOIN",
+          "MoreInfo": "- Missing join Predicate Event Class (https://go.microsoft.com/fwlink/?LinkId=798567)\n- Deprecation of \"Old Style\" JOIN Syntax: Only A Partial Thing (https://go.microsoft.com/fwlink/?LinkId=798568)\n- DOC : Please strive to use ANSI-style joins instead of deprecated syntax  (https://go.microsoft.com/fwlink/?LinkId=798569)\n- Missing join predicate icon should be red (https://go.microsoft.com/fwlink/?LinkId=798570)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viwacdoc",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viwacdoc] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 16, Column 1."
+            },
+            {
+              "Name": "dbo.vwAppEducation",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwAppEducation] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.VwApplReferences",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[VwApplReferences] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 10, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpLoanSummary2",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpLoanSummary2] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 5, Column 1."
+            },
+            {
+              "Name": "dbo.vwEmpPFLoanData",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwEmpPFLoanData] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 4, Column 1."
+            },
+            {
+              "Name": "dbo.vwForeCast",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[vwForeCast] uses the old style join syntax which can have poor performance at database compatibility level 90 and higher. For more details, please see: Line 9, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel100",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00325",
+          "Title": "ORDER BY specifies integer ordinal",
+          "Impact": "This rule checks stored procedures, functions, views and triggers for use of ORDER BY clause specifying ordinal column numbers as sort columns. A sort column can be specified as a nonnegative integer representing the position of the name or alias in the select list, but this is not recommended. An integer cannot be specified when the order_by_expression appears in a ranking function. A sort column can include an expression, but when the database is in SQL 90 compatibility mode or higher, the expression cannot resolve to a constant.",
+          "Recommendation": "Specify the sort column as a name or column alias rather than hard coding the ordinal.",
+          "MoreInfo": "Bad habits to kick : ORDER BY ordinal (https://go.microsoft.com/fwlink/?LinkId=798560) \nDISCLAIMER: Third-party link provided as-is and Microsoft does not offer any guarantees or warranties regarding the content on the third party site.",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viewflexobjdtl",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjdtl] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.viewflexobjhdr",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjhdr] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel110",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00325",
+          "Title": "ORDER BY specifies integer ordinal",
+          "Impact": "This rule checks stored procedures, functions, views and triggers for use of ORDER BY clause specifying ordinal column numbers as sort columns. A sort column can be specified as a nonnegative integer representing the position of the name or alias in the select list, but this is not recommended. An integer cannot be specified when the order_by_expression appears in a ranking function. A sort column can include an expression, but when the database is in SQL 90 compatibility mode or higher, the expression cannot resolve to a constant.",
+          "Recommendation": "Specify the sort column as a name or column alias rather than hard coding the ordinal.",
+          "MoreInfo": "Bad habits to kick : ORDER BY ordinal (https://go.microsoft.com/fwlink/?LinkId=798560) \nDISCLAIMER: Third-party link provided as-is and Microsoft does not offer any guarantees or warranties regarding the content on the third party site.",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viewflexobjdtl",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjdtl] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.viewflexobjhdr",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjhdr] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00325",
+          "Title": "ORDER BY specifies integer ordinal",
+          "Impact": "This rule checks stored procedures, functions, views and triggers for use of ORDER BY clause specifying ordinal column numbers as sort columns. A sort column can be specified as a nonnegative integer representing the position of the name or alias in the select list, but this is not recommended. An integer cannot be specified when the order_by_expression appears in a ranking function. A sort column can include an expression, but when the database is in SQL 90 compatibility mode or higher, the expression cannot resolve to a constant.",
+          "Recommendation": "Specify the sort column as a name or column alias rather than hard coding the ordinal.",
+          "MoreInfo": "Bad habits to kick : ORDER BY ordinal (https://go.microsoft.com/fwlink/?LinkId=798560) \nDISCLAIMER: Third-party link provided as-is and Microsoft does not offer any guarantees or warranties regarding the content on the third party site.",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viewflexobjdtl",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjdtl] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.viewflexobjhdr",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjhdr] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Warning",
+          "ChangeCategory": "BehaviorChange",
+          "RuleId": "Microsoft.Rules.Data.Upgrade.UR00325",
+          "Title": "ORDER BY specifies integer ordinal",
+          "Impact": "This rule checks stored procedures, functions, views and triggers for use of ORDER BY clause specifying ordinal column numbers as sort columns. A sort column can be specified as a nonnegative integer representing the position of the name or alias in the select list, but this is not recommended. An integer cannot be specified when the order_by_expression appears in a ranking function. A sort column can include an expression, but when the database is in SQL 90 compatibility mode or higher, the expression cannot resolve to a constant.",
+          "Recommendation": "Specify the sort column as a name or column alias rather than hard coding the ordinal.",
+          "MoreInfo": "Bad habits to kick : ORDER BY ordinal (https://go.microsoft.com/fwlink/?LinkId=798560) \nDISCLAIMER: Third-party link provided as-is and Microsoft does not offer any guarantees or warranties regarding the content on the third party site.",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.viewflexobjdtl",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjdtl] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            },
+            {
+              "Name": "dbo.viewflexobjhdr",
+              "ObjectType": "View",
+              "ImpactDetail": "Object [dbo].[viewflexobjhdr] uses ORDER BY clause specifiying ordinal column numbers as sort columns, this is not supported in database compatibility level 90 and higher. For more details, please see: Line 6, Column 1."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel100",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71501",
+          "Title": "Unresolved references found",
+          "Impact": "One or more objects were found that contain unresolved references, which may block migration to Azure SQL Database.",
+          "Recommendation": "Address the unresolved references reported in \"Object details\" section.",
+          "MoreInfo": "",
+          "ImpactedObjects": [
+            {
+              "Name": "appliuser1",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [appliuser1] has an unresolved reference to Login [appliuser1].\n User: [appliuser1] has an unresolved reference to Login [appliuser1]."
+            },
+            {
+              "Name": "deenv",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [deenv] has an unresolved reference to Login [deenv].\n User: [deenv] has an unresolved reference to Login [deenv]."
+            },
+            {
+              "Name": "Domain Users",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [Domain Users] has an unresolved reference to Login [Domain Users].\n User: [Domain Users] has an unresolved reference to Login [Domain Users]."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel110",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71501",
+          "Title": "Unresolved references found",
+          "Impact": "One or more objects were found that contain unresolved references, which may block migration to Azure SQL Database.",
+          "Recommendation": "Address the unresolved references reported in \"Object details\" section.",
+          "MoreInfo": "",
+          "ImpactedObjects": [
+            {
+              "Name": "appliuser1",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [appliuser1] has an unresolved reference to Login [appliuser1].\n User: [appliuser1] has an unresolved reference to Login [appliuser1]."
+            },
+            {
+              "Name": "deenv",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [deenv] has an unresolved reference to Login [deenv].\n User: [deenv] has an unresolved reference to Login [deenv]."
+            },
+            {
+              "Name": "Domain Users",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [Domain Users] has an unresolved reference to Login [Domain Users].\n User: [Domain Users] has an unresolved reference to Login [Domain Users]."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71501",
+          "Title": "Unresolved references found",
+          "Impact": "One or more objects were found that contain unresolved references, which may block migration to Azure SQL Database.",
+          "Recommendation": "Address the unresolved references reported in \"Object details\" section.",
+          "MoreInfo": "",
+          "ImpactedObjects": [
+            {
+              "Name": "appliuser1",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [appliuser1] has an unresolved reference to Login [appliuser1].\n User: [appliuser1] has an unresolved reference to Login [appliuser1]."
+            },
+            {
+              "Name": "deenv",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [deenv] has an unresolved reference to Login [deenv].\n User: [deenv] has an unresolved reference to Login [deenv]."
+            },
+            {
+              "Name": "Domain Users",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [Domain Users] has an unresolved reference to Login [Domain Users].\n User: [Domain Users] has an unresolved reference to Login [Domain Users]."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71501",
+          "Title": "Unresolved references found",
+          "Impact": "One or more objects were found that contain unresolved references, which may block migration to Azure SQL Database.",
+          "Recommendation": "Address the unresolved references reported in \"Object details\" section.",
+          "MoreInfo": "",
+          "ImpactedObjects": [
+            {
+              "Name": "appliuser1",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [appliuser1] has an unresolved reference to Login [appliuser1].\n User: [appliuser1] has an unresolved reference to Login [appliuser1]."
+            },
+            {
+              "Name": "deenv",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [deenv] has an unresolved reference to Login [deenv].\n User: [deenv] has an unresolved reference to Login [deenv]."
+            },
+            {
+              "Name": "Domain Users",
+              "ObjectType": "User",
+              "ImpactDetail": "User: [Domain Users] has an unresolved reference to Login [Domain Users].\n User: [Domain Users] has an unresolved reference to Login [Domain Users]."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel100",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71562",
+          "Title": "Cross database queries using three- or four-part names not supported in Azure SQL Database",
+          "Impact": "Queries or references using three- or four-part names not supported in Azure SQL Database.  Three-part name format, [database_name].[schema_name].[object_name], is supported only when the database_name is the current database or the database_name is tempdb and the object_name starts with #.",
+          "Recommendation": "Move the dependent datasets from other databases into the database that is being migrated. Migrate the dependent database(s) to Azure and use 'Elastic Database Query' functionality to query across Azure SQL databases.",
+          "MoreInfo": "Azure SQL Database elastic database query overview  (https://go.microsoft.com/fwlink/?linkid=838297)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.esp_addumpdevice",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel110",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71562",
+          "Title": "Cross database queries using three- or four-part names not supported in Azure SQL Database",
+          "Impact": "Queries or references using three- or four-part names not supported in Azure SQL Database.  Three-part name format, [database_name].[schema_name].[object_name], is supported only when the database_name is the current database or the database_name is tempdb and the object_name starts with #.",
+          "Recommendation": "Move the dependent datasets from other databases into the database that is being migrated. Migrate the dependent database(s) to Azure and use 'Elastic Database Query' functionality to query across Azure SQL databases.",
+          "MoreInfo": "Azure SQL Database elastic database query overview  (https://go.microsoft.com/fwlink/?linkid=838297)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.esp_addumpdevice",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel120",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71562",
+          "Title": "Cross database queries using three- or four-part names not supported in Azure SQL Database",
+          "Impact": "Queries or references using three- or four-part names not supported in Azure SQL Database.  Three-part name format, [database_name].[schema_name].[object_name], is supported only when the database_name is the current database or the database_name is tempdb and the object_name starts with #.",
+          "Recommendation": "Move the dependent datasets from other databases into the database that is being migrated. Migrate the dependent database(s) to Azure and use 'Elastic Database Query' functionality to query across Azure SQL databases.",
+          "MoreInfo": "Azure SQL Database elastic database query overview  (https://go.microsoft.com/fwlink/?linkid=838297)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.esp_addumpdevice",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform."
+            }
+          ]
+        },
+        {
+          "CompatibilityLevel": "CompatLevel130",
+          "Category": "Compatibility",
+          "Severity": "Error",
+          "ChangeCategory": "MigrationBlocker",
+          "RuleId": "71562",
+          "Title": "Cross database queries using three- or four-part names not supported in Azure SQL Database",
+          "Impact": "Queries or references using three- or four-part names not supported in Azure SQL Database.  Three-part name format, [database_name].[schema_name].[object_name], is supported only when the database_name is the current database or the database_name is tempdb and the object_name starts with #.",
+          "Recommendation": "Move the dependent datasets from other databases into the database that is being migrated. Migrate the dependent database(s) to Azure and use 'Elastic Database Query' functionality to query across Azure SQL databases.",
+          "MoreInfo": "Azure SQL Database elastic database query overview  (https://go.microsoft.com/fwlink/?linkid=838297)",
+          "ImpactedObjects": [
+            {
+              "Name": "dbo.esp_addumpdevice",
+              "ObjectType": "Procedure",
+              "ImpactDetail": "Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[high]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[phyname]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[low]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[size]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[cntrltype]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[status]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform.\n Procedure: [dbo].[esp_addumpdevice] has an unresolved reference to object [ERManager10c].[dbo].[esysdevices].[name]. External references are not supported when creating a package from this platform."
+            }
+          ]
+        }
+      ],
+      "ServerEdition": "Business Intelligence Edition (64-bit)"
+    }
+  ],
+  "ServerInstances": [
+    {
+      "ServerName": "server\\sns2012",
+      "Status": "Completed",
+      "Version": "11.0.2218.0",
+      "AssessmentRecommendations": [
+        {
+          "Category": "FeatureParity",
+          "Severity": "Warning",
+          "FeatureParityCategory": "UnsupportedFeature",
+          "RuleId": "2292dd65-0a5d-40e0-abc9-d08f06300fb0",
+          "Title": "Cross-database references not supported in Azure SQL Database",
+          "Impact": "Some selected databases on this server use cross-database queries, which are not supported in Azure SQL Database.",
+          "Recommendation": "Azure SQL Database does not support cross-database queries. The following actions are recommended:\n <ol> Move the dependent datasets from other databases into the database that is being migrated. Migrate the dependent database(s) to Azure and use 'Elastic Database Query' functionality to query across Azure SQL databases. </ol>",
+          "MoreInfo": "Azure SQL Database elastic database query overview  (https://go.microsoft.com/fwlink/?linkid=838297)",
+          "ImpactedDatabases": [
+            {
+              "Name": "ERManager10c_Dev_vb6",
+              "ObjectType": "Database",
+              "ImpactDetail": "Objects in this database reference other databases."
+            }
+          ]
+        },
+        {
+          "Category": "FeatureParity",
+          "Severity": "Warning",
+          "FeatureParityCategory": "UnsupportedFeature",
+          "RuleId": "d6fadcc4-9a72-4846-bda8-621882abb98e",
+          "Title": "Azure SQL Database doesn't support Analysis Services; migrate to Azure Analysis Services",
+          "Impact": "Microsoft SQL Server Analysis Services (SSAS) is an online analytical processing (OLAP), data mining and reporting tool in Microsoft SQL Server. SSAS is used as a tool by organizations to analyze and make sense of information that might be spread out across multiple databases or in disparate tables.",
+          "Recommendation": "Migrate to Azure Analysis Services, which is compatible with the SQL Server 2016 Analysis Services Enterprise Edition. Azure Analysis Services supports tabular models at the 120 compatibility level. DirectQuery, partitions, row-level security, bi-directional relationships, and translations are all supported.",
+          "MoreInfo": "What is Azure Analysis Services? (https://go.microsoft.com/fwlink/?linkid=838298)",
+          "ImpactedDatabases": []
+        },
+        {
+          "Category": "FeatureParity",
+          "Severity": "Warning",
+          "FeatureParityCategory": "UnsupportedFeature",
+          "RuleId": "e37e2d14-3a15-4968-9d38-6a422ccc92a7",
+          "Title": "SQL Server Reporting Services is not supported in Azure SQL Database",
+          "Impact": "SQL Server Reporting Services is a solution that customers deploy on their own premises for creating, publishing, and managing reports, then delivering them to the right users in different ways, whether that's viewing them in web browser, on their mobile device, or as an email in their inbox.",
+          "Recommendation": "Install Reporting Services and Reporting services databases on an Azure virtual machine.\n Use Azure SQL Database as the data source.",
+          "MoreInfo": "SQL Azure Connection Type (SSRS) (https://go.microsoft.com/fwlink/?linkid=838277)",
+          "ImpactedDatabases": []
+        }
+      ]
+    }
+  ],
+  "Status": "Completed",
+  "TargetPlatform": "AzureSqlDatabaseV12"
+}

@@ -1,0 +1,641 @@
+﻿@model MvcSchoolWebApp.Models.Personalinfo
+@{
+    ViewBag.Title = "Index";
+
+}
+<style>
+    .error {
+        color: red;
+    }
+
+    #btn-edit-1, #btn-edit-2, #btn-edit-3, #btn-edit-4, #btn-update-1, #btn-update-2, #btn-update-3, #btn-update-4 {
+        float: right;
+        background: none;
+        border: none;
+        padding-right: 15px;
+    }
+
+    #txtResponsibilities {
+        height: 135px;
+    }
+</style>
+
+<section class="content">
+    <!-- Info boxes -->
+
+    @using (Html.BeginForm("Index", "personalinfo", FormMethod.Post))
+    {
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Personal Information
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    @{
+                                        try
+                                        {
+                                            @Session["personal"].ToString();
+                                        }
+                                        catch (Exception)
+                                        {
+
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'> window.location.href = '" + url + "' </script>");
+                                            Response.Flush();
+                                        }
+                                    }
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="ibox float-e-margins">
+                        <div style="border: 1px solid #d2d6de;">
+
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="row ">
+                                        @{
+                                            try
+                                            {
+                                                if (Session["personal"].ToString() == "Employee Personal")
+                                                {
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Campus</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusEI", @id = "txtCampusEI", @required = true })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Employee Name</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.textbox, Model.employeeid, "Employee", new { @class = "form-control m-b", @name = "txtEmployees", @id = "txtEmployees", @required = true })
+
+                                                        </div>
+                                                    </div>
+
+                                                }
+                                                else if (Session["personal"].ToString() == "Student Wise Personal")
+                                                {
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Campus</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusSWP", @id = "txtCampusSWP", @required = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Class/Level</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.classId, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassSWP", @id = "txtClassSWP", @required = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Section</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(m => m.sectionId, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionSWP", @id = "txtSectionSWP", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-5">
+                                                            <label>Student Name</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.DropDownListFor(model => model.textbox, Model.employeeid, "Student", new { @class = "form-control m-b", @name = "txtStudentSWP", @id = "txtStudentSWP", @required = true })
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                                Response.Flush();
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <input type="submit" id="personalinfodiv" value="Submit" name="personalinfodiv" class="btn btn-sm btn-danger" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                            }
+    <form id="update_basicinfo" role="form">
+        <div class="row" id="prodiv" hidden>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+                        <div class="ibox-title">
+                            <h3>
+                                Basic Info
+                            </h3>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+
+                                <div role="form">
+
+                                    @* Basic Info *@
+                                    <div class="row ">
+                                        <div class="col-md-2">
+                                            <div class="avatar-upload ">
+                                                <img src="@Url.Content(Model.image)" id="profile-avatar" alt="Image for Profile">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="row ">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Id</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(m => m.textbox, new { @class = "form-control m-b", @name = "txtId", @id = "txtId", @readonly = true, @required = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Campus</label>
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        @Html.DropDownListFor(m => m.campusid, Model.campus, "Select Campus", new { @class = "form-control m-b", @name = "txtCampus2", @id = "txtCampus2", @disabled = true, @required = true })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row ">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Status</label>
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.status, new { @class = "form-control m-b", @name = "txtStatus", @id = "txtStatus", @readonly = true, @required = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Department</label>
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.department, new { @class = "form-control m-b", @name = "txtDepartment", @id = "txtDepartment", @readonly = true, @required = true })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>From Date</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.fromdate, new { @class = "form-control m-b", @name = "txtFromDate", @id = "txtFromDate", @readonly = true, @required = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>To Date</label>
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.todate, new { @class = "form-control m-b", @name = "txtToDate", @id = "txtToDate", @readonly = true, @required = true })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" id="uploadiv" hidden>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form id="update_personalinfo" role="form">
+        @* Personal Info *@
+        <div class="row" id="prodiv2" hidden>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+
+                        <div class="ibox-title">
+                            <h3>
+                                Personal Info
+                            </h3>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div role="form">
+
+                                    <div class="row ">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Title</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.title, new { @class = "form-control m-b", @name = "txtTitle", @id = "txtTitle", @readonly = true, @required = true })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Initials</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.initial, new { @class = "form-control m-b", @name = "txtInitials", @id = "txtInitials", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>First Name</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.firstname, new { @class = "form-control m-b", @name = "txtFirstName", @id = "txtFirstName", @readonly = true, @required = true })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Father Name</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.fathername, new { @class = "form-control m-b", @name = "txtFatherName", @id = "txtFatherName", @readonly = true, @required = true })
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>MiddleName</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.middlename, new { @class = "form-control m-b", @name = "txtMiddleName", @id = "txtMiddleName", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Second Name</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.secondname, new { @class = "form-control m-b", @name = "txtSecondName", @id = "txtSecondName", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Last Name</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.lastname, new { @class = "form-control m-b", @name = "txtLastName", @id = "txtLastName", @readonly = true, @required = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form id="update_additionalinfo" role="form">
+        <div class="row" id="prodiv3" hidden>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+                        @* Additional Info *@
+                        <div class="ibox-title">
+                            <h3>
+                                Additional Info
+                            </h3>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div role="form" class="forms">
+
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Id Number</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.nic, new { @class = "form-control m-b", @name = "txtIdNumber", @id = "txtIdNumber", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Birth Date</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.dob, new { @class = "form-control m-b", @name = "txtBirthDate", @id = "txtBirthDate", @readonly = true, @required = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Gender</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.gender, new { @class = "form-control m-b", @name = "txtGender", @id = "txtGender", @readonly = true, @required = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Birth Place</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.birthplace, new { @class = "form-control m-b", @name = "txtBirthPlace", @id = "txtBirthPlace", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Nationality</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.nationality, new { @class = "form-control m-b", @name = "txtNationality", @id = "txtNationality", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Country of Birth</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.birthcountry, new { @class = "form-control m-b", @name = "txtCountryofBirth", @id = "txtCountryofBirth", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form id="update_address" role="form">
+        <div class="row" id="prodiv4" hidden>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+                        @* Additional Info *@
+                        <div class="ibox-title">
+                            <h3>
+                                Address
+                            </h3>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div role="form">
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>Address Type</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(m => Model.txtaddtype, new { @class = "form-control m-b", @name = "txtAddressType", @id = "txtAddressType", @disabled = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>C/O</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.careof, new { @class = "form-control m-b", @name = "txtCO", @id = "txtCO", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>Street 1</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.paddress, new { @class = "form-control m-b", @name = "txtStreet1", @id = "txtStreet1", @readonly = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>Street 2</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.paddress2, new { @class = "form-control m-b", @name = "txtStreet2", @id = "txtStreet2", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>ZIP Code/City</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        @Html.TextBoxFor(model => model.zipcode, new { @class = "form-control m-b", @name = "txtZip", @id = "txtZip", @readonly = true })
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        @Html.TextBoxFor(model => model.city, new { @class = "form-control m-b", @name = "txtCity", @id = "txtCity", @readonly = true })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>District</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.district, new { @class = "form-control m-b", @name = "txtDistrict", @id = "txtDistrict", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>Country</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.country, new { @class = "form-control m-b", @name = "txtCountry", @id = "txtCountry", @readonly = true, @pattern = ".{2}", @title = "2 Characters Only" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="col-md-5">
+                                                <label>Phone</label>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.phone, new { @class = "form-control m-b", @name = "txtPhone", @id = "txtPhone", @readonly = true })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    @{
+        try
+        {
+            if (Session["personal"].ToString() == "Employee Personal")
+            {
+                <form role="form">
+                    <div class="row" id="prodiv5" hidden>
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div id="dvborder">
+                                    @* Responsibilities *@
+                                    <div class="ibox-title">
+
+                                        <h3>
+                                            Responsibilities
+                                        </h3>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <div class="row">
+                                            <div role="form">
+                                                <div class="col-md-11">
+                                                        @Html.TextAreaFor(m => m.responsibilites, new { @class = "form-control m-b", @name = "txtResponsibilities", @id = "txtResponsibilities", @readonly = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            }
+        }
+        catch (Exception)
+        {
+            string url = "/dashboard";
+            Response.Write("<script type='text/javascript'>");
+            Response.Write("window.location.href = '" + url + "'</script>");
+            Response.Flush();
+        }
+    }
+</section>
+
+
+<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js")></script>
+<script src="~/Content/js/StudentProfile.js"></script>
+
+<script type="text/javascript">
+    @ViewBag.scriptCall
+    @ViewBag.scriptcall2
+</script>
+

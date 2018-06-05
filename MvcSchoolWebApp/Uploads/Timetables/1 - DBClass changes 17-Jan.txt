@@ -1,0 +1,30 @@
+Fill TeacherTimetable
+
+string query = "select t.timetbid, t.filename, t.filepath, t.begdate from timetable as t " +
+                               "where t.delind <> 'X' and t.ttcategory = 102 AND t.campusid = '" + campusid + "' "+
+                               "order by t.begdate desc";
+int i = 1;
+while
+serialno = i,
+i++
+
+
+FillWeeklyLessonPlan
+
+DateTime date1 = DateTime.Parse(begdate);
+where wp.begdate = '" + date1.ToString("yyyy-MM-dd") + "' and wp.enddate = '" + date1.ToString("yyyy-MM-dd") + "' and wp.campusid = '" + campusid + "'
+
+
+FillLessonPlan
+
+string query = "select l.lessonid, l.filename, l.filepath, l.begdate from lessonplan as l "+
+                               "inner join lessonplncategory as lp on l.lesncategory = lp.lesncategory " +
+                               "where l.delind <> 'X' and lp.categoryname = '" + pagename + "' AND l.campusid = '" + campus + "' "+
+                               "AND l.classid = '" + schclass + "' AND l.sectionid = '" + section + "' "+
+                               "AND l.subjectid = '" + subject + "' order by l.begdate desc";
+int i = 1;
+while
+serialno = i,
+i++
+
+

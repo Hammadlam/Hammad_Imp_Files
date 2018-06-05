@@ -1,0 +1,259 @@
+﻿@model MvcSchoolWebApp.Models.ESSModel
+@{
+    ViewBag.Title = "Purchase Requisit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #custom-textarea, #txtHdrTxtPR, #txtPRTxtPR {
+        left: -1.5%;
+        padding-right: 0.5%;
+    }
+
+    .tab-pane {
+        margin-top: 15px;
+    }
+</style>
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Employee Self Service
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Purchase Requisite
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+
+                            <form id="prForm" role="form" name="prForm">
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-6">
+                                            <label>Order Type</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.ordertypid, Model.ordertyp, "Order Type", new { @class = "form-control m-b", @name = "txtOrderTypPR", @id = "txtOrderTypPR", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-6">
+                                            <label>Order Number</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.ordernoid, Model.orderno, "Order Number", new { @class = "form-control m-b", @name = "txtOrderNumberPR", @id = "txtOrderNumberPR", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-6">
+                                            <label>Purchase Department</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.purdeptid, Model.purdept, "Purchase Department", new { @class = "form-control m-b", @name = "txtPurDeptPR", @id = "txtPurDeptPR", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-6">
+                                            <label>Purchase Group</label>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.purgrpid, Model.purgrp, "Purchase Group", new { @class = "form-control m-b", @name = "txtPurGrpPR", @id = "txtPurGrpPR", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-6">
+                                            <label>Order Date</label>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(model => model.begdate, "Date", new { @Value = ViewBag.begdate, @class = "date-day form-control m-b", @name = "txtDatePR", @id = "txtDatePR", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="showGridPR" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="prdiv" >
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Custom Tabs -->
+                                <div class="card">
+                                    <div class="card-header d-flex p-0">
+                                        <ul class="nav nav-pills ml-auto p-2">
+                                            <li class="nav-item" style="width:33%;"><a class="nav-link active" href="#tab_1" data-toggle="tab">Basic Data</a></li>
+                                            <li class="nav-item" style="width:33%;"><a class="nav-link" href= "#tab_2" data-toggle="tab">Details</a></li>
+                                            <li class="nav-item" style="width:33%;"><a class="nav-link" href="#tab_3" data-toggle="tab">Administration</a></li>
+                                        </ul>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+
+                                            @* Bacis Data *@
+                                            <div class="tab-pane active" id="tab_1">
+                                                <div class="row ">
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Cost Center</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.costctrtypid, Model.costctrtyp, "Cost Center", new { @class = "form-control m-b", @name = "txtCostCtrPR", @id = "txtCostCtrPR", @required = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Sale Order</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.saleordtypid, Model.saleordtyp, "Sale Order", new { @class = "form-control m-b", @name = "txtSaleOrdPR", @id = "txtSaleOrdPR", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Delivery Date</label>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.enddate, "Date", new { @Value = ViewBag.begdate, @class = "date-day form-control m-b", @name = "txtDelDatePR", @id = "txtDelDatePR", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-3">
+                                                            <label>Header Text</label>
+                                                        </div>
+                                                        <div class="col-md-9" id="custom-textarea">
+                                                            @Html.TextAreaFor(m => m.hdrtxt, new { @class = "form-control m-b", @name = "txtHdrTxtPR", @id = "txtHdrTxtPR", @required = true, @style = "resize:vertical" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                            @* Details *@
+                                            <div class="tab-pane" id="tab_2">
+                                                <div class="row ">
+
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Company Code</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.cocodeid, Model.cocode, "Cost Center", new { @class = "form-control m-b", @name = "txtCostCtrPR", @id = "txtCostCtrPR", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-3">
+                                                            <label>PR Text</label>
+                                                        </div>
+                                                        <div class="col-md-9" id="custom-textarea">
+                                                            @Html.TextAreaFor(m => m.prtxt, new { @class = "form-control m-b", @name = "txtPRTxtPR", @id = "txtPRTxtPR", @required = true, @style = "resize:vertical" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                            @* Administration *@
+                                            <div class="tab-pane" id="tab_3">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Employee Id</label>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.empid, "Employee Id", new { @class = "form-control m-b", @name = "txtEmpidPR", @id = "txtEmpidPR", @required = true, @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Entry Date</label>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.begdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtEntryDatePR", @id = "txtEntryDatePR", @required = true, @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Entry Terminal</label>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.entterm, "Entry Terminal", new { @class = "form-control m-b", @name = "txtEntTermPR", @id = "txtEntTermPR", @required = true, @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Current Status</label>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.status, "Current Status", new { @class = "form-control m-b", @name = "txtStatusPR", @id = "txtStatusPR", @required = true, @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                                <!-- ./card -->
+                                <div id="pr_box_div">
+                                    <div class="pr_jqGrid m-b">
+                                        <table id="pr_table"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

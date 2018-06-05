@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ResultDataSet" targetNamespace="http://tempuri.org/ResultDataSet.xsd" xmlns:mstns="http://tempuri.org/ResultDataSet.xsd" xmlns="http://tempuri.org/ResultDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ResultDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ResultDataSet" msprop:Generator_UserDSName="ResultDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="customertbl" msprop:Generator_TableClassName="customertblDataTable" msprop:Generator_TableVarName="tablecustomertbl" msprop:Generator_TablePropName="customertbl" msprop:Generator_RowDeletingName="customertblRowDeleting" msprop:Generator_RowChangingName="customertblRowChanging" msprop:Generator_RowEvHandlerName="customertblRowChangeEventHandler" msprop:Generator_RowDeletedName="customertblRowDeleted" msprop:Generator_UserTableName="customertbl" msprop:Generator_RowChangedName="customertblRowChanged" msprop:Generator_RowEvArgName="customertblRowChangeEvent" msprop:Generator_RowClassName="customertblRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="customerid" msprop:Generator_ColumnVarNameInTable="columncustomerid" msprop:Generator_ColumnPropNameInRow="customerid" msprop:Generator_ColumnPropNameInTable="customeridColumn" msprop:Generator_UserColumnName="customerid" type="xs:int" minOccurs="0" />
+              <xs:element name="customername" msprop:Generator_ColumnVarNameInTable="columncustomername" msprop:Generator_ColumnPropNameInRow="customername" msprop:Generator_ColumnPropNameInTable="customernameColumn" msprop:Generator_UserColumnName="customername" type="xs:string" minOccurs="0" />
+              <xs:element name="customeraddress" msprop:Generator_ColumnVarNameInTable="columncustomeraddress" msprop:Generator_ColumnPropNameInRow="customeraddress" msprop:Generator_ColumnPropNameInTable="customeraddressColumn" msprop:Generator_UserColumnName="customeraddress" type="xs:string" minOccurs="0" />
+              <xs:element name="customerage" msprop:Generator_ColumnVarNameInTable="columncustomerage" msprop:Generator_ColumnPropNameInRow="customerage" msprop:Generator_ColumnPropNameInTable="customerageColumn" msprop:Generator_UserColumnName="customerage" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

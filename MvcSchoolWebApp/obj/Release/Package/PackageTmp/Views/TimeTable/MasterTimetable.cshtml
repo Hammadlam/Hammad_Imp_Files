@@ -1,0 +1,118 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "Masterimetable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section class="content">
+    <!-- Info boxes -->
+
+@*@using (Html.BeginForm())
+{*@
+    <div class="row">
+
+        <div class="col-lg-12">
+
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Academics
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Timetable
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r3" name="r">
+                                <label for="r3">
+                                    Master Timetable
+                                </label>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" id="mastertimetableform" name="mastertimetableform">
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Campus</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.campusid, Model.campus, "Campus", new { @class = "form-control m-b", @name = "txtCampusMT", @id = "txtCampusMT", @required = true })
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Class/Level</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.classesid, Model.classes, "Class/Level", new { @class = "form-control m-b", @name = "txtClassMT", @id = "txtClassMT", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Section</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sectionid, Model.section, "Section", new { @class = "form-control m-b", @name = "txtSectionMT", @id = "txtSectionMT", @required = true })
+                                        </div>
+                                    </div>*@
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+
+                                        <div class="col-md-5 form-group">
+                                            <input id="btnmastertimetable" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*table_list_2 as mastertimetablegrid*@
+    @*jqGrid_wrapper as mastertimetable_wrapper
+        pager_list_2 as mastertimetable_pager*@
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " id="mastertimetablediv" style="display:none;">
+                <div id="dvborder">
+                    <div class="ibox-content">
+                        <div class="mastertimetable_wrapper">
+                            <table id="mastertimetablegrid"></table>
+                            <div id="mastertimetable_pager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@*}*@
+
+</section>
+

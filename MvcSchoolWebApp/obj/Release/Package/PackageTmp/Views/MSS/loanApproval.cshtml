@@ -1,0 +1,329 @@
+﻿@model MvcSchoolWebApp.Models.ESSModel
+@{
+    ViewBag.Title = "loanApproval";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #loancontent{
+        max-height: 400px;
+        overflow-y: auto;
+    }
+</style>
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Managerial Self Service
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Loan Approval
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content" id="loanapp_div">
+                        <div class="loanapp_jqGrid m-b">
+                            <table id="loanapp_table"></table>
+                            <div id="loanapp_pager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@using (Html.BeginForm("loanRecommend", "MSS", FormMethod.Post))
+{
+    <div class="modal inmodal" id="LoanRecodPopup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Loan Detail</h4>
+                </div>
+                <form id="loanpopupform" name="loanpopupform" method="post" action="">
+                    <div class="modal-body" id="loancontent">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Employee Id</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.empid, new {@style = "padding:2px;", @class = "form-control m-b", @name = "txtrecEmpid", @id = "txtrecEmpid", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Request Number</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.recordno, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecloanreqno", @id = "txtrecloanreqno", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Employee Name</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.empname, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecEmpname", @id = "txtrecEmpname", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Joining Date</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.joindate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecloanjoin", @id = "txtrecloanjoin", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Designation</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.design, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecloandesig", @id = "txtrecloandesig", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Loan Type</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(m => m.loanid, Model.loantyp, new { @class = "form-control m-b", @name = "txtLoantypRecod", @id = "txtLoantypRecod", @required = true, @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Loan Amount</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.loanamt, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecloanAmt", @id = "txtrecloanAmt", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.begdate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecloanappbdate", @id = "txtrecloanappbdate", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>End Date</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.lastdate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtrecloanappedate", @id = "txtrecloanappedate", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Send To</label>
+                                </div>
+                                <div class="col-md-5"> 
+                                    @Html.DropDownListFor(m => m.recodid, Model.recodtype, new { @class = "form-control m-b", @name = "txtRecommender", @id = "txtRecommender", @required = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Comments</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.coments, "Enter Coments", new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtRecodComments", @id = "txtRecodComments", @required = true })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Accept" class="btn btn-primary" name="btnRecsubmit"
+                                       id="btnRecsubmit" />
+                                <button type="button" class="btn btn-danger" name="btnrecodRecrej" id="btnrecodRecrej">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("loanApprovalAsPerPolicy", "MSS", FormMethod.Post))
+{
+    <div class="modal inmodal" id="LoanAppPopup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Loan Detail</h4>
+                </div>
+                <form id="loanpopupform" name="loanpopupform" method="post" action="">
+                    <div class="modal-body" id="loancontent">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Employee Id</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.empid, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanEmpid", @id = "txtloanEmpid", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Request Number</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.recordno, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanloanreqno", @id = "txtloanloanreqno", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Employee Name</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.empname, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanEmpname", @id = "txtloanEmpname", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Joining Date</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.joindate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanloanjoin", @id = "txtloanloanjoin", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Designation</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.design, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanloandesig", @id = "txtloanloandesig", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Loan Type</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(m => m.loanid, Model.loantyp, new { @class = "form-control m-b", @name = "txtloanLoantypAppr", @id = "txtloanLoantypAppr", @required = true, @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Loan Amount</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.loanamt, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanloanAmt", @id = "txtloanloanAmt", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.begdate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanloanappbdate", @id = "txtloanloanappbdate", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>End Date</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.lastdate, new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanloanappedate", @id = "txtloanloanappedate", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="apprcombo">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Recommend To</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(m => m.apprrecodtypid, Model.apprrecodtyp, "Recommend", new { @class = "form-control m-b", @name = "txtApprRecomend", @id = "txtApprRecomend" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <label>Comments</label>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.coments, "Enter Coments", new { @style = "padding:2px;", @class = "form-control m-b", @name = "txtloanRecodComments", @id = "txtloanRecodComments", @required = true })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-2">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-warning" name="btnloanAccpt" id="btnloanAccpt">Accept</button>
+                                <input type="submit" value="Accepted Per Policy" class="btn btn-success" name="btnloancsubmit"
+                                       id="btnloancsubmit" />
+                                <button type="button" class="btn btn-danger" name="btnloanRecrej" id="btnloanRecrej">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+</section>
+

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model MvcSchoolWebApp.Models.Report
+
+<section class="content">
+
+    @*dynamic view section*@
+    <div class="row">
+        <div class="col-lg-12" id="dynamic-div" name="dynamic-div" hidden>
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Report Parameters
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    @ViewBag.ReportName
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form id="form_report">
+                                @Html.Raw(ViewBag.DynamicControls)
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col-md-4">
+                                        <div class="col-md-4">
+                                            <input type="submit" class="btn btn-danger" value="View Report">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    @ViewBag.showsection
+
+    $("#form_report").submit(function (e) {
+        e.preventDefault();
+        getinputva();
+    });
+
+    function getinputva() {
+        $.ajax({
+            url: '@Url.Action("SendParam", "Reports")',
+            type: "GET",
+            success: function (sendParam) {
+                var getvalues = new Array();
+                for (var i = 0; i < sendParam; i++) {
+                    getvalues[i] = [document.getElementById('txt' + i).value];
+                }
+                window.location.href = '@Url.Action("getValues", "Reports")' + '?getValues=' + getvalues
+            },
+            error: function () {
+                //alert("Error");
+            }
+        });
+    }
+
+    function showsection() {
+        $('#dynamic-div').show();
+    }
+</script>

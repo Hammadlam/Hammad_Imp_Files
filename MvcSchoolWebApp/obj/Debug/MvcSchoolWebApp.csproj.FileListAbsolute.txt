@@ -1,0 +1,408 @@
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\ApplicationInsights.config
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\csc.exe
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\vbc.exe
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Antlr3.Runtime.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\EntityFramework.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\EntityFramework.SqlServer.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.Web.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.WindowsServer.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.ApplicationInsights.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Google.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Web.Infrastructure.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Newtonsoft.Json.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Owin.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Helpers.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Mvc.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Optimization.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Razor.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.WebPages.Deployment.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.WebPages.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.WebPages.Razor.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\WebGrease.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.Web.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AI.WindowsServer.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.ApplicationInsights.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Helpers.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Mvc.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Optimization.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.Razor.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.WebPages.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.WebPages.Deployment.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\System.Web.WebPages.Razor.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Antlr3.Runtime.pdb
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Newtonsoft.Json.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\EntityFramework.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\EntityFramework.SqlServer.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Google.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+c:\users\taha hussain\documents\visual studio 2015\Projects\MvcSchoolWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\ApplicationInsights.config
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\csc.exe
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\vbc.exe
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\EntityFramework.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.Web.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Owin.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Helpers.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Mvc.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Optimization.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Razor.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.WebPages.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\WebGrease.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.Web.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Helpers.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Mvc.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Optimization.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.Razor.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.WebPages.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\EntityFramework.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\ApplicationInsights.config
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\csc.exe
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\vbc.exe
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AI.Web.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.ApplicationInsights.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.Helpers.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.Mvc.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.Optimization.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.Razor.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.WebPages.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Newtonsoft.Json.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\EntityFramework.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\MHN-088\Desktop\mvcSchoolApp\MvcSchoolWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportSource.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.Shared.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\stdole.dll
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\ApplicationInsights.config
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\csc.exe
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\vbc.exe
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportSource.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.Shared.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\bin\stdole.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+C:\Users\MHN-088\Desktop\MvcWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+D:\SchoolWeb\MvcSchoolWebApp\bin\ApplicationInsights.config
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\csc.exe
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\vbc.exe
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+D:\SchoolWeb\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+D:\SchoolWeb\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+D:\SchoolWeb\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportSource.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.Shared.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\Microsoft.Web.Infrastructure.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\SchoolWeb\MvcSchoolWebApp\bin\stdole.dll
+D:\SchoolWeb\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+D:\SchoolWeb\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+D:\SchoolWeb\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+C:\Users\Taha Hussain\Desktop\AbdulRaheem_Nova\SourceTree\getmvcschoolweb\MvcSchoolWebApp\bin\adodb.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\ApplicationInsights.config
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\csc.exe
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\vbc.exe
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+D:\Falcon House App\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+D:\Falcon House App\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+D:\Falcon House App\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+D:\Falcon House App\MvcSchoolWebApp\bin\adodb.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportSource.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.Shared.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\Microsoft.Web.Infrastructure.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\Newtonsoft.Json.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\Falcon House App\MvcSchoolWebApp\bin\stdole.dll
+D:\Falcon House App\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+D:\Falcon House App\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+D:\Falcon House App\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+D:\SchoolWebApp\MvcSchoolWebApp\bin\ApplicationInsights.config
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\csc.exe
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\vbc.exe
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+D:\SchoolWebApp\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+D:\SchoolWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+D:\SchoolWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\SchoolWebApp\MvcSchoolWebApp\bin\stdole.dll
+D:\SchoolWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+D:\SchoolWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb
+D:\SchoolWebApp\MvcSchoolWebApp\bin\Controllers\FinalReportController.cs
+D:\SchoolWebApp\MvcSchoolWebApp\bin\Controllers\AccountController.cs
+D:\SchoolWebApp\MvcSchoolWebApp\bin\Controllers\ReportsController.cs
+D:\SchoolWebApp\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+E:\Falcon House Website\MvcSchoolWebApp\bin\ApplicationInsights.config
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\csc.exe
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\System.Collections.Immutable.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\System.Reflection.Metadata.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\vbc.exe
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe
+E:\Falcon House Website\MvcSchoolWebApp\bin\roslyn\VBCSCompiler.exe.config
+E:\Falcon House Website\MvcSchoolWebApp\bin\Controllers\AccountController.cs
+E:\Falcon House Website\MvcSchoolWebApp\bin\Controllers\FinalReportController.cs
+E:\Falcon House Website\MvcSchoolWebApp\bin\Controllers\ReportsController.cs
+E:\Falcon House Website\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
+E:\Falcon House Website\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\Falcon House Website\MvcSchoolWebApp\bin\stdole.dll
+E:\Falcon House Website\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.csprojResolveAssemblyReference.cache
+E:\Falcon House Website\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.dll
+E:\Falcon House Website\MvcSchoolWebApp\obj\Debug\MvcSchoolWebApp.pdb

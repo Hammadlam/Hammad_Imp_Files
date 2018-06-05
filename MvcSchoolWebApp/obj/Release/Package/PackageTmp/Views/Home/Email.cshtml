@@ -1,0 +1,228 @@
+﻿@model MvcSchoolWebApp.Models.DatabaseModel
+@{
+    ViewBag.Title = "Email";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hide-text {
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .input-block-level {
+        display: block;
+        width: 100%;
+        min-height: 30px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .btn-file {
+        overflow: hidden;
+        position: relative;
+        vertical-align: middle;
+    }
+
+        .btn-file > input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            transform: translate(-300px, 0) scale(4);
+            font-size: 23px;
+            direction: ltr;
+            cursor: pointer;
+        }
+
+    .fileupload {
+        margin-bottom: 9px;
+    }
+
+        .fileupload .uneditable-input {
+            display: inline-block;
+            margin-bottom: 0px;
+            vertical-align: middle;
+            cursor: text;
+        }
+
+        .fileupload .thumbnail {
+            overflow: hidden;
+            display: inline-block;
+            margin-bottom: 5px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+            .fileupload .thumbnail > img {
+                display: inline-block;
+                vertical-align: middle;
+                max-height: 100%;
+            }
+
+        .fileupload .btn {
+            vertical-align: middle;
+        }
+
+    .fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists {
+        display: none;
+    }
+
+    .fileupload-inline .fileupload-controls {
+        display: inline;
+    }
+
+    .fileupload-new .input-append .btn-file {
+        -webkit-border-radius: 0 3px 3px 0;
+        -moz-border-radius: 0 3px 3px 0;
+        border-radius: 0 3px 3px 0;
+    }
+
+    .thumbnail-borderless .thumbnail {
+        border: none;
+        padding: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .fileupload-new.thumbnail-borderless .thumbnail {
+        border: 1px solid #ddd;
+    }
+    .ui-autocomplete {
+        max-height:150px;
+        overflow-y:auto;
+        text-overflow:ellipsis;
+    }
+</style>
+
+<section class="content">
+    @using (Html.BeginForm("Email", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <form role="form" name="uploadform" id="uploadform">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div id="dvborder">
+
+                            <div class="ibox-title">
+                                <h3>Compose a Message</h3>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div role="form">
+
+                                        <div class="row ">
+                                            <div class="col-md-2">
+                                                <div class="col-md-10">
+                                                    <label>Send To</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(model => model.sendTo, new { @type = "text", @class = "form-control m-b", @name = "txtReceiver", @id = "txtReceiver", @placeholder = "Receiver ID" })
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(model => model.groupid, new { @type = "text", @class = "form-control m-b", @name = "txtgroupid", @id = "txtgroupid", @placeholder = "Group ID" })
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="col-md-10">
+                                                    <label>Title</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.TextBoxFor(model => model.title, new { @type = "text", @class = "form-control m-b", @name = "txtTitle", @id = "txtTitle", @placeholder = "Title" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div id="dvborder">
+                            <div class="ibox-content no-padding" style="overflow:scroll;height:350px;">
+                                @Html.TextAreaFor(model => model.msg, new { @class = "summernote", @name = "messages" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <span class="btn btn-primary btn-file">
+                    <span class="fileupload-new">Attach File...</span>
+                    <span class="fileupload-exists">Filename:</span>
+                    <input type="file" name="postedFile" />
+                </span>
+                <span class="fileupload-preview"></span>
+                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+            </div>
+            <div>
+                <input type="submit" value="Send" id="btnsend" class="btn btn-sm btn-danger" /> @*onclick="submitmsg();"*@
+                <p style="color:green;">@ViewBag.Message</p>
+            </div>
+        </form>
+    }
+</section>
+<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>
+<script src=@Url.Content("~/Content/js/jquery-ui.min.js?n=1")></script>
+<script>
+    $(document).ready(function () {
+        $("#txtgroupid").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: encodeURI("../Home/GetGroupNames"),
+                    type: "POST",
+                    dataType: "json",
+                    data: { word: request.term, type: '11' },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.grouptxt + " " + "<"+item.groupid+">", value: item.groupid };
+                        }))
+
+                    },
+                    
+                })
+            },
+            highlightClass: "bold-text"
+        });
+        var resul = function (request, response) {
+            $.ajax({
+                url: encodeURI("../Home/GetGroupNames"),
+                type: "POST",
+                dataType: "json",
+                data: { word: $("#txtReceiver").val(), type: '10' },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.grouptxt + " " + "<" + item.groupid + ">", value: item.groupid };
+                    }))
+
+                }
+            });
+            
+        }
+        $("#txtReceiver").autocomplete({
+            source: resul,
+        });
+    });
+</script>
+
