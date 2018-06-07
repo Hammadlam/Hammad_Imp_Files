@@ -316,6 +316,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\MSSController.cs" />
     <Compile Include="Controllers\personalinfoController.cs" />
+    <Compile Include="Controllers\PMController.cs" />
     <Compile Include="Controllers\PreprimaryController.cs" />
     <Compile Include="Controllers\ReportsController.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -360,6 +361,7 @@
     <Compile Include="Models\MessageCls.cs" />
     <Compile Include="Models\MSSModel.cs" />
     <Compile Include="Models\Personalinfo.cs" />
+    <Compile Include="Models\PMModel.cs" />
     <Compile Include="Models\PPCambridge.cs" />
     <Compile Include="Models\PPMatricModel.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -1356,6 +1358,7 @@
     <Content Include="Content\js\MarksUpload.js" />
     <Content Include="Content\js\masterDashboard.js" />
     <Content Include="Content\js\MasterTimetablejs.js" />
+    <Content Include="Content\js\Operations.js" />
     <Content Include="Content\js\pace.min.js" />
     <Content Include="Content\js\popup.js" />
     <Content Include="Content\js\PPCambridge.js" />
@@ -1620,6 +1623,7 @@
     <Content Include="Views\dashboard\MasterDashboard.cshtml" />
     <Content Include="Views\ESS\purRequisit.cshtml" />
     <Content Include="Views\SM\SaleOrder.cshtml" />
+    <Content Include="Views\PM\Operation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,21 +1,11 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using MvcSchoolWebApp.Models;
-using System;
+﻿using MvcSchoolWebApp.Models;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using System.Web.UI;
 using MvcSchoolWebApp.Data;
-using System.Configuration;
 
 namespace MvcSchoolWebApp.Controllers
 {
-    public class SMController : Controller
+    public class PMController : Controller
     {
         MessageCls msgobj = new MessageCls();
         public static string user_role;
@@ -32,7 +22,7 @@ namespace MvcSchoolWebApp.Controllers
 
         DatabaeseClass db;
         DatabaseInsertClass din;
-        public Page Page { get; private set; }
+        public System.Web.UI.Page Page { get; private set; }
 
         string getSquery = string.Empty;
         string UpdatedQuery = string.Empty;
@@ -52,11 +42,10 @@ namespace MvcSchoolWebApp.Controllers
                 filterContext.Result = new RedirectResult("~/Login");
             }
         }
-
-        public ActionResult SaleOrder()
+        public ActionResult Operation()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-            if (list[57].menustat != "X")
+            if (list[59].menustat != "X")
             {
                 return RedirectToAction("Index", "dashboard");
             }
@@ -70,10 +59,8 @@ namespace MvcSchoolWebApp.Controllers
                 Text = "",
                 Value = ""
             });
-
-            SMModel model = new SMModel();
-            model.sotype = model.saleorder = model.custno = model.currtyp = model.exrate = model.sorg = model.soledis =
-            model.prodgrp = model.paytrm = model.salecity = model.saleman = model.incom = sl;
+            PMModel model = new PMModel();
+            model.matno = model.plant = model.refmat = model.refplant = model.use = sl;
 
             return View(model);
         }

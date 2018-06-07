@@ -1,0 +1,245 @@
+﻿@model MvcSchoolWebApp.Models.PMModel
+@{
+    ViewBag.Title = "Operation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Production Management
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Operations
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form method="post" role="form" id="operationsForm" name="operationsForm">
+
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Material No.</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.matnoid, Model.matno, "Material No", new { @class = "form-control m-b", @name = "txtMatNoPOP", @id = "txtMatNoPOP", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Plant</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.plantid, Model.plant, "Plant", new { @class = "form-control m-b", @name = "txtPlantPOP", @id = "txtPlantPOP", @required = true })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Val Date</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.valdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtValDatePOP", @id = "txtValDatePOP", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Ref. Material</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.refmatid, Model.refmat, "Ref. Material", new { @class = "form-control m-b", @name = "txtRefMatPOP", @id = "txtRefMatPOP" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Ref Plant</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.refplantid, Model.refplant, "Ref Plant", new { @class = "form-control m-b", @name = "txtRefPlantPOP", @id = "txtRefPlantPOP" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="showdivOP" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="pmdiv">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Custom Tabs -->
+                                <div class="card">
+                                    <div class="card-header d-flex p-0">
+                                        <ul class="nav nav-pills ml-auto p-2">
+                                            <li class="nav-item" style="width:25%;"><a class="nav-link active" href="#tab_1" data-toggle="tab">Basic Data</a></li>
+                                            <li class="nav-item" style="width:25%;"><a class="nav-link" href="#tab_2" data-toggle="tab">Administration</a></li>
+                                        </ul>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            @* Bacis Data *@
+                                            <div class="tab-pane active" id="tab_1">
+                                                <div class="row ">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Use</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.useid, Model.use, "Use", new { @class = "form-control m-b", @name = "txtUsePOP", @id = "txtUsePOP", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Base Qauntity</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            @Html.TextBoxFor(model => model.baseqty, new { @class = "form-control m-b", @name = "txtBaseQtyPOP", @id = "txtBaseQtyPOP", @required = true })
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.TextBoxFor(model => model.baseqtyval, new { @class = "form-control m-b", @name = "txtBaseQtyValPOP", @id = "txtBaseQtyValPOP", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>From Lot Size</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.flotsze, new { @class = "form-control m-b", @name = "txtFLotSzPOP", @id = "txtFLotSzPOP", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>To Lot Size</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.tlotsze, new { @class = "form-control m-b", @name = "txtTLotSzPOP", @id = "txtTLotSzPOP", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Description</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.desc, new { @class = "form-control m-b", @name = "txtDescPOP", @id = "txtDescPOP", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Long Text</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.longtxt, new { @class = "form-control m-b", @name = "txtLongTxtPOP", @id = "txtLongTxtPOP", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                            
+                                            @* Administration *@
+                                            <div class="tab-pane" id="tab_2">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Created User</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.creausr, new { @class = "form-control m-b", @name = "txtCreaByPOP", @id = "txtCreaByPOP", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Changed User</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.chgusr, new { @class = "form-control m-b", @name = "txtChgByPOP", @id = "txtChgByPOP", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Created Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.creadate, new { @class = "form-control m-b", @name = "txtCreaDatePOP", @id = "txtCreaDatePOP", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Changed Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.chgdate, new { @class = "form-control m-b", @name = "txtChgDatePOP", @id = "txtChgDatePOP", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                                <!-- ./card -->
+                                <div id="pop_box_div">
+                                    <div class="pop_jqGrid m-b">
+                                        <table id="pop_table"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
