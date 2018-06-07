@@ -318,7 +318,7 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
 
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-            if (list[47].menustat != "X")
+            if (list[56].menustat != "X")
             {
                 return RedirectToAction("Index", "dashboard");
             }

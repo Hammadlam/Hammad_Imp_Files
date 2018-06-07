@@ -1,0 +1,457 @@
+﻿@model MvcSchoolWebApp.Models.SMModel
+@{
+    ViewBag.Title = "SaleOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Sales Management
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Sales Order
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form method="post" role="form" id="saleorderForm" name="saleorderForm">
+
+                                <div class="row ">
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Sales Order Type</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.sotypeid, Model.sotype, "Sales Order Type", new { @class = "form-control m-b", @name = "txtSOType", @id = "txtSOType", @required = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Sales Order</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.DropDownListFor(m => m.saleorderid, Model.saleorder, "Sales Order", new { @class = "form-control m-b", @name = "txtSaleOrder", @id = "txtSaleOrder", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="showdivSO" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="sodiv">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Custom Tabs -->
+                                <div class="card">
+                                    <div class="card-header d-flex p-0">
+                                        <ul class="nav nav-pills ml-auto p-2">
+                                            <li class="nav-item" style="width:20%;"><a class="nav-link active" href="#tab_1" data-toggle="tab">Basic Data</a></li>
+                                            <li class="nav-item" style="width:20%;"><a class="nav-link" href="#tab_2" data-toggle="tab">Org. Assignment</a></li>
+                                            <li class="nav-item" style="width:20%;"><a class="nav-link" href="#tab_3" data-toggle="tab">Other Imformation</a></li>
+                                            <li class="nav-item" style="width:20%;"><a class="nav-link" href="#tab_4" data-toggle="tab">Administration</a></li>
+                                        </ul>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            @* Bacis Data *@
+                                            <div class="tab-pane active" id="tab_1">
+                                                <div class="row ">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Cust Number</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.custnoid, Model.custno, "Cust Number", new { @class = "form-control m-b", @name = "txtCusNoSO", @id = "txtCusNoSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Purchase Order</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.po, new { @class = "form-control m-b", @name = "txtPoSO", @id = "txtPoSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Purchase Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.purdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtPurateSO", @id = "txtPurateSO", @required = true})
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Order Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtOrdDateBasSO", @id = "txtOrdDateBasSO", @required = true})
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Delivery Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.delvdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtDelvDateSO", @id = "txtDelvDateSO", @required = true})
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Order Curr</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.currtypid, Model.currtyp, "Currency Type", new { @class = "form-control m-b", @name = "txtCurrTypeSO", @id = "txtCurrTypeSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Exchange Rate</label>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                                @Html.DropDownListFor(m => m.exrateid, Model.exrate, new { @class = "form-control m-b", @name = "txtExRateSO", @id = "txtExRateSO", @required = true })
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            @Html.TextBoxFor(model => model.exrateval, new { @class = "form-control m-b", @name = "txtExRateValSO", @id = "txtExRateValSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Inter Ref.</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.interref, new { @class = "form-control m-b", @name = "txtInterRefSO", @id = "txtInterRefSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Value</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.val, new { @class = "form-control m-b", @name = "txtValSO", @id = "txtValSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /.tab-pane -->
+
+                                            @* Org. Assignment *@
+                                            <div class="tab-pane" id="tab_2">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Sale Org.</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.sorgid, Model.sorg, "Sale Org.", new { @class = "form-control m-b", @name = "txtSaleOrgSO", @id = "txtSaleOrgSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Job No.</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.jobno, new { @class = "form-control m-b", @name = "txtJobNoSO", @id = "txtJobNoSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Sole Distributor</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.soledisid, Model.soledis, "Sole Distributor", new { @class = "form-control m-b", @name = "txtSoleDisSO", @id = "txtSoleDisSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Cheque No.</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.cheqno, new { @class = "form-control m-b", @name = "txtCheqNoSO", @id = "txtCheqNoSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Product Group</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.prodgrpid, Model.prodgrp, "Product Group", new { @class = "form-control m-b", @name = "txtProdGrpSO", @id = "txtProdGrpSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Payment Term</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.paytrmid, Model.paytrm, "Payment Term", new { @class = "form-control m-b", @name = "txtPayTrmSO", @id = "txtPayTrmSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Sales City</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.salecityid, Model.salecity, "Sale City", new { @class = "form-control m-b", @name = "txtSaleCitySO", @id = "txtSaleCitySO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Sales Man</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.DropDownListFor(m => m.salemanid, Model.saleman, "Sale Man", new { @class = "form-control m-b", @name = "txtSaleManSO", @id = "txtSaleManSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /.tab-pane -->
+
+                                            @* Other Information *@
+                                            <div class="tab-pane" id="tab_3">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Ref No.</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.refno, new { @class = "form-control m-b", @name = "txtRefNoSO", @id = "txtRefNoSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>N/A</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.refna, new { @class = "form-control m-b", @name = "txtRefNASO", @id = "txtRefNASO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Order Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtOrdDateOthrSO", @id = "txtOrdDateOthrSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Performa Invoice No.</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.perforno, new { @class = "form-control m-b", @name = "txtPerforNoSO", @id = "txtPerforNoSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Delivery Block</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.delvblk, new { @class = "form-control m-b", @name = "txtDelvBlkSO", @id = "txtDelvBlkSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>N/A</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.delvblkna, new { @class = "form-control m-b", @name = "txtDelvBlkNASO", @id = "txtDelvBlkNASO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Bill Block</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.billblk, new { @class = "form-control m-b", @name = "txtBilBlkSO", @id = "txtBilBlkSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Commercial Invoice</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.cominvc, new { @class = "form-control m-b", @name = "txtComInvcSO", @id = "txtComInvcSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Marks and No. Size</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.marksz, new { @class = "form-control m-b", @name = "txtMrkSzSO", @id = "txtMrkSzSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Incoterms</label>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.DropDownListFor(m => m.incomid, Model.incom, new { @class = "form-control m-b", @name = "txtIncomSO", @id = "txtIncomSO", @required = true })
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            @Html.TextBoxFor(model => model.incomval, new { @class = "form-control m-b", @name = "txtIncomValSO", @id = "txtIncomValSO", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.tab-pane -->
+
+                                            @* Administration *@
+                                            <div class="tab-pane" id="tab_4">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Created By</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.creaby, new { @class = "form-control m-b", @name = "txtCreaBySO", @id = "txtCreaBySO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Changed By</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.chgby, new { @class = "form-control m-b", @name = "txtChgBySO", @id = "txtChgBySO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Created Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.creadate, new { @class = "form-control m-b", @name = "txtCreaDateSO", @id = "txtCreaDateSO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Changed Date</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.chgdate, new { @class = "form-control m-b", @name = "txtChgDateSO", @id = "txtChgDateSO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Created Time</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.creatim, new { @class = "form-control m-b", @name = "txtCreaTimeSO", @id = "txtCreaTimeSO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Changed Time</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.chgtime, new { @class = "form-control m-b", @name = "txtChgTimeSO", @id = "txtChgTimeSO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Status</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.stat, new { @class = "form-control m-b", @name = "txtStatSO", @id = "txtStatSO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <label>Current Status</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            @Html.TextBoxFor(model => model.currstat, new { @class = "form-control m-b", @name = "txtCurrStatSO", @id = "txtCurrStatSO", @readonly = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                                <!-- ./card -->
+                                <div id="so_box_div">
+                                    <div class="so_jqGrid m-b">
+                                        <table id="so_table"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

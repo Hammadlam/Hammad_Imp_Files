@@ -895,7 +895,7 @@
                             var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
                             if (list[42].menustat == "X")
                             {
-                                <li class="treeview">
+                                <li class="active treeview">
                                     <a href="#">
                                         <i class="fa fa-user"></i> <span>Employee Self Service</span>
                                         <span class="pull-right-container">
@@ -1072,15 +1072,44 @@
                                             <i class="fa fa-angle-left pull-right"></i>
                                         </span>
                                     </a>
+                                    <ul class="treeview-menu">
+                                        @{
+                                            try
+                                            {
+                                                if (list[57].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/SM/SaleOrder">
+                                                            <i class="fa fa-users"></i>Sale Order
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[58].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="fa fa-users"></i>Sale Approval
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                                        }
+                                    </ul>
                                 </li>
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            string url = "/dashboard";
-                            Response.Write("<script type='text/javascript'>");
-                            Response.Write("window.location.href = '" + url + "'</script>");
-                        }
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
                     }
 
                     @{
@@ -1089,7 +1118,7 @@
                             var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
                             if (list[53].menustat == "X")
                             {
-                                <li class="active treeview">
+                                <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-user"></i> <span>Purchase Management</span>
                                         <span class="pull-right-container">
@@ -1424,6 +1453,8 @@
     <script src=@Url.Content("~/Content/js/WeeklyLessonPP.js?n=3") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/resigAppr.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/masterDashboard.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/purRequisit.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/SaleOrder.js?n=1") asp-append-version="true"></script>
     @*******************************Pages Scripts**********************************@
 
 
