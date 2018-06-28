@@ -90,7 +90,10 @@
             border-left-color: #13a6ec;
         }
 
-
+        .profbtn
+        {
+            margin-left:15px;
+        }
 
 
 
@@ -153,7 +156,7 @@
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue-light  sidebar-mini">
 
     @*Popup Start *@
     <div class="modal2" id="myModal2" data-backdrop="static" role="dialog">
@@ -1221,7 +1224,7 @@
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <div class="body-content">
+            <div class="body-content" style="background-color:#e6e6e6">
                 @RenderBody()
             </div>
         </div>
