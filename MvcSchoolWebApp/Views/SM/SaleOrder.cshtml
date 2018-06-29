@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="content" style="background-color:#95b1c1;">
+<section class="content" >
     <!-- Info boxes -->
     <div class="row">
 
@@ -55,12 +55,12 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="col-md-3">
-                                           @*<input id="showdivSO" type="submit" value="Submit" name="btnEnter" style="margin-left:35px;" class="btn btn-sm btn-danger" >*@
-                                           <a id="showdivSO" name="btnEnter" style="margin-left:20px;" class="btn btn-danger btn-sm" href="#" > <i class="glyphicon glyphicon-pencil"> Submit</i> </a>
-                                        </div>
+               
+                                <div >
+                                    <div class="col-md-12 " style="background-color:silver">
+                                        <button type="button"> <img src="~/Content/dbtheme/dist/img/SaveIco.png" width="20" height="20" /> Save</button>
+                                        <button type="button"> <img src="~/Content/dbtheme/dist/img/dl.png" width="20" height="20" /> Edit</button>
+                                        <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/Redcross.png" width="20" height="20" /> Cancel</button>
                                     </div>
                                 </div>
                             </form>
@@ -444,8 +444,159 @@
                                 </div>
                                 <!-- ./card -->
                                 <div id="so_box_div">
-                                    <div class="so_jqGrid m-b table table-sm table-hover">
-                                        <table id="so_table"></table>
+                                    @*<div class="so_jqGrid m-b table  table-sm table-bordered table-hover">
+                                        <table id="so_table">
+                                           
+                                        </table>
+                                    </div>*@
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <div class="table-responsive-sm" style="overflow-x:scroll;">
+                                                <table  class="users table  table-sm table-bordered table-hover " style="margin-right: 5px; margin-top: 2px; " >
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" style="width:20px; background-color: #e7e7e7;" class="tbheadpad">
+                                                                <img src="~/Content/dbtheme/dist/img/ic8.png" width="16" height="16" />
+                                                            </th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-1 row-A">Actions</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-2 row-B">Type</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-3 row-C">Material</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-4 row-D">Description</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-5 row-E">Cust. Mat. No</th>
+                                                            <th scope="col" style="background-color: #e7e7e7;" class="tbheadpad row-6 row-F">Quantity</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-7 row-G" >OU</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-8 row-H">SU</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-9 row-I">Plant</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-10 row-J">Store</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-11 row-K">Net Price</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-12 row-E">S T Code</th>
+                                                            <th scope="col" style="background-color: #e7e7e7;" class="tbheadpad row-13 row-F">S T Amount</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-14 row-G">Gross Price</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-15 row-E">Net Value</th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row" style="background-color: #e7e7e7;" class=".tbheadpad"></th>
+                                                            <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;<i class="glyphicon glyphicon-trash"></i></td>
+                                                            <td class=".tbheadpad">Otto</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                            <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                            <td class=".tbheadpad">Thornton</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                            <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                            <td class=".tbheadpad">Thornton</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                            <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                            <td class=".tbheadpad">Thornton</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                            <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                            <td class=".tbheadpad">Thornton</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                            <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                            <td class=".tbheadpad">Thornton</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+                                                            <td class=".tbheadpad">Sample Data</td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
