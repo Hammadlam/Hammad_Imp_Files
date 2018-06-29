@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="content" >
+<section class="content">
     <!-- Info boxes -->
     <div class="row">
 
@@ -36,18 +36,18 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="col-md-5">
-                                            <label class="pull-right">Sales Order Type</label>
+                                            <label>Sales Order Type</label>
                                         </div>
                                         <div class="col-md-5">
                                             @Html.DropDownListFor(m => m.sotypeid, Model.sotype, "Sales Order Type", new { @class = "form-control input-sm m-b pull-left", @name = "txtSOTypeSO", @id = "txtSOTypeSO", @required = true })
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 pull-left">
+                                    <div class="col-md-6">
                                         <div class="col-md-5">
-                                            <label class="pull-right" >Sales Order</label>
+                                            <label>Sales Order</label>
                                         </div>
                                         <div class="col-md-4">
                                             @Html.DropDownListFor(m => m.saleorderid, Model.saleorder, "Sales Order", new { @class = "form-control input-sm m-b pull-left ", @name = "txtSaleOrderSO", @id = "txtSaleOrderSO", @required = true })
@@ -55,12 +55,14 @@
                                     </div>
                                 </div>
 
-               
-                                <div >
-                                    <div class="col-md-12 " style="background-color:silver">
-                                        <button type="button"> <img src="~/Content/dbtheme/dist/img/SaveIco.png" width="20" height="20" /> Save</button>
-                                        <button type="button"> <img src="~/Content/dbtheme/dist/img/dl.png" width="20" height="20" /> Edit</button>
-                                        <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/Redcross.png" width="20" height="20" /> Cancel</button>
+
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        <div class="col-md-12">
+                                            <button type="button"> <img src="~/Content/dbtheme/dist/img/SaveIco.png" width="20" height="20" /> Save</button>
+                                            <button type="button"> <img src="~/Content/dbtheme/dist/img/dl.png" width="20" height="20" /> Edit</button>
+                                            <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/Redcross.png" width="20" height="20" /> Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -89,7 +91,7 @@
                                         </ul>
                                     </div><!-- /.card-header -->
                                     <div class="card-body">
-                                    <br />
+                                        <br />
                                         <div class="tab-content">
                                             @* Bacis Data *@
                                             <div class="tab-pane active" id="tab_1">
@@ -117,7 +119,7 @@
                                                             <label>Purchase Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.purdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtPurateSO", @id = "txtPurateSO", @required = true})
+                                                            @Html.TextBoxFor(model => model.purdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtPurateSO", @id = "txtPurateSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,7 +129,7 @@
                                                             <label>Order Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtOrdDateBasSO", @id = "txtOrdDateBasSO", @required = true})
+                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtOrdDateBasSO", @id = "txtOrdDateBasSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -135,7 +137,7 @@
                                                             <label>Delivery Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.delvdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtDelvDateSO", @id = "txtDelvDateSO", @required = true})
+                                                            @Html.TextBoxFor(model => model.delvdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtDelvDateSO", @id = "txtDelvDateSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -153,7 +155,7 @@
                                                             <label>Exchange Rate</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                           @Html.DropDownListFor(m => m.exrateid, Model.exrate, new { @class = "form-control input-sm m-b", @name = "txtExRateSO", @id = "txtExRateSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.exrateid, Model.exrate, new { @class = "form-control input-sm m-b", @name = "txtExRateSO", @id = "txtExRateSO", @required = true })
                                                         </div>
                                                         <div class="col-md-3">
                                                             @Html.TextBoxFor(model => model.exrateval, new { @class = "form-control input-sm m-b pull-left", @name = "txtExRateValSO", @id = "txtExRateValSO", @required = true })
@@ -181,7 +183,6 @@
 
                                             </div>
                                             <!-- /.tab-pane -->
-
                                             @* Org. Assignment *@
                                             <div class="tab-pane" id="tab_2">
                                                 <div class="row">
@@ -259,7 +260,6 @@
 
                                             </div>
                                             <!-- /.tab-pane -->
-
                                             @* Other Information *@
                                             <div class="tab-pane" id="tab_3">
                                                 <div class="row">
@@ -359,7 +359,6 @@
                                                 </div>
                                             </div>
                                             <!-- /.tab-pane -->
-
                                             @* Administration *@
                                             <div class="tab-pane" id="tab_4">
                                                 <div class="row">
@@ -445,14 +444,14 @@
                                 <!-- ./card -->
                                 <div id="so_box_div">
                                     @*<div class="so_jqGrid m-b table  table-sm table-bordered table-hover">
-                                        <table id="so_table">
-                                           
-                                        </table>
-                                    </div>*@
+                                            <table id="so_table">
+
+                                            </table>
+                                        </div>*@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12">
                                             <div class="table-responsive-sm" style="overflow-x:scroll;">
-                                                <table  class="users table  table-sm table-bordered table-hover " style="margin-right: 5px; margin-top: 2px; " >
+                                                <table class="users table  table-sm table-bordered table-hover " style="margin-right: 5px; margin-top: 2px; ">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" style="width:20px; background-color: #e7e7e7;" class="tbheadpad">
@@ -464,7 +463,7 @@
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-4 row-D">Description</th>
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-5 row-E">Cust. Mat. No</th>
                                                             <th scope="col" style="background-color: #e7e7e7;" class="tbheadpad row-6 row-F">Quantity</th>
-                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-7 row-G" >OU</th>
+                                                            <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-7 row-G">OU</th>
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-8 row-H">SU</th>
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-9 row-I">Plant</th>
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-10 row-J">Store</th>
@@ -473,7 +472,7 @@
                                                             <th scope="col" style="background-color: #e7e7e7;" class="tbheadpad row-13 row-F">S T Amount</th>
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-14 row-G">Gross Price</th>
                                                             <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-15 row-E">Net Value</th>
-                                                           
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -607,4 +606,3 @@
         </div>
     </div>
 </section>
-
