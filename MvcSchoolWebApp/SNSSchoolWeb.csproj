@@ -1339,6 +1339,7 @@
     <Content Include="Content\js\popup.js" />
     <Content Include="Content\js\PPCambridge.js" />
     <Content Include="Content\js\PPMatric.js" />
+    <Content Include="Content\js\Profile.js" />
     <Content Include="Content\js\PublishResult.js" />
     <Content Include="Content\js\Purchase.js" />
     <Content Include="Content\js\purRequisit.js" />
