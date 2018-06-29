@@ -443,6 +443,7 @@
     <Content Include="Content\dbtheme\dist\img\credit\visa.png" />
     <Content Include="Content\dbtheme\dist\img\dc1.png" />
     <Content Include="Content\dbtheme\dist\img\default-50x50.gif" />
+    <Content Include="Content\dbtheme\dist\img\dl.png" />
     <Content Include="Content\dbtheme\dist\img\ERMIcon.ico" />
     <Content Include="Content\dbtheme\dist\img\excelico.png" />
     <Content Include="Content\dbtheme\dist\img\falcon-home.jpeg" />
