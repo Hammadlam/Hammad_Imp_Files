@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+  
+</style>
 <section class="content">
     <!-- Info boxes -->
     <div class="row">
@@ -13,21 +16,7 @@
             <div class="ibox float-e-margins">
                 <div id="dvborder">
                     <div class="ibox-title ">
-
-                        <ul id="vert_menu">
-                            <li>
-                                <input type="radio" id="r1" name="r">
-                                <label for="r1">
-                                    Sales Management
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio" id="r2" name="r">
-                                <label for="r2">
-                                    Sales Order
-                                </label>
-                            </li>
-                        </ul>
+                        <h2 class="text-bold text-info">Sales Order</h2>
                     </div>
 
                     <div class="ibox-content">
@@ -41,7 +30,7 @@
                                             <label>Sales Order Type</label>
                                         </div>
                                         <div class="col-md-5">
-                                            @Html.DropDownListFor(m => m.sotypeid, Model.sotype, "Sales Order Type", new { @class = "form-control input-sm m-b pull-left", @name = "txtSOTypeSO", @id = "txtSOTypeSO", @required = true })
+                                            @Html.DropDownListFor(m => m.sotypeid, Model.sotype, "Sales Order Type", new { @class = "form-control mini pull-left", @name = "txtSOTypeSO", @id = "txtSOTypeSO", @required = true })
                                         </div>
                                     </div>
 
@@ -50,7 +39,7 @@
                                             <label>Sales Order</label>
                                         </div>
                                         <div class="col-md-4">
-                                            @Html.DropDownListFor(m => m.saleorderid, Model.saleorder, "Sales Order", new { @class = "form-control input-sm m-b pull-left ", @name = "txtSaleOrderSO", @id = "txtSaleOrderSO", @required = true })
+                                            @Html.DropDownListFor(m => m.saleorderid, Model.saleorder, "Sales Order", new { @class = "form-control mini pull-left ", @name = "txtSaleOrderSO", @id = "txtSaleOrderSO", @required = true })
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +47,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 ">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 txtmargins">
                                             <button type="button"> <img src="~/Content/dbtheme/dist/img/SaveIco.png" width="20" height="20" /> Save</button>
                                             <button type="button"> <img src="~/Content/dbtheme/dist/img/dl.png" width="20" height="20" /> Edit</button>
                                             <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/Redcross.png" width="20" height="20" /> Cancel</button>
@@ -82,15 +71,25 @@
                             <div class="col-12">
                                 <!-- Custom Tabs -->
                                 <div class="card">
+                              
                                     <div class="card-header d-flex p-0">
                                         <ul class="nav nav-pills ml-auto p-2">
-                                            <li class="nav-item" style="width:17%;"><a class="nav-link active btn-default btn-sm" href="#tab_1" data-toggle="tab">Basic Data </a></li>
-                                            <li class="nav-item" style="width:17%;"><a class="nav-link active btn-default btn-sm " href="#tab_2" data-toggle="tab">Org. Assignment </a></li>
-                                            <li class="nav-item" style="width:17%;"><a class="nav-link active btn-default btn-sm " href="#tab_3" data-toggle="tab">Other Imformation</a></li>
-                                            <li class="nav-item" style="width:17%;"><a class="nav-link active btn-default btn-sm " href="#tab_4" data-toggle="tab">Administration</a></li>
+                                            <li class="nav-item nav-width " ><a class="nav-link active btn  btn-default btn-sm " href="#tab_1" data-toggle="tab"> Basic Data </a></li>
+                                            <li class="nav-item nav-width " ><a class="nav-link active btn btn-default btn-sm " href="#tab_2" data-toggle="tab">Org. Assignment </a></li>
+                                            <li class="nav-item nav-width " ><a class="nav-link active btn btn-default btn-sm " href="#tab_3" data-toggle="tab">Other Imformation</a></li>
+                                            <li class="nav-item nav-width "><a class="nav-link active btn btn-default btn-sm " href="#tab_4" data-toggle="tab">Administration</a></li>
                                         </ul>
                                     </div><!-- /.card-header -->
                                     <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 ">
+                                                <div class="col-md-12 txtmargins">
+                                                    <button type="button"> <img src="~/Content/dbtheme/dist/img/svico.ico" width="20" height="20" /> Save</button>
+                                                    <button type="button"> <img src="~/Content/dbtheme/dist/img/edtico.ico" width="20" height="20" /> Edit</button>
+                                                    <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/dltico.png" width="20" height="20" /> Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <br />
                                         <div class="tab-content">
                                             @* Bacis Data *@
@@ -101,7 +100,7 @@
                                                             <label>Cust Number</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.custnoid, Model.custno, "Cust Number", new { @class = "form-control input-sm m-b", @name = "txtCusNoSO", @id = "txtCusNoSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.custnoid, Model.custno, "Cust Number", new { @class = "form-control txtmargins mini  ", @name = "txtCusNoSO", @id = "txtCusNoSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +110,7 @@
                                                             <label>Purchase Order</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.po, new { @class = "form-control input-sm m-b", @name = "txtPoSO", @id = "txtPoSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.po, new { @class = "form-control txtmargins input-sm input-hight  ", @name = "txtPoSO", @id = "txtPoSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -119,7 +118,7 @@
                                                             <label>Purchase Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.purdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtPurateSO", @id = "txtPurateSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.purdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control txtmargins input-sm input-hight ", @name = "txtPurateSO", @id = "txtPurateSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -129,7 +128,7 @@
                                                             <label>Order Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtOrdDateBasSO", @id = "txtOrdDateBasSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control txtmargins input-sm input-hight ", @name = "txtOrdDateBasSO", @id = "txtOrdDateBasSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -137,7 +136,7 @@
                                                             <label>Delivery Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.delvdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtDelvDateSO", @id = "txtDelvDateSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.delvdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control txtmargins input-sm input-hight ", @name = "txtDelvDateSO", @id = "txtDelvDateSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -147,7 +146,7 @@
                                                             <label>Order Curr</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.currtypid, Model.currtyp, "Currency Type", new { @class = "form-control input-sm m-b", @name = "txtCurrTypeSO", @id = "txtCurrTypeSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.currtypid, Model.currtyp, "Currency Type", new { @class = "form-control txtmargins mini  ", @name = "txtCurrTypeSO", @id = "txtCurrTypeSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -155,10 +154,10 @@
                                                             <label>Exchange Rate</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            @Html.DropDownListFor(m => m.exrateid, Model.exrate, new { @class = "form-control input-sm m-b", @name = "txtExRateSO", @id = "txtExRateSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.exrateid, Model.exrate, new { @class = "form-control txtmargins mini  ", @name = "txtExRateSO", @id = "txtExRateSO", @required = true })
                                                         </div>
                                                         <div class="col-md-3">
-                                                            @Html.TextBoxFor(model => model.exrateval, new { @class = "form-control input-sm m-b pull-left", @name = "txtExRateValSO", @id = "txtExRateValSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.exrateval, new { @class = "form-control input-sm txtmargins pull-left input-hight", @name = "txtExRateValSO", @id = "txtExRateValSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,7 +167,7 @@
                                                             <label>Inter Ref.</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.interref, new { @class = "form-control input-sm m-b", @name = "txtInterRefSO", @id = "txtInterRefSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.interref, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtInterRefSO", @id = "txtInterRefSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -176,7 +175,7 @@
                                                             <label>Value</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.val, new { @class = "form-control input-sm m-b", @name = "txtValSO", @id = "txtValSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.val, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtValSO", @id = "txtValSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -191,7 +190,7 @@
                                                             <label>Sale Org.</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.sorgid, Model.sorg, "Sale Org.", new { @class = "form-control input-sm m-b", @name = "txtSaleOrgSO", @id = "txtSaleOrgSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.sorgid, Model.sorg, "Sale Org.", new { @class = "form-control txtmargins mini  ", @name = "txtSaleOrgSO", @id = "txtSaleOrgSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -199,7 +198,7 @@
                                                             <label>Job No.</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.jobno, new { @class = "form-control input-sm m-b", @name = "txtJobNoSO", @id = "txtJobNoSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.jobno, new { @class = "form-control txtmargins mini ", @name = "txtJobNoSO", @id = "txtJobNoSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -209,7 +208,7 @@
                                                             <label>Sole Distributor</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.soledisid, Model.soledis, "Sole Distributor", new { @class = "form-control input-sm m-b", @name = "txtSoleDisSO", @id = "txtSoleDisSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.soledisid, Model.soledis, "Sole Distributor", new { @class = "form-control txtmargins mini ", @name = "txtSoleDisSO", @id = "txtSoleDisSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -217,7 +216,7 @@
                                                             <label>Cheque No.</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.cheqno, new { @class = "form-control input-sm m-b", @name = "txtCheqNoSO", @id = "txtCheqNoSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.cheqno, new { @class = "form-control txtmargins mini", @name = "txtCheqNoSO", @id = "txtCheqNoSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -227,7 +226,7 @@
                                                             <label>Product Group</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.prodgrpid, Model.prodgrp, "Product Group", new { @class = "form-control input-sm m-b", @name = "txtProdGrpSO", @id = "txtProdGrpSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.prodgrpid, Model.prodgrp, "Product Group", new { @class = "form-control txtmargins mini ", @name = "txtProdGrpSO", @id = "txtProdGrpSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -235,7 +234,7 @@
                                                             <label>Payment Term</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.paytrmid, Model.paytrm, "Payment Term", new { @class = "form-control input-sm m-b", @name = "txtPayTrmSO", @id = "txtPayTrmSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.paytrmid, Model.paytrm, "Payment Term", new { @class = "form-control txtmargins mini ", @name = "txtPayTrmSO", @id = "txtPayTrmSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -245,7 +244,7 @@
                                                             <label>Sales City</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.salecityid, Model.salecity, "Sale City", new { @class = "form-control input-sm m-b", @name = "txtSaleCitySO", @id = "txtSaleCitySO", @required = true })
+                                                            @Html.DropDownListFor(m => m.salecityid, Model.salecity, "Sale City", new { @class = "form-control txtmargins mini ", @name = "txtSaleCitySO", @id = "txtSaleCitySO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -253,7 +252,7 @@
                                                             <label>Sales Man</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.salemanid, Model.saleman, "Sale Man", new { @class = "form-control input-sm m-b", @name = "txtSaleManSO", @id = "txtSaleManSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.salemanid, Model.saleman, "Sale Man", new { @class = "form-control txtmargins mini", @name = "txtSaleManSO", @id = "txtSaleManSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -268,7 +267,7 @@
                                                             <label>Ref No.</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.refno, new { @class = "form-control input-sm m-b", @name = "txtRefNoSO", @id = "txtRefNoSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.refno, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtRefNoSO", @id = "txtRefNoSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -276,7 +275,7 @@
                                                             <label>N/A</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.refna, new { @class = "form-control input-sm m-b", @name = "txtRefNASO", @id = "txtRefNASO", @required = true })
+                                                            @Html.TextBoxFor(model => model.refna, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtRefNASO", @id = "txtRefNASO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -286,7 +285,7 @@
                                                             <label>Order Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control input-sm m-b", @name = "txtOrdDateOthrSO", @id = "txtOrdDateOthrSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.orddate, "Date", new { @Value = ViewBag.begdate, @class = "form-control txtmargins input-sm input-hight ", @name = "txtOrdDateOthrSO", @id = "txtOrdDateOthrSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -294,7 +293,7 @@
                                                             <label>Performa Invoice No.</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.perforno, new { @class = "form-control input-sm m-b", @name = "txtPerforNoSO", @id = "txtPerforNoSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.perforno, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtPerforNoSO", @id = "txtPerforNoSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -304,7 +303,7 @@
                                                             <label>Delivery Block</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.delvblk, new { @class = "form-control input-sm m-b", @name = "txtDelvBlkSO", @id = "txtDelvBlkSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.delvblk, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtDelvBlkSO", @id = "txtDelvBlkSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -312,7 +311,7 @@
                                                             <label>N/A</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.delvblkna, new { @class = "form-control input-sm m-b", @name = "txtDelvBlkNASO", @id = "txtDelvBlkNASO", @required = true })
+                                                            @Html.TextBoxFor(model => model.delvblkna, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtDelvBlkNASO", @id = "txtDelvBlkNASO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -322,7 +321,7 @@
                                                             <label>Bill Block</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.billblk, new { @class = "form-control input-sm m-b", @name = "txtBilBlkSO", @id = "txtBilBlkSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.billblk, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtBilBlkSO", @id = "txtBilBlkSO", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -330,7 +329,7 @@
                                                             <label>Commercial Invoice</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.cominvc, new { @class = "form-control input-sm m-b", @name = "txtComInvcSO", @id = "txtComInvcSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.cominvc, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtComInvcSO", @id = "txtComInvcSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -340,7 +339,7 @@
                                                             <label>Marks and No. Size</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.marksz, new { @class = "form-control input-sm m-b", @name = "txtMrkSzSO", @id = "txtMrkSzSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.marksz, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtMrkSzSO", @id = "txtMrkSzSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -350,10 +349,10 @@
                                                             <label>Incoterms</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            @Html.DropDownListFor(m => m.incomid, Model.incom, new { @class = "form-control input-sm m-b", @name = "txtIncomSO", @id = "txtIncomSO", @required = true })
+                                                            @Html.DropDownListFor(m => m.incomid, Model.incom, new { @class = "form-control txtmargins mini ", @name = "txtIncomSO", @id = "txtIncomSO", @required = true })
                                                         </div>
                                                         <div class="col-md-3">
-                                                            @Html.TextBoxFor(model => model.incomval, new { @class = "form-control input-sm m-b", @name = "txtIncomValSO", @id = "txtIncomValSO", @required = true })
+                                                            @Html.TextBoxFor(model => model.incomval, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtIncomValSO", @id = "txtIncomValSO", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,7 +366,7 @@
                                                             <label>Created By</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.creaby, new { @class = "form-control input-sm  m-b", @name = "txtCreaBySO", @id = "txtCreaBySO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.creaby, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtCreaBySO", @id = "txtCreaBySO", @readonly = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -375,7 +374,7 @@
                                                             <label>Changed By</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.chgby, new { @class = "form-control input-sm m-b", @name = "txtChgBySO", @id = "txtChgBySO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.chgby, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtChgBySO", @id = "txtChgBySO", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -385,7 +384,7 @@
                                                             <label>Created Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.creadate, new { @class = "form-control input-sm m-b", @name = "txtCreaDateSO", @id = "txtCreaDateSO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.creadate, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtCreaDateSO", @id = "txtCreaDateSO", @readonly = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -393,7 +392,7 @@
                                                             <label>Changed Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.chgdate, new { @class = "form-control input-sm m-b", @name = "txtChgDateSO", @id = "txtChgDateSO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.chgdate, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtChgDateSO", @id = "txtChgDateSO", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -403,7 +402,7 @@
                                                             <label>Created Time</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.creatim, new { @class = "form-control input-sm m-b", @name = "txtCreaTimeSO", @id = "txtCreaTimeSO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.creatim, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtCreaTimeSO", @id = "txtCreaTimeSO", @readonly = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -411,7 +410,7 @@
                                                             <label>Changed Time</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.chgtime, new { @class = "form-control input-sm m-b", @name = "txtChgTimeSO", @id = "txtChgTimeSO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.chgtime, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtChgTimeSO", @id = "txtChgTimeSO", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -421,7 +420,7 @@
                                                             <label>Status</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.stat, new { @class = "form-control input-sm m-b", @name = "txtStatSO", @id = "txtStatSO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.stat, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtStatSO", @id = "txtStatSO", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -431,7 +430,7 @@
                                                             <label>Current Status</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.currstat, new { @class = "form-control input-sm m-b", @name = "txtCurrStatSO", @id = "txtCurrStatSO", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.currstat, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtCurrStatSO", @id = "txtCurrStatSO", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -451,7 +450,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12">
                                             <div class="table-responsive-sm" style="overflow-x:scroll;">
-                                                <table class="users table  table-sm table-bordered table-hover " style="margin-right: 5px; margin-top: 2px; ">
+                                                <table class="users table txtmargins  table-sm table-bordered table-hover " style="margin-right: 5px; margin-top: 2px; ">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" style="width:20px; background-color: #e7e7e7;" class="tbheadpad">

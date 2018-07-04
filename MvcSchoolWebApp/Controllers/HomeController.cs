@@ -857,7 +857,10 @@ namespace MvcSchoolWebApp.Controllers
             return Json(HomeController.popup_status, JsonRequestBehavior.AllowGet);
 
         }
-
+        public ActionResult timesheet()
+        {
+            return View();
+        }
     }
 }
 

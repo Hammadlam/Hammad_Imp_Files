@@ -12,21 +12,7 @@
             <div class="ibox float-e-margins">
                 <div id="dvborder">
                     <div class="ibox-title ">
-
-                        <ul id="vert_menu">
-                            <li>
-                                <input type="radio" id="r1" name="r">
-                                <label for="r1">
-                                    Production Management
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio" id="r2" name="r">
-                                <label for="r2">
-                                    Operations
-                                </label>
-                            </li>
-                        </ul>
+                    <h3 class="text-bold text-info">  Operations</h3>
                     </div>
 
                     <div class="ibox-content">
@@ -39,8 +25,8 @@
                                         <div class="col-md-5">
                                             <label>Material No.</label>
                                         </div>
-                                        <div class="col-md-7">
-                                            @Html.DropDownListFor(m => m.matnoid, Model.matno, "Material No", new { @class = "form-control m-b", @name = "txtMatNoPOP", @id = "txtMatNoPOP", @required = true })
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.matnoid, Model.matno, "Material No", new { @class = "form-control txtmargins mini ", @name = "txtMatNoPOP", @id = "txtMatNoPOP", @required = true })
                                         </div>
                                     </div>
 
@@ -48,16 +34,16 @@
                                         <div class="col-md-5">
                                             <label>Plant</label>
                                         </div>
-                                        <div class="col-md-7">
-                                            @Html.DropDownListFor(m => m.plantid, Model.plant, "Plant", new { @class = "form-control m-b", @name = "txtPlantPOP", @id = "txtPlantPOP", @required = true })
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.plantid, Model.plant, "Plant", new { @class = "form-control txtmargins mini  ", @name = "txtPlantPOP", @id = "txtPlantPOP", @required = true })
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="col-md-5">
                                             <label>Val Date</label>
                                         </div>
-                                        <div class="col-md-7">
-                                            @Html.TextBoxFor(model => model.valdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control m-b", @name = "txtValDatePOP", @id = "txtValDatePOP", @required = true })
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(model => model.valdate, "Date", new { @Value = ViewBag.begdate, @class = "form-control txtmargins input-sm input-hight ", @name = "txtValDatePOP", @id = "txtValDatePOP", @required = true })
                                         </div>
                                     </div>
                                 </div>
@@ -68,8 +54,8 @@
                                         <div class="col-md-5">
                                             <label>Ref. Material</label>
                                         </div>
-                                        <div class="col-md-7">
-                                            @Html.DropDownListFor(m => m.refmatid, Model.refmat, "Ref. Material", new { @class = "form-control m-b", @name = "txtRefMatPOP", @id = "txtRefMatPOP" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.refmatid, Model.refmat, "Ref. Material", new { @class = "form-control txtmargins mini   ", @name = "txtRefMatPOP", @id = "txtRefMatPOP" })
                                         </div>
                                     </div>
 
@@ -77,15 +63,25 @@
                                         <div class="col-md-5">
                                             <label>Ref Plant</label>
                                         </div>
-                                        <div class="col-md-7">
-                                            @Html.DropDownListFor(m => m.refplantid, Model.refplant, "Ref Plant", new { @class = "form-control m-b", @name = "txtRefPlantPOP", @id = "txtRefPlantPOP" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownListFor(m => m.refplantid, Model.refplant, "Ref Plant", new { @class = "form-control txtmargins mini  ", @name = "txtRefPlantPOP", @id = "txtRefPlantPOP" })
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                @*<div class="row">
                                     <div class="col-md-4">
                                         <div class="col-md-5">
                                             <input id="showdivOP" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-danger" />
+
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        <div class="col-md-12 txtmargins">
+                                            <button id="showdivOP" type="submit" name="btnEnter"> <img src="~/Content/dbtheme/dist/img/SaveIco.png" width="20" height="20" /> Save</button>
+                                            <button type="button"> <img src="~/Content/dbtheme/dist/img/dl.png" width="20" height="20" /> Edit</button>
+                                            <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/Redcross.png" width="20" height="20" /> Cancel</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,11 +104,21 @@
                                 <div class="card">
                                     <div class="card-header d-flex p-0">
                                         <ul class="nav nav-pills ml-auto p-2">
-                                            <li class="nav-item" style="width:25%;"><a class="nav-link active" href="#tab_1" data-toggle="tab">Basic Data</a></li>
-                                            <li class="nav-item" style="width:25%;"><a class="nav-link" href="#tab_2" data-toggle="tab">Administration</a></li>
+                                            <li class="nav-item nav-width " ><a class="nav-link active btn  btn-default btn-sm " href="#tab_1" data-toggle="tab">Basic Data</a></li>
+                                            <li class="nav-item nav-width "><a class="nav-link active btn  btn-default btn-sm " href="#tab_2" data-toggle="tab">Administration</a></li>
                                         </ul>
                                     </div><!-- /.card-header -->
-                                    <div class="card-body">
+                                    <div class="card-body"> 
+                                        <div class="row">
+                                            <div class="col-md-6 ">
+                                                <div class="col-md-12 txtmargins">
+                                                    <button id="showdivOP" type="submit" name="btnEnter"> <img src="~/Content/dbtheme/dist/img/SaveIco.png" width="20" height="20" /> Save</button>
+                                                    <button type="button"> <img src="~/Content/dbtheme/dist/img/dl.png" width="20" height="20" /> Edit</button>
+                                                    <button type="button" class=".profbtn"> <img src="~/Content/dbtheme/dist/img/Redcross.png" width="20" height="20" /> Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <br />
                                         <div class="tab-content">
                                             @* Bacis Data *@
                                             <div class="tab-pane active" id="tab_1">
@@ -122,7 +128,7 @@
                                                             <label>Use</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.DropDownListFor(m => m.useid, Model.use, "Use", new { @class = "form-control m-b", @name = "txtUsePOP", @id = "txtUsePOP", @required = true })
+                                                            @Html.DropDownListFor(m => m.useid, Model.use, "Use", new { @class = "form-control txtmargins mini ", @name = "txtUsePOP", @id = "txtUsePOP", @required = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -130,10 +136,10 @@
                                                             <label>Base Qauntity</label>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            @Html.TextBoxFor(model => model.baseqty, new { @class = "form-control m-b", @name = "txtBaseQtyPOP", @id = "txtBaseQtyPOP", @required = true })
+                                                            @Html.TextBoxFor(model => model.baseqty, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtBaseQtyPOP", @id = "txtBaseQtyPOP", @required = true })
                                                         </div>
                                                         <div class="col-md-2">
-                                                            @Html.TextBoxFor(model => model.baseqtyval, new { @class = "form-control m-b", @name = "txtBaseQtyValPOP", @id = "txtBaseQtyValPOP", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.baseqtyval, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtBaseQtyValPOP", @id = "txtBaseQtyValPOP", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,7 +150,7 @@
                                                             <label>From Lot Size</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.flotsze, new { @class = "form-control m-b", @name = "txtFLotSzPOP", @id = "txtFLotSzPOP", @required = true })
+                                                            @Html.TextBoxFor(model => model.flotsze, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtFLotSzPOP", @id = "txtFLotSzPOP", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,7 +160,7 @@
                                                             <label>To Lot Size</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.tlotsze, new { @class = "form-control m-b", @name = "txtTLotSzPOP", @id = "txtTLotSzPOP", @required = true })
+                                                            @Html.TextBoxFor(model => model.tlotsze, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtTLotSzPOP", @id = "txtTLotSzPOP", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -164,7 +170,7 @@
                                                             <label>Description</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.desc, new { @class = "form-control m-b", @name = "txtDescPOP", @id = "txtDescPOP", @required = true })
+                                                            @Html.TextBoxFor(model => model.desc, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtDescPOP", @id = "txtDescPOP", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -174,7 +180,7 @@
                                                             <label>Long Text</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.longtxt, new { @class = "form-control m-b", @name = "txtLongTxtPOP", @id = "txtLongTxtPOP", @required = true })
+                                                            @Html.TextBoxFor(model => model.longtxt, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtLongTxtPOP", @id = "txtLongTxtPOP", @required = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,7 +196,7 @@
                                                             <label>Created User</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.creausr, new { @class = "form-control m-b", @name = "txtCreaByPOP", @id = "txtCreaByPOP", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.creausr, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtCreaByPOP", @id = "txtCreaByPOP", @readonly = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -198,7 +204,7 @@
                                                             <label>Changed User</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.chgusr, new { @class = "form-control m-b", @name = "txtChgByPOP", @id = "txtChgByPOP", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.chgusr, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtChgByPOP", @id = "txtChgByPOP", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -208,7 +214,7 @@
                                                             <label>Created Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.creadate, new { @class = "form-control m-b", @name = "txtCreaDatePOP", @id = "txtCreaDatePOP", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.creadate, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtCreaDatePOP", @id = "txtCreaDatePOP", @readonly = true })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -216,7 +222,7 @@
                                                             <label>Changed Date</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @Html.TextBoxFor(model => model.chgdate, new { @class = "form-control m-b", @name = "txtChgDatePOP", @id = "txtChgDatePOP", @readonly = true })
+                                                            @Html.TextBoxFor(model => model.chgdate, new { @class = "form-control txtmargins input-sm input-hight ", @name = "txtChgDatePOP", @id = "txtChgDatePOP", @readonly = true })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -228,10 +234,173 @@
                                     </div><!-- /.card-body -->
                                 </div>
                                 <!-- ./card -->
-                                <div id="pop_box_div">
-                                    <div class="pop_jqGrid m-b">
+                                @*<div id="pop_box_div">
+                                    <div class="pop_jqGrid ">
                                         <table id="pop_table"></table>
                                     </div>
+                                </div>*@
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="table-responsive-sm" style="overflow-x:scroll;">
+                                    <table class="users table txtmargins  table-sm table-bordered table-hover " style="margin-right: 5px; margin-top: 2px; ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="width:20px; background-color: #e7e7e7;" class="tbheadpad">
+                                                    <img src="~/Content/dbtheme/dist/img/ic8.png" width="16" height="16" />
+                                                </th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-1 row-A">Actions</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-2 row-B">OP No.</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-3 row-C">Ctrl Key</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-4 row-D">WrkCtr</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-5 row-E">Plant</th>
+                                                <th scope="col" style="background-color: #e7e7e7;" class="tbheadpad row-6 row-F">Operation Name</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-7 row-G">Base Qty'</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-8 row-H">Opr Unit</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-9 row-I">FOH Rate</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-10 row-J">FOH Time</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-11 row-K">FOH Unit</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-12 row-E">Machine Rate</th>
+                                                <th scope="col" style="background-color: #e7e7e7;" class="tbheadpad row-13 row-F">M. Time</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-14 row-G">M. Unit</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-15 row-E">Labor Rate</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-15 row-E">L. Time</th>
+                                                <th scope="col" style="background-color: #e7e7e7; " class="tbheadpad row-15 row-E">L. Unit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" style="background-color: #e7e7e7;" class=".tbheadpad"></th>
+                                                <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;<i class="glyphicon glyphicon-trash"></i></td>
+                                                <td class=".tbheadpad">Otto</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                <td class=".tbheadpad">Thornton</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                <td class=".tbheadpad">Thornton</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                <td class=".tbheadpad">Thornton</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                <td class=".tbheadpad">Thornton</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="background-color: #e7e7e7; padding-bottom: 2px; padding-top: 2px;"></th>
+                                                <td class=".tbheadpad"><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp; <i class="glyphicon glyphicon-trash"></i></td>
+                                                <td class=".tbheadpad">Thornton</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+                                                <td class=".tbheadpad">Sample Data</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

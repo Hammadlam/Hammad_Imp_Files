@@ -11,7 +11,8 @@ $("#so_table").jqGrid({
     datatype: "local",
     colNames: ['Type', 'Material', 'Description', 'Cust. Mat. No', 'Quantity', 'OU', 'SU', 'Plant', 'Store', 'Net Price', 'S T Code', 'S T Amount', 'Gross Price', 'Net Value'],
     colModel: [
-        {
+    
+       {
             name: 'Type', index: 'Type', editable: true, align: 'left', resizable: false, width: $size * 10, edittype: "select",
             formatter: 'select',
             editoptions: { value: "Present:Present;Absent:Absent;Leave:Leave", defaultValue: "Present" },

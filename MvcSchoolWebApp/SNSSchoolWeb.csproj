@@ -228,10 +228,7 @@
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
     <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
-    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
-    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
     <Content Include="bin\Microsoft.AI.Web.dll" />
-    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
     <Content Include="bin\Microsoft.ApplicationInsights.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
@@ -354,6 +351,7 @@
     <Content Include="Content\css\basic.css" />
     <Content Include="Content\css\breadcrum.css" />
     <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\CustomeCSS.css" />
     <Content Include="Content\css\datepicker3.css" />
     <Content Include="Content\css\dropzone.css" />
     <Content Include="Content\css\images\animated-overlay.gif" />
@@ -444,6 +442,8 @@
     <Content Include="Content\dbtheme\dist\img\dc1.png" />
     <Content Include="Content\dbtheme\dist\img\default-50x50.gif" />
     <Content Include="Content\dbtheme\dist\img\dl.png" />
+    <Content Include="Content\dbtheme\dist\img\dltico.png" />
+    <Content Include="Content\dbtheme\dist\img\edtico.ico" />
     <Content Include="Content\dbtheme\dist\img\ERMIcon.ico" />
     <Content Include="Content\dbtheme\dist\img\excelico.png" />
     <Content Include="Content\dbtheme\dist\img\falcon-home.jpeg" />
@@ -467,6 +467,7 @@
     <Content Include="Content\dbtheme\dist\img\SaveIco.png" />
     <Content Include="Content\dbtheme\dist\img\save_money-256.png" />
     <Content Include="Content\dbtheme\dist\img\si1.png" />
+    <Content Include="Content\dbtheme\dist\img\svico.ico" />
     <Content Include="Content\dbtheme\dist\img\user1-128x128.jpg" />
     <Content Include="Content\dbtheme\dist\img\user2-160x160.jpg" />
     <Content Include="Content\dbtheme\dist\img\user3-128x128.jpg" />
@@ -1489,6 +1490,7 @@
       <DependentUpon>ResultDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\SchoolWebApp.pubxml" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="ResultDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1601,6 +1603,7 @@
     <Content Include="Views\ESS\purRequisit.cshtml" />
     <Content Include="Views\SM\SaleOrder.cshtml" />
     <Content Include="Views\PM\Operation.cshtml" />
+    <Content Include="Views\Home\timesheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
