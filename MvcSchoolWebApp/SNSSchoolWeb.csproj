@@ -283,6 +283,7 @@
     <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Controllers\SMController.cs" />
     <Compile Include="Controllers\TimeTableController.cs" />
+    <Compile Include="Controllers\TMController.cs" />
     <Compile Include="CrystalReports\chart of account.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1603,7 +1604,7 @@
     <Content Include="Views\ESS\purRequisit.cshtml" />
     <Content Include="Views\SM\SaleOrder.cshtml" />
     <Content Include="Views\PM\Operation.cshtml" />
-    <Content Include="Views\Home\timesheet.cshtml" />
+    <Content Include="Views\TM\TimeSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

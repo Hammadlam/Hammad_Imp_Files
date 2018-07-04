@@ -29,7 +29,7 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/Content/dbtheme/dist/css/skins/_all-skins.min.css?n=1">
 
-
+    <link href="~/Content/css/CustomeCSS.css" rel="stylesheet" />
     <link href="~/Content/css/animate.css?n=1" rel="stylesheet">
     <link href="~/Content/css/style.css?n=1" rel="stylesheet" />
     <link href="~/Content/css/style.min.css?n=1" rel="stylesheet">
@@ -217,7 +217,7 @@
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body class="hold-transition skin-blue-light  sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-collapse  sidebar-mini">
 
     @*Popup Start *@
     <div class="modal2" id="myModal2" data-backdrop="static" role="dialog">
@@ -249,13 +249,16 @@
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">Toggle navigation </span>
+                    <span class="text-bold input-lg cutfont"> ERManager CS </span>
                 </a>
+               
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
+                   
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
-
+                       
                         <li class="dropdown messages-menu" title="Message">
                             <a href="~/Home/Email"><i class="fa fa-envelope-o"></i></a>
                         </li>
@@ -1278,6 +1281,50 @@
                             Response.Write("<script type='text/javascript'>");
                             Response.Write("window.location.href = '" + url + "'</script>");
                         }
+                    }
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                            if (list[60].menustat == "X")
+                            {
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-user"></i> <span>Time Management</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        @{
+                                            try
+                                            {
+                                                if (list[61].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/TimeSheet">
+                                                            <i class="fa fa-users"></i>Time Sheet
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
                     }
                 </ul>
             </section>
