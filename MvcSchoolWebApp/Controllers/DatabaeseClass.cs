@@ -3116,5 +3116,143 @@ namespace MvcSchoolWebApp.Controllers
         }
 
         /************************************Leave Approval ******************************************/
+
+         public bool Filltimesheet(string empid, string Name , string client, DateTime checkindt )
+        {
+            DataTable dt = new DataTable();
+            da.CreateConnection();
+            SqlConnection conn = da.GetCurrentConnection;
+            conn.Open();
+            string CheckQuery = "select * from emptimesht where empid ='" + empid+"'";
+            SqlCommand command = new SqlCommand(CheckQuery, conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(CheckQuery, conn);
+            adapter.Fill(dt);
+            if (dt.Rows.Count>0)
+            {
+
+                string updateQuery = "UPDATE emptimesht SET checkoutdt ='" + checkindt + "' WHERE checkindt IN (SELECT MAX(checkindt) AS lastdt FROM emptimesht);";
+                command = new SqlCommand(updateQuery, conn);
+                int Uchk = command.ExecuteNonQuery();
+                if (Uchk > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    string query = "INSERT INTO emptimesht VALUES('" + empid + "','" + Name + "','" + client + "','" + checkindt + "','1990-01-01')";
+                    command = new SqlCommand(query, conn);
+                    int i = command.ExecuteNonQuery();
+                    if (i > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error Occured: While Processing DBClass-FTN. Error Details: " + ex.Message);
+                }
+            }
+            
+        }
+        public List<SelectListItem> getClient()
+        {
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            try
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    string query = "SELECT DISTINCT * FROM Clienttb";
+                    da.CreateConnection();
+                    da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                    da.OpenConnection();
+                    da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                    if (da.obj_reader.HasRows)
+                    {
+                        while (da.obj_reader.Read())
+                        {
+                            if (da.obj_reader["id"].ToString().Trim() != "")
+                            {
+                                items.Add(new SelectListItem
+                                {
+                                    Text = da.obj_reader["Name"].ToString(),
+                                    //Value = da.obj_reader["id"].ToString().Trim()
+                                });
+                            }
+                        }
+                        da.obj_reader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FCmp. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        [HandleError]
+        public List<SelectListItem> FillSNSEmployee()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emppers as ep " +
+                                "where delind <> 'X' "+
+                                " order by empname ASC";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new SelectListItem
+                        {
+                            Text = da.obj_reader["empname"].ToString(),
+                            //Value = da.obj_reader["empid"].ToString().Trim()
+                        });
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FEmp. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        //public string getempname(string id)
+        //{
+        //    da.CreateConnection();
+        //    da.OpenConnection();
+        //    SqlConnection conn = da.GetCurrentConnection;
+        //    DataTable dt = new DataTable();
+        //    SqlCommand cmd = new SqlCommand("SELECT empname FROM emppers WHERE empid='" + id + "'", conn);
+        //    dt.Load(cmd.ExecuteReader());
+        //    da.CloseConnection();
+        //    return dt.Rows[0][0].ToString();
+        //}
     }
 }
