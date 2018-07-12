@@ -48,11 +48,11 @@ namespace MvcSchoolWebApp.Controllers
             {
                 //if (user_role == "1000")
                 //{
-                    db = new DatabaeseClass();
-                    ViewData["Employee"] = db.FillSNSEmployee();
-                     var fromDatabaseEF = db.getClient();
-                    ViewData["DBMySkills"] = fromDatabaseEF;
-                    return View("MATimeSheet");
+                db = new DatabaeseClass();
+                ViewData["Employee"] = db.FillSNSEmployee();
+                var fromDatabaseEF = db.getClient();
+                ViewData["DBMySkills"] = fromDatabaseEF;
+                return View("MATimeSheet");
                 //}
                 //else
                 //{
@@ -88,7 +88,7 @@ namespace MvcSchoolWebApp.Controllers
 
                     DateTime chkindt = DateTime.Now;
                     string time = chkindt.ToShortTimeString();
-                
+
                     bool chk;
                     if (user_role == "1000")
                     {
@@ -135,7 +135,7 @@ namespace MvcSchoolWebApp.Controllers
 
 
 
-        public FileResult CreatePdf (FormCollection data)
+        public FileResult CreatePdf(FormCollection data)
         {
             MemoryStream workStream = new MemoryStream();
             StringBuilder status = new StringBuilder("");
@@ -151,7 +151,7 @@ namespace MvcSchoolWebApp.Controllers
             string empid = data[0].ToString();
             //file will created in this path  
             string strAttachment = Server.MapPath("~/Downloads/" + strPDFFileName);
-            
+
 
             PdfWriter.GetInstance(doc, workStream).CloseStream = false;
             doc.Open();
@@ -171,30 +171,28 @@ namespace MvcSchoolWebApp.Controllers
 
         }
 
-        protected PdfPTable Add_Content_To_PDF (PdfPTable tableLayout, string empid)
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, string empid)
         {
 
-            float[] headers = { 50, 20, 45, 45, 50, 45,25 }; //Header Widths  
+            float[] headers = { 50, 20, 45, 45, 50, 45, 25 }; //Header Widths  
             tableLayout.SetWidths(headers); //Set the pdf headers  
             tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
             tableLayout.HeaderRows = 1;
             //Add Title to the PDF file at the top  
-            //string query = "SELECT * FROM emptimesht WHERE empid ='" + empid + "'";
 
-            List<Timesheetmodal> timssht = _context.Timesheets.ToList();
-            string name="";
-            foreach (var empnm in timssht)
+
+            List<Timesheetmodal> timssht = _context.Timesheets.Where(x => x.Name == empid).ToList();
+         
+         
+
+            tableLayout.AddCell(new PdfPCell(new Phrase("Time Sheet Report", new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
             {
-                name = empnm.Name.ToString();
-            }
-
-
-                tableLayout.AddCell(new PdfPCell(new Phrase("Time Sheet Report", new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0,0,0)))) {
-                Colspan = 12, Border = 0,
+                Colspan = 12,
+                Border = 0,
                 PaddingBottom = 5,
                 HorizontalAlignment = Element.ALIGN_CENTER
             });
-            tableLayout.AddCell(new PdfPCell(new Phrase("Employee Id "+empid+" Employee "+name, new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+            tableLayout.AddCell(new PdfPCell(new Phrase("Employee Name: " + empid , new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
             {
                 Colspan = 12,
                 Border = 0,
@@ -203,11 +201,11 @@ namespace MvcSchoolWebApp.Controllers
             });
 
             ////Add header  
-            AddCellToHeader(tableLayout,"Date");
+            AddCellToHeader(tableLayout, "Date");
             AddCellToHeader(tableLayout, "Day");
             //AddCellToHeader(tableLayout,"Name");
-            AddCellToHeader(tableLayout,"Checkin Date");
-            AddCellToHeader(tableLayout,"Checkout Date");
+            AddCellToHeader(tableLayout, "Checkin Date");
+            AddCellToHeader(tableLayout, "Checkout Date");
             AddCellToHeader(tableLayout, "Client");
             AddCellToHeader(tableLayout, "Location");
             AddCellToHeader(tableLayout, "Marked By");
@@ -235,17 +233,21 @@ namespace MvcSchoolWebApp.Controllers
 
             tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.RED)))
             {
-                HorizontalAlignment = Element.ALIGN_LEFT, Padding = 5, BackgroundColor = new iTextSharp.text.BaseColor(185, 211, 255)
-    });
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                Padding = 5,
+                BackgroundColor = new iTextSharp.text.BaseColor(185, 211, 255)
+            });
         }
 
         // Method to add single cell to the body  
         private static void AddCellToBody(PdfPTable tableLayout, string cellText)
         {
             tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.BLACK)))
-             {
-                HorizontalAlignment = Element.ALIGN_LEFT, Padding = 5, BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
-             });
+            {
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                Padding = 5,
+                BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
+            });
         }
     }
 }
