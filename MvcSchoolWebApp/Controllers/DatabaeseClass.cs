@@ -32,11 +32,11 @@ namespace MvcSchoolWebApp.Controllers
             List<LoginModel> item = new List<LoginModel>();
             List<Users> user_dtl = new List<Users>();
             string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, usr.menuprof, img.imagepath, mpd.menustat, " +
-                           "mpd.menulabel, mpd.menuid, mpd.tcode, std.stdareatxt from usr01 usr " +
+                           "mpd.menulabel, mpd.menuid, mpd.tcode, std.eareatxt from usr01 usr " +
                            "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof " +
                            "left join emp0170 e17 on e17.empid = usr.userid " +
                            "left join imageobj img on img.imageid = e17.imageid " +
-                           "inner join stdarea std on usr.acdtitle = std.stdarea where userid = '" + username + "' order by mpd.menuid";
+                           "inner join earea std on usr.acdtitle = std.earea where userid = '" + username + "' order by mpd.menuid";
             da.CreateConnection();
             da.OpenConnection();
             da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
@@ -45,7 +45,7 @@ namespace MvcSchoolWebApp.Controllers
             {
                 while (da.obj_reader.Read())
                 {
-                    string pass = da.obj_reader["passwd"].ToString();
+                    string pass = da.obj_reader["passwd"].ToString().Trim();
                     if (pass == password)
                     {
                         user_dtl.Add(new Users
@@ -54,7 +54,7 @@ namespace MvcSchoolWebApp.Controllers
                             user_earea = da.obj_reader["acdtitle"].ToString().Trim(),
                             user_fullname = da.obj_reader["fname"].ToString() + " " + da.obj_reader["lname"].ToString(),
                             user_image = da.obj_reader["imagepath"].ToString(),
-                            user_role = da.obj_reader["stdareatxt"].ToString()
+                            user_role = da.obj_reader["eareatxt"].ToString()
                         });
 
                         item.Add(new LoginModel

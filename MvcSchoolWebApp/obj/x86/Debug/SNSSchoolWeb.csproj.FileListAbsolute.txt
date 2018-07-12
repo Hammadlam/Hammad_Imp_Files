@@ -38,3 +38,5 @@ D:\MVCWebApp\MvcSchoolWebApp\bin\TimeZoneNames.xml
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\SNSSchoolWeb.csprojResolveAssemblyReference.cache
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\MvcSchoolWebApp.dll
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\MvcSchoolWebApp.pdb
+D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.dll
+D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.xml
