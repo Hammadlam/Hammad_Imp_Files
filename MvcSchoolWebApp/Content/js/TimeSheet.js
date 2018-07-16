@@ -4,7 +4,6 @@
         getemployeeattendancehistory();
         isactiveemployee();
         filluserinformation();
-
     });
 
     getemployeeattendancehistory();
