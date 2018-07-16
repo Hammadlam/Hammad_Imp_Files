@@ -70,7 +70,10 @@ namespace MvcSchoolWebApp.Controllers
             tsm.clientname = db.FillClient();
             tsm.date = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MMMM-yyyy");
             tsm.time = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("hh:mm tt");
+            List<ESSModel> esslist = db.getemploydetail(user_id);
             bool isactive = db.isactiveuser(user_id);
+            tsm.empdesignation = esslist[0].design;
+            tsm.empdepart = esslist[0].dept;
             if (isactive == true)
             {
                 ViewBag.disabletimein = true;
@@ -104,10 +107,20 @@ namespace MvcSchoolWebApp.Controllers
         {
             DatabaseInsertClass dc = new DatabaseInsertClass();
             string msg = dc.InsertEmployeeAttendance(empid, clientid, date, time);
-            return Json(msg, JsonRequestBehavior.AllowGet);
+            return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
         }
 
-
+        public JsonResult filluserinformation(string empid)
+        {
+            DatabaeseClass db = new DatabaeseClass();
+            List<ESSModel> list = new List<ESSModel>();
+            if (user_role != "1000")
+            {
+                empid = user_id;
+            }
+            list = db.getemploydetail(empid);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult TimeSheetP(FormCollection formValue)
@@ -164,20 +177,38 @@ namespace MvcSchoolWebApp.Controllers
         public ActionResult Index()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-            if (list[61].menustat != "X")
+            if (list[62].menustat != "X")
             {
                 return RedirectToAction("Index", "dashboard");
             }
 
             ViewBag.msglist = msgobj.GetNotifications();
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
-           // db = new DatabaeseClass();
+            db = new DatabaeseClass();
+            Timesheetmodal attendance = new Timesheetmodal();
             ////Timesheetmodal timesheet = new Timesheetmodal();
-            //ViewData["empnames"] = db.FillSNSEmployee();
-            return View();
+            attendance.empname = db.FillSNSEmployee();
+            attendance.empid = user_id;
+            return View(attendance);
         }
 
+        public JsonResult getempattdlog(string empid)
+        {
+            DatabaeseClass db = new DatabaeseClass();
+            return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
+        }
 
+        public JsonResult isactiveemployee(string empid)
+        {
+            DatabaeseClass db = new DatabaeseClass();
+            return Json(db.isactiveuser(empid), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getclientid(string empid)
+        {
+            DatabaeseClass db = new DatabaeseClass();
+            return Json(db.getclientid(empid), JsonRequestBehavior.AllowGet);
+        }
 
         public FileResult CreatePdf(FormCollection data)
         {
@@ -292,6 +323,14 @@ namespace MvcSchoolWebApp.Controllers
                 Padding = 5,
                 BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
             });
+        }
+
+        public JsonResult getAttendanceFillJQGrid(string empid, DateTime dateid)
+        {
+            if (empid == null || empid == "")
+                empid = user_id;
+            db = new DatabaeseClass();
+            return Json(db.FillTimeSheetAttendance(empid, dateid), JsonRequestBehavior.AllowGet);
         }
     }
 }

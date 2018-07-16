@@ -40,27 +40,35 @@
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <label>Name Of Client</label>
-                                                    @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true })
+                                                    @if (ViewBag.disabletimein == true)
+                                                    {
+                                                        @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true, @disabled = true })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true })
+                                                    }
+                                                    
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Designation</label>
-                                                    @Html.TextBoxFor(m => m.empdesignation, new { @class = "form-control m-b", @name = "txtdesigTS", @id = "txtdesigTS", @required = true })
+                                                    @Html.TextBoxFor(m => m.empdesignation, new { @class = "form-control m-b", @name = "txtdesigTS", @id = "txtdesigTS", @required = true, @disabled = true })
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <label>Department</label>
-                                                    @Html.TextBoxFor(m => m.empdepart, new { @class = "form-control m-b", @name = "txtdepartTS", @id = "txtdepartTS", @required = true })
+                                                    @Html.TextBoxFor(m => m.empdepart, new { @class = "form-control m-b", @name = "txtdepartTS", @id = "txtdepartTS", @required = true, @disabled = true })
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Date</label>
-                                                    @Html.TextBoxFor(m => m.date, new { @class = "date-day form-control m-b", @name = "txtdateTS", @id = "txtdateTS", @required = true })
+                                                    @Html.TextBoxFor(m => m.date, new { @class = "date-day form-control m-b", @name = "txtdateTS", @id = "txtdateTS", @required = true, @disabled = true })
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <label>Time</label>
-                                                    @Html.TextBoxFor(m => m.time, new { @class = "form-control m-b", @name = "txttimeTS", @id = "txttimeTS", @required = true })
+                                                    @Html.TextBoxFor(m => m.time, new { @class = "form-control m-b", @name = "txttimeTS", @id = "txttimeTS", @required = true, @disabled = true })
                                                 </div>
                                             </div>
                                         }
@@ -73,27 +81,34 @@
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <label>Name Of Client</label>
-                                                    @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true })
+                                                    @if (ViewBag.disabletimein == true)
+                                                    {
+                                                        @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true, @disabled = true })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true })
+                                                    }
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Designation</label>
-                                                    @Html.TextBoxFor(m => m.empdesignation, new { @class = "form-control m-b", @name = "txtdesigTS", @id = "txtdesigTS", @required = true, @readonly = true })
+                                                    @Html.TextBoxFor(m => m.empdesignation, new { @class = "form-control m-b", @name = "txtdesigTS", @id = "txtdesigTS", @required = true, @readonly = true, @disabled = true })
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <label>Department</label>
-                                                    @Html.TextBoxFor(m => m.empdepart, new { @class = "form-control m-b", @name = "txtdepartTS", @id = "txtdepartTS", @required = true, @readonly = true })
+                                                    @Html.TextBoxFor(m => m.empdepart, new { @class = "form-control m-b", @name = "txtdepartTS", @id = "txtdepartTS", @required = true, @readonly = true, @disabled = true })
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Date</label>
-                                                    @Html.TextBoxFor(m => m.date, new { @class = "form-control m-b", @name = "txtdateTS", @id = "txtdateTS", @required = true, @readonly = true })
+                                                    @Html.TextBoxFor(m => m.date, new { @class = "form-control m-b", @name = "txtdateTS", @id = "txtdateTS", @required = true, @readonly = true, @disabled = true })
                                                 </div>
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <label>Time</label>
-                                                    @Html.TextBoxFor(m => m.time, new { @class = "form-control m-b", @name = "txttimeTS", @id = "txttimeTS", @required = true, @readonly = true })
+                                                    @Html.TextBoxFor(m => m.time, new { @class = "form-control m-b", @name = "txttimeTS", @id = "txttimeTS", @required = true, @readonly = true, @disabled = true })
                                                 </div>
                                             </div>
                                         }
@@ -129,4 +144,34 @@
                 </div>
             </div>
         </div>
+
+    <div class="modal inmodal" id="empattd_dialogue" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Are you sure you want to Continue?</h4>
+                </div>
+                <div class="modal-footer" style="margin-top:0;">
+                    <form id="empattd_dialogue_frm" name="popupform" method="post" action="">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <input type="submit" name="submit" value="Proceed" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " style="border: 1px solid #d2d6de; display:none;" id="empattendance_div">
+                <div class="ibox-content" id="empattendance_div">
+                    <div class="empattendance_jqGrid m-b">
+                        <table id="empattendance_table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>

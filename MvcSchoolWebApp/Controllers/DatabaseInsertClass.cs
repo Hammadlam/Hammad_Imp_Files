@@ -710,6 +710,10 @@ namespace MvcSchoolWebApp.Controllers
             string msg = "";
             try
             {
+                if (System.Web.HttpContext.Current.Session["User_Role"].ToString() != "1000")
+                {
+                    empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Role"]);
+                }
                 command.CommandText = "select isnull(max(recordno),0) as recordno from emp0280 where empid = '" + empid+ "' and clientid = '"+clientid+"' "+
                                       "and delind <> 'X' and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "'";
                 recordno = Convert.ToInt16(command.ExecuteScalar());

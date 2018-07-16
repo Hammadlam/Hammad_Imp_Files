@@ -3240,8 +3240,56 @@ namespace MvcSchoolWebApp.Controllers
                     throw new Exception("Error Occured: While Processing DBClass-FTN. Error Details: " + ex.Message);
                 }
             }
-
         }
+
+        [HandleError]
+        public List<JQGridModel> FillTimeSheetAttendance(string empid, DateTime dateid)
+        {
+            List<JQGridModel> items = new List<JQGridModel>();
+            string month = dateid.ToString("yyyy-MM") + "-26";
+            string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
+            try
+            {
+                string query = "select begdate, enddate, clienttxt, isactive from emp0280 inner join clienttb on emp0280.clientid = clienttb.clientid  " +
+                "where empid = '" + empid + "' and begdate >= '" + prevmonth + "' and begdate < '" + month + "' and delind <> 'X' ";
+
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
+                    if (da.obj_reader["isactive"].ToString().Trim() == "X")
+                        enddate = "-";
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new JQGridModel
+                        {
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
+                            timein = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
+                            timeout = enddate,
+                            client = da.obj_reader["clienttxt"].ToString()
+                        });
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FStdA. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
         public List<SelectListItem> FillClient()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -3318,6 +3366,57 @@ namespace MvcSchoolWebApp.Controllers
                 throw new Exception("Error Occured: While Processing DBClass-FEmp. Error Details: " + ex.Message);
             }
             return items;
+        }
+
+        public List<Timesheetmodal> GetEmployeeAttendanceHistory(string empid)
+        {
+            List<Timesheetmodal> list = new List<Timesheetmodal>();
+            try
+            {
+                if (System.Web.HttpContext.Current.Session["User_Role"].ToString() != "1000")
+                {
+                    empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Role"]);
+                }
+                da.CreateConnection();
+                string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");
+                string startdate = convertservertousertimezone(DateTime.Now.AddDays(-2).ToString()).ToString("yyyy-MM-dd");
+                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, ct.clienttxt from emp0280 e2 "+
+                               "inner join emppers ep on e2.empid = ep.empid "+
+                               "inner join clienttb ct on e2.clientid = ct.clientid "+
+                               "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"'";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
+                        if (da.obj_reader["isactive"].ToString() == "X")
+                        {
+                            enddate = "-";
+                        }
+                        list.Add(new Timesheetmodal
+                        {
+                            employeename = da.obj_reader["empname"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd dd-MMMM-yyyy"),
+                            checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
+                            checkouttime = enddate,
+                            cliendname = da.obj_reader["clienttxt"].ToString()
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FEmp. Error Details: " + ex.Message);
+            }
+            finally
+            {
+                da.obj_reader.Close();
+                da.CloseConnection();
+            }
+            return list;
         }
 
         //public string getempname(string id)
