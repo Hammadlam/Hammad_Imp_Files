@@ -699,6 +699,11 @@ namespace MvcSchoolWebApp.Controllers
             }
             
             DateTime insertdate = dc.convertservertopsttimezone(DateTime.Now.ToString());
+            DateTime inserttime = dc.convertservertopsttimezone(DateTime.Now.ToString());
+
+            DateTime insertmdate = dc.convertservertopsttimezone(date.ToString());
+            DateTime insertmtime = dc.convertservertopsttimezone(time);
+
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
             con.Open();
             SqlTransaction trans;
@@ -712,7 +717,12 @@ namespace MvcSchoolWebApp.Controllers
             {
                 if (System.Web.HttpContext.Current.Session["User_Role"].ToString() != "1000")
                 {
-                    empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Role"]);
+                    empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Id"]);
+                }
+                else
+                {
+                    insertdate = insertmdate;
+                    inserttime = insertmtime;
                 }
                 command.CommandText = "select isnull(max(recordno),0) as recordno from emp0280 where empid = '" + empid+ "' and clientid = '"+clientid+"' "+
                                       "and delind <> 'X' and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "'";
@@ -738,7 +748,7 @@ namespace MvcSchoolWebApp.Controllers
                 }
                 else if (recordno != 0 && isactive == "X")
                 {
-                    command.CommandText = "update emp0280 set enddate = '"+insertdate+"', isactive = '' "+
+                    command.CommandText = "update emp0280 set enddate = '"+inserttime+"', isactive = '' "+
                                           "where empid = '"+empid+"' and clientid = '"+clientid+"' and upduser = '' and delind <> 'X'";
                     command.ExecuteNonQuery();
                     msg = "Successfully Recorded";

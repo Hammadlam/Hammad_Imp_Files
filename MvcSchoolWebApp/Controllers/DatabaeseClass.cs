@@ -366,11 +366,11 @@ namespace MvcSchoolWebApp.Controllers
                                 "where campusid = '" + campusId + "'";
                 string new_query = "";
 
-                if (user_role == "1000" || user_role == "2000")
+                if (user_role == "1000" || user_role == "3000")
                 {
                     new_query = query;
                 }
-                else if (user_role == "3000")
+                else if (user_role == "2000")
                 {
                     new_query = query + "and classid IN (select distinct classid from emp0710 where empid = '" + id + "')";
                 }
@@ -417,10 +417,10 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 string query = "";
-                if (user_role == "1000" || user_role == "2000")
+                if (user_role == "1000" || user_role == "3000")
                     query = "select distinct ss.sectionid, ss.sectiontxt from schsection ss inner join schclass sc on sc.sectionid = ss.sectionid " +
                             "where sc.campusid = '" + campusId + "' and sc.classid = '" + classId + "'";
-                else if (user_role == "3000")
+                else if (user_role == "2000")
                 {
                     query = "select distinct ss.sectionid, ss.sectiontxt from Schsection as ss inner join emp0710 as e71 on ss.sectionid = e71.sectionid " +
                               "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' and e71.classid = '" + classId + "'";
@@ -473,7 +473,7 @@ namespace MvcSchoolWebApp.Controllers
                                "inner join " + tablename + " sc on sc.classid = ss.classid " +
                                "where sc.campusid = '" + campusId + "' ";
 
-                if (user_role == "1000" || user_role == "2000")
+                if (user_role == "1000" || user_role == "3000")
                 {
                     query = "select distinct ss.subjectid, ss.subjecttxt from schsubject ss " +
                             "inner join schclass sc on sc.classid = ss.classid " +
@@ -483,7 +483,7 @@ namespace MvcSchoolWebApp.Controllers
                     query = "select distinct ssub.subjectId, ssub.subjecttxt from schsubject as ssub " +
                             "inner join  emp0710 as e71 on e71.classid = ssub.classid " +
                             "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' ";
-                else if (user_role == "3000")
+                else if (user_role == "2000")
                 {
                     query = "select distinct ssub.subjectId, ssub.subjecttxt from schsubject as ssub " +
                             "inner join  emp0710 as e71 on e71.subjectid = ssub.subjectid " +
@@ -3375,7 +3375,7 @@ namespace MvcSchoolWebApp.Controllers
             {
                 if (System.Web.HttpContext.Current.Session["User_Role"].ToString() != "1000")
                 {
-                    empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Role"]);
+                    empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Id"]);
                 }
                 da.CreateConnection();
                 string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");

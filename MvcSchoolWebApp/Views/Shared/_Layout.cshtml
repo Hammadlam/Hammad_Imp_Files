@@ -346,7 +346,7 @@
                                         var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
                                         if (user_dtl[0].user_image == "")
                                         {
-                                            <img src="~/Content/Avatar/sajidh.jpg" class="user-image" alt="User Image">
+                                            <img src="~/Content/Avatar/avatar2.png" class="user-image" alt="User Image">
                                         }
                                         else if (user_dtl[0].user_image != "")
                                         {
@@ -370,7 +370,7 @@
                                             var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
                                             if (user_dtl[0].user_image == "")
                                             {
-                                                <img src="~/Content/Avatar/sajidh.jpg" class="img-circle" alt="User Image">
+                                                <img src="~/Content/Avatar/avatar2.png" class="img-circle" alt="User Image">
                                                 <p>
                                                     @user_dtl[0].user_fullname
                                                 </p>
@@ -439,7 +439,7 @@
                             if (user_dtl[0].user_image == "")
                             {
                                 <div class="pull-left image">
-                                    <img src="~/Content/Avatar/sajidh.jpg" class="img-circle" alt="User Image">
+                                    <img src="~/Content/Avatar/avatar2.png" class="img-circle" alt="User Image">
                                 </div>
                             }
                             else if (user_dtl[0].user_image != "")

@@ -15,6 +15,7 @@
 
     $("#empattd_dialogue_frm").submit(function (e) {
         e.preventDefault();
+        $('#empattd_dialogue').modal('hide');
         insertempattendance();
     });
 });
@@ -54,7 +55,7 @@ function insertempattendance() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            $('#empattd_dialogue').modal('hide');
+            isactiveemployee();
             waitingDialog.hide();
             $('#empattendance_table').jqGrid('clearGridData');
             $("#empattendance_table").jqGrid("GridUnload");
@@ -105,9 +106,7 @@ function insertempattendance() {
         },
         error: function (error) {
             waitingDialog.hide();
-            $('#empattd_dialogue').modal('hide');
-            show_alert_js();
-            $("#empattendance_div").css("display", "none");
+            show_err_alert_js("Found Some Error");
         }
     });
 }

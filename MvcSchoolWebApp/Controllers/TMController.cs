@@ -106,6 +106,7 @@ namespace MvcSchoolWebApp.Controllers
         public JsonResult insertattendancerecord(string empid, string clientid, DateTime date, string time )
         {
             DatabaseInsertClass dc = new DatabaseInsertClass();
+            db = new DatabaeseClass();
             string msg = dc.InsertEmployeeAttendance(empid, clientid, date, time);
             return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
         }
