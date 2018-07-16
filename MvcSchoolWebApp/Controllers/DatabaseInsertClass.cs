@@ -729,7 +729,9 @@ namespace MvcSchoolWebApp.Controllers
                 recordno = Convert.ToInt16(command.ExecuteScalar());
 
                 command.CommandText = "select isactive from emp0280 where empid = '"+empid+"' and delind <> 'X' and clientid = '"+clientid+"' and upduser = '' and toutusr = '' "+
-                                      "and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "'";
+                                      "and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "' "+
+                                      "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
+                                      "and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "')";
                 string isactive = (string)command.ExecuteScalar() ?? "";
 
                 if (recordno == 0)
@@ -737,19 +739,35 @@ namespace MvcSchoolWebApp.Controllers
                     recordno += 1;
                     command.CommandText = "insert into emp0280(empid, begdate, enddate, clientid, subpagtype, " +
                                       "recordno, delind, creuser, credate, cretime, " +
-                                      "upduser, upddate, updtime, locat, tinusr, "+
+                                      "upduser, upddate, updtime, locat, tinusr, " +
                                       "toutusr, isactive, remarks) values " +
                                       "('" + empid + "', '" + insertdate + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + insertdate.ToString("yyyy/MM/dd") + "', '" + insertdate.ToString("HH:mm:ss") + "', " +
-                                      "'', '', '', '', '"+ System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', "+
+                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
                                       "'', 'X', '')";
                     command.ExecuteNonQuery();
                     msg = "Successfully Recorded";
                 }
-                else if (recordno != 0 && isactive == "X")
+                else if (recordno > 0 && isactive != "X")
                 {
-                    command.CommandText = "update emp0280 set enddate = '"+inserttime+"', isactive = '' "+
-                                          "where empid = '"+empid+"' and clientid = '"+clientid+"' and upduser = '' and delind <> 'X'";
+                    recordno += 1;
+                    command.CommandText = "insert into emp0280(empid, begdate, enddate, clientid, subpagtype, " +
+                                      "recordno, delind, creuser, credate, cretime, " +
+                                      "upduser, upddate, updtime, locat, tinusr, " +
+                                      "toutusr, isactive, remarks) values " +
+                                      "('" + empid + "', '" + insertdate + "', '', '" + clientid + "', '', " +
+                                      "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + insertdate.ToString("yyyy/MM/dd") + "', '" + insertdate.ToString("HH:mm:ss") + "', " +
+                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
+                                      "'', 'X', '')";
+                    command.ExecuteNonQuery();
+                }
+                else if (recordno > 0 && isactive == "X")
+                {
+                    command.CommandText = "update emp0280 set enddate = '" + inserttime + "', isactive = '' " +
+                                          "where empid = '" + empid + "' and clientid = '" + clientid + "' and upduser = '' and delind <> 'X' "+
+                                          "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
+                                      "and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "')";
+                    
                     command.ExecuteNonQuery();
                     msg = "Successfully Recorded";
                 }

@@ -958,7 +958,9 @@ namespace MvcSchoolWebApp.Controllers
             {
                 da.CreateConnection();
                 string query = "select isactive from emp0280 where empid = '"+empid+"' and "+
-                               "begdate >= '"+currtime.ToString("yyyy/MM/dd") + "' and begdate < '"+currtime.AddDays(1).ToString("yyyy/MM/dd") +"'";
+                               "begdate >= '"+currtime.ToString("yyyy/MM/dd") + "' and begdate < '"+currtime.AddDays(1).ToString("yyyy/MM/dd") +"' "+
+                               "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and upduser = '' and toutusr = '' " +
+                               "and begdate >= '" + currtime.ToString("yyyy-MM-dd") + "' and begdate < '" + currtime.AddDays(1).ToString("yyyy-MM-dd") + "')";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
