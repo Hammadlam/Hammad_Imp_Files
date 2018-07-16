@@ -40,3 +40,4 @@ D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\MvcSchoolWebApp.dll
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\MvcSchoolWebApp.pdb
 D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.xml
+D:\MVCWebApp\MvcSchoolWebApp\bin\Microsoft.QualityTools.Testing.Fakes.dll

@@ -1370,6 +1370,7 @@
     <Content Include="Content\js\TeacherDashboard.js" />
     <Content Include="Content\js\TeacherTimetablejs.js" />
     <Content Include="Content\js\TimeSheet.js" />
+    <Content Include="Content\js\TimeSheetReport.js" />
     <Content Include="Content\js\UploadTimeTable.js" />
     <Content Include="Content\js\Validation.js" />
     <Content Include="Content\js\ViewAttendance.js" />

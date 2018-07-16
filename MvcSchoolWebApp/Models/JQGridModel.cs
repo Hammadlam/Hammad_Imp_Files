@@ -82,5 +82,9 @@ namespace MvcSchoolWebApp.Models
         public string variablenames { get; set; }
         public int count { get; set; }
         public string teachercom { get; set; }
+        public string timein { get; set; }
+        public string timeout { get; set; }
+        public string client { get; set; }
+
     }
 }
