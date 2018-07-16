@@ -35,36 +35,80 @@ namespace MvcSchoolWebApp.Controllers
         DataModel _context = new DataModel();
         DatabaeseClass db;
         // GET: TM
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (HttpContext.Session["User_Dtl"] != null)
+            {
+                user_dtl = (List<Users>)HttpContext.Session["User_Dtl"];
+                base.OnActionExecuting(filterContext);
+                user_role = HttpContext.Session["User_Role"].ToString();
+                user_id = HttpContext.Session["User_Id"].ToString();
+
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult("~/Login");
+            }
+        }
+
         [HttpGet]
         public ActionResult TimeSheet()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
             user_role = HttpContext.Session["User_Role"].ToString();
+            user_id = HttpContext.Session["User_Id"].ToString();
             if (list[61].menustat != "X")
             {
-                return RedirectToAction("Index", "dashboard");
+                return RedirectToAction("Index", "dashboard");          //user has no right to access this page, return to dashboard
             }
-            else
-            {
-                //if (user_role == "1000")
-                //{
-                db = new DatabaeseClass();
-                ViewData["Employee"] = db.FillSNSEmployee();
-                var fromDatabaseEF = db.getClient();
-                ViewData["DBMySkills"] = fromDatabaseEF;
-                return View("MATimeSheet");
-                //}
-                //else
-                //{
-                //    db = new DatabaeseClass();
-                //    var fromDatabaseEF = db.getClient();
-                //    ViewData["DBMySkills"] = fromDatabaseEF;
-                //    return View("TimeSheet");
-                //}
 
+            db = new DatabaeseClass();
+            Timesheetmodal tsm = new Timesheetmodal();
+            tsm.empname = db.FillSNSEmployee();
+            tsm.empid = user_id;
+            tsm.clientname = db.FillClient();
+            tsm.date = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MMMM-yyyy");
+            tsm.time = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("hh:mm tt");
+            bool isactive = db.isactiveuser(user_id);
+            if (isactive == true)
+            {
+                ViewBag.disabletimein = true;
+                tsm.clientid = db.getclientid(user_id);
             }
-            return View("TimeSheet");
+            return View(tsm);
+            
+            //else
+            //{
+            //    //if (user_role == "1000")
+            //    //{
+            //    db = new DatabaeseClass();
+            //    ViewData["Employee"] = db.FillSNSEmployee();
+            //    var fromDatabaseEF = db.getClient();
+            //    ViewData["DBMySkills"] = fromDatabaseEF;
+            //    return View("MATimeSheet");
+            //    //}
+            //    //else
+            //    //{
+            //    //    db = new DatabaeseClass();
+            //    //    var fromDatabaseEF = db.getClient();
+            //    //    ViewData["DBMySkills"] = fromDatabaseEF;
+            //    //    return View("TimeSheet");
+            //    //}
+
+            //}
+            //return View("TimeSheet");
         }
+
+        public JsonResult insertattendancerecord(string empid, string clientid, DateTime date, string time )
+        {
+            DatabaseInsertClass dc = new DatabaseInsertClass();
+            string msg = dc.InsertEmployeeAttendance(empid, clientid, date, time);
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         [HttpPost]
         public ActionResult TimeSheetP(FormCollection formValue)
         {
@@ -127,9 +171,9 @@ namespace MvcSchoolWebApp.Controllers
 
             ViewBag.msglist = msgobj.GetNotifications();
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
-            db = new DatabaeseClass();
-            //Timesheetmodal timesheet = new Timesheetmodal();
-            ViewData["empnames"] = db.FillSNSEmployee();
+           // db = new DatabaeseClass();
+            ////Timesheetmodal timesheet = new Timesheetmodal();
+            //ViewData["empnames"] = db.FillSNSEmployee();
             return View();
         }
 
@@ -219,7 +263,7 @@ namespace MvcSchoolWebApp.Controllers
                 AddCellToBody(tableLayout, day.ToString("ddd"));
                 AddCellToBody(tableLayout, emp.Checkindt.ToString("hh:mm:sstt"));
                 AddCellToBody(tableLayout, emp.Checkoutdt.ToString("hh:mm:sstt"));
-                AddCellToBody(tableLayout, emp.Client);
+                //AddCellToBody(tableLayout, emp.Client);
                 AddCellToBody(tableLayout, " ");
                 AddCellToHeader(tableLayout, "Self");
 

@@ -103,7 +103,7 @@ namespace MvcSchoolWebApp.Controllers
 
             DateTime date2 = DateTime.SpecifyKind(servertime, DateTimeKind.Unspecified);
             DateTime dt = TimeZoneInfo.ConvertTime(date2, server, pst);
-            
+
             return dt;
         }
 
@@ -268,15 +268,18 @@ namespace MvcSchoolWebApp.Controllers
             }
             System.Web.HttpContext.Current.Session["ssn_usr_subject"] = usr_subject;
 
-            for (int i = 0; i < usr_section.Count; i++)
-            {
-                List<SelectListItem> stdnames = studentname(usr_section[i].campusid, usr_section[i].classid, usr_section[i].sectionid);
-                for (int j = 0; j < stdnames.Count; j++)
-                {
-                    studentnames std = new studentnames(usr_section[i].campusid, usr_section[i].classid, usr_section[i].classtxt, usr_section[i].sectionid, usr_section[i].sectiontxt, stdnames[j].Value, stdnames[j].Text);
-                    usrstdnames.Add(std);
-                }
-            }
+            //for (int i = 0; i < usr_section.Count; i++)
+            //{
+            //    List<SelectListItem> stdnames = studentname(usr_section[i].campusid, usr_section[i].classid, usr_section[i].sectionid);
+            //    for (int j = 0; j < stdnames.Count; j++)
+            //    {
+            //        studentnames std = new studentnames(usr_section[i].campusid, usr_section[i].classid, usr_section[i].classtxt, usr_section[i].sectionid, usr_section[i].sectiontxt, stdnames[j].Value, stdnames[j].Text);
+            //        usrstdnames.Add(std);
+            //    }
+            //}
+            //List<SelectListItem> stdnames = studentname("1001", usr_section[i].classid, usr_section[i].sectionid);
+            studentnames std = new studentnames("1001", "C1", "Class I", "A", "Section A", "0230", "Moiz");
+            usrstdnames.Add(std);
             System.Web.HttpContext.Current.Session["ssn_usr_student"] = usrstdnames;
 
             da.CloseConnection();
@@ -670,12 +673,12 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 da.CreateConnection();
-                string query = "select distinct e71.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emp0710 as e71 "+
-                                "inner join empmain on e71.empid = empmain.empid "+
-                                "inner join emppers as ep on e71.empid = ep.empid "+
-                                "inner join usr01 usr on usr.userid = empmain.empid "+
-                                "where e71.delind <> 'X' and empmain.delind <> 'X' and ep.delind <> 'X' and empmain.earea not in ('4000', '5000') "+
-                                "and usr.menuprof <> '50000000' and e71.campusid = '"+campusId+"' order by empname ASC";
+                string query = "select distinct e71.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emp0710 as e71 " +
+                                "inner join empmain on e71.empid = empmain.empid " +
+                                "inner join emppers as ep on e71.empid = ep.empid " +
+                                "inner join usr01 usr on usr.userid = empmain.empid " +
+                                "where e71.delind <> 'X' and empmain.delind <> 'X' and ep.delind <> 'X' and empmain.earea not in ('4000', '5000') " +
+                                "and usr.menuprof <> '50000000' and e71.campusid = '" + campusId + "' order by empname ASC";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
@@ -945,6 +948,79 @@ namespace MvcSchoolWebApp.Controllers
                 throw new Exception("Error Occured: While Processing DBClass-StdNm. Error Details: " + ex.Message);
             }
             return items;
+        }
+
+        public bool isactiveuser(string empid)
+        {
+            DateTime currtime = convertservertopsttimezone(DateTime.Now.ToString());
+            bool status = false;
+            try
+            {
+                da.CreateConnection();
+                string query = "select isactive from emp0280 where empid = '"+empid+"' and "+
+                               "begdate >= '"+currtime.ToString("yyyy/MM/dd") + "' and begdate < '"+currtime.AddDays(1).ToString("yyyy/MM/dd") +"'";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        if (da.obj_reader["isactive"].ToString() == "X")
+                        {
+                            status = true;
+                        }
+                    }
+                    da.CloseConnection();
+                    da.obj_reader.Close();
+                }
+                else
+                {
+                    da.CloseConnection();
+                    da.obj_reader.Close();
+                    return status;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FSM. Error Details: " + ex.Message);
+            }
+            return status;
+        }
+
+        public string getclientid(string empid)
+        {
+            DateTime currtime = convertservertopsttimezone(DateTime.Now.ToString());
+            string clientid = null;
+            try
+            {
+                da.CreateConnection();
+                string query = "select clientid from emp0280 where empid = '" + empid + "' and isactive = 'X' and " +
+                               "begdate >= '" + currtime.ToString("yyyy/MM/dd") + "' and begdate < '" + currtime.AddDays(1).ToString("yyyy/MM/dd") + "'";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        clientid = da.obj_reader["clientid"].ToString();
+                    }
+                    da.CloseConnection();
+                    da.obj_reader.Close();
+                }
+                else
+                {
+                    da.CloseConnection();
+                    da.obj_reader.Close();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FSM. Error Details: " + ex.Message);
+            }
+            return clientid;
         }
 
 
@@ -1488,13 +1564,13 @@ namespace MvcSchoolWebApp.Controllers
             List<DatabaseModel> items = new List<DatabaseModel>();
             try
             {
-                string query = "select wp.empid, wp.begdate, wp.enddate, wp.campusid, wp.classid, wp.sectionid, wp.subjectid, wp.topic, wp.objective, "+
-                                "wp.resource, wp.evaluation, wp.teach_method, wp.tb_teach_method, wp.read_disc, wp.tb_read_disc, wp.writtenwork, "+
-                                "wp.tb_writtenwork, wp.wrapup, wp.tb_wrapup, wp.evaluationstd, wp.evaluationteach, wpc.princplcomnt from schweeklyplan wp "+
-                                "left join schlessonplancom wpc on wp.campusid = wpc.campusid and wp.classid = wpc.classid and "+
-                                "wp.sectionid = wpc.sectionid and wp.subjectid = wpc.subjectid and wp.begdate = wpc.begdate and wp.enddate = wpc.enddate "+
-                                "where wp.begdate = '"+date1.ToString("yyyy-MM-dd")+ "' and wp.enddate = '" + date1.ToString("yyyy-MM-dd") + "' and " +
-                                "wp.campusid = '"+campusid+"' and wp.classid = '"+classid+"' and wp.sectionid = '"+sectionid+"' and wp.subjectid = '"+subjectid+"' and wp.delind <> 'X'";
+                string query = "select wp.empid, wp.begdate, wp.enddate, wp.campusid, wp.classid, wp.sectionid, wp.subjectid, wp.topic, wp.objective, " +
+                                "wp.resource, wp.evaluation, wp.teach_method, wp.tb_teach_method, wp.read_disc, wp.tb_read_disc, wp.writtenwork, " +
+                                "wp.tb_writtenwork, wp.wrapup, wp.tb_wrapup, wp.evaluationstd, wp.evaluationteach, wpc.princplcomnt from schweeklyplan wp " +
+                                "left join schlessonplancom wpc on wp.campusid = wpc.campusid and wp.classid = wpc.classid and " +
+                                "wp.sectionid = wpc.sectionid and wp.subjectid = wpc.subjectid and wp.begdate = wpc.begdate and wp.enddate = wpc.enddate " +
+                                "where wp.begdate = '" + date1.ToString("yyyy-MM-dd") + "' and wp.enddate = '" + date1.ToString("yyyy-MM-dd") + "' and " +
+                                "wp.campusid = '" + campusid + "' and wp.classid = '" + classid + "' and wp.sectionid = '" + sectionid + "' and wp.subjectid = '" + subjectid + "' and wp.delind <> 'X'";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -1574,8 +1650,8 @@ namespace MvcSchoolWebApp.Controllers
                                "wp.circletime, wp.initact, wp.devproc, wp.assess, wp.homewrk, wpc.princplcomnt " +
                                "from schwkplnpp wp left join schlessonplancom wpc on wp.campusid = wpc.campusid and wp.classid = wpc.classid and " +
                                "wp.sectionid = wpc.sectionid and wp.subjectid = wpc.subjectid and wp.begdate = wpc.begdate and wp.enddate = wpc.enddate " +
-                               "where wp.begdate = '"+begdate+"' and wp.enddate = '"+enddate+"' and wp.campusid = '"+ campusid +"' "+
-                               "and wp.classid = '"+ classid +"' and wp.sectionid = '"+ sectionid +"' and wp.subjectid = '"+ subjectid +"' and wp.delind <> 'X'";
+                               "where wp.begdate = '" + begdate + "' and wp.enddate = '" + enddate + "' and wp.campusid = '" + campusid + "' " +
+                               "and wp.classid = '" + classid + "' and wp.sectionid = '" + sectionid + "' and wp.subjectid = '" + subjectid + "' and wp.delind <> 'X'";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -1586,7 +1662,7 @@ namespace MvcSchoolWebApp.Controllers
                     while (da.obj_reader.Read())
                     {
                         teacherid = da.obj_reader["empid"].ToString();
-                        
+
                         items.Add(new DatabaseModel
                         {
                             campusid = da.obj_reader["campusid"].ToString(),
@@ -2183,7 +2259,7 @@ namespace MvcSchoolWebApp.Controllers
                                "(select sc.resulttype, sc.subresltyp, count(stdid) as 'studentappeared', sc.campusid, sc.classid, scl.classtxt " +
                                ", count(case when percentage >= '49.75' then 1 end) as 'totalpassed' from schresult as sc " +
                                "inner join schresltype as r on sc.resulttype = r.reslttyp and sc.subresltyp = r.subresltyp " +
-                               "inner join schrsltpb pb on sc.campusid = pb.campusid and sc.classid = pb.classid and sc.sectionid = pb.sectionid and sc.subresltyp = pb.subresultype "+
+                               "inner join schrsltpb pb on sc.campusid = pb.campusid and sc.classid = pb.classid and sc.sectionid = pb.sectionid and sc.subresltyp = pb.subresultype " +
                                "inner join schclass as scl on sc.classid = scl.classid and sc.campusid = scl.campusid " +
                                "inner join Schclassgroup as scg on scg.classid = sc.classid where sc.delind <> 'X' " +
                                "and sc.subresltyp = '" + moduleid + "' and scg.classgroup = '01' and sc.campusid = '" + campusid + "' and pb.delind <> 'X' " +
@@ -2758,7 +2834,7 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 da.CreateConnection();
-                string query = "select ep.firstname + ep.lastname as empname from emppers ep where empid = '"+userid+"' and delind <> 'X'";
+                string query = "select ep.firstname + ep.lastname as empname from emppers ep where empid = '" + userid + "' and delind <> 'X'";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
@@ -2834,7 +2910,7 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 string query = "SELECT pagetype,subpagtype,subtypetxt " +
-                "FROM subpagtype where pagetype = '"+ pagetype + "'";
+                "FROM subpagtype where pagetype = '" + pagetype + "'";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3061,17 +3137,17 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 List<SelectListItem> sl = new List<SelectListItem>();
-                string query = "select ep.empid, e77.recordno, epers.firstname + ' ' + epers.lastname as empname, "+
-                "e11.begdate as joindate,epos.postxt, subpag.subpagtype, subpag.subtypetxt,e77.lvdays, e77.begdate, e77.enddate "+
-                "from empmain as ep inner join emp0277 as e77 on ep.empid = e77.empid "+
-                "inner join emppers as epers on e77.empid = epers.empid "+
-                "inner join emporg as eorg on ep.empid = eorg.empid "+
-                "inner join eposhdr as epos on eorg.pos = epos.pos "+
-                "inner join eesubgrp as esub on ep.eesubgrp = esub.eesubgrp "+
-                "inner join emp0011 as e11 on ep.empid = e11.empid "+
-                "inner join subpagtype as subpag on e77.subpagtype = subpag.subpagtype "+
-                "where ep.empid = '"+ empid + "' and subpag.pagetype = '0210' "+
-                "and e77.recordno = (select max(recordno) from emp0277 where empid = '"+ empid + "')";
+                string query = "select ep.empid, e77.recordno, epers.firstname + ' ' + epers.lastname as empname, " +
+                "e11.begdate as joindate,epos.postxt, subpag.subpagtype, subpag.subtypetxt,e77.lvdays, e77.begdate, e77.enddate " +
+                "from empmain as ep inner join emp0277 as e77 on ep.empid = e77.empid " +
+                "inner join emppers as epers on e77.empid = epers.empid " +
+                "inner join emporg as eorg on ep.empid = eorg.empid " +
+                "inner join eposhdr as epos on eorg.pos = epos.pos " +
+                "inner join eesubgrp as esub on ep.eesubgrp = esub.eesubgrp " +
+                "inner join emp0011 as e11 on ep.empid = e11.empid " +
+                "inner join subpagtype as subpag on e77.subpagtype = subpag.subpagtype " +
+                "where ep.empid = '" + empid + "' and subpag.pagetype = '0210' " +
+                "and e77.recordno = (select max(recordno) from emp0277 where empid = '" + empid + "')";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3117,17 +3193,17 @@ namespace MvcSchoolWebApp.Controllers
 
         /************************************Leave Approval ******************************************/
 
-         public bool Filltimesheet(string empid, string Name , string client, DateTime checkindt )
+        public bool Filltimesheet(string empid, string Name, string client, DateTime checkindt)
         {
             DataTable dt = new DataTable();
             da.CreateConnection();
             SqlConnection conn = da.GetCurrentConnection;
             conn.Open();
-            string CheckQuery = "select * from emptimesht where empid ='" + empid+"'";
+            string CheckQuery = "select * from emptimesht where empid ='" + empid + "'";
             SqlCommand command = new SqlCommand(CheckQuery, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(CheckQuery, conn);
             adapter.Fill(dt);
-            if (dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
 
                 string updateQuery = "UPDATE emptimesht SET checkoutdt ='" + checkindt + "' WHERE checkindt IN (SELECT MAX(checkindt) AS lastdt FROM emptimesht);";
@@ -3164,36 +3240,38 @@ namespace MvcSchoolWebApp.Controllers
                     throw new Exception("Error Occured: While Processing DBClass-FTN. Error Details: " + ex.Message);
                 }
             }
-            
-        }
-        public List<SelectListItem> getClient()
-        {
 
+        }
+        public List<SelectListItem> FillClient()
+        {
             List<SelectListItem> items = new List<SelectListItem>();
             try
             {
-                for (int i = 0; i < 8; i++)
+                string query = "SELECT * FROM Clienttb";
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
                 {
-                    string query = "SELECT DISTINCT * FROM Clienttb";
-                    da.CreateConnection();
-                    da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
-                    da.OpenConnection();
-                    da.obj_reader = da.obj_sqlcommand.ExecuteReader();
-                    if (da.obj_reader.HasRows)
+                    while (da.obj_reader.Read())
                     {
-                        while (da.obj_reader.Read())
+                        if (da.obj_reader["clientid"].ToString().Trim() != "")
                         {
-                            if (da.obj_reader["id"].ToString().Trim() != "")
+                            items.Add(new SelectListItem
                             {
-                                items.Add(new SelectListItem
-                                {
-                                    Text = da.obj_reader["Name"].ToString(),
-                                    //Value = da.obj_reader["id"].ToString().Trim()
-                                });
-                            }
+                                Text = da.obj_reader["clienttxt"].ToString(),
+                                Value = da.obj_reader["clientid"].ToString().Trim()
+                            });
                         }
-                        da.obj_reader.Close();
                     }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
                 }
             }
             catch (Exception ex)
@@ -3211,7 +3289,7 @@ namespace MvcSchoolWebApp.Controllers
             {
                 da.CreateConnection();
                 string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emppers as ep " +
-                                "where delind <> 'X' "+
+                                "where delind <> 'X' " +
                                 " order by empname ASC";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3223,7 +3301,7 @@ namespace MvcSchoolWebApp.Controllers
                         items.Add(new SelectListItem
                         {
                             Text = da.obj_reader["empname"].ToString(),
-                            //Value = da.obj_reader["empid"].ToString().Trim()
+                            Value = da.obj_reader["empid"].ToString().Trim()
                         });
                     }
                     da.obj_reader.Close();
@@ -3233,7 +3311,6 @@ namespace MvcSchoolWebApp.Controllers
                 {
                     da.obj_reader.Close();
                     da.CloseConnection();
-                    return null;
                 }
             }
             catch (Exception ex)

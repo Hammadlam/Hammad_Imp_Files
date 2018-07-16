@@ -687,6 +687,73 @@ namespace MvcSchoolWebApp.Controllers
             }
         }
 
+        public string InsertEmployeeAttendance(string empid, string clientid, DateTime date, string time)
+        {
+            DatabaeseClass dc = new DatabaeseClass();
+            string menuid = "62300000";
+            int tcode = 0;
+            foreach (var item in loginModel)
+            {
+                if (item.menuid == menuid)
+                    tcode = Convert.ToInt32(item.tcode.Trim());
+            }
+            
+            DateTime insertdate = dc.convertservertopsttimezone(DateTime.Now.ToString());
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+            SqlTransaction trans;
+            SqlCommand command = con.CreateCommand();
+            trans = con.BeginTransaction();
+            command.Connection = con;
+            command.Transaction = trans;
+            int recordno = 0;
+            string msg = "";
+            try
+            {
+                command.CommandText = "select isnull(max(recordno),0) as recordno from emp0280 where empid = '" + empid+ "' and clientid = '"+clientid+"' "+
+                                      "and delind <> 'X' and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "'";
+                recordno = Convert.ToInt16(command.ExecuteScalar());
+
+                command.CommandText = "select isactive from emp0280 where empid = '"+empid+"' and delind <> 'X' and clientid = '"+clientid+"' and upduser = '' and toutusr = '' "+
+                                      "and begdate >= '" + insertdate.ToString("yyyy-MM-dd") + "' and begdate < '" + insertdate.AddDays(1).ToString("yyyy-MM-dd") + "'";
+                string isactive = (string)command.ExecuteScalar() ?? "";
+
+                if (recordno == 0)
+                {
+                    recordno += 1;
+                    command.CommandText = "insert into emp0280(empid, begdate, enddate, clientid, subpagtype, " +
+                                      "recordno, delind, creuser, credate, cretime, " +
+                                      "upduser, upddate, updtime, locat, tinusr, "+
+                                      "toutusr, isactive, remarks) values " +
+                                      "('" + empid + "', '" + insertdate + "', '', '" + clientid + "', '', " +
+                                      "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + insertdate.ToString("yyyy/MM/dd") + "', '" + insertdate.ToString("HH:mm:ss") + "', " +
+                                      "'', '', '', '', '"+ System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', "+
+                                      "'', 'X', '')";
+                    command.ExecuteNonQuery();
+                    msg = "Successfully Recorded";
+                }
+                else if (recordno != 0 && isactive == "X")
+                {
+                    command.CommandText = "update emp0280 set enddate = '"+insertdate+"', isactive = '' "+
+                                          "where empid = '"+empid+"' and clientid = '"+clientid+"' and upduser = '' and delind <> 'X'";
+                    command.ExecuteNonQuery();
+                    msg = "Successfully Recorded";
+                }
+                trans.Commit();
+                
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                trans.Dispose();
+                con.Close();
+            }
+            return msg;
+        }
+
         public void InsertMarks(string[] studentId, string[] exammarks, string[] projectmarks, string[] testmarks,
             string[] oralmarks, string[] assignmarks, string[] p1marks, string[] p2marks, string[] p3marks, DatabaseModel dm)
         {
