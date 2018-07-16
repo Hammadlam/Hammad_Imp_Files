@@ -3259,11 +3259,12 @@ namespace MvcSchoolWebApp.Controllers
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
                 if (da.obj_reader.HasRows)
                 {
-                    string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
-                    if (da.obj_reader["isactive"].ToString().Trim() == "X")
-                        enddate = "-";
                     while (da.obj_reader.Read())
                     {
+                        string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
+                        if (da.obj_reader["isactive"].ToString().Trim() == "X")
+                            enddate = "-";
+
                         items.Add(new JQGridModel
                         {
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
