@@ -86,11 +86,11 @@ namespace MvcSchoolWebApp.Controllers
             {
                 return RedirectToAction("StudentDashboard", "dashboard");
             }
-            else if (user_dtl[0].user_earea == "3000")
-            {
-                return RedirectToAction("TeacherDashboard", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "1000")
+            //else if (user_dtl[0].user_earea == "3000")
+            //{
+            //    return RedirectToAction("TeacherDashboard", "dashboard");
+            //}
+            else if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000" || user_dtl[0].user_earea == "3000")
             {
                 return RedirectToAction("MasterDashboard", "dashboard");
             }
@@ -122,18 +122,18 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.msglist = msgobj.GetNotifications();
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             //user_role = Session["User_Role"].ToString();
-            if (user_dtl[0].user_earea == "2000")
-            {
-                return RedirectToAction("Index", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "3000")
-            {
-                return RedirectToAction("TeacherDashboard", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "1000")
+            if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000" || user_dtl[0].user_earea == "3000")
             {
                 return RedirectToAction("MasterDashboard", "dashboard");
             }
+            //else if (user_dtl[0].user_earea == "3000")
+            //{
+            //    return RedirectToAction("TeacherDashboard", "dashboard");
+            //}
+            //else if (user_dtl[0].user_earea == "1000")
+            //{
+            //    return RedirectToAction("MasterDashboard", "dashboard");
+            //}
 
             db = new DatabaeseClass();
             DatabaseModel stdModel = new DatabaseModel();
@@ -159,15 +159,15 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.msglist = msgobj.GetNotifications();
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             //user_role = Session["User_Role"].ToString();
-            if (user_dtl[0].user_earea == "2000")
-            {
-                return RedirectToAction("Index", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "3000")
-            {
-                return RedirectToAction("TeacherDashboard", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "4000" || user_dtl[0].user_earea == "5000")
+            //if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000" || user_dtl[0].user_earea == "3000")
+            //{
+            //    return RedirectToAction("MasterDashboard", "dashboard");
+            //}
+            //else if (user_dtl[0].user_earea == "3000")
+            //{
+            //    return RedirectToAction("TeacherDashboard", "dashboard");
+            //}
+            if (user_dtl[0].user_earea == "4000" || user_dtl[0].user_earea == "5000")
             {
                 return RedirectToAction("StudentDashboard", "dashboard");
             }
@@ -195,18 +195,18 @@ namespace MvcSchoolWebApp.Controllers
         {
             ViewBag.msglist = msgobj.GetNotifications();
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
-            if (user_dtl[0].user_earea == "4000" || user_dtl[0].user_earea == "5000")
-            {
-                return RedirectToAction("StudentDashboard", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "2000" )
-            {
-                return RedirectToAction("index", "dashboard");
-            }
-            else if (user_dtl[0].user_earea == "1000")
+            if (user_dtl[0].user_earea == "1000" || user_dtl[0].user_earea == "2000" || user_dtl[0].user_earea == "3000")
             {
                 return RedirectToAction("MasterDashboard", "dashboard");
             }
+            //else if (user_dtl[0].user_earea == "2000" )
+            //{
+            //    return RedirectToAction("index", "dashboard");
+            //}
+            //else if (user_dtl[0].user_earea == "1000")
+            //{
+            //    return RedirectToAction("MasterDashboard", "dashboard");
+            //}
 
             db = new DatabaeseClass();
             DatabaseModel adminModel = new DatabaseModel();

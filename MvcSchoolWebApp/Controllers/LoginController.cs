@@ -116,14 +116,14 @@ namespace MvcSchoolWebApp.Controllers
                             user_id = HttpContext.Session["User_Id"].ToString();
                             user_role = HttpContext.Session["User_Role"].ToString();
                             db.Fill_usrdtl();
-                            if (user_role == "1000" || user_role == "2000")
+                            if (user_role == "1000" || user_role == "2000" || user_role == "3000")
                             {
                                 return RedirectToAction("index", "dashboard");
                             }
-                            else if (user_role == "3000")
-                            {
-                                return RedirectToAction("TeacherDashboard", "dashboard");
-                            }
+                            //else if ()
+                            //{
+                            //    return RedirectToAction("TeacherDashboard", "dashboard");
+                            //}
                             else if (user_role == "5000" || user_role == "4000")
                             {
                                 return RedirectToAction("StudentDashboard", "dashboard");

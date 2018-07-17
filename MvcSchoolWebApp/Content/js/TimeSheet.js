@@ -29,7 +29,6 @@ function filluserinformation() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            debugger
             $("#txtdesigTS").val(data[0].design);
             $("#txtdepartTS").val(data[0].dept);
         },
@@ -72,8 +71,8 @@ function insertempattendance() {
                 colModel: [
                     { name: 'employeename', index: 'employeename', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
-                    { name: 'checkintime', index: 'checkintime', width: $size * 20, resizable: false, align: 'left' },
-                    { name: 'checkouttime', index: 'checkouttime', width: $size * 20, resizable: false, align: 'left' },
+                    { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'left' },
+                    { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'left' },
                     { name: 'cliendname', index: 'cliendname', width: $size * 30, resizable: false, align: 'left' }
                 ],
                 data: data,
@@ -125,7 +124,6 @@ function isactiveemployee() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            debugger
             if (data == true) {
                 getclientid();
                 $("#btntimeout").css("display", "none");

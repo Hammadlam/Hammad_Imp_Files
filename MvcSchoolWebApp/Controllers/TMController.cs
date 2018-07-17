@@ -79,8 +79,8 @@ namespace MvcSchoolWebApp.Controllers
                 ViewBag.disabletimein = true;
                 tsm.clientid = db.getclientid(user_id);
             }
-            return View(tsm);
-            
+            //return View(tsm);
+            return Redirect("https://www.google.com/");
             //else
             //{
             //    //if (user_role == "1000")

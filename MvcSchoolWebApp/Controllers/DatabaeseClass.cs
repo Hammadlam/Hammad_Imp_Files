@@ -366,14 +366,14 @@ namespace MvcSchoolWebApp.Controllers
                                 "where campusid = '" + campusId + "'";
                 string new_query = "";
 
-                if (user_role == "1000" || user_role == "3000")
+                if (user_role == "1000" || user_role == "3000" || user_role == "2000")
                 {
                     new_query = query;
                 }
-                else if (user_role == "2000")
-                {
-                    new_query = query + "and classid IN (select distinct classid from emp0710 where empid = '" + id + "')";
-                }
+                //else if ()
+                //{
+                //    new_query = query + "and classid IN (select distinct classid from emp0710 where empid = '" + id + "')";
+                //}
                 else if (user_role == "5000")
                 {
                     new_query = query + "and classid IN (select distinct classid from std0710 where stdid = '" + id + "')";
@@ -417,14 +417,14 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 string query = "";
-                if (user_role == "1000" || user_role == "3000")
+                if (user_role == "1000" || user_role == "3000" || user_role == "2000")
                     query = "select distinct ss.sectionid, ss.sectiontxt from schsection ss inner join schclass sc on sc.sectionid = ss.sectionid " +
                             "where sc.campusid = '" + campusId + "' and sc.classid = '" + classId + "'";
-                else if (user_role == "2000")
-                {
-                    query = "select distinct ss.sectionid, ss.sectiontxt from Schsection as ss inner join emp0710 as e71 on ss.sectionid = e71.sectionid " +
-                              "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' and e71.classid = '" + classId + "'";
-                }
+                //else if ()
+                //{
+                //    query = "select distinct ss.sectionid, ss.sectiontxt from Schsection as ss inner join emp0710 as e71 on ss.sectionid = e71.sectionid " +
+                //              "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' and e71.classid = '" + classId + "'";
+                //}
                 else if (user_role == "5000")
                 {
                     query = "select distinct ss.sectionid, ss.sectiontxt from Schsection as ss inner join std0710 as s71 on ss.sectionid = s71.sectionid " +
@@ -473,7 +473,7 @@ namespace MvcSchoolWebApp.Controllers
                                "inner join " + tablename + " sc on sc.classid = ss.classid " +
                                "where sc.campusid = '" + campusId + "' ";
 
-                if (user_role == "1000" || user_role == "3000")
+                if (user_role == "1000" || user_role == "3000" || user_role == "2000")
                 {
                     query = "select distinct ss.subjectid, ss.subjecttxt from schsubject ss " +
                             "inner join schclass sc on sc.classid = ss.classid " +
@@ -483,12 +483,12 @@ namespace MvcSchoolWebApp.Controllers
                     query = "select distinct ssub.subjectId, ssub.subjecttxt from schsubject as ssub " +
                             "inner join  emp0710 as e71 on e71.classid = ssub.classid " +
                             "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' ";
-                else if (user_role == "2000")
-                {
-                    query = "select distinct ssub.subjectId, ssub.subjecttxt from schsubject as ssub " +
-                            "inner join  emp0710 as e71 on e71.subjectid = ssub.subjectid " +
-                            "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' and e71.classid = '" + classId + "' and e71.sectionid = '" + sectionId + "'";
-                }
+                //else if ()
+                //{
+                //    query = "select distinct ssub.subjectId, ssub.subjecttxt from schsubject as ssub " +
+                //            "inner join  emp0710 as e71 on e71.subjectid = ssub.subjectid " +
+                //            "where e71.empid = '" + id + "' and e71.campusid = '" + campusId + "' and e71.classid = '" + classId + "' and e71.sectionid = '" + sectionId + "'";
+                //}
                 else if (user_role == "5000")
                 {
                     query = "select distinct ssub.subjectId, ssub.subjecttxt from schsubject as ssub " +
