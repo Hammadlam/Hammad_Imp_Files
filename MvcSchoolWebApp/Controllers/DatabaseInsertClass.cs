@@ -756,7 +756,7 @@ namespace MvcSchoolWebApp.Controllers
                 }
                 else if (recordno > 0 && isactive == "X")
                 {
-                    command.CommandText = "update emp0280 set enddate = '" + dt + "', isactive = '' " +
+                    command.CommandText = "update emp0280 set enddate = '" + dt + "', isactive = '', toutusr = '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "' " +
                                           "where empid = '" + empid + "' and clientid = '" + clientid + "' and upduser = '' and delind <> 'X' "+
                                           "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
                                       "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "')";
