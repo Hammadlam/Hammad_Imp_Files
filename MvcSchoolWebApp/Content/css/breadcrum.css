@@ -112,7 +112,7 @@ input[type=radio]{display:none;}
 }
 
 #vert_menu label:hover::after{
-  border-left-color: #b40000;
+  border-left-color: #f96300;/*#b40000;*/
 }
 
 #vert_menu input[type="radio"]:checked + label{
