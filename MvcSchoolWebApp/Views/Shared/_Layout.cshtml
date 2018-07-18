@@ -66,6 +66,73 @@
     <link href="~/Content/dbtheme/dist/css/file-upload.css?n=1" rel="stylesheet" />
 
     <style>
+
+        /*New CSS*/
+
+        .skin-blue-light .main-header .navbar {
+            background-color:rgb(0,51,153);
+        }
+
+        .skin-blue-light .wrapper, .skin-blue-light .main-sidebar, .skin-blue-light .left-side {
+            background-color:rgb(68, 105, 179);
+        }
+
+        .skin-blue-light .main-header .logo {
+            background-color:rgb(236,118,0);
+        }
+
+        .skin-blue-light .main-header #logo {
+            background-color:rgb(236,118,0);
+            width:19%;
+        }
+
+        .skin-blue-light .main-header .logo:hover {
+            background-color:rgb(236,118,0);
+        }
+
+        .skin-blue-light .sidebar-menu > li > .treeview-menu {
+            background: #57a0cf;
+        }
+
+        .sidebar > li > a {
+            color: white;
+        }
+
+        /*span {
+            color: white;
+        }*/
+
+        .skin-blue-light .sidebar a:hover {
+            text-decoration: none;
+        }
+
+        .treeview:active {
+            background-color: rgb(68, 105, 179);
+        }
+
+        .skin-blue-light .sidebar-menu > li:hover > a, .skin-blue-light .sidebar-menu > li.active > a {
+            background-color: rgb(57, 80, 128);
+        }
+
+        li a i.fa {
+            color:black;
+        }
+
+        .nav li a i.fa {
+            color: white;
+        }
+
+        .main-header .sidebar-toggle {
+            color: white;
+        }
+
+        .main-sidebar span {
+            color:white;
+        }
+
+        /*End New CSS*/
+
+
         .skin-blue .main-header li.user-header {
             background-color: #223480;
         }
@@ -93,6 +160,10 @@
         .profbtn
         {
             margin-left:15px;
+        }
+
+        .home-button {
+            margin-top:5px;
         }
 
       /* SO TABLE CSS */
@@ -241,17 +312,38 @@
 
     <div class="wrapper">
         <header class="main-header">
-            <!-- Logo -->
-            <a href="~/dashboard/index" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b><img src="~/Content/dbtheme/dist/img/ERMIcon.ico" height="40" width="40" class="img-circle logoadjust" />@*ERMCS*@</b></span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b><img src="~/Content/dbtheme/dist/img/ERMIcon.ico" height="40" width="40" class="img-circle logoadjust" />ERManager</b></span>
+
+            <a href="#" class="logo" style="padding:0px 15px;">
+                <span class="logo-mini sidebar-toggle" data-toggle="offcanvas" role="button"></span>
+                <span class="logo-lg sidebar-toggle" data-toggle="offcanvas" role="button" ></span>
             </a>
+
+
+            @*<a href="#" id="logo" class="logo sidebar-toggle" data-toggle="offcanvas" role="button">*@
+                <span class="sr-only">Toggle navigation </span>
+                @*<span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>*@
+                @*<span class="logo-mini"></span>
+                <span class="logo-lg"><b>ERManager</b></span>
+            </a>*@
+            <!-- Logo -->
+            @*<a href="~/dashboard/index" class="logo sidebar-toggle" data-toggle="offcanvas" role="button">*@
+                @*<a href="~/dashboard/index" class="sidebar-toggle" data-toggle="offcanvas" role="button">*@
+                    @*<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation </span>
+                <span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>
+            </a>*@
+
+                    @*<span class="sr-only">Toggle navigation </span>*@
+                    @*<span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>*@
+
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    @*<span class="logo-mini"><b><img src="~/Content/dbtheme/dist/img/ERMIcon.ico" height="40" width="40" class="img-circle logoadjust" />@*ERMCS</b></span>*@
+                    <!-- logo for regular state and mobile devices -->
+                    
+                @*</a>*@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="#" style="float:left;padding:15px 15px;color:white;" role="button">
                     <span class="sr-only">Toggle navigation </span>
                     <span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>
                 </a>
@@ -468,7 +560,7 @@
                                 var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
                                 if (user_dtl[0].user_fullname != null || user_dtl[0].user_fullname == "")
                                 {
-                                    <p> @user_dtl[0].user_fullname</p>
+                                    <p> <span>@user_dtl[0].user_fullname </span></p>
                                 }
                                 else
                                 {
@@ -488,7 +580,7 @@
                                 try
                                 {
                                     var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
-                                    @user_dtl[0].user_role;
+                                    <span>@user_dtl[0].user_role</span>
                                 }
                                 catch (Exception)
                                 {
@@ -533,17 +625,17 @@
                                             <ul class="treeview-menu">
                                                 <li>
                                                     <a href="~/Admission/CampusStrength">
-                                                        <i class="fa fa-users"></i>Campus Strength
+                                                        <i class="fa fa-users"></i><span>Campus Strength</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="~/Admission/CampusCapacity">
-                                                        <i class="fa fa-users"></i>Campus Capacity
+                                                        <i class="fa fa-users"></i><span>Campus Capacity</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="~/Admission/CampusStatus">
-                                                        <i class="fa fa-users"></i>Admission Status
+                                                        <i class="fa fa-users"></i><span>Admission Status</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -622,19 +714,19 @@
                                             <ul class="treeview-menu">
 
                                                 <li>
-                                                    <a onclick="Demo(this);" value="Weekly Test"><i class="fa fa-pencil-square-o"></i>Weekly Test</a>
+                                                    <a onclick="Demo(this);" value="Weekly Test"><i class="fa fa-pencil-square-o"></i><span>Weekly Test</span></a>
                                                 </li>
                                                 <li>
-                                                    <a onclick="Demo(this);" value="Periodical Test"><i class="fa fa-pencil-square-o"></i>Periodical Test</a>
+                                                    <a onclick="Demo(this);" value="Periodical Test"><i class="fa fa-pencil-square-o"></i><span>Periodical Test</span></a>
                                                 </li>
                                                 <li>
-                                                    <a onclick="Demo(this);" value="Mid/First Term"><i class="fa fa-pencil-square-o"></i>Mid/First Term</a>
+                                                    <a onclick="Demo(this);" value="Mid/First Term"><i class="fa fa-pencil-square-o"></i><span>Mid/First Term</span></a>
                                                 </li>
                                                 <li>
-                                                    <a onclick="Demo(this);" value="Final Term"><i class="fa fa-pencil-square-o"></i>Final Term</a>
+                                                    <a onclick="Demo(this);" value="Final Term"><i class="fa fa-pencil-square-o"></i><span>Final Term</span></a>
                                                 </li>
                                                 <li>
-                                                    <a href="~/FinalReport/FinalReport"><i class="fa fa-file-text"></i>Final Report</a>
+                                                    <a href="~/FinalReport/FinalReport"><i class="fa fa-file-text"></i><span>Final Report</span></a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -664,27 +756,27 @@
                                             <ul class="treeview-menu">
                                                 <li>
                                                     <a href="~/Attendance/MarkAttendance">
-                                                        <i class="fa fa-check-square-o"></i>Mark Attendance
+                                                        <i class="fa fa-check-square-o"></i><span>Mark Attendance</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="~/Home/MarksUpload">
-                                                        <i class="fa fa-upload"></i>Marks Submission
+                                                        <i class="fa fa-upload"></i><span>Marks Submission</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="~/Home/ActivityGrade">
-                                                        <i class="fa fa-check-square-o"></i>Grade Activities
+                                                        <i class="fa fa-check-square-o"></i><span>Grade Activities</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="~/Preprimary/PPCambridge">
-                                                        <i class="fa fa-check-square-o"></i>Pre-Primary Cambridge
+                                                        <i class="fa fa-check-square-o"></i><span>Pre-Primary Cambridge</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="~/Preprimary/PPMatric">
-                                                        <i class="fa fa-check-square-o"></i>Pre-Primary Matric
+                                                        <i class="fa fa-check-square-o"></i><span>Pre-Primary Matric</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -720,7 +812,7 @@
                                                         {
                                                             <li>
                                                                 <a href="~/TimeTable/UploadTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i>Upload Timetable
+                                                                    <i class="fa fa-calendar-times-o"></i><span>Upload Timetable</span>
                                                                 </a>
                                                             </li>
                                                         }
@@ -728,7 +820,7 @@
                                                         {
                                                             <li>
                                                                 <a href="~/TimeTable/MasterTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i>Master Timetable
+                                                                    <i class="fa fa-calendar-times-o"></i><span>Master Timetable</span>
                                                                 </a>
                                                             </li>
                                                         }
@@ -736,7 +828,7 @@
                                                         {
                                                             <li>
                                                                 <a href="~/TimeTable/TeacherTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i>Teacher Timetable
+                                                                    <i class="fa fa-calendar-times-o"></i><span>Teacher Timetable</span>
                                                                 </a>
                                                             </li>
                                                         }
@@ -744,7 +836,7 @@
                                                         {
                                                             <li>
                                                                 <a href="~/TimeTable/ClassTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i>Class Timetable
+                                                                    <i class="fa fa-calendar-times-o"></i><span>Class Timetable</span>
                                                                 </a>
                                                             </li>
                                                         }
@@ -792,7 +884,7 @@
                                                         {
                                                             <li>
                                                                 <a href="~/Home/Assignment">
-                                                                    <i class="fa fa-upload"></i>Upload Assignment
+                                                                    <i class="fa fa-upload"></i><span>Upload Assignment</span>
                                                                 </a>
                                                             </li>
                                                         }
@@ -806,24 +898,24 @@
 
                                                     <li>
                                                         <a onclick="down(this);" value="Home Assignment">
-                                                            <i class="fa fa-file"></i>Home Assignment
+                                                            <i class="fa fa-file"></i><span>Home Assignment</span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a onclick="down(this);" value="Class Assignment">
-                                                            <i class="fa fa-pencil"></i>Class Assigment
+                                                            <i class="fa fa-pencil"></i><span>Class Assigment</span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a onclick="down(this);" value="Project">
-                                                            <i class="fa fa-tasks"></i>Projects
+                                                            <i class="fa fa-tasks"></i><span>Projects</span>
                                                         </a>
                                                     </li>
                                                     if (list[24].menustat == "X")
                                                     {
                                                         <li>
                                                             <a href="~/download/WeeklyPlan">
-                                                                <i class="fa fa-tasks"></i>Daily Lesson Plan
+                                                                <i class="fa fa-tasks"></i><span>Daily Lesson Plan</span>
                                                             </a>
                                                         </li>
                                                     }
@@ -831,7 +923,7 @@
                                                     {
                                                         <li>
                                                             <a href="~/download/WeeklyPlanPP">
-                                                                <i class="fa fa-tasks"></i>Weekly Lesson Plan
+                                                                <i class="fa fa-tasks"></i><span>Weekly Lesson Plan</span>
                                                             </a>
                                                         </li>
                                                     }
@@ -864,7 +956,7 @@
                                             <ul class="treeview-menu">
                                                 <li>
                                                     <a href="~/Attendance/ViewAttendance">
-                                                        <i class="fa fa-user"></i>Student Attendance
+                                                        <i class="fa fa-user"></i><span>Student Attendance</span>
                                                     </a>
                                                 </li>
                                                 @{
@@ -874,7 +966,7 @@
                                                         {
                                                             <li class="treeview">
                                                                 <a href="~/home/Teacher_Evalution">
-                                                                    <i class="fa fa-male"></i>Employee Attendance
+                                                                    <i class="fa fa-male"></i><span>Employee Attendance</span>
 
                                                                 </a>
                                                             </li>
@@ -914,7 +1006,7 @@
                                             <ul class="treeview-menu">
                                                 <li>
                                                     <a href="~/Fee/Feechalan">
-                                                        <i class="fa fa-calendar-times-o"></i>Fee Challan
+                                                        <i class="fa fa-calendar-times-o"></i><span>Fee Challan</span>
                                                     </a>
                                                 </li>
                                                 @{
@@ -924,7 +1016,7 @@
                                                         {
                                                             <li>
                                                                 <a href="~/Fee/Feehistory">
-                                                                    <i class="fa fa-calendar-times-o"></i>Fee History
+                                                                    <i class="fa fa-calendar-times-o"></i><span>Fee History</span>
                                                                 </a>
                                                             </li>
                                                         }
@@ -970,7 +1062,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/ESS/payslip">
-                                                            <i class="fa"><img src="~/Content/dbtheme/dist/img/payslip.png" class="img-responsive" /></i>Employee Pay Slip
+                                                            <i class="fa"><img src="~/Content/dbtheme/dist/img/payslip.png" class="img-responsive" /></i> <span> Employee Pay Slip </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -978,7 +1070,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/ESS/leaveRequest">
-                                                            <i class="fa fa-users"></i>Leave Request
+                                                            <i class="fa fa-users"></i> <span> Leave Request </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -986,7 +1078,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/ESS/loanRequest">
-                                                            <i class="fa fa-money"></i>Loan Request
+                                                            <i class="fa fa-money"></i><span> Loan Request </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -994,7 +1086,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/ESS/resignRequest">
-                                                            <i class="fa fa-sign-out"></i>Resignation Request
+                                                            <i class="fa fa-sign-out"></i><span> Resignation Request </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1040,7 +1132,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/MSS/leaveApproval">
-                                                            <i class="fa fa-users"></i>Leave Approval
+                                                            <i class="fa fa-users"></i> <span> Leave Approval </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1048,7 +1140,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/MSS/loanApproval">
-                                                            <i class="fa fa-money"></i>Loan Approval
+                                                            <i class="fa fa-money"></i><span> Loan Approval </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1056,7 +1148,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/MSS/resignApproval">
-                                                            <i class="fa fa-sign-out"></i>Resignation Approval
+                                                            <i class="fa fa-sign-out"></i><span> Resignation Approval </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1095,16 +1187,16 @@
                                     </a>
                                     <ul class="treeview-menu">
 
-                                        <li><a href="~/home/finance"> <i class="fa fa-line-chart"></i>Finance</a></li>
+                                        <li><a href="~/home/finance"> <i class="fa fa-line-chart"></i><span>Finance</span></a></li>
                                         <li>
                                             <a href="~/home/purchase">
-                                                <i class="fa fa-archive"></i>Purchase & Inventory
+                                                <i class="fa fa-archive"></i><span>Purchase & Inventory</span> 
                                             </a>
                                         </li>
-                                        <li><a href="~/home/sales"><i class="fa fa-bar-chart"></i>Sales</a></li>
+                                        <li><a href="~/home/sales"><i class="fa fa-bar-chart"></i><span>Sales</span></a></li>
                                         <li>
                                             <a href="~/home/human_resource">
-                                                <i class="fa fa-users"></i>Human Resource
+                                                <i class="fa fa-users"></i><span>Human Resource</span> 
                                             </a>
                                         </li>
                                     </ul>
@@ -1140,7 +1232,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/SM/SaleOrder">
-                                                            <i class="fa fa-users"></i>Sale Order
+                                                            <i class="fa fa-users"></i><span>Sale Order</span> 
                                                         </a>
                                                     </li>
                                                 }
@@ -1148,7 +1240,7 @@
                                                 {
                                                     <li>
                                                         <a href="#">
-                                                            <i class="fa fa-users"></i>Sale Approval
+                                                            <i class="fa fa-users"></i><span>Sale Approval</span> 
                                                         </a>
                                                     </li>
                                                 }
@@ -1193,7 +1285,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/ESS/purRequisit">
-                                                            <i class="fa fa-users"></i>Purchase Requisition
+                                                            <i class="fa fa-users"></i><span>Purchase Requisition</span> 
                                                         </a>
                                                     </li>
                                                 }
@@ -1262,7 +1354,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/PM/Operation">
-                                                            <i class="fa fa-users"></i>Operations
+                                                            <i class="fa fa-users"></i><span>Operations</span> 
                                                         </a>
                                                     </li>
                                                 }
@@ -1306,7 +1398,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/TM/TimeSheet">
-                                                            <i class="fa fa-users"></i>Time Sheet
+                                                            <i class="fa fa-users"></i><span> Time Sheet </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1314,7 +1406,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/TM/index">
-                                                            <i class="fa fa-users"></i>Time Sheet Report
+                                                            <i class="fa fa-users"></i><span> Time Sheet Report</span>
                                                         </a>
                                                     </li>
                                                 }
