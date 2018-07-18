@@ -3339,8 +3339,8 @@ namespace MvcSchoolWebApp.Controllers
             {
                 da.CreateConnection();
                 string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emppers as ep " +
-                                "where delind <> 'X' " +
-                                " order by empname ASC";
+                                "where ep.delind <> 'X' and ep.empid not in (select distinct empid from emp0351) " +
+                                "order by empname ASC";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
