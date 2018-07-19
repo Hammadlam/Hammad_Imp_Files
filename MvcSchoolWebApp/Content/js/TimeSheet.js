@@ -1,5 +1,12 @@
-﻿$(document).ready(function (e) {
+﻿//form type 01 for ESS
+//form type 02 for MSS
 
+var formtype;
+var longitude;
+var latitude;
+
+$(document).ready(function (e) {
+    
     $("#txtempnameTS").change(function () {
         getemployeeattendancehistory();
         isactiveemployee();
@@ -8,14 +15,29 @@
 
     getemployeeattendancehistory();
 
-    $("#submitattendanceform").submit(function (e) {
+    $("#esssubmitattendanceform").submit(function (e) {
         e.preventDefault();
+        getLocation();
         confirm_dialogue_attd();
     });
 
-    $("#empattd_dialogue_frm").submit(function (e) {
+    $("#msssubmitattendanceform").submit(function (e) {
+        e.preventDefault();
+        getLocation();
+        confirm_dialogue_attd();
+    });
+
+    $("#essempattd_dialogue_frm").submit(function (e) {
         e.preventDefault();
         $('#empattd_dialogue').modal('hide');
+        setformtype("01");
+        insertempattendance();
+    });
+
+    $("#mssempattd_dialogue_frm").submit(function (e) {
+        e.preventDefault();
+        $('#empattd_dialogue').modal('hide');
+        setformtype("02");
         insertempattendance();
     });
 });
@@ -41,6 +63,16 @@ function filluserinformation() {
     });
 }
 
+function setformtype(type)
+{
+    formtype = type;
+}
+
+function getformtype()
+{
+    return formtype;
+}
+
 function insertempattendance() {
     waitingDialog.show('Please Wait: This May Take a While');
     $.ajax({
@@ -49,7 +81,10 @@ function insertempattendance() {
             empid: $("#txtempnameTS > option:selected").attr("value"),
             clientid: $("#txtclientnameTS > option:selected").attr("value"),
             date: $("#txtdateTS").val(),
-            time: $("#txttimeTS").val()
+            time: $("#txttimeTS").val(),
+            type: getformtype(),
+            lattd: getLatitude(),
+            lngtd: getLongtitude()
         },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -219,4 +254,29 @@ function getemployeeattendancehistory() {
             $("#empattendance_div").css("display", "none");
         }
     });
+}
+
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        //displayLocation(latitude, longitude);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+}
+
+function getLatitude()
+{
+    return latitude;
+}
+
+function getLongtitude() {
+    return longitude;
 }

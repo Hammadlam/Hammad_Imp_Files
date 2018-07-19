@@ -3297,7 +3297,7 @@ namespace MvcSchoolWebApp.Controllers
             List<SelectListItem> items = new List<SelectListItem>();
             try
             {
-                string query = "SELECT * FROM Clienttb";
+                string query = "select custno, custname1 from custmst order by custname1";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3306,12 +3306,12 @@ namespace MvcSchoolWebApp.Controllers
                 {
                     while (da.obj_reader.Read())
                     {
-                        if (da.obj_reader["clientid"].ToString().Trim() != "")
+                        if (da.obj_reader["custno"].ToString().Trim() != "")
                         {
                             items.Add(new SelectListItem
                             {
-                                Text = da.obj_reader["clienttxt"].ToString(),
-                                Value = da.obj_reader["clientid"].ToString().Trim()
+                                Text = da.obj_reader["custname1"].ToString(),
+                                Value = da.obj_reader["custno"].ToString().Trim()
                             });
                         }
                     }
@@ -3382,9 +3382,9 @@ namespace MvcSchoolWebApp.Controllers
                 da.CreateConnection();
                 string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");
                 string startdate = convertservertousertimezone(DateTime.Now.AddDays(-2).ToString()).ToString("yyyy-MM-dd");
-                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, ct.clienttxt from emp0280 e2 "+
+                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, ct.custname1 from emp0280 e2 "+
                                "inner join emppers ep on e2.empid = ep.empid "+
-                               "inner join clienttb ct on e2.clientid = ct.clientid "+
+                               "inner join custmst ct on e2.clientid = ct.custno "+
                                "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"'";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3404,7 +3404,7 @@ namespace MvcSchoolWebApp.Controllers
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd dd-MMMM-yyyy"),
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             checkouttime = enddate,
-                            cliendname = da.obj_reader["clienttxt"].ToString()
+                            cliendname = da.obj_reader["custname1"].ToString()
                         });
                     }
                 }

@@ -91,7 +91,7 @@
         }
 
         .skin-blue-light .sidebar-menu > li > .treeview-menu {
-            background: #57a0cf;
+            background: #d3f0f7;
         }
 
         .sidebar > li > a {
@@ -128,6 +128,40 @@
 
         .main-sidebar span {
             color:white;
+        }
+
+        .main-header .logo .logo-lg {
+            display: block;
+            float: left;
+            margin-top: -13px;
+        }
+
+        .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
+            display: block;
+            margin-top: -13px;
+            float: left;
+            margin-left: -13px;
+            margin-right: -15px;
+            font-size: 18px;
+        }
+
+        .user-panel > .info > a {
+            font-size:10px;
+        }
+
+        .user-panel > .info {
+            padding: 5px 5px 5px 10px;
+            line-height: 1;
+            position: absolute;
+            left: 55px;
+        }
+
+        .sidebar-menu li ul li a span {
+            color:#101010;
+        }
+
+        .skin-blue-light .main-header li.user-header {
+            background-color: #4468b3;
         }
 
         /*End New CSS*/
@@ -315,7 +349,7 @@
 
             <a href="#" class="logo" style="padding:0px 15px;">
                 <span class="logo-mini sidebar-toggle" data-toggle="offcanvas" role="button"></span>
-                <span class="logo-lg sidebar-toggle" data-toggle="offcanvas" role="button" ></span>
+                <span class="logo-lg sidebar-toggle" data-toggle="offcanvas" role="button"> <b style="font-family:Arial;"> ERManager </b> </span>
             </a>
 
 
@@ -673,7 +707,7 @@
                                                     {
                                                         <li>
                                                             <a onclick="redirectpersonalinfo(this);" value="Employee Personal">
-                                                                <i class="fa fa-male"></i>Employee Personal
+                                                                <i class="fa fa-male"></i> <span> Employee Personal </span>
                                                             </a>
                                                         </li>
 
@@ -681,7 +715,7 @@
                                                 }
                                                 <li>
                                                     <a onclick="popup()">
-                                                        <i class="fa fa-user"></i>Student Personal
+                                                        <i class="fa fa-user"></i> <span> Student Personal </span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1058,6 +1092,14 @@
                                         @{
                                             try
                                             {
+                                                if (list[61].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/essTimeMgmt">
+                                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span> Time Management </span>
+                                                        </a>
+                                                    </li>
+                                                }
                                                 if (list[44].menustat == "X")
                                                 {
                                                     <li>
@@ -1128,6 +1170,22 @@
                                         @{
                                             try
                                             {
+                                                if (list[63].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/mssTimeMgmt">
+                                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span> Time Management </span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[62].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/index">
+                                                            <i class="fa fa-users"></i><span> Time Sheet Report</span>
+                                                        </a>
+                                                    </li>
+                                                }
                                                 if (list[48].menustat == "X")
                                                 {
                                                     <li>
@@ -1377,7 +1435,7 @@
                             Response.Write("window.location.href = '" + url + "'</script>");
                         }
                     }
-                    @{
+                    @*@{
                         try
                         {
                             var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
@@ -1394,7 +1452,7 @@
                                         @{
                                             try
                                             {
-                                                if (list[61].menustat == "X")
+                                                @*if (list[61].menustat == "X")
                                                 {
                                                     <li>
                                                         <a href="~/TM/TimeSheet">
@@ -1402,14 +1460,7 @@
                                                         </a>
                                                     </li>
                                                 }
-                                                if (list[62].menustat == "X")
-                                                {
-                                                    <li>
-                                                        <a href="~/TM/index">
-                                                            <i class="fa fa-users"></i><span> Time Sheet Report</span>
-                                                        </a>
-                                                    </li>
-                                                }
+                                                
                                             }
                                             catch (Exception)
                                             {
@@ -1428,7 +1479,7 @@
                                                 Response.Write("<script type='text/javascript'>");
                                                 Response.Write("window.location.href = '" + url + "'</script>");
                                             }
-                    }
+                    }*@
                 </ul>
             </section>
             <!-- /.sidebar -->

@@ -687,9 +687,14 @@ namespace MvcSchoolWebApp.Controllers
             }
         }
 
-        public void InsertEmployeeAttendance(string empid, string clientid, DateTime date, string time)
+        public void InsertEmployeeAttendance(string empid, string clientid, DateTime date, string time, string type, string latitude, string longitude)
         {
             DatabaeseClass dc = new DatabaeseClass();
+            if (latitude == null && longitude == null)
+            {
+                latitude = "";
+                longitude = "";
+            }
             string menuid = "62300000";
             int tcode = 0;
             foreach (var item in loginModel)
@@ -712,7 +717,7 @@ namespace MvcSchoolWebApp.Controllers
             int recordno = 0;
             try
             {
-                if (System.Web.HttpContext.Current.Session["User_Role"].ToString() != "1000")
+                if (type == "01")   // ESS Formtype
                 {
                     empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Id"]);
                     dt = dc.convertservertousertimezone(DateTime.Now.ToString());
@@ -734,11 +739,12 @@ namespace MvcSchoolWebApp.Controllers
                     command.CommandText = "insert into emp0280(empid, begdate, enddate, clientid, subpagtype, " +
                                       "recordno, delind, creuser, credate, cretime, " +
                                       "upduser, upddate, updtime, locat, tinusr, " +
-                                      "toutusr, isactive, remarks) values " +
+                                      "tinlat, tinlong, toutusr, toutlat, toutlong, "+
+                                      "isactive, remarks) values " +
                                       "('" + empid + "', '" + dt + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + dt.ToString("yyyy/MM/dd") + "', '" + dt.ToString("HH:mm:ss") + "', " +
-                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
-                                      "'', 'X', '')";
+                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '"+latitude+"', " +
+                                      "'"+longitude+"', '', '', '', 'X', '')";
                     command.ExecuteNonQuery();
                 }
                 else if (recordno > 0 && isactive != "X")
@@ -747,19 +753,21 @@ namespace MvcSchoolWebApp.Controllers
                     command.CommandText = "insert into emp0280(empid, begdate, enddate, clientid, subpagtype, " +
                                       "recordno, delind, creuser, credate, cretime, " +
                                       "upduser, upddate, updtime, locat, tinusr, " +
-                                      "toutusr, isactive, remarks) values " +
+                                      "tinlat, tinlong, toutusr, toutlat, toutlong, " +
+                                      "isactive, remarks) values " +
                                       "('" + empid + "', '" + dt + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + dt.ToString("yyyy/MM/dd") + "', '" + dt.ToString("HH:mm:ss") + "', " +
-                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
-                                      "'', 'X', '')";
+                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + latitude + "', " +
+                                      "'" + longitude + "', '', '', '', 'X', '')";
                     command.ExecuteNonQuery();
                 }
                 else if (recordno > 0 && isactive == "X")
                 {
-                    command.CommandText = "update emp0280 set enddate = '" + dt + "', isactive = '', toutusr = '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "' " +
+                    command.CommandText = "update emp0280 set enddate = '" + dt + "', isactive = '', toutusr = '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
+                                          "toutlat = '"+latitude+"', toutlong = '"+longitude+"' "+
                                           "where empid = '" + empid + "' and clientid = '" + clientid + "' and upduser = '' and delind <> 'X' "+
                                           "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
-                                      "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "')";
+                                          "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "')";
                     
                     command.ExecuteNonQuery();
                 }

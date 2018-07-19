@@ -53,7 +53,7 @@ namespace MvcSchoolWebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult TimeSheet()
+        public ActionResult essTimeMgmt()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
             user_role = HttpContext.Session["User_Role"].ToString();
@@ -80,34 +80,43 @@ namespace MvcSchoolWebApp.Controllers
                 tsm.clientid = db.getclientid(user_id);
             }
             return View(tsm);
-            //return Redirect("https://www.google.com/");
-            //else
-            //{
-            //    //if (user_role == "1000")
-            //    //{
-            //    db = new DatabaeseClass();
-            //    ViewData["Employee"] = db.FillSNSEmployee();
-            //    var fromDatabaseEF = db.getClient();
-            //    ViewData["DBMySkills"] = fromDatabaseEF;
-            //    return View("MATimeSheet");
-            //    //}
-            //    //else
-            //    //{
-            //    //    db = new DatabaeseClass();
-            //    //    var fromDatabaseEF = db.getClient();
-            //    //    ViewData["DBMySkills"] = fromDatabaseEF;
-            //    //    return View("TimeSheet");
-            //    //}
-
-            //}
-            //return View("TimeSheet");
         }
 
-        public JsonResult insertattendancerecord(string empid, string clientid, DateTime date, string time )
+        [HttpGet]
+        public ActionResult mssTimeMgmt()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+            user_role = HttpContext.Session["User_Role"].ToString();
+            user_id = HttpContext.Session["User_Id"].ToString();
+            if (list[61].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");          //user has no right to access this page, return to dashboard
+            }
+
+            db = new DatabaeseClass();
+            Timesheetmodal tsm = new Timesheetmodal();
+            tsm.empname = db.FillSNSEmployee();
+            tsm.empid = user_id;
+            tsm.clientname = db.FillClient();
+            tsm.date = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MMMM-yyyy");
+            tsm.time = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("hh:mm tt");
+            List<ESSModel> esslist = db.getemploydetail(user_id);
+            bool isactive = db.isactiveuser(user_id);
+            tsm.empdesignation = esslist[0].design;
+            tsm.empdepart = esslist[0].dept;
+            if (isactive == true)
+            {
+                ViewBag.disabletimein = true;
+                tsm.clientid = db.getclientid(user_id);
+            }
+            return View(tsm);
+        }
+
+        public JsonResult insertattendancerecord(string empid, string clientid, DateTime date, string time, string type, string lattd, string lngtd)
         {
             DatabaseInsertClass dc = new DatabaseInsertClass();
             db = new DatabaeseClass();
-            dc.InsertEmployeeAttendance(empid, clientid, date, time);
+            dc.InsertEmployeeAttendance(empid, clientid, date, time, type, lattd, lngtd);
             return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
         }
 
