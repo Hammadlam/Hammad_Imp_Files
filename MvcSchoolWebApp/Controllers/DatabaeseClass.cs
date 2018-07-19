@@ -3385,7 +3385,8 @@ namespace MvcSchoolWebApp.Controllers
                 string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, ct.custname1 from emp0280 e2 "+
                                "inner join emppers ep on e2.empid = ep.empid "+
                                "inner join custmst ct on e2.clientid = ct.custno "+
-                               "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"'";
+                               "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"' "+
+                               "order by e2.begdate";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();

@@ -7,6 +7,8 @@ var latitude;
 
 $(document).ready(function (e) {
     
+    getLocation();
+
     $("#txtempnameTS").change(function () {
         getemployeeattendancehistory();
         isactiveemployee();
