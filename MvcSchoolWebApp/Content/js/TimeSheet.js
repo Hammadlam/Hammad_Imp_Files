@@ -6,7 +6,7 @@ var longitude;
 var latitude;
 
 $(document).ready(function (e) {
-    
+
     getLocation();
 
     $("#txtempnameTS").change(function () {
@@ -262,10 +262,12 @@ function getemployeeattendancehistory() {
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        //displayLocation(latitude, longitude);
+        navigator.geolocation.getCurrentPosition(function (p) {
+            longitude = p.coords.longitude;
+            latitude = p.coords.latitude;
+        });
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        alert('Geo Location feature is not supported in this browser.');
     }
 }
 
