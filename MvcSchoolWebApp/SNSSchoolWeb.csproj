@@ -1624,8 +1624,6 @@
     <Content Include="Views\TM\TimeSheet.cshtml" />
     <Content Include="Views\TM\Index.cshtml" />
     <Content Include="Views\TM\MATimeSheet.cshtml" />
-    <Content Include="Views\TimeTable\essTimeMgmt.cshtml" />
-    <Content Include="Views\TimeTable\mssTimeMgmt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
