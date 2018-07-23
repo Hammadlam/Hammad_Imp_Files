@@ -3251,8 +3251,9 @@ namespace MvcSchoolWebApp.Controllers
             string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select begdate, enddate, clienttxt, isactive from emp0280 inner join clienttb on emp0280.clientid = clienttb.clientid  " +
-                "where empid = '" + empid + "' and begdate >= '" + prevmonth + "' and begdate < '" + month + "' and delind <> 'X' ";
+                string query = "select begdate, enddate, custname1, isactive from emp0280 "+
+                                "inner join custmst on emp0280.clientid = custmst.custno "+
+                                "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+"' and delind <> 'X' ";
 
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
@@ -3272,7 +3273,7 @@ namespace MvcSchoolWebApp.Controllers
                             day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
                             timein = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             timeout = enddate,
-                            client = da.obj_reader["clienttxt"].ToString()
+                            client = da.obj_reader["custname1"].ToString()
                         });
                     }
                     da.obj_reader.Close();

@@ -220,8 +220,11 @@ namespace MvcSchoolWebApp.Controllers
             return Json(db.getclientid(empid), JsonRequestBehavior.AllowGet);
         }
 
-        public FileResult CreatePdf(FormCollection data)
+        public FileResult CreatePdf(string empid, DateTime date)
         {
+            DatabaeseClass db = new DatabaeseClass();
+            List<JQGridModel> list = db.FillTimeSheetAttendance(empid, date);
+
             MemoryStream workStream = new MemoryStream();
             StringBuilder status = new StringBuilder("");
             DateTime dTime = DateTime.Now;
@@ -233,7 +236,7 @@ namespace MvcSchoolWebApp.Controllers
             PdfPTable tableLayout = new PdfPTable(7);
             doc.SetMargins(0f, 0f, 0f, 0f);
             //Create PDF Table  
-            string empid = data[0].ToString();
+            //string empid = data[0].ToString();
             //file will created in this path  
             string strAttachment = Server.MapPath("~/Downloads/" + strPDFFileName);
 
@@ -342,5 +345,7 @@ namespace MvcSchoolWebApp.Controllers
             db = new DatabaeseClass();
             return Json(db.FillTimeSheetAttendance(empid, dateid), JsonRequestBehavior.AllowGet);
         }
+
+        //public void getdataforemplot
     }
 }

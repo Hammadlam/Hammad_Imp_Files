@@ -57,3 +57,23 @@
     return false;
 });
 
+$("#btn_createreport").click(function (e) {
+    debugger
+    $.ajax({
+        url: encodeURI("../TM/CreatePdf"),
+        data: {
+            empid: $("#txtEmpNameTMR > option:selected").attr("value"),
+            date: $("#ViewAttendaceDateTMR").val()
+        },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+        },
+        error: function (error) {
+            show_err_alert_js('No Record Found');
+            $("#attendanceViewTMR_div").css("display", "none");
+        }
+    });
+});
+

@@ -90,10 +90,10 @@
                         <table id="attendanceViewTMR_table"></table>
                         <div id="pager_list_TMR"></div>
                     </div>
-                    @using (Html.BeginForm("CreatePdf", "TM", FormMethod.Post))
-                    {
+                    @*@using (Html.BeginForm("CreatePdf", "TM", FormMethod.Post))
+                    {*@
 
-                        try
+                        @try
                         {
                             var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
                             if (list[0].earea.Trim() == "1000")
@@ -102,7 +102,7 @@
                                 <div class="row ">
                                     <div class="col-md-4">
                                         <div class="col-md-5">
-                                            <input type="submit" class="btn btn-danger" name="name" value="Create Report" />
+                                            <input id="btn_createreport" type="submit" class="btn btn-danger" name="name" value="Create Report" />
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                             Response.Flush();
                         }
 
-                    }
+                        //}
                 </div>
             </div>
         </div>
