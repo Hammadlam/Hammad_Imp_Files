@@ -147,7 +147,8 @@ namespace MvcSchoolWebApp.Controllers
             }
             else
             {
-                query = "select * from vw_searchname where vw_searchname.username like '" + word + "%' and vw_searchname.userid <> '" + user_id+ "' order by username asc";
+                query = "select * from vw_searchname where vw_searchname.userid like '" + word + "%' and vw_searchname.userid <> '" + user_id+ "' "+
+                        "and vw_searchname.userid not in (select empid from emp0351) order by username asc";
                 id = "userid";
                 txt = "username";
             }
