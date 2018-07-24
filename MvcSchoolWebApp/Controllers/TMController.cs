@@ -34,6 +34,8 @@ namespace MvcSchoolWebApp.Controllers
         public Page Page { get; private set; }
         DataModel _context = new DataModel();
         DatabaeseClass db;
+        public static System.IO.MemoryStream workStream;
+        public static string strPDFFileName;
         // GET: TM
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -219,123 +221,110 @@ namespace MvcSchoolWebApp.Controllers
             DatabaeseClass db = new DatabaeseClass();
             return Json(db.getclientid(empid), JsonRequestBehavior.AllowGet);
         }
-
-        public FileResult CreatePdf(string empid, DateTime date)
+   
+        public JsonResult CreatePdf(string empid, DateTime date)
         {
-            DatabaeseClass db = new DatabaeseClass();
-            List<JQGridModel> list = db.FillTimeSheetAttendance(empid, date);
-
-            MemoryStream workStream = new MemoryStream();
+            workStream = new System.IO.MemoryStream();
             StringBuilder status = new StringBuilder("");
             DateTime dTime = DateTime.Now;
             //file name to be created   
-            string strPDFFileName = string.Format("TimeSheetReport" + dTime.ToString("yyyyMMdd") + "-" + ".pdf");
+            strPDFFileName = string.Format("Employee_Timesheet_Pdf" + dTime.ToString("yyyyMMdd") + "-" + ".pdf");
             Document doc = new Document();
             doc.SetMargins(0f, 0f, 0f, 0f);
             //Create PDF Table with 5 columns  
-            PdfPTable tableLayout = new PdfPTable(7);
+            PdfPTable tableLayout = new PdfPTable(6);
             doc.SetMargins(0f, 0f, 0f, 0f);
             //Create PDF Table  
-            //string empid = data[0].ToString();
+
             //file will created in this path  
-            string strAttachment = Server.MapPath("~/Downloads/" + strPDFFileName);
+            string strAttachment = Server.MapPath("~/Downloadss/" + strPDFFileName);
 
 
             PdfWriter.GetInstance(doc, workStream).CloseStream = false;
             doc.Open();
 
             //Add Content to PDF   
-            doc.Add(Add_Content_To_PDF(tableLayout, empid));
+            doc.Add(Add_Content_To_PDF(tableLayout,empid,date));
 
             // Closing the document  
             doc.Close();
+            
+             byte[] byteInfo = workStream.ToArray();
+             workStream.Write(byteInfo, 0, byteInfo.Length);
+             workStream.Position = 0;
+             return Json("", JsonRequestBehavior.AllowGet);
 
-            byte[] byteInfo = workStream.ToArray();
-            workStream.Write(byteInfo, 0, byteInfo.Length);
-            workStream.Position = 0;
-
-
-            return File(workStream, "application/pdf", strPDFFileName);
 
         }
 
-        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, string empid)
+        public FileResult launch_report()
         {
+            return File(workStream, "application/pdf");
+        }
 
-            float[] headers = { 50, 20, 45, 45, 50, 45, 25 }; //Header Widths  
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, string empid, DateTime date)
+        {
+            float[] headers = { 27, 24, 25, 25, 70, 30}; //Header Widths  
             tableLayout.SetWidths(headers); //Set the pdf headers  
             tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
             tableLayout.HeaderRows = 1;
             //Add Title to the PDF file at the top  
+            db = new DatabaeseClass();
+            List<JQGridModel> list = db.FillTimeSheetAttendance( empid , date);
+            string empname = db.getempname(empid);
 
 
-            List<Timesheetmodal> timssht = _context.Timesheets.Where(x => x.Name == empid).ToList();
-         
-         
-
-            tableLayout.AddCell(new PdfPCell(new Phrase("Time Sheet Report", new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
-            {
+            tableLayout.AddCell(new PdfPCell(new Phrase("Employee Time Sheet Report ", new Font(Font.FontFamily.HELVETICA, 10, 1, new iTextSharp.text.BaseColor(0, 0, 0)))) {
                 Colspan = 12,
                 Border = 0,
                 PaddingBottom = 5,
                 HorizontalAlignment = Element.ALIGN_CENTER
             });
-            tableLayout.AddCell(new PdfPCell(new Phrase("Employee Name: " + empid , new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+            tableLayout.AddCell(new PdfPCell(new Phrase("Employee : "+empname+"   |  Id: "+empid+" ", new Font(Font.FontFamily.HELVETICA, 10, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
             {
                 Colspan = 12,
-                Border = 0,
+                Border = 1,
                 PaddingBottom = 5,
                 HorizontalAlignment = Element.ALIGN_CENTER
             });
+
 
             ////Add header  
             AddCellToHeader(tableLayout, "Date");
             AddCellToHeader(tableLayout, "Day");
-            //AddCellToHeader(tableLayout,"Name");
-            AddCellToHeader(tableLayout, "Checkin Date");
-            AddCellToHeader(tableLayout, "Checkout Date");
+            AddCellToHeader(tableLayout, "Checkin Time");
+            AddCellToHeader(tableLayout, "Checkout Time");
             AddCellToHeader(tableLayout, "Client");
             AddCellToHeader(tableLayout, "Location");
-            AddCellToHeader(tableLayout, "Marked By");
-            ////Add body  
+            // AddCellToHeader(tableLayout, "Marked By");
+        
 
-            foreach (var emp in timssht)
-            {
-                DateTime date = Convert.ToDateTime(emp.Checkindt.ToShortDateString());
-                DateTime day = emp.Checkindt;
-                AddCellToBody(tableLayout, date.ToString("dd-MMMM-yyyy"));
-                AddCellToBody(tableLayout, day.ToString("ddd"));
-                AddCellToBody(tableLayout, emp.Checkindt.ToString("hh:mm:sstt"));
-                AddCellToBody(tableLayout, emp.Checkoutdt.ToString("hh:mm:sstt"));
-                //AddCellToBody(tableLayout, emp.Client);
-                AddCellToBody(tableLayout, " ");
-                AddCellToHeader(tableLayout, "Self");
-
+            foreach (var emp in list)
+            {;
+                AddCellToBody(tableLayout, emp.date);
+                AddCellToBody(tableLayout, emp.day);
+                AddCellToBody(tableLayout, emp.timein);
+                AddCellToBody(tableLayout, emp.timeout);
+                AddCellToBody(tableLayout, emp.client);
+                AddCellToHeader(tableLayout, "-");
+            
             }
-
             return tableLayout;
         }
         // Method to add single cell to the Header  
         private static void AddCellToHeader(PdfPTable tableLayout, string cellText)
         {
-
-            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.RED)))
-            {
-                HorizontalAlignment = Element.ALIGN_LEFT,
-                Padding = 5,
-                BackgroundColor = new iTextSharp.text.BaseColor(185, 211, 255)
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.WHITE))) {
+                HorizontalAlignment = Element.ALIGN_LEFT, Padding = 5, BackgroundColor = new iTextSharp.text.BaseColor(254, 90, 90)
             });
         }
 
         // Method to add single cell to the body  
         private static void AddCellToBody(PdfPTable tableLayout, string cellText)
         {
-            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.BLACK)))
-            {
-                HorizontalAlignment = Element.ALIGN_LEFT,
-                Padding = 5,
-                BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
-            });
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.BLACK))) {
+                HorizontalAlignment = Element.ALIGN_LEFT, Padding = 5, BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
+    });
         }
 
         public JsonResult getAttendanceFillJQGrid(string empid, DateTime dateid)
@@ -346,6 +335,9 @@ namespace MvcSchoolWebApp.Controllers
             return Json(db.FillTimeSheetAttendance(empid, dateid), JsonRequestBehavior.AllowGet);
         }
 
-        //public void getdataforemplot
+        public ActionResult Dailytimesheet()
+        {
+            return View();
+        }
     }
 }

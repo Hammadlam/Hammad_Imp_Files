@@ -1,7 +1,9 @@
 ﻿@model MvcSchoolWebApp.Models.Timesheetmodal
 @{
+    ViewBag.Title = "Dailytimesheet";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="content">
     <!-- Info boxes -->
     <div class="row">
@@ -22,7 +24,7 @@
                             <li>
                                 <input type="radio" id="r2" name="r">
                                 <label for="r2">
-                                   Employee Time Sheet Report
+                                   Daily Time Sheet Report
                                 </label>
                             </li>
                         </ul>
@@ -43,7 +45,7 @@
                                                         <label>Employee Name</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.DropDownListFor(m => m.empid, Model.empname, "Employee", new { @class = "form-control m-b", @name = "txtEmpNameTMR", @id = "txtEmpNameTMR", @required = true })
+                                                        Date Time Picker @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true })
                                                     </div>
                                                 </div>
                                             }
@@ -63,7 +65,7 @@
                                             <label>Pick a Month</label>
                                         </div>
                                         <div class="col-md-7">
-                                            @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true })
+                                            @*@Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true })*@
                                         </div>
                                     </div>
                                 </div>
@@ -91,35 +93,39 @@
                         <div id="pager_list_TMR"></div>
                     </div>
                     @*@using (Html.BeginForm("CreatePdf", "TM", FormMethod.Post))
-                    {*@
+                        {*@
 
-                        @try
+                    @try
+                    {
+                        var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                        if (list[0].earea.Trim() == "1000")
                         {
-                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                            if (list[0].earea.Trim() == "1000")
-                            {
 
-                                <div class="row ">
-                                    <div class="col-md-4">
-                                        <div class="col-md-5">
-                                            <input id="btn_createreport" type="submit" class="btn btn-danger" name="name" value="Create Report" />
-                                        </div>
+                            <div class="row ">
+                                <div class="col-md-4">
+                                    <div class="col-md-5">
+                                        <input id="btn_createreport" type="submit" class="btn btn-danger" name="name" value="Create Report" />
                                     </div>
                                 </div>
-                            }
+                            </div>
                         }
-                        catch (Exception)
-                        {
+                    }
+                    catch (Exception)
+                    {
 
-                            string url = "/dashboard";
-                            Response.Write("<script type='text/javascript'>");
-                            Response.Write("window.location.href = '" + url + "'</script>");
-                            Response.Flush();
-                        }
+                        string url = "/dashboard";
+                        Response.Write("<script type='text/javascript'>");
+                        Response.Write("window.location.href = '" + url + "'</script>");
+                        Response.Flush();
+                    }
 
-                 
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
+

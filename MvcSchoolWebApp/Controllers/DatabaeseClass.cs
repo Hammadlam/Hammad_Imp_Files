@@ -3423,16 +3423,16 @@ namespace MvcSchoolWebApp.Controllers
             return list;
         }
 
-        //public string getempname(string id)
-        //{
-        //    da.CreateConnection();
-        //    da.OpenConnection();
-        //    SqlConnection conn = da.GetCurrentConnection;
-        //    DataTable dt = new DataTable();
-        //    SqlCommand cmd = new SqlCommand("SELECT empname FROM emppers WHERE empid='" + id + "'", conn);
-        //    dt.Load(cmd.ExecuteReader());
-        //    da.CloseConnection();
-        //    return dt.Rows[0][0].ToString();
-        //}
+        public string getempname(string id)
+        {
+            da.CreateConnection();
+            da.OpenConnection();
+            SqlConnection conn = da.GetCurrentConnection;
+            DataTable dt = new DataTable();
+            SqlCommand cmd = new SqlCommand("select distinct empid, firstname + ' ' + midname + ' ' +lastname as 'empname' from emppers WHERE empid='" + id + "'", conn);
+            dt.Load(cmd.ExecuteReader());
+            da.CloseConnection();
+            return dt.Rows[0][1].ToString();
+        }
     }
 }
