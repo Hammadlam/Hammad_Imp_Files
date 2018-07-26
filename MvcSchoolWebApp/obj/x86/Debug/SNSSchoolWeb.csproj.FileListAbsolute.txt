@@ -17,7 +17,8 @@ D:\MVCWebApp\MvcSchoolWebApp\bin\Controllers\ReportsController.cs
 D:\MVCWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll.config
 D:\MVCWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\MvcSchoolWebApp.pdb
-D:\MVCWebApp\MvcSchoolWebApp\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.dll
+D:\MVCWebApp\MvcSchoolWebApp\bin\Microsoft.QualityTools.Testing.Fakes.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\TimeZoneConverter.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\TimeZoneNames.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
@@ -33,11 +34,9 @@ D:\MVCWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonObjectMo
 D:\MVCWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 D:\MVCWebApp\MvcSchoolWebApp\bin\stdole.dll
+D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.xml
 D:\MVCWebApp\MvcSchoolWebApp\bin\TimeZoneConverter.xml
 D:\MVCWebApp\MvcSchoolWebApp\bin\TimeZoneNames.xml
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\SNSSchoolWeb.csprojResolveAssemblyReference.cache
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\MvcSchoolWebApp.dll
 D:\MVCWebApp\MvcSchoolWebApp\obj\x86\Debug\MvcSchoolWebApp.pdb
-D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.dll
-D:\MVCWebApp\MvcSchoolWebApp\bin\itextsharp.xml
-D:\MVCWebApp\MvcSchoolWebApp\bin\Microsoft.QualityTools.Testing.Fakes.dll
