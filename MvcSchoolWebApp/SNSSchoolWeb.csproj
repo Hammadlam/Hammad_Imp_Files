@@ -70,8 +70,8 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept">
@@ -1323,6 +1323,7 @@
     <Content Include="Content\js\ClassWisepersonal.js" />
     <Content Include="Content\js\custom-chart.js" />
     <Content Include="Content\js\customjs.js" />
+    <Content Include="Content\js\DailyTmshtReport.js" />
     <Content Include="Content\js\download.js" />
     <Content Include="Content\js\dropzone.js" />
     <Content Include="Content\js\Email.js" />
@@ -1626,6 +1627,7 @@
     <Content Include="Views\TM\MATimeSheet.cshtml" />
     <Content Include="Views\TM\essTimeMgmt.cshtml" />
     <Content Include="Views\TM\mssTimeMgmt.cshtml" />
+    <Content Include="Views\TM\Dailytimesheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

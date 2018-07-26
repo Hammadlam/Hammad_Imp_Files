@@ -32,7 +32,7 @@
 
                     <div class="ibox-content">
                         <div class="row">
-                            <form role="form" name="viewAttendanceTMRForm" id="viewAttendanceTMRForm">
+                            <form role="form">
                                 <div class="row ">
                                     @{
                                         try
@@ -42,10 +42,10 @@
                                             {
                                                 <div class="col-md-4">
                                                     <div class="col-md-5">
-                                                        <label>Employee Name</label>
+                                                        <label>Date</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        Date Time Picker @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true })
+                                                       @Html.TextBoxFor(model => model.month, "Day", new { @Value = ViewBag.date, placeholder = "Date", @class = "date-day form-control m-b", @name = "DateTMR", @id = "DateTMR", @required = true })
                                                     </div>
                                                 </div>
                                             }
@@ -60,19 +60,11 @@
                                         }
 
                                     }
-                                    <div class="col-md-4">
-                                        <div class="col-md-5">
-                                            <label>Pick a Month</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            @*@Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true })*@
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="col-md-5">
-                                            <input id="veiwAttendanceTMR" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-default form-submitbtn" />
+                                            <input id="Btncreaterpt" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-default form-submitbtn" />
                                         </div>
                                     </div>
                                 </div>

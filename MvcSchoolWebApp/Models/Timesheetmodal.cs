@@ -16,12 +16,17 @@ namespace MvcSchoolWebApp.Models
         public string employeename { get; set; }
         public string Name { get; set; }
         public string clientid { get; set; }
-        public string cliendname { get; set; }
+        public string client { get; set; }
         public string date { get; set; }
+        public string day { get; set; }
         public string month { get; set; }
         public string time { get; set; }
         public List<SelectListItem> clientname { get; set; }
         public string checkintime { get; set; }
+        public string tinlat { get; set; }
+        public string toutlat { get; set; }
+        public string tinlong { get; set; }
+        public string toutlong { get; set; }
         public string checkouttime { get; set; }
         public DateTime Checkindt { get; set; }
         public DateTime Checkoutdt { get; set; }

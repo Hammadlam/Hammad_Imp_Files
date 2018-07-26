@@ -3406,7 +3406,7 @@ namespace MvcSchoolWebApp.Controllers
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd dd-MMMM-yyyy"),
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             checkouttime = enddate,
-                            cliendname = da.obj_reader["custname1"].ToString()
+                            client = da.obj_reader["custname1"].ToString()
                         });
                     }
                 }
@@ -3434,5 +3434,64 @@ namespace MvcSchoolWebApp.Controllers
             da.CloseConnection();
             return dt.Rows[0][1].ToString();
         }
+
+        public List<Timesheetmodal> FillDailyReport(DateTime dateid)
+        {
+            List<Timesheetmodal> items = new List<Timesheetmodal>();
+            string currdate = dateid.ToString("yyyy-MM-dd");
+            string adddate = dateid.AddDays(1).ToString("yyyy-MM-dd");
+            try
+            {
+                string query = "select e2.empid, ep.firstname + ' ' + ep.lastname as name, e2.begdate, e2.tinlat, e2.tinlong, "+
+                                "e2.toutlat, toutlong, e2.enddate, cst.custname1, e2.isactive from emppers ep "+
+                                "inner join emp0280 e2 on ep.empid = e2.empid "+
+                                "inner join custmst cst on e2.clientid = cst.custno "+
+                                "where e2.delind <> 'X' and ep.delind <> 'X' and "+
+                                "e2.begdate >= '"+currdate+"' and e2.begdate < '"+adddate+"' order by e2.begdate";
+
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
+                        if (da.obj_reader["isactive"].ToString().Trim() == "X")
+                            enddate = "-";
+
+                        items.Add(new Timesheetmodal
+                        {
+                            empid = da.obj_reader["empid"].ToString(),
+                            employeename = da.obj_reader["name"].ToString(),
+                            checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
+                            checkouttime = enddate,
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
+                            tinlat = da.obj_reader["tinlat"].ToString(),
+                            tinlong = da.obj_reader["tinlong"].ToString(),
+                            toutlat = da.obj_reader["toutlat"].ToString(),
+                            toutlong = da.obj_reader["toutlong"].ToString(),
+                            client = da.obj_reader["custname1"].ToString()
+                        });
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FStdA. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
     }
 }
