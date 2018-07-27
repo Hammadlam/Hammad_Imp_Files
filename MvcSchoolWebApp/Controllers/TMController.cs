@@ -362,7 +362,7 @@ namespace MvcSchoolWebApp.Controllers
             return View();
         }
 
-        public JsonResult CreateDailyReport( DateTime date)
+        public JsonResult CreateDailyReport(DateTime date)
         {
             workStream = new System.IO.MemoryStream();
             StringBuilder status = new StringBuilder("");
@@ -377,7 +377,7 @@ namespace MvcSchoolWebApp.Controllers
             //Create PDF Table  
 
             //file will created in this path  
-            string strAttachment = Server.MapPath("~/Downloadss/" + strPDFFileName);
+            string strAttachment = Server.MapPath("~/Downloads/" + strPDFFileName);
 
 
             PdfWriter.GetInstance(doc, workStream).CloseStream = false;
@@ -392,6 +392,7 @@ namespace MvcSchoolWebApp.Controllers
             byte[] byteInfo = workStream.ToArray();
             workStream.Write(byteInfo, 0, byteInfo.Length);
             workStream.Position = 0;
+            //return JsonResult(workStream, "application/pdf");
             return Json("", JsonRequestBehavior.AllowGet);
 
         }

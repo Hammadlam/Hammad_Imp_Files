@@ -37,7 +37,7 @@
                                     <label>Name Of Client</label>
                                     @if (ViewBag.disabletimein == true)
                                     {
-                                        @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true, @readonly = true })
+                                        @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true, @disabled = true })
                                     }
                                     else
                                     {

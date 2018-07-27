@@ -224,7 +224,7 @@ function getemployeeattendancehistory() {
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'center' },
                     { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'center' },
-                    { name: 'cliendname', index: 'cliendname', width: $size * 30, resizable: false, align: 'left' }
+                    { name: 'client', index: 'client', width: $size * 30, resizable: false, align: 'left' }
                 ],
                 data: data,
                 styleUI: 'Bootstrap',

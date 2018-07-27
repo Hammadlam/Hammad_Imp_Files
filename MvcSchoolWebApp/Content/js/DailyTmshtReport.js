@@ -1,5 +1,6 @@
 ﻿
-$("#Btncreaterpt").click(function (e) {
+$("#frmcreatedailyrpt").submit(function (e) {
+    e.preventDefault();
     $.ajax({
         url: encodeURI("../TM/CreateDailyReport"),
         data: {
@@ -8,7 +9,6 @@ $("#Btncreaterpt").click(function (e) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-        debugger
             window.location.href = '../TM/launch_Daily_report';
         },
         error: function (error) {

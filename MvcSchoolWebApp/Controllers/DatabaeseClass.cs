@@ -31,7 +31,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             List<LoginModel> item = new List<LoginModel>();
             List<Users> user_dtl = new List<Users>();
-            string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, usr.menuprof, img.imagepath, mpd.menustat, " +
+            string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, usr.menuprof, img.imageobj, mpd.menustat, " +
                            "mpd.menulabel, mpd.menuid, mpd.tcode, std.eareatxt from usr01 usr " +
                            "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof " +
                            "left join emp0170 e17 on e17.empid = usr.userid " +
@@ -48,14 +48,26 @@ namespace MvcSchoolWebApp.Controllers
                     string pass = da.obj_reader["passwd"].ToString().Trim();
                     if (pass == password)
                     {
-                        user_dtl.Add(new Users
+                        if (user_dtl.Count == 0)
                         {
-                            user_id = da.obj_reader["userid"].ToString().Trim(),
-                            user_earea = da.obj_reader["acdtitle"].ToString().Trim(),
-                            user_fullname = da.obj_reader["fname"].ToString() + " " + da.obj_reader["lname"].ToString(),
-                            user_image = da.obj_reader["imagepath"].ToString(),
-                            user_role = da.obj_reader["eareatxt"].ToString()
-                        });
+                            string imgsrc = "";
+                            if (da.obj_reader["imageobj"].ToString() != "")
+                            {
+                                byte[] header = (byte[])da.obj_reader["imageobj"];
+                                var base64 = Convert.ToBase64String(header);
+                                imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                            }
+
+                            user_dtl.Add(new Users
+                            {
+                                user_id = da.obj_reader["userid"].ToString().Trim(),
+                                user_earea = da.obj_reader["acdtitle"].ToString().Trim(),
+                                user_fullname = da.obj_reader["fname"].ToString() + " " + da.obj_reader["lname"].ToString(),
+                                user_image = imgsrc,
+                                user_role = da.obj_reader["eareatxt"].ToString()
+                            });
+                        }
+                        
 
                         item.Add(new LoginModel
                         {
@@ -991,7 +1003,7 @@ namespace MvcSchoolWebApp.Controllers
 
         public string getclientid(string empid)
         {
-            DateTime currtime = convertservertopsttimezone(DateTime.Now.ToString());
+            DateTime currtime = convertservertousertimezone(DateTime.Now.ToString());
             string clientid = null;
             try
             {
@@ -1005,7 +1017,7 @@ namespace MvcSchoolWebApp.Controllers
                 {
                     while (da.obj_reader.Read())
                     {
-                        clientid = da.obj_reader["clientid"].ToString();
+                        clientid = da.obj_reader["clientid"].ToString().Trim();
                     }
                     da.CloseConnection();
                     da.obj_reader.Close();
