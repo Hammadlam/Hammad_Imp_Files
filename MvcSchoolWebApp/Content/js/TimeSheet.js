@@ -7,7 +7,8 @@ var latitude;
 
 $(document).ready(function (e) {
 
-    getLocation();
+    tryGeolocation();
+    //getLocation();
 
     $("#txtempnameTS").change(function () {
         getemployeeattendancehistory();
@@ -19,13 +20,15 @@ $(document).ready(function (e) {
 
     $("#esssubmitattendanceform").submit(function (e) {
         e.preventDefault();
-        getLocation();
+        tryGeolocation();
+        //getLocation();
         confirm_dialogue_attd();
     });
 
     $("#msssubmitattendanceform").submit(function (e) {
         e.preventDefault();
-        getLocation();
+        tryGeolocation();
+        //getLocation();
         confirm_dialogue_attd();
     });
 
@@ -284,3 +287,51 @@ function getLatitude()
 function getLongtitude() {
     return longitude;
 }
+
+
+
+
+var apiGeolocationSuccess = function (position) {
+    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+};
+
+var tryAPIGeolocation = function () {
+    jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function (success) {
+        apiGeolocationSuccess({ coords: { latitude: success.location.lat, longitude: success.location.lng } });
+    })
+  .fail(function (err) {
+      alert("API Geolocation error! \n\n" + err);
+  });
+};
+
+var browserGeolocationSuccess = function (position) {
+    longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    //alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+};
+
+var browserGeolocationFail = function (error) {
+    switch (error.code) {
+        case error.TIMEOUT:
+            alert("Browser geolocation error !\n\nTimeout.");
+            break;
+        case error.PERMISSION_DENIED:
+            if (error.message.indexOf("Only secure origins are allowed") == 0) {
+                tryAPIGeolocation();
+            }
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Browser geolocation error !\n\nPosition unavailable.");
+            break;
+    }
+};
+
+var tryGeolocation = function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            browserGeolocationSuccess,
+          browserGeolocationFail,
+          { maximumAge: 50000, timeout: 20000, enableHighAccuracy: true });
+    }
+};
+
