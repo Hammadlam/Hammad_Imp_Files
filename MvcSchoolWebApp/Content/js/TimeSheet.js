@@ -62,7 +62,7 @@ function filluserinformation() {
         error: function (error) {
             waitingDialog.hide();
             $('#empattd_dialogue').modal('hide');
-            show_alert_js();
+            //show_alert_js();
             $("#empattendance_div").css("display", "none");
         }
     });
@@ -255,7 +255,7 @@ function getemployeeattendancehistory() {
             // close_progress();
         },
         error: function (error) {
-            show_alert_js();
+            //show_alert_js();
             $("#empattendance_div").css("display", "none");
         }
     });
@@ -270,7 +270,7 @@ function getLocation() {
             latitude = p.coords.latitude;
         });
     } else {
-        alert('Geo Location feature is not supported in this browser.');
+        //alert('Geo Location feature is not supported in this browser.');
     }
 }
 
@@ -292,7 +292,7 @@ function getLongtitude() {
 
 
 var apiGeolocationSuccess = function (position) {
-    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+    //alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
 };
 
 var tryAPIGeolocation = function () {
@@ -300,7 +300,7 @@ var tryAPIGeolocation = function () {
         apiGeolocationSuccess({ coords: { latitude: success.location.lat, longitude: success.location.lng } });
     })
   .fail(function (err) {
-      alert("API Geolocation error! \n\n" + err);
+      //alert("API Geolocation error! \n\n" + err);
   });
 };
 
@@ -313,7 +313,7 @@ var browserGeolocationSuccess = function (position) {
 var browserGeolocationFail = function (error) {
     switch (error.code) {
         case error.TIMEOUT:
-            alert("Browser geolocation error !\n\nTimeout.");
+            //alert("Browser geolocation error !\n\nTimeout.");
             break;
         case error.PERMISSION_DENIED:
             if (error.message.indexOf("Only secure origins are allowed") == 0) {
@@ -321,7 +321,7 @@ var browserGeolocationFail = function (error) {
             }
             break;
         case error.POSITION_UNAVAILABLE:
-            alert("Browser geolocation error !\n\nPosition unavailable.");
+            //alert("Browser geolocation error !\n\nPosition unavailable.");
             break;
     }
 };
