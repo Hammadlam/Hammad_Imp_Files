@@ -66,6 +66,12 @@
                                     @Html.TextBoxFor(m => m.time, new { @class = "form-control m-b", @name = "txttimeTS", @id = "txttimeTS", @required = true, @disabled = true })
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Remarks</label>
+                                    @Html.TextAreaFor(m => m.remarks, new { @class = "form-control m-b", @name = "txtremarksTS", @id = "txtremarksTS", @style = "resize:vertical" })
+                                </div>
+                            </div>
 
 
                             @*@{

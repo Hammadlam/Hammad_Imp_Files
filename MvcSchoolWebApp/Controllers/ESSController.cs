@@ -94,8 +94,17 @@ namespace MvcSchoolWebApp.Controllers
             arr[5] = cmd.ExecuteScalar().ToString();
             arr[6] = "";
 
+            string[] formula_values = new string[2];
+            formula_values[0] = Convert.ToDateTime(ess.begdate).ToString("dd/MM/yyyy");
+            formula_values[1] = Convert.ToDateTime(ess.enddate).ToString("dd/MM/yyyy");
+
             string updatedquery = rc.getupdatedquery(rc.getsquery(rptid), arr);
-            System.IO.Stream stream = rc.getrptstream(rptid, updatedquery);
+            //System.IO.Stream stream = rc.getrptstream(rptid, updatedquery);
+            System.IO.Stream stream = rc.getrptstream(rptid, updatedquery, formula_values);
+
+
+            //string updatedquery = rc.getupdatedquery(rc.getsquery(rptid), arr);
+            //System.IO.Stream stream = rc.getrptstream(rptid, updatedquery);
             return File(stream, "application/pdf");
         }
 

@@ -16,6 +16,15 @@ $("#btnSave").click(function () {
 
 
 function LblHide() {
+    $("#lblempid").hide();
+    $("#lblfullname").hide();
+    $("#lblemplastname").hide();
+    $("#lblcnic").hide();
+    $("#lbljoindate").hide();
+    $("#lblgender").hide();
+    $("#lbldesignation").hide();
+
+
     $("#lblName1").hide();
     $("#lblName2").hide();
     $("#lblStrt1").hide();
@@ -29,9 +38,18 @@ function LblHide() {
     $("#lblFex").hide();
     $("#lblEmail").hide();
     $("#lblWeb").hide();
+    $("#txtcnic").hide();
 }
 
 function LblValue() {
+    $("#txtempid").val($("#lblempid").html().trim());
+    $("#txtfullname").val($("#lblfullname").html().trim());
+    $("#txtemplastname").val($("#lblemplastname").html().trim());
+    $("#txtcnic").val($("#lblcnic").html().trim());
+    $("#txtjoindate").val($("#lbljoindate").html().trim());
+    $("#txtgender").val($("#lblgender").html().trim());
+    $("#txtdesignation").val($("#lbldesignation").html().trim());
+
     $("#lblName1").html($("#txtName1").val());
     $("#lblName2").html($("#txtName2").val());
     $("#lblStrt1").html($("#txtStrt1").val());
@@ -49,6 +67,14 @@ function LblValue() {
 
 
 function LblShow() {
+    $("#lblempid").show();
+    $("#lblfullname").show();
+    $("#lblemplastname").show();
+    $("#lblcnic").show();
+    $("#lbljoindate").show();
+    $("#lblgender").show();
+    $("#lbldesignation").show();
+
     $("#lblName1").show();
     $("#lblName2").show();
     $("#lblStrt1").show();
@@ -68,6 +94,7 @@ function LblShow() {
 function TxtHide() {
     $("#txtName1").hide();
     $("#txtName2").hide();
+    $("#txtfullname").hide();
     $("#txtStrt1").hide();
     $("#txtStrt2").hide();
     $("#txtStrt4").hide();
@@ -79,25 +106,48 @@ function TxtHide() {
     $("#txtFex").hide();
     $("#txtEmail").hide();
     $("#txtWeb").hide();
+    $("#txtcnic").hide();
+    $("#txtempid").hide();
+    $("#txtempname").hide();
+    $("#txtemplastname").hide();
+    $("#txtjoindate").hide();
+    $("#txtgender").hide();
+    $("#txtdesignation").hide();
 }
 
 function TxtValue() {
+    $("#txtempid").val($("#lblempid").html().trim());
+    $("#txtfullname").val($("#lblfullname").html().trim());
+    $("#txtemplastname").val($("#lblemplastname").html().trim());
+    $("#txtcnic").val($("#lblcnic").html().trim());
+    $("#txtjoindate").val($("#lbljoindate").html().trim());
+    $("#txtgender").val($("#lblgender").html().trim());
+    $("#txtdesignation").val($("#lbldesignation").html().trim());
+
     $("#txtName1").val($("#lblName1").html().trim());
     $("#txtName2").val($("#lblName2").html().trim());
-    $("#txtStrt1").val($("#lblStrt1").html().trim());
+    //$("#txtStrt1").val($("#lblStrt1").html().trim());
     $("#txtStrt2").val($("#lblStrt2").html().trim());
-    $("#txtStrt4").val($("#lblStrt4").html().trim());
+    //$("#txtStrt4").val($("#lblStrt4").html().trim());
     $("#txtZip").val($("#lblZip").html().trim());
     $("#txtCity").val($("#lblCity").html().trim());
-    $("#txtProv").val($("#lblProv").html().trim());
+    //$("#txtProv").val($("#lblProv").html().trim());
     $("#txtCtry").val($("#lblCtry").html().trim());
     $("#txtPhone").val($("#lblPhone").html().trim());
-    $("#txtFex").val($("#lblFex").html().trim());
-    $("#txtEmail").val($("#lblEmail").html().trim());
-    $("#txtWeb").val($("#lblWeb").html().trim());
+    //$("#txtFex").val($("#lblFex").html().trim());
+    //$("#txtEmail").val($("#lblEmail").html().trim());
+    //$("#txtWeb").val($("#lblWeb").html().trim());
 }
 
 function TxtShow() {
+    $("#txtempid").show();
+    $("#txtfullname").show();
+    $("#txtemplastname").show();
+    $("#txtcnic").show();
+    $("#txtjoindate").show();
+    $("#txtgender").show();
+    $("#txtdesignation").show();
+
     $("#txtName1").show();
     $("#txtName2").show();
     $("#txtStrt1").show();

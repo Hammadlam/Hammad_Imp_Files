@@ -678,6 +678,103 @@ namespace MvcSchoolWebApp.Controllers
             return items;
         }
 
+        public Profile getUserProfile(string empid)
+        {
+            Profile pro = new Models.Profile();
+            try
+            {
+                da.CreateConnection();
+                string query =
+                    "select distinct emp.empid, emp.earea , e.eareatxt , epos.postxt, eesubarea , esub.esubareat , emp.eegroup, " +
+                    "eg.eegrouptxt , emp.begdate, emp.enddate, info.formadd, info.firstname, " +
+                    "info.midname, info.lastname, info.secname, info.idnumber, info.birthdate, info.gender, " +
+                    "info.birthplace, info.cobirth, info.birthname, info.nationality, img.imagepath, ad.typetxt, " +
+                    "empadd.careof, empadd.street1, empadd.street2, empadd.zipcode, empadd.city, empadd.district, empadd.phone " +
+                    "from empmain as emp " +
+                    "inner join earea as e on emp.earea = e.earea " +
+                    "inner join esubarea as esub on emp.eesubarea = esub.esubarea and emp.earea = esub.earea " +
+                    "inner join eegroup as eg on emp.eegroup = eg.eegroup " +
+                    "inner join emppers as info on emp.empid = info.empid " +
+                    "inner join emporg as org on emp.empid = org.empid " +
+                    "inner join eposhdr as epos on org.pos = epos.pos " +
+                    "left outer join emp0170 as e17 on emp.empid = e17.empid " +
+                    "left outer join imageobj as img on e17.imageid = img.imageid " +
+                    "left join empadd on emp.empid = empadd.empid " +
+                    "left join addresstype as ad on empadd.subpagtype = ad.addtype " +
+                    "where emp.empid = '" + empid + "' and emp.delind <> 'X' and " +
+                    "info.delind <> 'X' and empadd.delind <> 'X'";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        DateTime date = new DateTime();
+                        pro.empid = da.obj_reader["empid"].ToString() ?? "-";
+                        pro.status = da.obj_reader["eegrouptxt"].ToString() ?? "-";
+                        date = Convert.ToDateTime(da.obj_reader["birthdate"]);
+                        pro.dob = date.ToString("dd/MMMM/yyyy") ?? "-";
+                        pro.designation = da.obj_reader["postxt"].ToString() ?? "-";
+                        pro.city = da.obj_reader["city"].ToString() ?? "-";
+                        pro.district = da.obj_reader["district"].ToString() ?? "-";
+                        pro.zipcode = da.obj_reader["zipcode"].ToString() ?? "-";
+                        pro.paddress = da.obj_reader["street1"].ToString() ?? "-";
+                        pro.paddress2 = da.obj_reader["street2"].ToString() ?? "-";
+                        pro.firstname = da.obj_reader["firstname"].ToString() ?? "-";
+                        pro.fathername = da.obj_reader["birthname"].ToString() ?? "-";
+                        pro.lastname = da.obj_reader["lastname"].ToString() ?? "-";
+                        pro.secondname = da.obj_reader["secname"].ToString() ?? "-";
+                        pro.middlename = da.obj_reader["midname"].ToString() ?? "-";
+                        pro.fullname = pro.firstname.Trim() + " " + pro.middlename.Trim();
+                        pro.birthplace = da.obj_reader["birthplace"].ToString() ?? "-";
+                        date = Convert.ToDateTime(da.obj_reader["begdate"]);
+                        pro.joiningdate = date.ToString("dd-MMMM-yyyy");
+                        date = Convert.ToDateTime(da.obj_reader["enddate"]);
+                        pro.todate = date.ToString("dd/MMMM/yyyy") ?? "-";
+                        pro.title = da.obj_reader["formadd"].ToString() ?? "-";
+                        pro.gender = da.obj_reader["gender"].ToString() ?? "-";
+                        if (pro.gender.Trim() == "F")
+                        {
+                            pro.gender = "Female";
+                        }
+                        else if (pro.gender.Trim() == "M")
+                        {
+                            pro.gender = "Male";
+                        }
+                        pro.phone = da.obj_reader["phone"].ToString() ?? "-";
+                        pro.roletxt = da.obj_reader["eareatxt"].ToString() ?? "-";
+                        if (da.obj_reader["imagepath"].ToString().Trim() != "")
+                            pro.image = da.obj_reader["imagepath"].ToString();
+                        else
+                            pro.image = "~/Content/Avatar/avatar2.png";
+                        pro.addtype = da.obj_reader["typetxt"].ToString() ?? "-";
+                        pro.nic = da.obj_reader["idnumber"].ToString() ?? "-";
+                        pro.nationality = da.obj_reader["nationality"].ToString() ?? "-";
+                    }
+                }
+                else
+                {
+                        pro.empid = pro.status = pro.dob = pro.designation = pro.city = pro.district = pro.zipcode =
+                        pro.paddress = pro.paddress2 = pro.firstname = pro.fathername = pro.lastname =
+                        pro.secondname = pro.middlename = pro.fullname = pro.birthplace = pro.joiningdate =
+                        pro.todate = pro.title = pro.gender = pro.phone = pro.roletxt = pro.addtype =
+                        pro.nic = pro.nationality = " - ";
+                        pro.image = "~/Content/Avatar/avatar2.png";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-GUP. Error Details: " + ex.Message);
+            }
+            finally
+            {
+                da.obj_reader.Close();
+                da.CloseConnection();
+            }
+            return pro;
+        }
+
         [HandleError]
         public List<SelectListItem> FillEmployee(String campusId)
         {
@@ -3351,9 +3448,13 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 da.CreateConnection();
-                string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emppers as ep " +
-                                "where ep.delind <> 'X' and ep.empid not in (select distinct empid from emp0351) " +
-                                "order by empname ASC";
+                string query = "select distinct emp.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' "+
+                               "from empmain as emp "+
+                               "inner join emppers ep on emp.empid = ep.empid "+
+                               "left join emp0351 e3 on emp.empid = e3.empid "+
+                               "where ep.delind <> 'X' and emp.delind <> 'X' and emp.empid not in "+
+                               "(select distinct empid from emp0351 where payblock = 'X') "+
+                               "order by empname ASC";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
@@ -3395,7 +3496,7 @@ namespace MvcSchoolWebApp.Controllers
                 da.CreateConnection();
                 string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");
                 string startdate = convertservertousertimezone(DateTime.Now.AddDays(-2).ToString()).ToString("yyyy-MM-dd");
-                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, ct.custname1 from emp0280 e2 "+
+                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, e2.remarks, ct.custname1 from emp0280 e2 "+
                                "inner join emppers ep on e2.empid = ep.empid "+
                                "inner join custmst ct on e2.clientid = ct.custno "+
                                "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"' "+
@@ -3418,7 +3519,8 @@ namespace MvcSchoolWebApp.Controllers
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd dd-MMMM-yyyy"),
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             checkouttime = enddate,
-                            client = da.obj_reader["custname1"].ToString()
+                            client = da.obj_reader["custname1"].ToString(),
+                            remarks = da.obj_reader["remarks"].ToString()
                         });
                     }
                 }

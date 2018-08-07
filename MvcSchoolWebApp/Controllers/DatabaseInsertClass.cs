@@ -687,7 +687,7 @@ namespace MvcSchoolWebApp.Controllers
             }
         }
 
-        public void InsertEmployeeAttendance(string empid, string clientid, DateTime date, string time, string type, string latitude, string longitude)
+        public void InsertEmployeeAttendance(string empid, string clientid, DateTime date, string time, string type, string remarks, string latitude, string longitude)
         {
             DatabaeseClass dc = new DatabaeseClass();
             if (latitude == null && longitude == null)
@@ -744,7 +744,7 @@ namespace MvcSchoolWebApp.Controllers
                                       "('" + empid + "', '" + dt + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + dt.ToString("yyyy/MM/dd") + "', '" + dt.ToString("HH:mm:ss") + "', " +
                                       "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '"+latitude+"', " +
-                                      "'"+longitude+"', '', '', '', 'X', '')";
+                                      "'"+longitude+"', '', '', '', 'X', '"+remarks+"')";
                     command.ExecuteNonQuery();
                 }
                 else if (recordno > 0 && isactive != "X")
@@ -758,7 +758,7 @@ namespace MvcSchoolWebApp.Controllers
                                       "('" + empid + "', '" + dt + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + dt.ToString("yyyy/MM/dd") + "', '" + dt.ToString("HH:mm:ss") + "', " +
                                       "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + latitude + "', " +
-                                      "'" + longitude + "', '', '', '', 'X', '')";
+                                      "'" + longitude + "', '', '', '', 'X', '"+remarks+"')";
                     command.ExecuteNonQuery();
                 }
                 else if (recordno > 0 && isactive == "X")
@@ -766,6 +766,7 @@ namespace MvcSchoolWebApp.Controllers
                     command.CommandText = "update emp0280 set enddate = '" + dt + "', isactive = '', toutusr = '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
                                           "toutlat = '"+latitude+"', toutlong = '"+longitude+"' "+
                                           "where empid = '" + empid + "' and clientid = '" + clientid + "' and upduser = '' and delind <> 'X' "+
+                                          "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "'" +
                                           "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
                                           "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "')";
                     

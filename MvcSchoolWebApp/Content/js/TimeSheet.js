@@ -68,13 +68,11 @@ function filluserinformation() {
     });
 }
 
-function setformtype(type)
-{
+function setformtype(type) {
     formtype = type;
 }
 
-function getformtype()
-{
+function getformtype() {
     return formtype;
 }
 
@@ -88,12 +86,14 @@ function insertempattendance() {
             date: $("#txtdateTS").val(),
             time: $("#txttimeTS").val(),
             type: getformtype(),
+            remarks: $("#txtremarksTS").val(),
             lattd: getLatitude(),
             lngtd: getLongtitude()
         },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            $("#txtremarksTS").val("");
             isactiveemployee();
             waitingDialog.hide();
             $('#empattendance_table').jqGrid('clearGridData');
@@ -107,13 +107,14 @@ function insertempattendance() {
 
             $("#empattendance_table").jqGrid({
                 datatype: "local",
-                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client'],
+                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client', 'Remarks'],
                 colModel: [
                     { name: 'employeename', index: 'employeename', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'left' },
                     { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'left' },
-                    { name: 'cliendname', index: 'cliendname', width: $size * 30, resizable: false, align: 'left' }
+                    { name: 'cliendname', index: 'cliendname', width: $size * 30, resizable: false, align: 'left' },
+                    { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' }
                 ],
                 data: data,
                 styleUI: 'Bootstrap',
@@ -218,13 +219,14 @@ function getemployeeattendancehistory() {
 
             $("#empattendance_table").jqGrid({
                 datatype: "local",
-                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client'],
+                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client', 'Remarks'],
                 colModel: [
                     { name: 'employeename', index: 'employeename', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'center' },
                     { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'center' },
-                    { name: 'client', index: 'client', width: $size * 30, resizable: false, align: 'left' }
+                    { name: 'client', index: 'client', width: $size * 30, resizable: false, align: 'left' },
+                    { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' }
                 ],
                 data: data,
                 styleUI: 'Bootstrap',
@@ -279,8 +281,7 @@ function showPosition(position) {
     latitude = position.coords.latitude;
 }
 
-function getLatitude()
-{
+function getLatitude() {
     return latitude;
 }
 

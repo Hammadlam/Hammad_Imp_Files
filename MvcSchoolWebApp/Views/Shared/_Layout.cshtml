@@ -170,6 +170,12 @@
             background-color: #4468b3;
         }
 
+        .sidebar-menu .treeview-menu {
+            width: 230px !important;
+        }
+
+        
+
         /*End New CSS*/
 
 
@@ -484,7 +490,7 @@
                                         }
                                         else if (user_dtl[0].user_image != "")
                                         {
-                                            <img src="@Url.Content(user_dtl[0].user_image)" class="user-image" alt="User Image">
+                                            <img src="@Url.Content(user_dtl[0].user_image)" class="user-image" alt="Image">
 
                                         }
                                     }
@@ -511,7 +517,7 @@
                                             }
                                             else if (user_dtl[0].user_image != "")
                                             {
-                                                <img src="@Url.Content(user_dtl[0].user_image)" class="img-circle" alt="User Image">
+                                                <img src="@Url.Content(user_dtl[0].user_image)" class="img-circle" alt="Image">
                                                 <p>
                                                     @user_dtl[0].user_fullname
                                                 </p>
@@ -579,7 +585,7 @@
                             else if (user_dtl[0].user_image != "")
                             {
                                 <div class="pull-left image">
-                                    <img src="@Url.Content(user_dtl[0].user_image)" class="img-circle" alt="User Image">
+                                    <img src="@Url.Content(user_dtl[0].user_image)" class="img-circle" alt="Image">
                                 </div>
 
                             }
@@ -1716,9 +1722,9 @@
     <script src=@Url.Content("~/Content/js/masterDashboard.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/purRequisit.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/SaleOrder.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/TimeSheet.js?n=4") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/TimeSheet.js?n=5") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/Operations.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Profile.js") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/Profile.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/DailyTmshtReport.js?n=1") asp-append-version="true"></script>
     @*******************************Pages Scripts**********************************@

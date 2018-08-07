@@ -114,11 +114,11 @@ namespace MvcSchoolWebApp.Controllers
             return View(tsm);
         }
 
-        public JsonResult insertattendancerecord(string empid, string clientid, DateTime date, string time, string type, string lattd, string lngtd)
+        public JsonResult insertattendancerecord(string empid, string clientid, DateTime date, string time, string type, string remarks, string lattd, string lngtd)
         {
             DatabaseInsertClass dc = new DatabaseInsertClass();
             db = new DatabaeseClass();
-            dc.InsertEmployeeAttendance(empid, clientid, date, time, type, lattd, lngtd);
+            dc.InsertEmployeeAttendance(empid, clientid, date, time, type, remarks, lattd, lngtd);
             return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
         }
 

@@ -7,9 +7,11 @@ namespace MvcSchoolWebApp.Models
 {
     public class Profile
     {
-
         public int id { get; set; }
         public int roleid { get; set; }
+        public string empid { get; set; }
+        public string joiningdate { get; set; }
+        public string designation { get; set; }
         public string roletxt { get; set; }
         public string status { get; set; }
         public string school { get; set; }
@@ -23,9 +25,11 @@ namespace MvcSchoolWebApp.Models
         public string secondname { get; set; }
         public string middlename { get; set; }
         public string lastname { get; set; }
+        public string fullname { get; set; }
         public string gender { get; set; }
         public string nic { get; set; }
         public string image { get; set; }
+        public string mail_address { get; set; }
         public string paddress { get; set; }
         public string careof { get; set; }
         public string paddress2 { get; set; }
@@ -35,12 +39,8 @@ namespace MvcSchoolWebApp.Models
         public string city { get; set; }
         public string nationality { get; set; }
         public string dob { get; set; }
-      
         public string birthplace { get; set; }
         public string birthcountry { get; set; }
         public string addtype { get; set; } 
-
-
-
     }
 }

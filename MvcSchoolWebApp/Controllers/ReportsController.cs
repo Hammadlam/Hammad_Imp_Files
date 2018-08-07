@@ -318,6 +318,29 @@ namespace MvcSchoolWebApp.Controllers
 
             return View();
         }
+
+        public ReportDocument Addformulavalues(ReportDocument rd, string[] formula_values)
+        {
+            string[] formulas = new string[2];
+            formulas[0] = "datefrom";
+            formulas[1] = "dateto";
+            for (int i = 0; i < rd.DataDefinition.FormulaFields.Count; i++)
+            {
+                for (int j = 0; j < formulas.Length; j++)
+                {
+                    if (rd.DataDefinition.FormulaFields[i].Name == formulas[j])
+                    {
+                        if (!string.IsNullOrEmpty(formula_values[j]))
+                        {
+                            rd.DataDefinition.FormulaFields[i].Text = "\"" + formula_values[j] + "\"";
+                        }
+                    }
+                }
+            }
+            return rd;
+        }
+
+
         public ActionResult ExecuteReport()
         {
 
@@ -547,7 +570,7 @@ namespace MvcSchoolWebApp.Controllers
 
         }
 
-        public Stream getrptstream(string rptid, string updatedquery)
+        public Stream getrptstream(string rptid, string updatedquery, string[] formula_values = null)
         {
 
             using (SqlConnection con = new SqlConnection(cs))
@@ -636,6 +659,16 @@ namespace MvcSchoolWebApp.Controllers
                 }
 
                 //Passing DataTable to ReportDocument
+
+                //CryFormula Start
+
+                if (formula_values != null)
+                {
+                    rd = Addformulavalues(rd, formula_values);
+                }
+
+                //CryFormula End
+
 
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(cs);
                 string servername = builder.DataSource;
