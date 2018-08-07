@@ -734,11 +734,11 @@ namespace MvcSchoolWebApp.Controllers
                         pro.todate = date.ToString("dd/MMMM/yyyy") ?? "-";
                         pro.title = da.obj_reader["formadd"].ToString() ?? "-";
                         pro.gender = da.obj_reader["gender"].ToString() ?? "-";
-                        if (pro.gender.Trim() == "F")
+                        if (pro.gender.Trim().ToUpper() == "F")
                         {
                             pro.gender = "Female";
                         }
-                        else if (pro.gender.Trim() == "M")
+                        else if (pro.gender.Trim().ToUpper() == "M")
                         {
                             pro.gender = "Male";
                         }
