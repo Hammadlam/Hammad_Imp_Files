@@ -31,12 +31,16 @@ namespace MvcSchoolWebApp.Controllers
         {
             List<LoginModel> item = new List<LoginModel>();
             List<Users> user_dtl = new List<Users>();
-            string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, usr.menuprof, img.imageobj, mpd.menustat, " +
-                           "mpd.menulabel, mpd.menuid, mpd.tcode, std.eareatxt from usr01 usr " +
-                           "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof " +
-                           "left join emp0170 e17 on e17.empid = usr.userid " +
-                           "left join imageobj img on img.imageid = e17.imageid " +
-                           "inner join earea std on usr.acdtitle = std.earea where userid = '" + username + "' order by mpd.menuid";
+            string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, e17.recordno, "+
+                            "usr.menuprof, img.imageobj, mpd.menustat, mpd.menulabel, mpd.menuid, "+
+                            "mpd.tcode, std.eareatxt from usr01 usr "+
+                            "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof "+
+                            "left join emp0170 e17 on e17.empid = usr.userid "+
+                            "left join imageobj img on img.imageid = e17.imageid "+
+                            "inner join earea std on usr.acdtitle = std.earea "+
+                            "where userid = '"+username+"' and(e17.recordno = "+
+                            "(select max(recordno) from emp0170 where empid = '"+username+"') OR e17.recordno is null) "+
+                            "order by mpd.menuid";
             da.CreateConnection();
             da.OpenConnection();
             da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
@@ -3448,13 +3452,12 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 da.CreateConnection();
-                string query = "select distinct emp.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' "+
-                               "from empmain as emp "+
-                               "inner join emppers ep on emp.empid = ep.empid "+
-                               "left join emp0351 e3 on emp.empid = e3.empid "+
-                               "where ep.delind <> 'X' and emp.delind <> 'X' and emp.empid not in "+
-                               "(select distinct empid from emp0351 where payblock = 'X') "+
-                               "order by empname ASC";
+                string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' "+
+                                "from emppers as ep "+
+                                "where ep.delind <> 'X' and ep.empid not in ( "+
+                                "Select empid from emp0351 as e51 "+
+                                "where e51.delind <> 'X' and e51.payblock = 'X') "+
+                                "order by empname ASC";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();

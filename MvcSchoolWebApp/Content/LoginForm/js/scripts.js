@@ -17,8 +17,7 @@ jQuery(document).ready(function () {
 "Content/LoginForm/img/backgrounds/Business Image 1k.jpg?n=1",
 "Content/LoginForm/img/backgrounds/Business Image 1l.jpg?n=1",
 "Content/LoginForm/img/backgrounds/Business Image 1m.jpg?n=1",
-"Content/LoginForm/img/backgrounds/Business Image 1n.png?n=1",
-"Content/LoginForm/img/backgrounds/Business Image 1o.png?n=1",
+"Content/LoginForm/img/backgrounds/Business Image 1o.jpg?n=1",
 "Content/LoginForm/img/backgrounds/Business Image 1p.png?n=1"
     ], { duration: 3000, fade: 750 });
 
