@@ -23,8 +23,8 @@ function LblHide() {
     $("#lbljoindate").hide();
     $("#lblgender").hide();
     $("#lbldesignation").hide();
-
-
+    $("#lblempfathername").hide();
+    $("#lblempdob").hide();
     $("#lblName1").hide();
     $("#lblName2").hide();
     $("#lblStrt1").hide();
@@ -49,17 +49,18 @@ function LblValue() {
     $("#txtjoindate").val($("#lbljoindate").html().trim());
     $("#txtgender").val($("#lblgender").html().trim());
     $("#txtdesignation").val($("#lbldesignation").html().trim());
-
-    $("#lblName1").html($("#txtName1").val());
+    $("#txtempfathername").val($("#lblempfathername").html().trim());
+    $("#txtempdob").val($("#lblempdob").html().trim());
+    $("#txtName1").html($("#lblName1").val());
     $("#lblName2").html($("#txtName2").val());
     $("#lblStrt1").html($("#txtStrt1").val());
-    $("#lblStrt2").html($("#txtStrt2").val());
+    $("#txtStrt2").html($("#lblStrt2").val());
     $("#lblStrt4").html($("#txtStrt4").val());
-    $("#lblZip").html($("#txtZip").val());
-    $("#lblCity").html($("#txtCity").val());
+    $("#txtZip").html($("#lblZip").val());
+    $("#txtCity").html($("#lblCity").val());
     $("#lblProv").html($("#txtProv").val());
-    $("#lblCtry").html($("#txtCtry").val());
-    $("#lblPhone").html($("#txtPhone").val());
+    $("#txtCtry").html($("#lblCtry").val());
+    $("#txtPhone").html($("#lblPhone").val());
     $("#lblFex").html($("#txtFex").val());
     $("#lblEmail").html($("#txtEmail").val());
     $("#lblWeb").html($("#txtWeb").val());
@@ -74,7 +75,8 @@ function LblShow() {
     $("#lbljoindate").show();
     $("#lblgender").show();
     $("#lbldesignation").show();
-
+    $("#lblempfathername").show();
+    $("#lblempdob").show();
     $("#lblName1").show();
     $("#lblName2").show();
     $("#lblStrt1").show();
@@ -95,6 +97,8 @@ function TxtHide() {
     $("#txtName1").hide();
     $("#txtName2").hide();
     $("#txtfullname").hide();
+    $("#txtempfathername").hide();
+    $("#txtempdob").hide();
     $("#txtStrt1").hide();
     $("#txtStrt2").hide();
     $("#txtStrt4").hide();
@@ -123,7 +127,8 @@ function TxtValue() {
     $("#txtjoindate").val($("#lbljoindate").html().trim());
     $("#txtgender").val($("#lblgender").html().trim());
     $("#txtdesignation").val($("#lbldesignation").html().trim());
-
+    $("#txtempfathername").val($("#lblempfathername").html().trim());
+    $("#txtempdob").val($("#lblempdob").html().trim());
     $("#txtName1").val($("#lblName1").html().trim());
     $("#txtName2").val($("#lblName2").html().trim());
     //$("#txtStrt1").val($("#lblStrt1").html().trim());
@@ -147,7 +152,8 @@ function TxtShow() {
     $("#txtjoindate").show();
     $("#txtgender").show();
     $("#txtdesignation").show();
-
+    $("#txtempfathername").show();
+    $("#txtempdob").show();
     $("#txtName1").show();
     $("#txtName2").show();
     $("#txtStrt1").show();

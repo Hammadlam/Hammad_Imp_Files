@@ -118,7 +118,8 @@ namespace MvcSchoolWebApp.Controllers
                             db.Fill_usrdtl();
                             if (user_role == "1000" || user_role == "2000" || user_role == "3000")
                             {
-                                return RedirectToAction("index", "dashboard");
+                                //return RedirectToAction("index", "dashboard");
+                                return RedirectToAction("essTimeMgmt", "TM");
                             }
                             //else if ()
                             //{

@@ -686,8 +686,8 @@ namespace MvcSchoolWebApp.Controllers
                 da.CreateConnection();
                 string query =
                     "select distinct emp.empid, emp.earea , e.eareatxt , epos.postxt, eesubarea , esub.esubareat , emp.eegroup, " +
-                    "eg.eegrouptxt , emp.begdate, emp.enddate, info.formadd, info.firstname, " +
-                    "info.midname, info.lastname, info.secname, info.idnumber, info.birthdate, info.gender, " +
+                    "eg.eegrouptxt , emp.begdate, emp.enddate, info.formadd, info.birthdate, info.firstname, " +
+                    "info.midname, info.lastname, info.secname, info.idnumber, info.gender, " +
                     "info.birthplace, info.cobirth, info.birthname, info.nationality, img.imagepath, ad.typetxt, " +
                     "empadd.careof, empadd.street1, empadd.street2, empadd.zipcode, empadd.city, empadd.district, empadd.phone " +
                     "from empmain as emp " +
@@ -714,7 +714,7 @@ namespace MvcSchoolWebApp.Controllers
                         pro.empid = da.obj_reader["empid"].ToString() ?? "-";
                         pro.status = da.obj_reader["eegrouptxt"].ToString() ?? "-";
                         date = Convert.ToDateTime(da.obj_reader["birthdate"]);
-                        pro.dob = date.ToString("dd/MMMM/yyyy") ?? "-";
+                        pro.dob = date.ToString("dd-MMMM-yyyy") ?? "-";
                         pro.designation = da.obj_reader["postxt"].ToString() ?? "-";
                         pro.city = da.obj_reader["city"].ToString() ?? "-";
                         pro.district = da.obj_reader["district"].ToString() ?? "-";
@@ -3500,7 +3500,7 @@ namespace MvcSchoolWebApp.Controllers
                                "inner join emppers ep on e2.empid = ep.empid "+
                                "inner join custmst ct on e2.clientid = ct.custno "+
                                "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"' "+
-                               "order by e2.begdate";
+                               "and ep.delind <> 'X' and e2.delind <> 'X' order by e2.begdate";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
