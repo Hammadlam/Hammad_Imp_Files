@@ -14,6 +14,7 @@ namespace MvcSchoolWebApp.Controllers
     public class MessageController : Controller
     {
         // GET: Message
+        bool inprocess = false;
         public static string user_role;
         public static string user_id;
         public static string user_campus;
@@ -21,6 +22,8 @@ namespace MvcSchoolWebApp.Controllers
         public static string user_section;
         public static string popup_status;
         public static List<Users> user_dtl;
+        private static string last_msg_dt;
+        MessageCls msgobj = new MessageCls();
         string cs = ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString.ToString();
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -257,7 +260,16 @@ namespace MvcSchoolWebApp.Controllers
                 if (groupid == "" && recordno == "")
                 {
                     //query = "select distinct msgid, message, inbox.recordno, subject, img.imagepath, (Select top(1)(CONVERT(varchar, inbox.dbtimestmp, 109)) from inbox where msgid = '" + msgId+"' and status <> 'X') as Date, DATENAME(weekday, inbox.dbtimestmp) as Day , (select count(msgid) from inbox where msgid = '"+msgId+ "' and status<> 'X') as countRecord, sender, (ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' ' + sp.lastname) as stdname from inbox left join emppers ep on ep.empid = inbox.sender left join stdpers sp on sp.stdid = inbox.sender left join emp0170 as e17 on e17.empid = inbox.sender  left join imageobj as img on e17.imageid = img.imageid  where msgid = '" + msgId+"' and status<> 'X' group by msgid,message,subject,inbox.dbtimestmp,sender,inbox.recordno,status,ep.firstname,ep.lastname, sp.firstname, sp.lastname, img.imagepath order by recordno ASC";
-                    query = "select distinct msgid, message, inbox.recordno, subject, img.imagepath, inbox.dbtimestmp  as Date, inbox.filepath, (select count(msgid) from inbox where msgid = '"+msgId+"' and status <> 'X') as countRecord, sender, (ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' ' + sp.lastname) as stdname from inbox left join emppers ep on ep.empid = inbox.sender left join stdpers sp on sp.stdid = inbox.sender left join emp0170 as e17 on e17.empid = inbox.sender  left join imageobj as img on e17.imageid = img.imageid where msgid = '"+msgId+"' and status<> 'X' group by msgid,message,subject,inbox.dbtimestmp,sender,inbox.recordno,status,ep.firstname,ep.lastname, sp.firstname, sp.lastname, img.imagepath, inbox.filepath order by recordno ASC";
+                    query = " select msgid, message, inbox.recordno, subject, img.imageobj, inbox.dbtimestmp  as Date, "+
+                            "inbox.filepath, (select count(msgid) from inbox "+
+                            " where msgid = '"+msgId+"' and status <> 'X') as countRecord, sender, "+
+                            "(ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' ' + sp.lastname) as stdname from inbox "+
+                            " left join emppers ep on ep.empid = inbox.sender "+
+                            " left join stdpers sp on sp.stdid = inbox.sender "+                                                                                        
+                            "left join emp0170 as e17 on e17.empid = inbox.sender "+
+                            "left join imageobj as img on e17.imageid = img.imageid "+
+                            " where msgid = '"+msgId+"' and status<> 'X' and ep.delind <> 'X' and(e17.delind <> 'X' OR e17.delind is null) "+
+                            " order by recordno ASC";
                 }
                 else
                 {
@@ -282,13 +294,20 @@ namespace MvcSchoolWebApp.Controllers
                     DateTime dbtimestamp = dc.converteddisplaydate(ds.Tables[0].Rows[i]["date"].ToString());
                     string date = dbtimestamp.ToString("MMM dd yyyy h:mm tt");
                     string day = dbtimestamp.ToString("dddd");
-
+                    string imgsrc = "";
+                    if (ds.Tables[0].Rows[i]["imageobj"].ToString() != "")
+                    {
+                        byte[] header = (byte[])ds.Tables[0].Rows[i]["imageobj"];
+                        var base64 = Convert.ToBase64String(header);
+                        imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    
                     Msglst.Add(new MessageCls()
                     {
                         Message = ds.Tables[0].Rows[i]["message"].ToString(),
                         MsgDate = day + " " + date,
                         UserName = string.IsNullOrEmpty(ds.Tables[0].Rows[i]["empname"].ToString()) ? ds.Tables[0].Rows[i]["stdname"].ToString() : ds.Tables[0].Rows[i]["empname"].ToString(),
-                        imgpath = string.IsNullOrEmpty(ds.Tables[0].Rows[i]["imagepath"].ToString()) ? "~/Content/Avatar/avatar2.png" : ds.Tables[0].Rows[i]["imagepath"].ToString(),
+                        imgpath = string.IsNullOrEmpty(imgsrc) ? "~/Content/Avatar/avatar2.png" : imgsrc,
                         filepath = ds.Tables[0].Rows[i]["filepath"].ToString(),
                         RecordNo = ds.Tables[0].Rows[i]["recordno"].ToString()
                     });
@@ -493,6 +512,84 @@ namespace MvcSchoolWebApp.Controllers
                 }
             }
             return null;
+        }
+
+        public void Reset_msgtime()
+        {
+            last_msg_dt = null;
+        }
+
+        public JsonResult RefreshMsg()
+        {
+            if (inprocess == false)
+            {
+                inprocess = true;
+                msgobj = new MessageCls();
+                List<MessageCls> list = msgobj.GetNotifications();
+                var unread_msg = from m in list orderby m.fullmsgdate descending where m.unread == true select m;
+                list = unread_msg.ToList<MessageCls>();
+
+                if (list.Count == 0)
+                {
+                    list = null;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(last_msg_dt))
+                    {
+                        last_msg_dt = Convert.ToDateTime(list[0].fullmsgdate).ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    else
+                    {
+                        int new_msg_count = 0;
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            if (Convert.ToDateTime(list[i].fullmsgdate) > Convert.ToDateTime(last_msg_dt))
+                            {//orderby m.fullmsgdate descending 
+                                //list[i].fullmsgdate;
+
+                                var new_msgs = from m in list orderby m.fullmsgdate where Convert.ToDateTime(m.fullmsgdate) > Convert.ToDateTime(last_msg_dt) select m;
+                                
+                                list = new_msgs.ToList<MessageCls>();
+                                
+                                new_msg_count++;
+                                
+                                //list[i].msgdate = Convert.ToDateTime(list[i].msgdate).ToString("");
+                            }
+
+                        }
+                        if (new_msg_count == 0)
+                        {
+                            list = null;
+                        }
+                        else
+                        {
+                            last_msg_dt = list[0].fullmsgdate;
+                        }
+                        
+                    }
+                }
+                
+                //last_msg_dt = list
+                //for (int i =0; i<list.Count;i++)
+                //{
+                //    if (list[i].unread == true)
+                //    {
+                //        list.Add(new MessageCls
+                //        {
+                            
+                //        });
+                //    }
+                //}
+                string nof = msgobj.NumberofNotifications();
+                inprocess = false;
+                return Json(new { notf = list, num = nof }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public ActionResult DelMsg(string sendrcdid)

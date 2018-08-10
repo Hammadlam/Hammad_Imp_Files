@@ -25,6 +25,7 @@ namespace MvcSchoolWebApp.Models
         public string imgpath { get; set; }
         public string msgdate { get; set; }
         public string msgtime { get; set; }
+        public string fullmsgdate { get; set; }
         public string filepath { get; set; }
 
         string cs = ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString;
@@ -119,19 +120,22 @@ namespace MvcSchoolWebApp.Models
             foreach (var item in lst)
             {
                 DateTime datetime = DateTime.ParseExact(item.msgdate, "yyyy-MM-dd HH:mm:ss", null);
-                string date = datetime.ToString("dd-MM-yyyy");
+                string date = datetime.ToString("yyyy-MM-dd HH:mm:ss");
                 string time = datetime.ToString("h:mm tt");
                 DatabaeseClass dc = new DatabaeseClass();
                 string currdate = dc.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MM-yyyy");
+                lst[k].fullmsgdate = date;
+                date = Convert.ToDateTime(date).ToString("dd-MM-yyyy");
                 if (date == currdate)
                 {
                     item.msgdate = time;
                 }
                 else
                 {
-                    item.msgdate = date;
+                    item.msgdate = datetime.ToString("dd-MM-yy"); //Convert.ToDateTime(date).ToString("dd-MM-yy");
                 }
                 lst[k].msgdate = item.msgdate;
+                
                 k++;
             }
             return lst;

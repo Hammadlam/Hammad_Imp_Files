@@ -65,6 +65,8 @@ namespace MvcSchoolWebApp.Controllers
                 return RedirectToAction("Index", "dashboard");          //user has no right to access this page, return to dashboard
             }
 
+            ViewBag.msglist = msgobj.GetNotifications();
+            ViewBag.TotalNotification = msgobj.NumberofNotifications();
             db = new DatabaeseClass();
             Timesheetmodal tsm = new Timesheetmodal();
             tsm.empname = db.FillSNSEmployee();
@@ -95,6 +97,8 @@ namespace MvcSchoolWebApp.Controllers
                 return RedirectToAction("Index", "dashboard");          //user has no right to access this page, return to dashboard
             }
 
+            ViewBag.msglist = msgobj.GetNotifications();
+            ViewBag.TotalNotification = msgobj.NumberofNotifications();
             db = new DatabaeseClass();
             Timesheetmodal tsm = new Timesheetmodal();
             tsm.empname = db.FillSNSEmployee();

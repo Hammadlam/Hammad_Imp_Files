@@ -92,7 +92,10 @@ namespace MvcSchoolWebApp.Controllers
         [HttpGet]
         public void usertimezone(String timezoneid)
         {
-            HttpContext.Session["usr_timezone"] = timezoneid;
+            System.Web.HttpContext.Current.Session["usr_timezone"] = timezoneid;
+            DatabaeseClass.usr_timezone = timezoneid;
+            MessageController msgc = new MessageController();
+            msgc.Reset_msgtime();
         }
 
         [HandleError]

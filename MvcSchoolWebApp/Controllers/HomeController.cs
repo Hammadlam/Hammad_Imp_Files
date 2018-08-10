@@ -218,6 +218,16 @@ namespace MvcSchoolWebApp.Controllers
                             filepath = MsgAttachment(postedFile, increment);
                         }
                     }
+
+                    //cmd.CommandText = "select msgid from inbox where (sender = '"+dm.sendTo+"' and recip = '"+user_id+"') OR (recip = '"+dm.sendTo+"' and sender = '"+user_id+"')";
+                    //string new_msgid = cmd.ExecuteScalar().ToString();
+                    //if (new_msgid != "")
+                    //{
+                    //    cmd.CommandText = "select max(recordno) from inbox where msgid = '"+new_msgid+"'";
+                    //    string new_recordno = cmd.ExecuteScalar().ToString();
+                    //    recordno = Convert.ToInt16(new_msgid);
+                    //}
+
                     cmd.CommandText = "insert into inbox(msgid,recordno,subject,message,sender,recip,cc,unread,status,dbtimestmp,chatviewid,filepath,notfcase) values('" + recordno + "','1','" + dm.title + "',@message,'" + user_id + "','" + dm.sendTo + "',' ','X',' ','" + currtime + "','" + chatviewId + "','" + filepath + "','')";
                     cmd.Parameters.AddWithValue("@message", dm.msg);
 

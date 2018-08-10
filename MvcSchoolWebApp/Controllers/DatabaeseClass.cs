@@ -20,6 +20,7 @@ namespace MvcSchoolWebApp.Controllers
         public Database.Database da = new Database.Database("Falconlocal");
         private string user_role = Convert.ToString(System.Web.HttpContext.Current.Session["User_Role"]) ?? " ";
         private string user_id = Convert.ToString(System.Web.HttpContext.Current.Session["User_Id"]) ?? " ";
+        public static string usr_timezone;
         List<campus> user = new List<campus>();
         List<class_d> usr_class = new List<class_d>();
         List<class_d> get_clist = new List<class_d>();
@@ -106,7 +107,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             String dbTime = date;
             DateTime time = DateTime.Parse(dbTime);
-            string user_timezone = System.Web.HttpContext.Current.Session["usr_timezone"].ToString();
+            string user_timezone = (string) System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
             string lang = CultureInfo.CurrentCulture.Name;
             var abbreviations = TZNames.GetNamesForTimeZone(user_timezone, lang);
 
@@ -148,7 +149,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             String dbTime = date;
             DateTime time = DateTime.Parse(dbTime);
-            string user_timezone = System.Web.HttpContext.Current.Session["usr_timezone"].ToString();
+            string user_timezone = (string)System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
             string lang = CultureInfo.CurrentCulture.Name;
             var abbreviations = TZNames.GetNamesForTimeZone(user_timezone, lang);
 
@@ -169,7 +170,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             String dbTime = date;
             DateTime time = DateTime.Parse(dbTime);
-            string user_timezone = System.Web.HttpContext.Current.Session["usr_timezone"].ToString();
+            string user_timezone = (string) System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
             string lang = CultureInfo.CurrentCulture.Name;
             var abbreviations = TZNames.GetNamesForTimeZone(user_timezone, lang);
 
@@ -190,7 +191,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             String dbTime = date;
             DateTime time = DateTime.Parse(dbTime);
-            string user_timezone = System.Web.HttpContext.Current.Session["usr_timezone"].ToString();
+            string user_timezone = (string)System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
             string lang = CultureInfo.CurrentCulture.Name;
             var abbreviations = TZNames.GetNamesForTimeZone(user_timezone, lang);
 

@@ -66,30 +66,100 @@
     <link href="~/Content/dbtheme/dist/css/file-upload.css?n=1" rel="stylesheet" />
 
     <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 15%;
+            bottom: 10%;
+            font-size: 17px;
+        }
+
+            #snackbar.show {
+                visibility: visible;
+                -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+
+        @@-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 10%;
+                opacity: 1;
+            }
+        }
+        @@-webkit-keyframes fadeout {
+            from {
+                bottom: 10%;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @@keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 10%;
+                opacity: 1;
+            }
+        }
+
+        
+
+        @@keyframes fadeout {
+            from {
+                bottom: 10%;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
 
         /*New CSS*/
 
         .skin-blue-light .main-header .navbar {
             /*background-color:rgb(0,51,153);*/
-            background-color:rgb(55,94,151);
+            background-color: rgb(55,94,151);
         }
 
         .skin-blue-light .wrapper, .skin-blue-light .main-sidebar, .skin-blue-light .left-side {
             /*background-color:rgb(68, 105, 179);*/
-            background-color:rgb(175, 20, 20);
+            background-color: rgb(175, 20, 20);
         }
 
         .skin-blue-light .main-header .logo {
-            background-color:rgb(236,118,0);
+            background-color: rgb(236,118,0);
         }
 
         .skin-blue-light .main-header #logo {
-            background-color:rgb(236,118,0);
-            width:19%;
+            background-color: rgb(236,118,0);
+            width: 19%;
         }
 
         .skin-blue-light .main-header .logo:hover {
-            background-color:rgb(236,118,0);
+            background-color: rgb(236,118,0);
         }
 
         .skin-blue-light .sidebar-menu > li > .treeview-menu {
@@ -117,11 +187,11 @@
         }
 
         li a i.fa {
-            color:black;
+            color: black;
         }
 
         .sidebar-menu > li > a > .fa, .sidebar-menu > li > a > .glyphicon, .sidebar-menu > li > a > .ion {
-            color:white;
+            color: white;
         }
 
         .nav li a i.fa {
@@ -133,7 +203,7 @@
         }
 
         .main-sidebar span {
-            color:white;
+            color: white;
         }
 
         .main-header .logo .logo-lg {
@@ -152,7 +222,7 @@
         }
 
         .user-panel > .info > a {
-            font-size:10px;
+            font-size: 10px;
         }
 
         .user-panel > .info {
@@ -163,7 +233,7 @@
         }
 
         .sidebar-menu li ul li a span {
-            color:#101010;
+            color: #101010;
         }
 
         .skin-blue-light .main-header li.user-header {
@@ -174,7 +244,7 @@
             width: 230px !important;
         }
 
-        
+
 
         /*End New CSS*/
 
@@ -203,29 +273,28 @@
             border-left-color: #13a6ec;
         }
 
-        .profbtn
-        {
-            margin-left:15px;
+        .profbtn {
+            margin-left: 15px;
         }
 
         .home-button {
-            margin-top:5px;
+            margin-top: 5px;
         }
 
-      /* SO TABLE CSS */
+        /* SO TABLE CSS */
 
-      .tbheadpad{
-      padding-bottom: 2px;
-       padding-top: 2px;
-      }
-             .users {
-           
-            table-layout:auto;
+        .tbheadpad {
+            padding-bottom: 2px;
+            padding-top: 2px;
+        }
+
+        .users {
+            table-layout: auto;
             width: 100%;
             white-space: nowrap;
         }
 
-        .users td {
+            .users td {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -247,25 +316,32 @@
         .row-D {
             width: 9%;
         }
+
         .row-E {
             width: 9%;
         }
+
         .row-F {
             width: 9%;
         }
-         .row-G {
+
+        .row-G {
             width: 9%;
         }
-         .row-H {
+
+        .row-H {
             width: 9%;
         }
-         .row-I {
+
+        .row-I {
             width: 9%;
         }
-         .row-J {
+
+        .row-J {
             width: 9%;
         }
-         .row-K {
+
+        .row-K {
             width: 9%;
         }
         /*  END HERE*/
@@ -273,9 +349,11 @@
         #btn-signout > a:hover, #btn-profile > a:hover {
             background-color: #d2322d;
         }
-        body{
+
+        body {
             background-color: #e6e6e6;
         }
+
         #myModal2 {
             position: fixed;
             width: 60%;
@@ -326,11 +404,12 @@
             font-size: 13px;
         }
 
-        input[type="text"]{
-            background-color:#e8f1f7 !important
+        input[type="text"] {
+            background-color: #e8f1f7 !important;
         }
+
         .main-header .logo {
-            height:53px;
+            height: 53px;
         }
     </style>
 
@@ -366,40 +445,39 @@
 
 
             @*<a href="#" id="logo" class="logo sidebar-toggle" data-toggle="offcanvas" role="button">*@
-                <span class="sr-only">Toggle navigation </span>
-                @*<span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>*@
-                @*<span class="logo-mini"></span>
-                <span class="logo-lg"><b>ERManager</b></span>
-            </a>*@
+            <span class="sr-only">Toggle navigation </span>
+            @*<span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>*@
+            @*<span class="logo-mini"></span>
+                    <span class="logo-lg"><b>ERManager</b></span>
+                </a>*@
             <!-- Logo -->
             @*<a href="~/dashboard/index" class="logo sidebar-toggle" data-toggle="offcanvas" role="button">*@
-                @*<a href="~/dashboard/index" class="sidebar-toggle" data-toggle="offcanvas" role="button">*@
-                    @*<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation </span>
-                <span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>
-            </a>*@
+            @*<a href="~/dashboard/index" class="sidebar-toggle" data-toggle="offcanvas" role="button">*@
+            @*<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation </span>
+                    <span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>
+                </a>*@
 
-                    @*<span class="sr-only">Toggle navigation </span>*@
-                    @*<span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>*@
+            @*<span class="sr-only">Toggle navigation </span>*@
+            @*<span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>*@
 
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    @*<span class="logo-mini"><b><img src="~/Content/dbtheme/dist/img/ERMIcon.ico" height="40" width="40" class="img-circle logoadjust" />@*ERMCS</b></span>*@
-                    <!-- logo for regular state and mobile devices -->
-                    
-                @*</a>*@
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            @*<span class="logo-mini"><b><img src="~/Content/dbtheme/dist/img/ERMIcon.ico" height="40" width="40" class="img-circle logoadjust" />@*ERMCS</b></span>*@
+            <!-- logo for regular state and mobile devices -->
+            @*</a>*@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <a href="#" style="float:left;padding:15px 15px;color:white;" role="button">
                     <span class="sr-only">Toggle navigation </span>
                     <span class="text-bold input-lg" style="font-family:Arial;"> ERManager CS </span>
                 </a>
-               
+
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
-                   
+
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
-                       
+
                         <li class="dropdown messages-menu" title="Message">
                             <a href="~/Home/Email"><i class="fa fa-envelope-o"></i></a>
                         </li>
@@ -428,12 +506,12 @@
                         <li class="dropdown notifications-menu" title="Notifications">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">@ViewBag.TotalNotification</span>
+                                <span class="label label-warning" id="nof_layout">@ViewBag.TotalNotification</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">Notifications</li>
                                 <li>
-                                    <ul class="menu">
+                                    <ul class="menu" id="notf_menu">
                                         @if (ViewBag.msglist != null)
                                         {
                                             foreach (var item in ViewBag.msglist)
@@ -646,7 +724,7 @@
                         </a>
                     </li>
 
-                    <li class="active treeview">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-book"></i> <span>Academics</span>
                             <span class="pull-right-container">
@@ -1264,13 +1342,13 @@
                                         <li><a href="~/home/finance"> <i class="fa fa-line-chart"></i><span>Finance</span></a></li>
                                         <li>
                                             <a href="~/home/purchase">
-                                                <i class="fa fa-archive"></i><span>Purchase & Inventory</span> 
+                                                <i class="fa fa-archive"></i><span>Purchase & Inventory</span>
                                             </a>
                                         </li>
                                         <li><a href="~/home/sales"><i class="fa fa-bar-chart"></i><span>Sales</span></a></li>
                                         <li>
                                             <a href="~/home/human_resource">
-                                                <i class="fa fa-users"></i><span>Human Resource</span> 
+                                                <i class="fa fa-users"></i><span>Human Resource</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -1306,7 +1384,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/SM/SaleOrder">
-                                                            <i class="fa fa-users"></i><span>Sale Order</span> 
+                                                            <i class="fa fa-users"></i><span>Sale Order</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1314,7 +1392,7 @@
                                                 {
                                                     <li>
                                                         <a href="#">
-                                                            <i class="fa fa-users"></i><span>Sale Approval</span> 
+                                                            <i class="fa fa-users"></i><span>Sale Approval</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1359,7 +1437,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/ESS/purRequisit">
-                                                            <i class="fa fa-users"></i><span>Purchase Requisition</span> 
+                                                            <i class="fa fa-users"></i><span>Purchase Requisition</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1428,7 +1506,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/PM/Operation">
-                                                            <i class="fa fa-users"></i><span>Operations</span> 
+                                                            <i class="fa fa-users"></i><span>Operations</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1442,69 +1520,71 @@
                                         }
                                     </ul>
                                 </li>
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            string url = "/dashboard";
-                            Response.Write("<script type='text/javascript'>");
-                            Response.Write("window.location.href = '" + url + "'</script>");
-                        }
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
                     }
                     @*@{
-                        try
-                        {
-                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                            if (list[60].menustat == "X")
+                            try
                             {
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> <span>Time Management</span>
-                                        <span class="pull-right-container">
-                                            <i class="fa fa-angle-left pull-right"></i>
-                                        </span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        @{
-                                            try
-                                            {
-                                                @*if (list[61].menustat == "X")
+                                var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                if (list[60].menustat == "X")
+                                {
+                                    <li class="treeview">
+                                        <a href="#">
+                                            <i class="fa fa-user"></i> <span>Time Management</span>
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            @{
+                                                try
                                                 {
-                                                    <li>
-                                                        <a href="~/TM/TimeSheet">
-                                                            <i class="fa fa-users"></i><span> Time Sheet </span>
-                                                        </a>
-                                                    </li>
+                                                    @*if (list[61].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a href="~/TM/TimeSheet">
+                                                                <i class="fa fa-users"></i><span> Time Sheet </span>
+                                                            </a>
+                                                        </li>
+                                                    }
+
                                                 }
-                                                
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
-                                        }
-                                    </ul>
-                                </li>
+                                                catch (Exception)
+                                                {
+                                                    string url = "/dashboard";
+                                                    Response.Write("<script type='text/javascript'>");
+                                                    Response.Write("window.location.href = '" + url + "'</script>");
                                                 }
                                             }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
-                    }*@
+                                        </ul>
+                                    </li>
+                                                    }
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    string url = "/dashboard";
+                                                    Response.Write("<script type='text/javascript'>");
+                                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                                }
+                        }*@
                 </ul>
             </section>
             <!-- /.sidebar -->
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="background-color:#e6e6e6">
-            <div class="body-content" >
+            <div id="snackbar">You have some new Notifications..</div>
+            <div class="body-content">
                 @RenderBody()
             </div>
+
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -1609,6 +1689,8 @@
                 </div>
             </div>
         </div>
+
+
 
     </div>
 
@@ -1733,6 +1815,44 @@
     <script type="text/javascript">
         @ViewBag.scriptcall2
         @ViewBag.call_alert
+
+        /******************************* Refresh Notifications Start *****************************/
+        window.setInterval(function (e) {
+            $.ajax({
+                url: encodeURI("../Message/RefreshMsg"),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.num != null) {
+                        
+                        $("#nof_layout").html(data.num);
+                        if (data.notf != null) {
+                            debugger
+                            for (var i = 0; i < Object.keys(data.notf).length; i++) {
+                                if (data.notf[i].recordno == null && data.notf[i].Groupid == null) {
+                                    data.notf[i].recordno = "";
+                                    data.notf[i].Groupid = "";
+                                }
+                                var alldata = data.notf[i].MsgId + "?" + data.notf[i].Groupid + "?" + data.notf[i].recordno;
+                                $("#notf_menu").prepend('<li style="background-color:#e5e5e5;border:1px solid #ffffff;"> <a id="MsgSubject" onclick="GetMsgid(this);" value=' + alldata + '> <label style="font-weight:600; color:#ca434d;">' + data.notf[i].senderId + '</label><br /> ' + data.notf[i].Subject + ' <p class="pull-right msg-time"> ' + data.notf[i].msgdate + ' </p> </a> </li>');
+                            }
+                            var x = document.getElementById("snackbar");
+                            x.className = "show";
+                            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                        }
+                    }
+                    else {
+
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
+        }, 10000);
+
+        /******************************* Refresh Notifications End *****************************/
+
 
         function destroy_session() {
             window.location.href = "/dashboard/destroy_session";
