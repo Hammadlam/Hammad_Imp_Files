@@ -720,7 +720,7 @@ namespace MvcSchoolWebApp.Controllers
                 if (type == "01")   // ESS Formtype
                 {
                     empid = Convert.ToString(System.Web.HttpContext.Current.Session["User_Id"]);
-                    dt = dc.convertservertousertimezone(DateTime.Now.ToString());
+                    dt = dc.convertservertopsttimezone(DateTime.Now.ToString());
                 }
 
                 command.CommandText = "select isnull(max(recordno),0) as recordno from emp0280 where empid = '" + empid+ "' and clientid = '"+clientid+"' "+

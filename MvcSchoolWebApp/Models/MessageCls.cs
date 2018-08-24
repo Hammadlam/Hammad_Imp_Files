@@ -114,7 +114,7 @@ namespace MvcSchoolWebApp.Models
 
                 }
             }
-            var asc = from m in lst    orderby m.msgdate descending    select m;
+            var asc = from m in lst    orderby Convert.ToDateTime(m.msgdate) descending    select m;
             lst = asc.ToList<MessageCls>();
             int k = 0;
             foreach (var item in lst)

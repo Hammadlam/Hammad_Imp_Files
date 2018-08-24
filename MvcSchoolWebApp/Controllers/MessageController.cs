@@ -22,8 +22,9 @@ namespace MvcSchoolWebApp.Controllers
         public static string user_section;
         public static string popup_status;
         public static List<Users> user_dtl;
-        private static string last_msg_dt;
+        private static DateTime? last_msg_dt;
         MessageCls msgobj = new MessageCls();
+        DatabaeseClass db;
         string cs = ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString.ToString();
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -535,20 +536,21 @@ namespace MvcSchoolWebApp.Controllers
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(last_msg_dt))
+                    if (last_msg_dt == null)
                     {
-                        last_msg_dt = Convert.ToDateTime(list[0].fullmsgdate).ToString("yyyy-MM-dd HH:mm:ss");
+                        db = new DatabaeseClass();
+                        last_msg_dt =  db.convertservertopsttimezone(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else
                     {
                         int new_msg_count = 0;
                         for (int i = 0; i < list.Count; i++)
                         {
-                            if (Convert.ToDateTime(list[i].fullmsgdate) > Convert.ToDateTime(last_msg_dt))
+                            if (Convert.ToDateTime(list[i].fullmsgdate) > last_msg_dt)
                             {//orderby m.fullmsgdate descending 
                                 //list[i].fullmsgdate;
 
-                                var new_msgs = from m in list orderby m.fullmsgdate where Convert.ToDateTime(m.fullmsgdate) > Convert.ToDateTime(last_msg_dt) select m;
+                                var new_msgs = from m in list orderby m.fullmsgdate where Convert.ToDateTime(m.fullmsgdate) > last_msg_dt select m;
                                 
                                 list = new_msgs.ToList<MessageCls>();
                                 
@@ -564,7 +566,8 @@ namespace MvcSchoolWebApp.Controllers
                         }
                         else
                         {
-                            last_msg_dt = list[0].fullmsgdate;
+                            db = new DatabaeseClass();
+                            last_msg_dt = db.convertservertopsttimezone(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
                         
                     }

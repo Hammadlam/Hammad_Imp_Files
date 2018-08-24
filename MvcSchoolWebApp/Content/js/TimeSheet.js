@@ -77,6 +77,8 @@ function getformtype() {
 }
 
 function insertempattendance() {
+    $("#btntimein").attr("disabled", "disabled");
+    $("#btntimeout").attr("disabled", "disabled");
     waitingDialog.show('Please Wait: This May Take a While');
     $.ajax({
         url: encodeURI("../TM/insertattendancerecord"),
@@ -113,7 +115,7 @@ function insertempattendance() {
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'left' },
                     { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'left' },
-                    { name: 'cliendname', index: 'cliendname', width: $size * 30, resizable: false, align: 'left' },
+                    { name: 'client', index: 'client', width: $size * 30, resizable: false, align: 'left' },
                     { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' }
                 ],
                 data: data,
@@ -145,6 +147,8 @@ function insertempattendance() {
             // close_progress();
         },
         error: function (error) {
+            $("#btntimeout").removeAttr("disabled");
+            $("#btntimein").removeAttr("disabled");
             waitingDialog.hide();
             show_err_alert_js("Found Some Error");
         }
@@ -169,8 +173,10 @@ function isactiveemployee() {
                 getclientid();
                 $("#btntimeout").css("display", "none");
                 $("#btntimein").css("display", "block");
+                $("#btntimein").removeAttr("disabled");
             }
             else {
+                $("#btntimeout").removeAttr("disabled");
                 $("#txtclientnameTS").removeAttr("disabled");
                 $("#btntimein").css("display", "none");
                 $("#btntimeout").css("display", "block");
