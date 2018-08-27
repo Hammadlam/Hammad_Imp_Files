@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AI.Agent.Intercept.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks">
+            <summary>Shim type of Microsoft.Diagnostics.Instrumentation.Extensions.Base.Callbacks</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.#ctor(Microsoft.Diagnostics.Instrumentation.Extensions.Base.Callbacks)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectFuncOfObjectObjectObjectActionOfObjectException">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`1&lt;Object&gt; onBegin, Func`3&lt;Object,Object,Object&gt; onEnd, Action`2&lt;Object,Exception&gt; onException)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectObjectFuncOfObjectObjectObjectObjectActionOfObjectExceptionObject">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`2&lt;Object,Object&gt; onBegin, Func`4&lt;Object,Object,Object,Object&gt; onEnd, Action`3&lt;Object,Exception,Object&gt; onException)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectObjectObjectFuncOfObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObject">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`3&lt;Object,Object,Object&gt; onBegin, Func`5&lt;Object,Object,Object,Object,Object&gt; onEnd, Action`4&lt;Object,Exception,Object,Object&gt; onException)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObject">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`4&lt;Object,Object,Object,Object&gt; onBegin, Func`6&lt;Object,Object,Object,Object,Object,Object&gt; onEnd, Action`5&lt;Object,Exception,Object,Object,Object&gt; onException)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObject">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`5&lt;Object,Object,Object,Object,Object&gt; onBegin, Func`7&lt;Object,Object,Object,Object,Object,Object,Object&gt; onEnd, Action`6&lt;Object,Exception,Object,Object,Object,Object&gt; onException)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectObject">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`6&lt;Object,Object,Object,Object,Object,Object&gt; onBegin, Func`8&lt;Object,Object,Object,Object,Object,Object,Object,Object&gt; onEnd, Action`7&lt;Object,Exception,Object,Object,Object,Object,Object&gt; onException)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AddInt32FuncOfObjectObjectObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectObjectObject">
+            <summary>Sets the shim of Callbacks.Add(Int32 methodId, Func`7&lt;Object,Object,Object,Object,Object,Object,Object&gt; onBegin, Func`9&lt;Object,Object,Object,Object,Object,Object,Object,Object,Object&gt; onEnd, Action`8&lt;Object,Exception,Object,Object,Object,Object,Object,Object&gt; onException)</summary>
+        </member>
+        <member name="T:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.Constructor">
+            <summary>Sets the shim of Callbacks.Callbacks()</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.ShimCallbacks.RemoveInt32Int32">
+            <summary>Sets the shim of Callbacks.Remove(Int32 methodId, Int32 argsCount)</summary>
+        </member>
+        <member name="T:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.StubCallbacks">
+            <summary>Stub type of Microsoft.Diagnostics.Instrumentation.Extensions.Base.Callbacks</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.StubCallbacks.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.StubCallbacks.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.StubCallbacks.InitializeStub">
+            <summary>Initializes a new instance of type StubCallbacks</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.StubCallbacks.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Base.Fakes.StubCallbacks.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator">
+            <summary>Shim type of Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Decorator</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectFuncOfObjectObjectObjectActionOfObjectException">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`1&lt;Object&gt; beginCallback, Func`3&lt;Object,Object,Object&gt; endCallback, Action`2&lt;Object,Exception&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectObjectFuncOfObjectObjectObjectObjectActionOfObjectExceptionObject">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`2&lt;Object,Object&gt; beginCallback, Func`4&lt;Object,Object,Object,Object&gt; endCallback, Action`3&lt;Object,Exception,Object&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectObjectObjectFuncOfObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObject">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`3&lt;Object,Object,Object&gt; beginCallback, Func`5&lt;Object,Object,Object,Object,Object&gt; endCallback, Action`4&lt;Object,Exception,Object,Object&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObject">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`4&lt;Object,Object,Object,Object&gt; beginCallback, Func`6&lt;Object,Object,Object,Object,Object,Object&gt; endCallback, Action`5&lt;Object,Exception,Object,Object,Object&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObject">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`5&lt;Object,Object,Object,Object,Object&gt; beginCallback, Func`7&lt;Object,Object,Object,Object,Object,Object,Object&gt; endCallback, Action`6&lt;Object,Exception,Object,Object,Object,Object&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectObject">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`6&lt;Object,Object,Object,Object,Object,Object&gt; beginCallback, Func`8&lt;Object,Object,Object,Object,Object,Object,Object,Object&gt; endCallback, Action`7&lt;Object,Exception,Object,Object,Object,Object,Object&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.DecorateStringStringStringUInt32FuncOfObjectObjectObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectObjectObject">
+            <summary>Sets the shim of Decorator.Decorate(String assemblyName, String moduleName, String methodName, UInt32 argsCount, Func`7&lt;Object,Object,Object,Object,Object,Object,Object&gt; beginCallback, Func`9&lt;Object,Object,Object,Object,Object,Object,Object,Object,Object&gt; endCallback, Action`8&lt;Object,Exception,Object,Object,Object,Object,Object,Object&gt; exceptionCallback)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.EnableTraceInt32Int32">
+            <summary>Sets the shim of Decorator.EnableTrace(Int32 severity, Int32 keywords)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.GetAgentVersion">
+            <summary>Sets the shim of Decorator.GetAgentVersion()</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.GetTraces">
+            <summary>Sets the shim of Decorator.GetTraces()</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.InitializeExtension">
+            <summary>Sets the shim of Decorator.InitializeExtension()</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.InitializeExtensionString">
+            <summary>Sets the shim of Decorator.InitializeExtension(String modulePath)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.InitializeExtensionStringIEnumerableOfString">
+            <summary>Sets the shim of Decorator.InitializeExtension(String modulePath, IEnumerable`1&lt;String&gt; writableLocations)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.IsHostEnabled">
+            <summary>Sets the shim of Decorator.IsHostEnabled()</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimDecorator.StaticConstructor">
+            <summary>Sets the shim of Decorator.Decorator()</summary>
+        </member>
+        <member name="T:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions">
+            <summary>Shim type of Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Functions</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectFuncOfObjectObjectObjectActionOfObjectExceptionBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`1&lt;Object&gt; beginCallback, Func`3&lt;Object,Object,Object&gt; endCallback, Action`2&lt;Object,Exception&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectObjectFuncOfObjectObjectObjectObjectActionOfObjectExceptionObjectBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`2&lt;Object,Object&gt; beginCallback, Func`4&lt;Object,Object,Object,Object&gt; endCallback, Action`3&lt;Object,Exception,Object&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectObjectObjectFuncOfObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`3&lt;Object,Object,Object&gt; beginCallback, Func`5&lt;Object,Object,Object,Object,Object&gt; endCallback, Action`4&lt;Object,Exception,Object,Object&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`4&lt;Object,Object,Object,Object&gt; beginCallback, Func`6&lt;Object,Object,Object,Object,Object,Object&gt; endCallback, Action`5&lt;Object,Exception,Object,Object,Object&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`5&lt;Object,Object,Object,Object,Object&gt; beginCallback, Func`7&lt;Object,Object,Object,Object,Object,Object,Object&gt; endCallback, Action`6&lt;Object,Exception,Object,Object,Object,Object&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectObjectBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`6&lt;Object,Object,Object,Object,Object,Object&gt; beginCallback, Func`8&lt;Object,Object,Object,Object,Object,Object,Object,Object&gt; endCallback, Action`7&lt;Object,Exception,Object,Object,Object,Object,Object&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+        <member name="P:Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.Fakes.ShimFunctions.DecorateStringStringStringFuncOfObjectObjectObjectObjectObjectObjectObjectFuncOfObjectObjectObjectObjectObjectObjectObjectObjectObjectActionOfObjectExceptionObjectObjectObjectObjectObjectObjectBooleanBoolean">
+            <summary>Sets the shim of Functions.Decorate(String assemblyName, String moduleName, String methodName, Func`7&lt;Object,Object,Object,Object,Object,Object,Object&gt; beginCallback, Func`9&lt;Object,Object,Object,Object,Object,Object,Object,Object,Object&gt; endCallback, Action`8&lt;Object,Exception,Object,Object,Object,Object,Object,Object&gt; exceptionCallback, Boolean isStatic, Boolean isSafe)</summary>
+        </member>
+    </members>
+</doc>
