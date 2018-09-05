@@ -57,6 +57,7 @@ namespace MvcSchoolWebApp.Controllers
         [HttpGet]
         public ActionResult essTimeMgmt()
         {
+            String dateId = "";
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
             user_role = HttpContext.Session["User_Role"].ToString();
             user_id = HttpContext.Session["User_Id"].ToString();
@@ -81,7 +82,7 @@ namespace MvcSchoolWebApp.Controllers
             if (isactive == true)
             {
                 ViewBag.disabletimein = true;
-                tsm.clientid = db.getclientid(user_id);
+                tsm.clientid = db.getclientid(user_id,dateId);
             }
             return View(tsm);
         }
@@ -89,6 +90,7 @@ namespace MvcSchoolWebApp.Controllers
         [HttpGet]
         public ActionResult mssTimeMgmt()
         {
+            String dateId = "";
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
             user_role = HttpContext.Session["User_Role"].ToString();
             user_id = HttpContext.Session["User_Id"].ToString();
@@ -113,7 +115,7 @@ namespace MvcSchoolWebApp.Controllers
             if (isactive == true)
             {
                 ViewBag.disabletimein = true;
-                tsm.clientid = db.getclientid(user_id);
+                tsm.clientid = db.getclientid(user_id, dateId);
             }
             return View(tsm);
         }
@@ -220,10 +222,10 @@ namespace MvcSchoolWebApp.Controllers
             return Json(db.isactiveuser(empid), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult getclientid(string empid)
+        public JsonResult getclientid(string empid, string dateId)
         {
             DatabaeseClass db = new DatabaeseClass();
-            return Json(db.getclientid(empid), JsonRequestBehavior.AllowGet);
+            return Json(db.getclientid(empid, dateId), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult CreatePdf(string empid, DateTime date)

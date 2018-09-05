@@ -4,7 +4,7 @@
 var formtype;
 var longitude;
 var latitude;
-
+var datetxt = "";
 $(document).ready(function (e) {
 
     tryGeolocation();
@@ -15,6 +15,18 @@ $(document).ready(function (e) {
         isactiveemployee();
         filluserinformation();
     });
+
+        $("#txtdateTS").datepicker({
+            format: 'dd-MM-yyyy',
+            autoclose: true,
+            onSelect: function (dateText) {
+            }
+        }).on("change", function () {
+            datetxt = $("#txtdateTS").val();
+            getemployeeattendancehistory();
+            isactiveemployee();
+            filluserinformation();
+        });
 
     getemployeeattendancehistory();
 
@@ -193,7 +205,8 @@ function getclientid() {
     $.ajax({
         url: encodeURI("../TM/getclientid"),
         data: {
-            empid: $("#txtempnameTS > option:selected").attr("value")
+            empid: $("#txtempnameTS > option:selected").attr("value"),
+            dateId: datetxt
         },
         contentType: "application/json; charset=utf-8",
         dataType: "json",

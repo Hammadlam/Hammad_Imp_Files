@@ -1103,15 +1103,29 @@ namespace MvcSchoolWebApp.Controllers
             return status;
         }
 
-        public string getclientid(string empid)
+        public string getclientid(string empid, string dateId)
         {
-            DateTime currtime = convertservertousertimezone(DateTime.Now.ToString());
+            string nextdate = "";
+            DateTime currtime;
+            if (dateId == "") {
+                currtime = convertservertousertimezone(DateTime.Now.ToString());
+                dateId = currtime.ToString("yyyy/MM/dd");
+                nextdate = currtime.AddDays(1).ToString("yyyy/MM/dd");
+            }
+            else {
+                if (user_role == "1000")
+                {
+                    DateTime custtime = DateTime.Parse(dateId);
+                    dateId = custtime.ToString("yyyy/MM/dd");
+                    nextdate = custtime.AddDays(1).ToString("yyyy/MM/dd");
+                }
+            }
             string clientid = null;
             try
             {
                 da.CreateConnection();
                 string query = "select clientid from emp0280 where empid = '" + empid + "' and isactive = 'X' and " +
-                               "begdate >= '" + currtime.ToString("yyyy/MM/dd") + "' and begdate < '" + currtime.AddDays(1).ToString("yyyy/MM/dd") + "'";
+                               "begdate >= '" + dateId + "' and begdate < '" + nextdate + "'";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
