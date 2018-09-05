@@ -150,10 +150,8 @@ $("#submitattd_form").submit(function (e) {
     var studentName = new Array();
     var status = new Array();
 
-    debugger
     for (var i = 0; i < gridRows.length; i++) {
 
-        debugger
         studentId[i] = gridRows[i].studentId;
         studentName[i] = gridRows[i].studentName;
         status[i] = gridRows[i].status;
