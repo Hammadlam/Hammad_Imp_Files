@@ -3367,7 +3367,7 @@ namespace MvcSchoolWebApp.Controllers
             {
                 string query = "select begdate, enddate, custname1, isactive from emp0280 "+
                                 "inner join custmst on emp0280.clientid = custmst.custno "+
-                                "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+"' and delind <> 'X' ";
+                                "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+"' and delind <> 'X' order by begdate asc ";
 
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
