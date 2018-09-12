@@ -3514,7 +3514,7 @@ namespace MvcSchoolWebApp.Controllers
                 da.CreateConnection();
                 string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");
                 string startdate = convertservertousertimezone(DateTime.Now.AddDays(-2).ToString()).ToString("yyyy-MM-dd");
-                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, e2.remarks, ct.custname1 from emp0280 e2 "+
+                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, e2.remarks, e2.remarkstout, ct.custname1 from emp0280 e2 "+
                                "inner join emppers ep on e2.empid = ep.empid "+
                                "inner join custmst ct on e2.clientid = ct.custno "+
                                "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"' "+
@@ -3538,7 +3538,8 @@ namespace MvcSchoolWebApp.Controllers
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             checkouttime = enddate,
                             client = da.obj_reader["custname1"].ToString(),
-                            remarks = da.obj_reader["remarks"].ToString()
+                            remarks = da.obj_reader["remarks"].ToString(),
+                            remarkstout = da.obj_reader["remarkstout"].ToString()
                         });
                     }
                 }

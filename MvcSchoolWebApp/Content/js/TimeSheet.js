@@ -121,14 +121,15 @@ function insertempattendance() {
 
             $("#empattendance_table").jqGrid({
                 datatype: "local",
-                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client', 'Remarks'],
+                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client', 'Remarks (Time in)', 'Remarks (Time out)'],
                 colModel: [
                     { name: 'employeename', index: 'employeename', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'left' },
                     { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'left' },
                     { name: 'client', index: 'client', width: $size * 30, resizable: false, align: 'left' },
-                    { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' }
+                    { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' },
+                    { name: 'remarkstout', index: 'remarkstout', width: $size * 30, resizable: true, align: 'left' }
                 ],
                 data: data,
                 styleUI: 'Bootstrap',
@@ -227,6 +228,7 @@ function getemployeeattendancehistory() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            debugger
             $('#empattendance_table').jqGrid('clearGridData');
             $("#empattendance_table").jqGrid("GridUnload");
             $('#empattendance_table').jqGrid('setGridParam', { data: data });
@@ -238,14 +240,15 @@ function getemployeeattendancehistory() {
 
             $("#empattendance_table").jqGrid({
                 datatype: "local",
-                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client', 'Remarks'],
+                colNames: ['Employee Name', 'Date', 'Check In', 'Check Out', 'Client', 'Remarks (Time in)', 'Remarks (Time out)'],
                 colModel: [
                     { name: 'employeename', index: 'employeename', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'date', index: 'date', width: $size * 20, resizable: false, align: 'left' },
                     { name: 'checkintime', index: 'checkintime', width: $size * 15, resizable: false, align: 'center' },
                     { name: 'checkouttime', index: 'checkouttime', width: $size * 15, resizable: false, align: 'center' },
                     { name: 'client', index: 'client', width: $size * 30, resizable: false, align: 'left' },
-                    { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' }
+                    { name: 'remarks', index: 'remarks', width: $size * 30, resizable: true, align: 'left' },
+                    { name: 'remarkstout', index: 'remarkstout', width: $size * 30, resizable: true, align: 'left' }
                 ],
                 data: data,
                 styleUI: 'Bootstrap',
@@ -276,6 +279,7 @@ function getemployeeattendancehistory() {
             // close_progress();
         },
         error: function (error) {
+            debugger
             //show_alert_js();
             $("#empattendance_div").css("display", "none");
         }

@@ -32,5 +32,6 @@ namespace MvcSchoolWebApp.Models
         public DateTime Checkoutdt { get; set; }
 
         public string remarks { get; set; }
+        public string remarkstout { get; set; }
     }
 }
