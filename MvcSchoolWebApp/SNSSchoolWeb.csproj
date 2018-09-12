@@ -138,6 +138,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0-preview1-24530-04\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -185,12 +189,15 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="TimeZoneConverter">
-      <HintPath>..\packages\TimeZoneConverter.2.3.2\lib\net45\TimeZoneConverter.dll</HintPath>
-    </Reference>
-    <Reference Include="TimeZoneNames, Version=3.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TimeZoneConverter, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TimeZoneNames.3.3.2\lib\net45\TimeZoneNames.dll</HintPath>
+      <HintPath>..\packages\TimeZoneConverter.1.1.1\lib\net45\TimeZoneConverter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TimeZoneNames, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TimeZoneNames.3.1.1\lib\net45\TimeZoneNames.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -209,6 +216,7 @@
     <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\CompanyDocController.cs" />
     <Compile Include="Controllers\dashboardController.cs" />
     <Compile Include="Controllers\DatabaeseClass.cs" />
     <Compile Include="Controllers\DatabaseInsertClass.cs" />
@@ -324,6 +332,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\Clientmodel.cs" />
+    <Compile Include="Models\CompanyDocModel.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
     <Compile Include="Models\DataMode.cs" />
     <Compile Include="Models\DbModelBuildermodelBuilder.cs" />
@@ -1706,6 +1715,8 @@
     <Content Include="Views\TM\mssTimeMgmt.cshtml" />
     <Content Include="Views\TM\Dailytimesheet.cshtml" />
     <Content Include="Views\dashboard\MasterDashboard.cshtml" />
+    <Content Include="Views\CompanyDoc\displaydoc.cshtml" />
+    <Content Include="Views\CompanyDoc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
