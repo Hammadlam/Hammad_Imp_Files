@@ -94,7 +94,7 @@ namespace MvcSchoolWebApp.Controllers
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
             user_role = HttpContext.Session["User_Role"].ToString();
             user_id = HttpContext.Session["User_Id"].ToString();
-            if (list[61].menustat != "X")
+            if (list[63].menustat != "X")
             {
                 return RedirectToAction("Index", "dashboard");          //user has no right to access this page, return to dashboard
             }
@@ -228,6 +228,39 @@ namespace MvcSchoolWebApp.Controllers
             return Json(db.getclientid(empid, dateId), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult CreateConveyanceReport(DateTime Month)
+        {
+            workStream = new System.IO.MemoryStream();
+            StringBuilder status = new StringBuilder("");
+            DateTime dTime = DateTime.Now;
+            //file name to be created   
+            strPDFFileName = string.Format("Conveyance_Timesheet_Pdf" + dTime.ToString("yyyyMMdd") + "-" + ".pdf");
+            Document doc = new Document();
+            doc.SetMargins(0f, 0f, 0f, 0f);
+            //Create PDF Table with 5 columns  
+            PdfPTable tableLayout = new PdfPTable(3);
+            doc.SetMargins(0f, 0f, 0f, 0f);
+            //Create PDF Table  
+
+            //file will created in this path  
+            string strAttachment = Server.MapPath("~/Downloadss/" + strPDFFileName);
+
+
+            PdfWriter.GetInstance(doc, workStream).CloseStream = false;
+            doc.Open();
+
+            //Add Content to PDF   
+            doc.Add(Conveyance_Add_Content_To_PDF(tableLayout, Month));
+
+            // Closing the document  
+            doc.Close();
+
+            byte[] byteInfo = workStream.ToArray();
+            workStream.Write(byteInfo, 0, byteInfo.Length);
+            workStream.Position = 0;
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult CreatePdf(string empid, DateTime date)
         {
             workStream = new System.IO.MemoryStream();
@@ -268,6 +301,11 @@ namespace MvcSchoolWebApp.Controllers
             return File(workStream, "application/pdf");
         }
 
+        public FileResult launch_Conveyance_report()
+        {
+            return File(workStream, "application/pdf");
+        }
+
         protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, string empid, DateTime date)
         {
             float[] headers = { 27, 24, 25, 25, 70, 30 }; //Header Widths  
@@ -276,7 +314,7 @@ namespace MvcSchoolWebApp.Controllers
             tableLayout.HeaderRows = 1;
             //Add Title to the PDF file at the top  
             db = new DatabaeseClass();
-            List<JQGridModel> list = db.FillTimeSheetAttendance(empid, date);
+            List<Timesheetmodal> list = db.FillTimeSheetAttendance(empid, date);
             string empname = db.getempname(empid);
 
 
@@ -308,17 +346,68 @@ namespace MvcSchoolWebApp.Controllers
 
             foreach (var emp in list)
             {
-                ;
+                string clientname = "Supernova Solutions";
+                string clienid = emp.clientid.Trim();
+                if (clienid != "0343")
+                {
+                    clientname = emp.client;
+                }
+
                 AddCellToBody(tableLayout, emp.date);
                 AddCellToBody(tableLayout, emp.day);
-                AddCellToBody(tableLayout, emp.timein);
-                AddCellToBody(tableLayout, emp.timeout);
-                AddCellToBody(tableLayout, emp.client);
+                AddCellToBody(tableLayout, emp.checkintime);
+                AddCellToBody(tableLayout, emp.checkouttime);
+                
+                AddCellToBody(tableLayout, clientname);
                 AddCellToHeader(tableLayout, "-");
 
             }
             return tableLayout;
         }
+
+        protected PdfPTable Conveyance_Add_Content_To_PDF(PdfPTable tableLayout, DateTime Month)
+        {
+            float[] headers = { 45, 45, 45}; //Header Widths  
+            tableLayout.SetWidths(headers); //Set the pdf headers  
+            tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
+            tableLayout.HeaderRows = 1;
+            //Add Title to the PDF file at the top  
+            db = new DatabaeseClass();
+            List<Timesheetmodal> list = db.FillTimeSheetConveyance(Month);
+
+
+            tableLayout.AddCell(new PdfPCell(new Phrase("Client Visit Report ", new Font(Font.FontFamily.HELVETICA, 10, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+            {
+                Colspan = 12,
+                Border = 0,
+                PaddingBottom = 5,
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            //tableLayout.AddCell(new PdfPCell(new Phrase("Employee : " + empname + "   |  Id: " + empid + " ", new Font(Font.FontFamily.HELVETICA, 10, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+            //{
+            //    Colspan = 12,
+            //    Border = 1,
+            //    PaddingBottom = 5,
+            //    HorizontalAlignment = Element.ALIGN_CENTER
+            //});
+
+
+            ////Add header  
+            AddCellToHeader(tableLayout, "Name");
+            AddCellToHeader(tableLayout, "Client");
+            AddCellToHeader(tableLayout, "No. of Visit");
+            // AddCellToHeader(tableLayout, "Marked By");
+
+
+            foreach (var emp in list)
+            {
+                AddCellToBody(tableLayout, emp.Name);
+                AddCellToBody(tableLayout, emp.client);
+                AddCellToBody(tableLayout, emp.noofvisit);
+            }
+            return tableLayout;
+        }
+
         // Method to add single cell to the Header  
         private static void AddCellToHeader(PdfPTable tableLayout, string cellText)
         {
@@ -365,6 +454,16 @@ namespace MvcSchoolWebApp.Controllers
             //attendance.empid = user_id;
             db = new DatabaeseClass();
             ViewBag.date = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MMMM-yyyy");
+            return View();
+        }
+
+        public ActionResult DisplayConveyanceReport()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+            if (list[66].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
             return View();
         }
 

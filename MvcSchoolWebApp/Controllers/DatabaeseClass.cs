@@ -3372,14 +3372,14 @@ namespace MvcSchoolWebApp.Controllers
         }
 
         [HandleError]
-        public List<JQGridModel> FillTimeSheetAttendance(string empid, DateTime dateid)
+        public List<Timesheetmodal> FillTimeSheetAttendance(string empid, DateTime dateid)
         {
-            List<JQGridModel> items = new List<JQGridModel>();
+            List<Timesheetmodal> items = new List<Timesheetmodal>();
             string month = dateid.ToString("yyyy-MM") + "-26";
             string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select begdate, enddate, custname1, isactive from emp0280 "+
+                string query = "select begdate, enddate, clientid, custname1, isactive, remarks, remarkstout from emp0280 "+
                                 "inner join custmst on emp0280.clientid = custmst.custno "+
                                 "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+"' and delind <> 'X' order by begdate asc ";
 
@@ -3395,13 +3395,63 @@ namespace MvcSchoolWebApp.Controllers
                         if (da.obj_reader["isactive"].ToString().Trim() == "X")
                             enddate = "-";
 
-                        items.Add(new JQGridModel
+                        items.Add(new Timesheetmodal
                         {
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
                             day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
-                            timein = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
-                            timeout = enddate,
-                            client = da.obj_reader["custname1"].ToString()
+                            checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
+                            checkouttime = enddate,
+                            clientid = da.obj_reader["clientid"].ToString(),
+                            client = da.obj_reader["custname1"].ToString(),
+                            remarks = da.obj_reader["remarks"].ToString(),
+                            remarkstout = da.obj_reader["remarkstout"].ToString()
+                        });
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FStdA. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        [HandleError]
+        public List<Timesheetmodal> FillTimeSheetConveyance(DateTime month)
+        {
+            List<Timesheetmodal> items = new List<Timesheetmodal>();
+            string thismonth = month.ToString("yyyy-MM") + "-26";
+            string prevmonth = month.AddMonths(-1).ToString("yyyy-MM") + "-26";
+            try
+            {
+                string query = "select ep.firstname + ' ' + ep.lastname as name, c.custname1, Count(attd.clientid) as NoofVisit from emp0280 attd " +
+                                "inner join custmst c on attd.clientid = c.custno "+
+                                "inner join emppers ep on attd.empid = ep.empid "+
+                                "where attd.clientid <> '0343' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '"+prevmonth+"' and attd.begdate < '"+thismonth+"' "+
+                                "group by attd.clientid, c.custname1, ep.firstname, ep.lastname "+
+                                "order by name asc";
+
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                       items.Add(new Timesheetmodal
+                        {
+                           Name = da.obj_reader["name"].ToString(),
+                           client = da.obj_reader["custname1"].ToString(),
+                           noofvisit = da.obj_reader["NoofVisit"].ToString()
                         });
                     }
                     da.obj_reader.Close();

@@ -1,0 +1,64 @@
+﻿@model MvcSchoolWebApp.Models.Timesheetmodal
+
+@{
+    ViewBag.Title = "DisplayConveyanceReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div style="border: 1px solid #d2d6de;">
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Time Management
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Employee Conveyance Report
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" name="ViewReportECRForm" id="ViewReportECRForm">
+                                <div class="row ">                                    
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <label>Pick a Month</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewReportMonthECR", @id = "ViewReportMonthECR", @required = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="btnVeiwReportECR" type="submit" value="Submit" name="btnVeiwReportECR" class="btn btn-sm btn-default form-submitbtn" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

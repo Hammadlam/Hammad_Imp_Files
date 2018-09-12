@@ -1134,7 +1134,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/TM/index">
-                                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>Time Sheet Report</span>
+                                                            <i class="fa fa-users" aria-hidden="true"></i><span> Time Sheet Report </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1224,11 +1224,22 @@
                                                         </a>
                                                     </li>
                                                 }
+
                                                 <li>
                                                     <a href="~/TM/Dailytimesheet">
                                                         <i class="fa fa-users"></i><span> Daily Time Sheet Report</span>
                                                     </a>
                                                 </li>
+                                                if (list[66].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/DisplayConveyanceReport">
+                                                            <i class="fa fa-users"></i><span> Conveyance Report</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+
                                                 if (list[48].menustat == "X")
                                                 {
                                                     <li>

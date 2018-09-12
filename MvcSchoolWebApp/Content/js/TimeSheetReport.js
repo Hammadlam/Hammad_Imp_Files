@@ -20,13 +20,16 @@
 
             $("#attendanceViewTMR_table").jqGrid({
                 datatype: "local",
-                colNames: ['Date', 'Day', 'Check In', 'Check Out', 'Client'],
+                colNames: ['Date', 'Day', 'Check In', 'Check Out', 'Client', 'Remarks (Time in)', 'Remarks (Time out)'],
                 colModel: [
-                    { name: 'date', index: 'date', editable: false, width: $size * 20, search: true, resizable: false },
-                    { name: 'day', index: 'day', editable: false, width: $size * 20, search: true, resizable: false },
-                    { name: 'timein', index: 'timein', editable: false, width: $size * 10, search: true, resizable: false, align: 'center' },
-                    { name: 'timeout', index: 'timeout', editable: false, width: $size * 10, search: true, resizable: false, align: 'center' },
-                    { name: 'client', index: 'client', editable: false, width: $size * 40, search: true, resizable: false }],
+                    { name: 'date', index: 'date', editable: false, width: $size * 15, search: true, resizable: false },
+                    { name: 'day', index: 'day', editable: false, width: $size * 10, search: true, resizable: false },
+                    { name: 'checkintime', index: 'checkintime', editable: false, width: $size * 10, search: true, resizable: false, align: 'center' },
+                    { name: 'checkouttime', index: 'checkouttime', editable: false, width: $size * 10, search: true, resizable: false, align: 'center' },
+                    { name: 'client', index: 'client', editable: false, width: $size * 30, search: true, resizable: false },
+                    { name: 'remarks', index: 'remarks', editable: false, width: $size * 30, search: true, resizable: false },
+                    { name: 'remarkstout', index: 'remarkstout', editable: false, width: $size * 30, search: true, resizable: false }
+                ],
                 data: data,
                 styleUI: 'Bootstrap',
                 mtype: 'GET',
@@ -72,6 +75,24 @@ $("#btn_createreport").click(function (e) {
         error: function (error) {
             show_err_alert_js('No Record Found');
             $("#attendanceViewTMR_div").css("display", "none");
+        }
+    });
+});
+
+$("#ViewReportECRForm").submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: encodeURI("../TM/CreateConveyanceReport"),
+        data: {
+            Month: $("#ViewReportMonthECR").val()
+        },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            window.location.href = '../TM/launch_Conveyance_report';
+        },
+        error: function (error) {
+            show_err_alert_js('Found Some Error, Please Try again');
         }
     });
 });

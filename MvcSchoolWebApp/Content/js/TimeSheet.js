@@ -279,7 +279,6 @@ function getemployeeattendancehistory() {
             // close_progress();
         },
         error: function (error) {
-            debugger
             //show_alert_js();
             $("#empattendance_div").css("display", "none");
         }
