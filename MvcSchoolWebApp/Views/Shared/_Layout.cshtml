@@ -723,61 +723,63 @@
 
                         </a>
                     </li>
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                            if (list[64].menustat == "X")
+                            {
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-book"></i> <span>Academics</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
 
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-book"></i> <span>Academics</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                    if (list[0].menustat == "X")
-                                    {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-graduation-cap"></i> <span>Admission</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li>
-                                                    <a href="~/Admission/CampusStrength">
-                                                        <i class="fa fa-users"></i><span>Campus Strength</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Admission/CampusCapacity">
-                                                        <i class="fa fa-users"></i><span>Campus Capacity</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Admission/CampusStatus">
-                                                        <i class="fa fa-users"></i><span>Admission Status</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    string url = "/dashboard";
-                                    Response.Write("<script type='text/javascript'>");
-                                    Response.Write("window.location.href = '" + url + "'</script>");
-                                }
-                            }
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                    if (list[30].menustat == "X")
-                                    {
+                                        @if (list[29].menustat == "X")
+                                        {
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-graduation-cap"></i> <span>Admission</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    @if (list[0].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a href="~/Admission/CampusStrength">
+                                                                <i class="fa fa-users"></i><span>Campus Strength</span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    @if (list[1].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a href="~/Admission/CampusCapacity">
+                                                                <i class="fa fa-users"></i><span>Campus Capacity</span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    @if (list[2].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a href="~/Admission/CampusStatus">
+                                                                <i class="fa fa-users"></i><span>Admission Status</span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    
+                                                </ul>
+                                            </li>
+                                        }
+                                        
+                                        
+                                        @if (list[30].menustat == "X")
+                                        {
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-info-circle"></i>
@@ -789,19 +791,18 @@
                                                 </span>
                                             </a>
                                             <ul class="treeview-menu">
-                                                @{
-                                                    var lists = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
 
-                                                    if (lists[3].menustat == "X")
-                                                    {
-                                                        <li>
-                                                            <a onclick="redirectpersonalinfo(this);" value="Employee Personal">
-                                                                <i class="fa fa-male"></i> <span> Employee Personal </span>
-                                                            </a>
-                                                        </li>
 
-                                                    }
+                                                @if (list[3].menustat == "X")
+                                                {
+                                                <li>
+                                                    <a onclick="redirectpersonalinfo(this);" value="Employee Personal">
+                                                        <i class="fa fa-male"></i> <span> Employee Personal </span>
+                                                    </a>
+                                                </li>
+
                                                 }
+
                                                 <li>
                                                     <a onclick="popup()">
                                                         <i class="fa fa-user"></i> <span> Student Personal </span>
@@ -809,23 +810,12 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                                        }
-                                                    }
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
 
-                            }
+                                        }
 
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                    if (list[31].menustat == "X")
-                                    {
+
+                                        @if (list[31].menustat == "X")
+                                        {
                                         <li class="treeview">
                                             <a href="#">
                                                 <i class="fa fa-user"></i> <span>Student Performance</span>
@@ -853,22 +843,10 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    string url = "/dashboard";
-                                    Response.Write("<script type='text/javascript'>");
-                                    Response.Write("window.location.href = '" + url + "'</script>");
-                                }
+                                        }
 
-                            }
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                    if (list[32].menustat == "X")
-                                    {
+                                        @if (list[32].menustat == "X")
+                                        {
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-user"></i> <span>Student Evaluation</span>
@@ -904,21 +882,11 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    string url = "/dashboard";
-                                    Response.Write("<script type='text/javascript'>");
-                                    Response.Write("window.location.href = '" + url + "'</script>");
-                                }
-                            }
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                    if (list[33].menustat == "X")
-                                    {
+                                        }
+
+
+                                        @if (list[33].menustat == "X")
+                                        {
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-calendar"></i> <span>Timetable</span>
@@ -974,23 +942,12 @@
                                                 }
                                             </ul>
                                         </li>
-                                                        }
-                                                    }
-                                                    catch (Exception)
-                                                    {
+                                        }
 
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
-                            }
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
 
-                                    if (list[34].menustat == "X")
-                                    {
+
+                                        @if (list[34].menustat == "X")
+                                        {
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-pie-chart"></i>
@@ -1053,22 +1010,12 @@
                                                 }
                                             </ul>
                                         </li>
-                                                        }
-                                                    }
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
-                            }
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                        }
 
-                                    if (list[35].menustat == "X")
-                                    {
+
+
+                                        @if (list[35].menustat == "X")
+                                        {
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-clock-o"></i> <span>Time Management</span>
@@ -1104,21 +1051,11 @@
                                                 }
                                             </ul>
                                         </li>
-                                                        }
-                                                    }
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
-                            }
-                            @{
-                                try
-                                {
-                                    var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                    if (list[36].menustat == "X")
-                                    {
+
+                                        }
+
+                                        @if (list[36].menustat == "X")
+                                        {
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-calendar"></i> <span>Fees</span>
@@ -1153,17 +1090,21 @@
                                                 }
                                             </ul>
                                         </li>
+
+                                        }
+                                    </ul>
+                                </li>
                                                         }
+
                                                     }
+
                                                     catch (Exception)
                                                     {
                                                         string url = "/dashboard";
                                                         Response.Write("<script type='text/javascript'>");
                                                         Response.Write("window.location.href = '" + url + "'</script>");
                                                     }
-                            }
-                        </ul>
-                    </li>
+                    }
                     @{
                         try
                         {
