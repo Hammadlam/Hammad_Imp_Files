@@ -702,7 +702,7 @@ namespace MvcSchoolWebApp.Controllers
                 if (item.menuid == menuid)
                     tcode = Convert.ToInt32(item.tcode.Trim());
             }
-            
+
             string newdate = date.ToString("yyyy-MM-dd") + " " + time;
             DateTime dt = DateTime.Parse(newdate);
             //dt = dc.convertservertousertimezone(dt.ToString());
@@ -723,12 +723,12 @@ namespace MvcSchoolWebApp.Controllers
                     dt = dc.convertservertopsttimezone(DateTime.Now.ToString());
                 }
 
-                command.CommandText = "select isnull(max(recordno),0) as recordno from emp0280 where empid = '" + empid+ "' and clientid = '"+clientid+"' "+
+                command.CommandText = "select isnull(max(recordno),0) as recordno from emp0280 where empid = '" + empid + "' and clientid = '" + clientid + "' " +
                                       "and delind <> 'X' and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "'";
                 recordno = Convert.ToInt16(command.ExecuteScalar());
 
-                command.CommandText = "select isactive from emp0280 where empid = '"+empid+"' and delind <> 'X' and clientid = '"+clientid+"' and upduser = '' and toutusr = '' "+
-                                      "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "' "+
+                command.CommandText = "select isactive from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
+                                      "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "' " +
                                       "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
                                       "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "')";
                 string isactive = (string)command.ExecuteScalar() ?? "";
@@ -739,12 +739,12 @@ namespace MvcSchoolWebApp.Controllers
                     command.CommandText = "insert into emp0280(empid, begdate, enddate, clientid, subpagtype, " +
                                       "recordno, delind, creuser, credate, cretime, " +
                                       "upduser, upddate, updtime, locat, tinusr, " +
-                                      "tinlat, tinlong, toutusr, toutlat, toutlong, "+
+                                      "tinlat, tinlong, toutusr, toutlat, toutlong, " +
                                       "isactive, remarks, remarkstout) values " +
                                       "('" + empid + "', '" + dt + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + dt.ToString("yyyy/MM/dd") + "', '" + dt.ToString("HH:mm:ss") + "', " +
-                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '"+latitude+"', " +
-                                      "'"+longitude+"', '', '', '', 'X', '"+remarks+"', '')";
+                                      "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + latitude + "', " +
+                                      "'" + longitude + "', '', '', '', 'X', '" + remarks + "', '')";
                     command.ExecuteNonQuery();
                 }
                 else if (recordno > 0 && isactive != "X")
@@ -758,22 +758,22 @@ namespace MvcSchoolWebApp.Controllers
                                       "('" + empid + "', '" + dt + "', '', '" + clientid + "', '', " +
                                       "'" + recordno + "', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + dt.ToString("yyyy/MM/dd") + "', '" + dt.ToString("HH:mm:ss") + "', " +
                                       "'', '', '', '', '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', '" + latitude + "', " +
-                                      "'" + longitude + "', '', '', '', 'X', '"+remarks+"', '')";
+                                      "'" + longitude + "', '', '', '', 'X', '" + remarks + "', '')";
                     command.ExecuteNonQuery();
                 }
                 else if (recordno > 0 && isactive == "X")
                 {
                     command.CommandText = "update emp0280 set enddate = '" + dt + "', isactive = '', toutusr = '" + System.Web.HttpContext.Current.Session["User_Id"].ToString() + "', " +
-                                          "toutlat = '"+latitude+"', toutlong = '"+longitude+"', remarkstout = '"+remarks+"' "+
-                                          "where empid = '" + empid + "' and clientid = '" + clientid + "' and upduser = '' and delind <> 'X' "+
+                                          "toutlat = '" + latitude + "', toutlong = '" + longitude + "', remarkstout = '" + remarks + "' " +
+                                          "where empid = '" + empid + "' and clientid = '" + clientid + "' and upduser = '' and delind <> 'X' " +
                                           "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "'" +
                                           "and recordno = (select max(recordno) from emp0280 where empid = '" + empid + "' and delind <> 'X' and clientid = '" + clientid + "' and upduser = '' and toutusr = '' " +
                                           "and begdate >= '" + dt.ToString("yyyy-MM-dd") + "' and begdate < '" + dt.AddDays(1).ToString("yyyy-MM-dd") + "')";
-                    
+
                     command.ExecuteNonQuery();
                 }
                 trans.Commit();
-                
+
             }
             catch (Exception ex)
             {
@@ -1291,7 +1291,7 @@ namespace MvcSchoolWebApp.Controllers
         public void insertweeklylessonplan(DatabaseModel dm, string userrole, string userid)
         {
             DatabaeseClass dc = new DatabaeseClass();
-            
+
             DateTime begdate = DateTime.Parse(dm.begdate);
             DateTime enddate = DateTime.Parse(dm.enddate);
             DateTime currtime = dc.convertservertopsttimezone(DateTime.Now.ToString());
@@ -1384,25 +1384,25 @@ namespace MvcSchoolWebApp.Controllers
                             throw new Exception();
                         }
                     }
-                        trans.Commit();
-                    
+                    trans.Commit();
+
                 }
-                else if(userrole == "1000" || userrole == "2000")
+                else if (userrole == "1000" || userrole == "2000")
                 {
                     cmd.CommandText = "select isnull(max(recordno),0) from schlessonplancom where " +
-                                       "begdate = '" + begdate.ToString("yyyy-MM-dd") + "' and enddate = '" + enddate.ToString("yyyy-MM-dd") + "' "+
+                                       "begdate = '" + begdate.ToString("yyyy-MM-dd") + "' and enddate = '" + enddate.ToString("yyyy-MM-dd") + "' " +
                                        "and campusid = '" + dm.campusid + "' and classid = '" + dm.classesid + "' " +
                                        "and sectionid = '" + dm.sectionid + "' and subjectid = '" + dm.subjectid + "'";
                     // and teacherid = '" + dm.teachername + "'
                     int record = Convert.ToInt16(cmd.ExecuteScalar());
                     record += 1;
                     cmd.CommandText = "insert into schlessonplancom (empid,teacherid,begdate,enddate,campusid,classid,sectionid,subjectid,princplcomnt,recordno) " +
-                                        "values ('" + userid + "','" + dm.studentid + "', '" + begdate.ToString("yyyy-MM-dd") + "', '" + enddate.ToString("yyyy-MM-dd") + "', "+
+                                        "values ('" + userid + "','" + dm.studentid + "', '" + begdate.ToString("yyyy-MM-dd") + "', '" + enddate.ToString("yyyy-MM-dd") + "', " +
                                         "'" + dm.campusid + "', '" + dm.classesid + "', '" + dm.sectionid + "', " +
                                         "'" + dm.subjectid + "', @comment, '" + record + "')";
                     cmd.Parameters.AddWithValue("@comment", dm.princ_comments_new);
                     cmd.ExecuteNonQuery();
-                    
+
                     notfcase = "WLPR";
 
                     string[] arr = new string[1];
@@ -1434,7 +1434,7 @@ namespace MvcSchoolWebApp.Controllers
                     }
                     trans.Commit();
                 }
-                
+
                 //string status = popnotification(notfcase);
                 HomeController.popup_status = "Success";
             }
@@ -2731,6 +2731,40 @@ namespace MvcSchoolWebApp.Controllers
         {
             string msg = "Success";
             return msg;
+        }
+
+
+        public bool UpdateTimeSheet(DateTime date, string clientid, string empid)
+        {
+            DatabaeseClass dc = new DatabaeseClass();
+            DateTime insertdate = dc.convertedinsertdate(DateTime.Now.ToString());
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+            string query1 = "update emp0280 set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestamp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                "where clientid = '" + clientid + "' and empid = '"+empid+"' and begdate = '"+date.ToString("yyyy-MM-dd")+"'";
+            using (SqlTransaction trans = con.BeginTransaction())
+            {
+                SqlCommand command = con.CreateCommand();
+                command.Connection = con;
+                command.Transaction = trans;
+                try
+                {
+                    command.CommandText = query1;
+                    command.ExecuteNonQuery();
+                    trans.Commit();
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                }
+                finally
+                {
+                    trans.Dispose();
+                    con.Close();
+                    
+                }
+                return true;
+            }
         }
     }
 }

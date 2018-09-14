@@ -3389,14 +3389,16 @@ namespace MvcSchoolWebApp.Controllers
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
                 if (da.obj_reader.HasRows)
                 {
+                    int i = 1;
                     while (da.obj_reader.Read())
                     {
                         string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
                         if (da.obj_reader["isactive"].ToString().Trim() == "X")
                             enddate = "-";
-
+                        
                         items.Add(new Timesheetmodal
                         {
+                            serial = i,
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
                             day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
@@ -3406,6 +3408,7 @@ namespace MvcSchoolWebApp.Controllers
                             remarks = da.obj_reader["remarks"].ToString(),
                             remarkstout = da.obj_reader["remarkstout"].ToString()
                         });
+                        i++;
                     }
                     da.obj_reader.Close();
                     da.CloseConnection();

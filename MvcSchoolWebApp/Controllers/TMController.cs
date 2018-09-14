@@ -607,5 +607,14 @@ namespace MvcSchoolWebApp.Controllers
         {
             return File(workStream, "application/pdf");
         }
+
+        public JsonResult DeleteTime(DateTime date, string clientid, string empid)
+        {
+            DatabaseInsertClass din = new DatabaseInsertClass();
+            if (empid == "")
+                return Json(false, JsonRequestBehavior.AllowGet);
+            else
+                return Json(din.UpdateTimeSheet(date, clientid, empid), JsonRequestBehavior.AllowGet);
+        }
     }
 }

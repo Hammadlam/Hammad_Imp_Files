@@ -8,6 +8,7 @@ namespace MvcSchoolWebApp.Models
 {
     public class Timesheetmodal
     {
+        public int serial { get; set; }
         public int id { get; set; }
         public string empdesignation { get; set; }
         public string empdepart { get; set; }
