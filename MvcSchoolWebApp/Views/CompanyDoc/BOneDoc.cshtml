@@ -1,9 +1,43 @@
 ﻿@model MvcSchoolWebApp.Models.CompanyDocModel
-
 @{
-    ViewBag.Title = "BOneDoc";
+    ViewBag.Title = "A-One Documents";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>BOneDoc</h2>
 
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Corporate Documents
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    B-One Documents
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ibox-content" id="bonedoc_div">
+                        <div class="row">
+                            <div class="bonedoc_wrapper">
+                                <table id="bonedoc_grid"></table>
+                                <div id="bonedoc_pager"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

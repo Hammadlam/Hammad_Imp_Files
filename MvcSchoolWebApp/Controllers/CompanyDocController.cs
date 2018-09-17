@@ -22,8 +22,6 @@ namespace MvcSchoolWebApp.Controllers
         private Database.Database da = new Database.Database("Falconlocal");
 
         Data.data data = new data();
-        private string camp_id;
-        private string emp_id;
         public static string[] popupinfo = new string[3];
         public static List<Users> user_dtl;
 
@@ -171,6 +169,13 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             return View();
         }
+
+        public JsonResult getJQGridJsonAccountDoc()
+        {
+            db = new DatabaeseClass();
+            return Json(db.FillAccountDoc(user_role), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult HRDoc()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
@@ -207,6 +212,13 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             return View();
         }
+
+        public JsonResult getJQGridJsonERDoc()
+        {
+            db = new DatabaeseClass();
+            return Json(db.FillERDoc(user_role), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult AOneDoc()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
@@ -221,6 +233,13 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             return View();
         }
+
+        public JsonResult getJQGridJsonAOneDoc()
+        {
+            db = new DatabaeseClass();
+            return Json(db.FillAOneDoc(user_role), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult BOneDoc()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
@@ -234,6 +253,12 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.msglist = msgobj.GetNotifications();
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             return View();
+        }
+
+        public JsonResult getJQGridJsonBOneDoc()
+        {
+            db = new DatabaeseClass();
+            return Json(db.FillBOneDoc(user_role), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DownloadHRDoc(string reportid)

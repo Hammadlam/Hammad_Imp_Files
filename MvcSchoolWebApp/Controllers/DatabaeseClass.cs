@@ -3764,5 +3764,180 @@ namespace MvcSchoolWebApp.Controllers
             return items;
         }
 
+        [HandleError]
+        public List<JQGridModel> FillAccountDoc(string user_roles)
+        {
+            List<JQGridModel> items = new List<JQGridModel>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select t.docid, t.filename, t.filepath, t.begdate from corpdoc as t " +
+                               "where t.delind <> 'X' AND t.doccategory = '1000' ";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    int i = 1;
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new JQGridModel
+                        {
+                            serialNo = i,// Convert.ToInt32(da.obj_reader["timetbid"].ToString()),
+                            fileName = da.obj_reader["filename"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            viewButton = da.obj_reader["filepath"].ToString(),
+                            user_role = user_roles
+                        });
+                        i++;
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FMTT. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        [HandleError]
+        public List<JQGridModel> FillERDoc(string user_roles)
+        {
+            List<JQGridModel> items = new List<JQGridModel>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select t.docid, t.filename, t.filepath, t.begdate from corpdoc as t " +
+                               "where t.delind <> 'X' AND t.doccategory = '2000' ";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    int i = 1;
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new JQGridModel
+                        {
+                            serialNo = i,// Convert.ToInt32(da.obj_reader["timetbid"].ToString()),
+                            fileName = da.obj_reader["filename"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            viewButton = da.obj_reader["filepath"].ToString(),
+                            user_role = user_roles
+                        });
+                        i++;
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FMTT. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        [HandleError]
+        public List<JQGridModel> FillAOneDoc(string user_roles)
+        {
+            List<JQGridModel> items = new List<JQGridModel>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select t.docid, t.filename, t.filepath, t.begdate from corpdoc as t " +
+                               "where t.delind <> 'X' AND t.doccategory = '4000' ";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    int i = 1;
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new JQGridModel
+                        {
+                            serialNo = i,// Convert.ToInt32(da.obj_reader["timetbid"].ToString()),
+                            fileName = da.obj_reader["filename"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            viewButton = da.obj_reader["filepath"].ToString(),
+                            user_role = user_roles
+                        });
+                        i++;
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FMTT. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        [HandleError]
+        public List<JQGridModel> FillBOneDoc(string user_roles)
+        {
+            List<JQGridModel> items = new List<JQGridModel>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select t.docid, t.filename, t.filepath, t.begdate from corpdoc as t " +
+                               "where t.delind <> 'X' AND t.doccategory = '5000' ";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    int i = 1;
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new JQGridModel
+                        {
+                            serialNo = i,// Convert.ToInt32(da.obj_reader["timetbid"].ToString()),
+                            fileName = da.obj_reader["filename"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            viewButton = da.obj_reader["filepath"].ToString(),
+                            user_role = user_roles
+                        });
+                        i++;
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FMTT. Error Details: " + ex.Message);
+            }
+            return items;
+        }
     }
 }

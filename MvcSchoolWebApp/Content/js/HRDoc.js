@@ -89,8 +89,9 @@ function getDeleted_HRDoc() {
     $.ajax({
         type: "POST",
         url: encodeURI("../CompanyDoc/DeleteHRDoc"),
-        data: { filename: fileName,
-                category: "3000"
+        data: {
+            filename: fileName,
+            category: "3000"
         },
         success: function (data) {
             if (data)
