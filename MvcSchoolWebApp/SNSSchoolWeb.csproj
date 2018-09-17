@@ -1715,8 +1715,13 @@
     <Content Include="Views\TM\mssTimeMgmt.cshtml" />
     <Content Include="Views\TM\Dailytimesheet.cshtml" />
     <Content Include="Views\dashboard\MasterDashboard.cshtml" />
-    <Content Include="Views\CompanyDoc\displaydoc.cshtml" />
     <Content Include="Views\CompanyDoc\Index.cshtml" />
+    <Content Include="Views\TM\DisplayConveyanceReport.cshtml" />
+    <Content Include="Views\CompanyDoc\AccountDoc.cshtml" />
+    <Content Include="Views\CompanyDoc\AOneDoc.cshtml" />
+    <Content Include="Views\CompanyDoc\BOneDoc.cshtml" />
+    <Content Include="Views\CompanyDoc\ERPDoc.cshtml" />
+    <Content Include="Views\CompanyDoc\HRDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
