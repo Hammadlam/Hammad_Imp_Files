@@ -2741,7 +2741,7 @@ namespace MvcSchoolWebApp.Controllers
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
             con.Open();
             string query1 = "update emp0280 set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestamp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
-                "where clientid = '" + clientid + "' and empid = '"+empid+"' and begdate = '"+date.ToString("yyyy-MM-dd")+"'";
+                "where clientid = '" + clientid + "' and empid = '" + empid + "' and begdate = '" + date.ToString("yyyy-MM-dd") + "'";
             using (SqlTransaction trans = con.BeginTransaction())
             {
                 SqlCommand command = con.CreateCommand();
@@ -2761,10 +2761,84 @@ namespace MvcSchoolWebApp.Controllers
                 {
                     trans.Dispose();
                     con.Close();
-                    
+
                 }
                 return true;
             }
+        }
+
+        public void InsertCompanyDoc(CompanyDocModel db)
+        {
+            DatabaeseClass dc = new DatabaeseClass();
+            DateTime insertdate = dc.convertservertopsttimezone(DateTime.Now.ToString());
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+
+            string query1 = "select isnull(max(recordno), 0) as recordno from corpdoc where " +
+                            "doccategory = '" + db.deptid + "'";
+
+            using (SqlTransaction trans = con.BeginTransaction())
+            {
+                SqlCommand command = con.CreateCommand();
+                command.Connection = con;
+                command.Transaction = trans;
+                try
+                {
+                    command.CommandText = query1;
+                    int record = 0;
+                    record = Convert.ToInt32(command.ExecuteScalar());
+                    record += 1;
+                    command.CommandText = "INSERT INTO corpdoc(docid, doccategory, adminid, filepath, [filename], recordno, delind, begdate, enddate, upduser, upddate, updtime, dbtimestamp) " +
+                                    "VALUES('" + db.increment + "', '" + db.deptid + "', '" + db.user_id + "', '" + db.imagepath +
+                                    "', '" + db.filename + "', '" + record + "', '', '" + db.date + "', '" + db.date + "', '', '', '', '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                    command.ExecuteNonQuery();
+                    trans.Commit();
+                    CompanyDocController.popup_status = "Success";
+                }
+                catch (Exception ex)
+                {
+                    CompanyDocController.popup_status = "Error";
+                    trans.Rollback();
+                }
+                finally
+                {
+                    trans.Dispose();
+                    con.Close();
+                }
+            }
+        }
+
+        public bool UpdateCompanyDoc(string filename, string category, string user_role)
+        {
+            DatabaeseClass dc = new DatabaeseClass();
+            DateTime insertdate = dc.convertedinsertdate(DateTime.Now.ToString());
+
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+                con.Open();
+                string query1 = "update corpdoc set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestamp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                    "where filename = '" + filename + "' and doccategory = '"+ category +"'";
+                using (SqlTransaction trans = con.BeginTransaction())
+                {
+                    SqlCommand command = con.CreateCommand();
+                    command.Connection = con;
+                    command.Transaction = trans;
+                    try
+                    {
+                        command.CommandText = query1;
+                        command.ExecuteNonQuery();
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                    }
+                    finally
+                    {
+                        trans.Dispose();
+                        con.Close();
+                    }
+                }
+                return true;
         }
     }
 }

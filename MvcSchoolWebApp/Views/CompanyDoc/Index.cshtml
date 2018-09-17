@@ -1,9 +1,100 @@
 ﻿@model MvcSchoolWebApp.Models.CompanyDocModel
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Upload Corporate Document";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@using (Html.BeginForm("Index", "CompanyDoc", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
 
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+
+                        <div class="ibox-title ">
+                            <ul id="vert_menu">
+                                <li>
+                                    <input type="radio" id="r1" name="r">
+                                    <label for="r1">
+                                        Corporate Documents
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="r2" name="r">
+                                    <label for="r2">
+                                        Upload Documents
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <form role="form" id="uploadCompanyDocform" name="uploadCompanyDocform">
+                                    <div class="row ">
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>Department</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.DropDownListFor(m => m.deptid, Model.dept, "Department", new { @class = "form-control m-b", @name = "txtDeptCD", @id = "txtDeptCD", @required = true })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-5">
+                                                <label>
+                                                    Date
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.date, new { @Value = ViewBag.date, @class = "date-day form-control m-b", @name = "txtDateCD", @id = "txtDateCD", @required = true })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div id="dvborder">
+                        <div class="ibox-title ">
+                        </div>
+                        <div class="ibox-content">
+                            <p style="font-family:initial; font-size:14px;">Note: You can only upload files less than 25 MB</p>
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Select file</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="postedFile">
+
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+
+                            </div>
+                            <input type="submit" value="Upload" class="btn btn-sm btn-danger" id="btnuploadCompanyDoc" />
+                            <span style="color:green">@ViewBag.Message</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+}

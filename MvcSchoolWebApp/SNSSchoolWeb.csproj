@@ -1320,10 +1320,13 @@
     <Content Include="Content\iChecks\green%402x.png" />
     <Content Include="Content\iChecks\green.png" />
     <Content Include="Content\iChecks\icheck.min.js" />
+    <Content Include="Content\js\AccountDoc.js" />
     <Content Include="Content\js\ActivityGrade.js" />
+    <Content Include="Content\js\AOneDoc.js" />
     <Content Include="Content\js\Assignment.js" />
     <Content Include="Content\js\AssignmentUpload.js" />
     <Content Include="Content\js\AttendanceUpload.js" />
+    <Content Include="Content\js\BOneDoc.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\js\Bootstrapmodal.js" />
     <Content Include="Content\js\CampusCapacity.js" />
@@ -1339,6 +1342,7 @@
     <Content Include="Content\js\download.js" />
     <Content Include="Content\js\dropzone.js" />
     <Content Include="Content\js\Email.js" />
+    <Content Include="Content\js\ERPDoc.js" />
     <Content Include="Content\js\EventSchedular.js" />
     <Content Include="Content\js\FeeChalan.js" />
     <Content Include="Content\js\feehistoryjs.js" />
@@ -1346,6 +1350,7 @@
     <Content Include="Content\js\FinalReport.js" />
     <Content Include="Content\js\Finance.js" />
     <Content Include="Content\js\grid.locale-en.js" />
+    <Content Include="Content\js\HRDoc.js" />
     <Content Include="Content\js\Human_Resource.js" />
     <Content Include="Content\js\inspinia.js" />
     <Content Include="Content\js\jasny-bootstrap.min.js" />

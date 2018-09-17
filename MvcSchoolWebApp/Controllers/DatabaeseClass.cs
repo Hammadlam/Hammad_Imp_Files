@@ -3679,5 +3679,90 @@ namespace MvcSchoolWebApp.Controllers
             return items;
         }
 
+
+        [HandleError]
+        public List<SelectListItem> getDept()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select ttcategory, categorytxt from timetablecategory";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+
+                        items.Add(new SelectListItem
+                        {
+                            Text = da.obj_reader["categorytxt"].ToString(),
+                            Value = da.obj_reader["ttcategory"].ToString().Trim()
+                        });
+
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FCat. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+        [HandleError]
+        public List<JQGridModel> FillHRDoc(string user_roles)
+        {
+            List<JQGridModel> items = new List<JQGridModel>();
+            try
+            {
+                da.CreateConnection();
+                string query = "select t.docid, t.filename, t.filepath, t.begdate from corpdoc as t " +
+                               "where t.delind <> 'X' AND t.doccategory = '3000' ";
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    int i = 1;
+                    while (da.obj_reader.Read())
+                    {
+                        items.Add(new JQGridModel
+                        {
+                            serialNo = i,// Convert.ToInt32(da.obj_reader["timetbid"].ToString()),
+                            fileName = da.obj_reader["filename"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            viewButton = da.obj_reader["filepath"].ToString(),
+                            user_role = user_roles
+                        });
+                        i++;
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FMTT. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
     }
 }
