@@ -99,6 +99,7 @@
                 opacity: 1;
             }
         }
+
         @@-webkit-keyframes fadeout {
             from {
                 bottom: 10%;
@@ -123,7 +124,7 @@
             }
         }
 
-        
+
 
         @@keyframes fadeout {
             from {
@@ -772,338 +773,338 @@
                                                             </a>
                                                         </li>
                                                     }
-                                                    
+
                                                 </ul>
                                             </li>
                                         }
-                                        
-                                        
+
+
                                         @if (list[30].menustat == "X")
                                         {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-info-circle"></i>
-                                                <span>Personal Information</span>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-info-circle"></i>
+                                                    <span>Personal Information</span>
 
 
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
 
 
-                                                @if (list[3].menustat == "X")
-                                                {
-                                                <li>
-                                                    <a onclick="redirectpersonalinfo(this);" value="Employee Personal">
-                                                        <i class="fa fa-male"></i> <span> Employee Personal </span>
-                                                    </a>
-                                                </li>
+                                                    @if (list[3].menustat == "X")
+                                                    {
+                                                        <li>
+                                                            <a onclick="redirectpersonalinfo(this);" value="Employee Personal">
+                                                                <i class="fa fa-male"></i> <span> Employee Personal </span>
+                                                            </a>
+                                                        </li>
 
-                                                }
+                                                    }
 
-                                                <li>
-                                                    <a onclick="popup()">
-                                                        <i class="fa fa-user"></i> <span> Student Personal </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                                    <li>
+                                                        <a onclick="popup()">
+                                                            <i class="fa fa-user"></i> <span> Student Personal </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
 
                                         }
 
 
                                         @if (list[31].menustat == "X")
                                         {
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-user"></i> <span>Student Performance</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
+                                            <li class="treeview">
+                                                <a href="#">
+                                                    <i class="fa fa-user"></i> <span>Student Performance</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
 
-                                            <ul class="treeview-menu">
+                                                <ul class="treeview-menu">
 
-                                                <li>
-                                                    <a onclick="Demo(this);" value="Weekly Test"><i class="fa fa-pencil-square-o"></i><span>Weekly Test</span></a>
-                                                </li>
-                                                <li>
-                                                    <a onclick="Demo(this);" value="Periodical Test"><i class="fa fa-pencil-square-o"></i><span>Periodical Test</span></a>
-                                                </li>
-                                                <li>
-                                                    <a onclick="Demo(this);" value="Mid/First Term"><i class="fa fa-pencil-square-o"></i><span>Mid/First Term</span></a>
-                                                </li>
-                                                <li>
-                                                    <a onclick="Demo(this);" value="Final Term"><i class="fa fa-pencil-square-o"></i><span>Final Term</span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/FinalReport/FinalReport"><i class="fa fa-file-text"></i><span>Final Report</span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                                    <li>
+                                                        <a onclick="Demo(this);" value="Weekly Test"><i class="fa fa-pencil-square-o"></i><span>Weekly Test</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="Demo(this);" value="Periodical Test"><i class="fa fa-pencil-square-o"></i><span>Periodical Test</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="Demo(this);" value="Mid/First Term"><i class="fa fa-pencil-square-o"></i><span>Mid/First Term</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="Demo(this);" value="Final Term"><i class="fa fa-pencil-square-o"></i><span>Final Term</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/FinalReport/FinalReport"><i class="fa fa-file-text"></i><span>Final Report</span></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                         }
 
                                         @if (list[32].menustat == "X")
                                         {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user"></i> <span>Student Evaluation</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li>
-                                                    <a href="~/Attendance/MarkAttendance">
-                                                        <i class="fa fa-check-square-o"></i><span>Mark Attendance</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Home/MarksUpload">
-                                                        <i class="fa fa-upload"></i><span>Marks Submission</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Home/ActivityGrade">
-                                                        <i class="fa fa-check-square-o"></i><span>Grade Activities</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Preprimary/PPCambridge">
-                                                        <i class="fa fa-check-square-o"></i><span>Pre-Primary Cambridge</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Preprimary/PPMatric">
-                                                        <i class="fa fa-check-square-o"></i><span>Pre-Primary Matric</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-user"></i> <span>Student Evaluation</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="~/Attendance/MarkAttendance">
+                                                            <i class="fa fa-check-square-o"></i><span>Mark Attendance</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/Home/MarksUpload">
+                                                            <i class="fa fa-upload"></i><span>Marks Submission</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/Home/ActivityGrade">
+                                                            <i class="fa fa-check-square-o"></i><span>Grade Activities</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/Preprimary/PPCambridge">
+                                                            <i class="fa fa-check-square-o"></i><span>Pre-Primary Cambridge</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/Preprimary/PPMatric">
+                                                            <i class="fa fa-check-square-o"></i><span>Pre-Primary Matric</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                         }
 
 
                                         @if (list[33].menustat == "X")
                                         {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-calendar"></i> <span>Timetable</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                @{
-                                                    try
-                                                    {
-                                                        var lists = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                                        if (lists[16].menustat == "X")
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-calendar"></i> <span>Timetable</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    @{
+                                                        try
                                                         {
-                                                            <li>
-                                                                <a href="~/TimeTable/UploadTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i><span>Upload Timetable</span>
-                                                                </a>
-                                                            </li>
+                                                            var lists = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                                            if (lists[16].menustat == "X")
+                                                            {
+                                                                <li>
+                                                                    <a href="~/TimeTable/UploadTimetable">
+                                                                        <i class="fa fa-calendar-times-o"></i><span>Upload Timetable</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                            if (lists[17].menustat == "X")
+                                                            {
+                                                                <li>
+                                                                    <a href="~/TimeTable/MasterTimetable">
+                                                                        <i class="fa fa-calendar-times-o"></i><span>Master Timetable</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                            if (lists[18].menustat == "X")
+                                                            {
+                                                                <li>
+                                                                    <a href="~/TimeTable/TeacherTimetable">
+                                                                        <i class="fa fa-calendar-times-o"></i><span>Teacher Timetable</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                            if (lists[19].menustat == "X")
+                                                            {
+                                                                <li>
+                                                                    <a href="~/TimeTable/ClassTimetable">
+                                                                        <i class="fa fa-calendar-times-o"></i><span>Class Timetable</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
                                                         }
-                                                        if (lists[17].menustat == "X")
+                                                        catch (Exception)
                                                         {
-                                                            <li>
-                                                                <a href="~/TimeTable/MasterTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i><span>Master Timetable</span>
-                                                                </a>
-                                                            </li>
-                                                        }
-                                                        if (lists[18].menustat == "X")
-                                                        {
-                                                            <li>
-                                                                <a href="~/TimeTable/TeacherTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i><span>Teacher Timetable</span>
-                                                                </a>
-                                                            </li>
-                                                        }
-                                                        if (lists[19].menustat == "X")
-                                                        {
-                                                            <li>
-                                                                <a href="~/TimeTable/ClassTimetable">
-                                                                    <i class="fa fa-calendar-times-o"></i><span>Class Timetable</span>
-                                                                </a>
-                                                            </li>
-                                                        }
-                                                    }
-                                                    catch (Exception)
-                                                    {
 
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
+                                                            string url = "/dashboard";
+                                                            Response.Write("<script type='text/javascript'>");
+                                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                                        }
                                                     }
-                                                }
-                                            </ul>
-                                        </li>
-                                        }
+                                                </ul>
+                                            </li>
+                                                        }
 
 
 
                                         @if (list[34].menustat == "X")
                                         {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-pie-chart"></i>
-                                                <span>Lesson Plan</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                @{
-                                                    try
-                                                    {
-                                                        if (list[20].menustat == "X")
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-pie-chart"></i>
+                                                    <span>Lesson Plan</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    @{
+                                                        try
+                                                        {
+                                                            if (list[20].menustat == "X")
+                                                            {
+                                                                <li>
+                                                                    <a href="~/Home/Assignment">
+                                                                        <i class="fa fa-upload"></i><span>Upload Assignment</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            string url = "/dashboard";
+                                                            Response.Write("<script type='text/javascript'>");
+                                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                                        }
+
+                                                        <li>
+                                                            <a onclick="down(this);" value="Home Assignment">
+                                                                <i class="fa fa-file"></i><span>Home Assignment</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a onclick="down(this);" value="Class Assignment">
+                                                                <i class="fa fa-pencil"></i><span>Class Assigment</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a onclick="down(this);" value="Project">
+                                                                <i class="fa fa-tasks"></i><span>Projects</span>
+                                                            </a>
+                                                        </li>
+                                                        if (list[24].menustat == "X")
                                                         {
                                                             <li>
-                                                                <a href="~/Home/Assignment">
-                                                                    <i class="fa fa-upload"></i><span>Upload Assignment</span>
+                                                                <a href="~/download/WeeklyPlan">
+                                                                    <i class="fa fa-tasks"></i><span>Daily Lesson Plan</span>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                        if (list[51].menustat == "X")
+                                                        {
+                                                            <li>
+                                                                <a href="~/download/WeeklyPlanPP">
+                                                                    <i class="fa fa-tasks"></i><span>Weekly Lesson Plan</span>
                                                                 </a>
                                                             </li>
                                                         }
                                                     }
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
-
-                                                    <li>
-                                                        <a onclick="down(this);" value="Home Assignment">
-                                                            <i class="fa fa-file"></i><span>Home Assignment</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a onclick="down(this);" value="Class Assignment">
-                                                            <i class="fa fa-pencil"></i><span>Class Assigment</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a onclick="down(this);" value="Project">
-                                                            <i class="fa fa-tasks"></i><span>Projects</span>
-                                                        </a>
-                                                    </li>
-                                                    if (list[24].menustat == "X")
-                                                    {
-                                                        <li>
-                                                            <a href="~/download/WeeklyPlan">
-                                                                <i class="fa fa-tasks"></i><span>Daily Lesson Plan</span>
-                                                            </a>
-                                                        </li>
-                                                    }
-                                                    if (list[51].menustat == "X")
-                                                    {
-                                                        <li>
-                                                            <a href="~/download/WeeklyPlanPP">
-                                                                <i class="fa fa-tasks"></i><span>Weekly Lesson Plan</span>
-                                                            </a>
-                                                        </li>
-                                                    }
-                                                }
-                                            </ul>
-                                        </li>
-                                        }
+                                                </ul>
+                                            </li>
+                                                        }
 
 
 
                                         @if (list[35].menustat == "X")
                                         {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-clock-o"></i> <span>Time Management</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li>
-                                                    <a href="~/Attendance/ViewAttendance">
-                                                        <i class="fa fa-user"></i><span>Student Attendance</span>
-                                                    </a>
-                                                </li>
-                                                @{
-                                                    try
-                                                    {
-                                                        if (list[26].menustat == "X")
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-clock-o"></i> <span>Time Management</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="~/Attendance/ViewAttendance">
+                                                            <i class="fa fa-user"></i><span>Student Attendance</span>
+                                                        </a>
+                                                    </li>
+                                                    @{
+                                                        try
                                                         {
-                                                            <li class="treeview">
-                                                                <a href="~/home/Teacher_Evalution">
-                                                                    <i class="fa fa-male"></i><span>Employee Attendance</span>
+                                                            if (list[26].menustat == "X")
+                                                            {
+                                                                <li class="treeview">
+                                                                    <a href="~/home/Teacher_Evalution">
+                                                                        <i class="fa fa-male"></i><span>Employee Attendance</span>
 
-                                                                </a>
-                                                            </li>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            string url = "/dashboard";
+                                                            Response.Write("<script type='text/javascript'>");
+                                                            Response.Write("window.location.href = '" + url + "'</script>");
                                                         }
                                                     }
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
-                                                }
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
 
-                                        }
+                                                        }
 
                                         @if (list[36].menustat == "X")
                                         {
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-calendar"></i> <span>Fees</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li>
-                                                    <a href="~/Fee/Feechalan">
-                                                        <i class="fa fa-calendar-times-o"></i><span>Fee Challan</span>
-                                                    </a>
-                                                </li>
-                                                @{
-                                                    try
-                                                    {
-                                                        if (list[28].menustat == "X")
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-calendar"></i> <span>Fees</span>
+                                                    <span class="pull-right-container">
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="~/Fee/Feechalan">
+                                                            <i class="fa fa-calendar-times-o"></i><span>Fee Challan</span>
+                                                        </a>
+                                                    </li>
+                                                    @{
+                                                        try
                                                         {
-                                                            <li>
-                                                                <a href="~/Fee/Feehistory">
-                                                                    <i class="fa fa-calendar-times-o"></i><span>Fee History</span>
-                                                                </a>
-                                                            </li>
+                                                            if (list[28].menustat == "X")
+                                                            {
+                                                                <li>
+                                                                    <a href="~/Fee/Feehistory">
+                                                                        <i class="fa fa-calendar-times-o"></i><span>Fee History</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            string url = "/dashboard";
+                                                            Response.Write("<script type='text/javascript'>");
+                                                            Response.Write("window.location.href = '" + url + "'</script>");
                                                         }
                                                     }
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
-                                                }
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
 
-                                        }
+                                                        }
                                     </ul>
                                 </li>
+                                                            }
+
                                                         }
 
-                                                    }
-
-                                                    catch (Exception)
-                                                    {
-                                                        string url = "/dashboard";
-                                                        Response.Write("<script type='text/javascript'>");
-                                                        Response.Write("window.location.href = '" + url + "'</script>");
-                                                    }
+                                                        catch (Exception)
+                                                        {
+                                                            string url = "/dashboard";
+                                                            Response.Write("<script type='text/javascript'>");
+                                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                                        }
                     }
                     @{
                         try
@@ -1134,7 +1135,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/TM/index">
-                                                            <i class="fa fa-users" aria-hidden="true"></i><span> Time Sheet Report </span>
+                                                            <i class="fa fa-file-text" aria-hidden="true"></i><span> Time Sheet Report </span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1220,21 +1221,21 @@
                                                 {
                                                     <li>
                                                         <a href="~/TM/index">
-                                                            <i class="fa fa-users"></i><span> Time Sheet Report</span>
+                                                            <i class="fa fa-file-text"></i><span> Time Sheet Report</span>
                                                         </a>
                                                     </li>
                                                 }
 
                                                 <li>
                                                     <a href="~/TM/Dailytimesheet">
-                                                        <i class="fa fa-users"></i><span> Daily Time Sheet Report</span>
+                                                        <i class="fa fa-file-text"></i><span> Daily Time Sheet Report</span>
                                                     </a>
                                                 </li>
                                                 if (list[66].menustat == "X")
                                                 {
                                                     <li>
                                                         <a href="~/TM/DisplayConveyanceReport">
-                                                            <i class="fa fa-users"></i><span> Conveyance Report</span>
+                                                            <i class="fa fa-file-pdf-o"></i><span> Conveyance Report</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1293,7 +1294,7 @@
                             {
                                 <li class="treeview">
                                     <a href="#">
-                                        <i class="fa fa-user-md"></i> <span>Corporate Documents</span>
+                                        <i class="fa fa-file-o"></i> <span>Corporate Documents</span>
                                         <span class="pull-right-container">
                                             <i class="fa fa-angle-left pull-right"></i>
                                         </span>
@@ -1306,7 +1307,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/CompanyDoc/Index">
-                                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>Upload Documents</span>
+                                                            <i class="fa fa-upload" aria-hidden="true"></i><span>Upload Documents</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1314,7 +1315,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/CompanyDoc/AccountDoc">
-                                                            <i class="fa fa-users"></i><span>Accounts Documents</span>
+                                                            <i class="fa fa-book"></i><span>Accounts Documents</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1322,7 +1323,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/CompanyDoc/HRDoc">
-                                                            <i class="fa fa-users"></i><span>HR Documents</span>
+                                                            <i class="fa fa-book"></i><span>HR Documents</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1330,7 +1331,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/CompanyDoc/ERPDoc">
-                                                            <i class="fa fa-users"></i><span>ERP Documents</span>
+                                                            <i class="fa fa-book"></i><span>ERP Documents</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1340,7 +1341,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/CompanyDoc/AOneDoc">
-                                                            <i class="fa fa-users"></i> <span>SAP A-One Documents</span>
+                                                            <i class="fa fa-book"></i><span>SAP A-One Documents</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1348,7 +1349,7 @@
                                                 {
                                                     <li>
                                                         <a href="~/CompanyDoc/BOneDoc">
-                                                            <i class="fa fa-money"></i><span>SAP B-One Documents</span>
+                                                            <i class="fa fa-book"></i><span>SAP B-One Documents</span>
                                                         </a>
                                                     </li>
                                                 }
@@ -1857,12 +1858,11 @@
     <script src=@Url.Content("~/Content/js/Profile.js?n=2") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/DailyTmshtReport.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/HRDoc.js?n=1") asp-append-version="true"></script>AOneDoc
+    <script src=@Url.Content("~/Content/js/HRDoc.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/AccountDoc.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/ERPDoc.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/AOneDoc.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/BOneDoc.js?n=1") asp-append-version="true"></script>
-
     @*******************************Pages Scripts**********************************@
 
 
@@ -1878,7 +1878,7 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.num != null) {
-                        
+
                         $("#nof_layout").html(data.num);
                         if (data.notf != null) {
                             debugger
