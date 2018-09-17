@@ -1288,6 +1288,94 @@
                         try
                         {
                             var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+
+                            if (list[67].menustat == "X")
+                            {
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-user-md"></i> <span>Corporate Documents</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        @{
+                                            try
+                                            {
+                                                if (list[68].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/CompanyDoc/Index">
+                                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>Upload Documents</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[69].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/CompanyDoc/AccountDoc">
+                                                            <i class="fa fa-users"></i><span>Accounts Documents</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[70].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/CompanyDoc/HRDoc">
+                                                            <i class="fa fa-users"></i><span>HR Documents</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[71].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/CompanyDoc/ERPDoc">
+                                                            <i class="fa fa-users"></i><span>ERP Documents</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+
+                                                if (list[72].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/CompanyDoc/AOneDoc">
+                                                            <i class="fa fa-users"></i> <span>SAP A-One Documents</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (list[73].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/CompanyDoc/BOneDoc">
+                                                            <i class="fa fa-money"></i><span>SAP B-One Documents</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                    }
+
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
                             if (list[37].menustat == "X")
                             {
                                 <li class="treeview">

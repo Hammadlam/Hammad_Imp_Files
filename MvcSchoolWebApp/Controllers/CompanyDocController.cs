@@ -14,7 +14,23 @@ namespace MvcSchoolWebApp.Controllers
             return View();
         }
 
-        public ActionResult displaydoc()
+        public ActionResult AccountDoc()
+        {
+            return View();
+        }
+        public ActionResult HRDoc()
+        {
+            return View();
+        }
+        public ActionResult ERPDoc()
+        {
+            return View();
+        }
+        public ActionResult AOneDoc()
+        {
+            return View();
+        }
+        public ActionResult BOneDoc()
         {
             return View();
         }
