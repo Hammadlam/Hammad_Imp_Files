@@ -76,7 +76,7 @@ namespace MvcSchoolWebApp.Controllers
             tsm.date = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MMMM-yyyy");
             tsm.time = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("hh:mm tt");
             List<ESSModel> esslist = db.getemploydetail(user_id);
-            bool isactive = db.isactiveuser(user_id);
+            bool isactive = db.isactiveuser(user_id, db.convertservertousertimezone(DateTime.Now.ToString()));
             tsm.empdesignation = esslist[0].design;
             tsm.empdepart = esslist[0].dept;
             if (isactive == true)
@@ -109,7 +109,7 @@ namespace MvcSchoolWebApp.Controllers
             tsm.date = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("dd-MMMM-yyyy");
             tsm.time = db.convertservertousertimezone(DateTime.Now.ToString()).ToString("hh:mm tt");
             List<ESSModel> esslist = db.getemploydetail(user_id);
-            bool isactive = db.isactiveuser(user_id);
+            bool isactive = db.isactiveuser(user_id, db.convertservertousertimezone(DateTime.Now.ToString()));
             tsm.empdesignation = esslist[0].design;
             tsm.empdepart = esslist[0].dept;
             if (isactive == true)
@@ -216,10 +216,10 @@ namespace MvcSchoolWebApp.Controllers
             return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult isactiveemployee(string empid)
+        public JsonResult isactiveemployee(string empid, DateTime date)
         {
             DatabaeseClass db = new DatabaeseClass();
-            return Json(db.isactiveuser(empid), JsonRequestBehavior.AllowGet);
+            return Json(db.isactiveuser(empid, date), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult getclientid(string empid, string dateId)

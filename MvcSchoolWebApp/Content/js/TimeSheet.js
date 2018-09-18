@@ -177,7 +177,8 @@ function isactiveemployee() {
     $.ajax({
         url: encodeURI("../TM/isactiveemployee"),
         data: {
-            empid: $("#txtempnameTS > option:selected").attr("value")
+            empid: $("#txtempnameTS > option:selected").attr("value"),
+            date: $("#txtdateTS").val()
         },
         contentType: "application/json; charset=utf-8",
         dataType: "json",

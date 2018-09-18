@@ -1064,7 +1064,7 @@ namespace MvcSchoolWebApp.Controllers
             return items;
         }
 
-        public bool isactiveuser(string empid)
+        public bool isactiveuser(string empid, DateTime date)
         {
             DateTime currtime = convertservertopsttimezone(DateTime.Now.ToString());
             bool status = false;
@@ -1072,7 +1072,7 @@ namespace MvcSchoolWebApp.Controllers
             {
                 da.CreateConnection();
                 string query = "select isactive from emp0280 where empid = '"+empid+"' and "+
-                               "begdate >= '"+currtime.ToString("yyyy/MM/dd") + "' and begdate < '"+currtime.AddDays(1).ToString("yyyy/MM/dd") +"' "+
+                               "begdate >= '"+ date.ToString("yyyy/MM/dd") + "' and begdate < '"+ date.AddDays(1).ToString("yyyy/MM/dd") +"' "+
                                "and isactive = 'X'";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
