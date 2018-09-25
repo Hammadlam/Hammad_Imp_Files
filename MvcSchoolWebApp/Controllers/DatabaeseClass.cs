@@ -3439,7 +3439,7 @@ namespace MvcSchoolWebApp.Controllers
                                 "inner join costorder c on attd.clientid = c.costorder " +
                                 "inner join emppers ep on attd.empid = ep.empid "+
                                 "where attd.clientid <> '0343' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '"+prevmonth+"' and attd.begdate < '"+thismonth+ "' and c.delflag = '' "+
-                                "group by attd.clientid, c.custname1, ep.firstname, ep.lastname "+
+                                "group by attd.clientid, c.ordstxt, ep.firstname, ep.lastname " +
                                 "order by name asc";
 
                 da.CreateConnection();
