@@ -3479,7 +3479,7 @@ namespace MvcSchoolWebApp.Controllers
             List<SelectListItem> items = new List<SelectListItem>();
             try
             {
-                string query = "select costorder, ordstxt from costorder where delflag = ''";
+                string query = "select costorder, ordstxt from costorder where delflag = '' order by ordstxt";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
