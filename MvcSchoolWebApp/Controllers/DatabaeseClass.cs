@@ -3379,9 +3379,9 @@ namespace MvcSchoolWebApp.Controllers
             string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select begdate, enddate, clientid, custname1, isactive, remarks, remarkstout from emp0280 "+
-                                "inner join custmst on emp0280.clientid = custmst.custno "+
-                                "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+"' and delind <> 'X' order by begdate asc ";
+                string query = "select begdate, enddate, clientid, ordstxt, isactive, remarks, remarkstout from emp0280 " +
+                                "inner join costorder on emp0280.clientid = costorder.costorder " +
+                                "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+ "' and delind <> 'X' and costorder.delflag = '' order by begdate asc ";
 
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
@@ -3404,7 +3404,7 @@ namespace MvcSchoolWebApp.Controllers
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             checkouttime = enddate,
                             clientid = da.obj_reader["clientid"].ToString(),
-                            client = da.obj_reader["custname1"].ToString(),
+                            client = da.obj_reader["ordstxt"].ToString(),
                             remarks = da.obj_reader["remarks"].ToString(),
                             remarkstout = da.obj_reader["remarkstout"].ToString()
                         });
@@ -3435,10 +3435,10 @@ namespace MvcSchoolWebApp.Controllers
             string prevmonth = month.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select ep.firstname + ' ' + ep.lastname as name, c.custname1, Count(attd.clientid) as NoofVisit from emp0280 attd " +
-                                "inner join custmst c on attd.clientid = c.custno "+
+                string query = "select ep.firstname + ' ' + ep.lastname as name, c.ordstxt, Count(attd.clientid) as NoofVisit from emp0280 attd " +
+                                "inner join costorder c on attd.clientid = c.costorder " +
                                 "inner join emppers ep on attd.empid = ep.empid "+
-                                "where attd.clientid <> '0343' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '"+prevmonth+"' and attd.begdate < '"+thismonth+"' "+
+                                "where attd.clientid <> '0343' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '"+prevmonth+"' and attd.begdate < '"+thismonth+ "' and c.delflag = '' "+
                                 "group by attd.clientid, c.custname1, ep.firstname, ep.lastname "+
                                 "order by name asc";
 
@@ -3453,7 +3453,7 @@ namespace MvcSchoolWebApp.Controllers
                        items.Add(new Timesheetmodal
                         {
                            Name = da.obj_reader["name"].ToString(),
-                           client = da.obj_reader["custname1"].ToString(),
+                           client = da.obj_reader["ordstxt"].ToString(),
                            noofvisit = da.obj_reader["NoofVisit"].ToString()
                         });
                     }
@@ -3479,7 +3479,7 @@ namespace MvcSchoolWebApp.Controllers
             List<SelectListItem> items = new List<SelectListItem>();
             try
             {
-                string query = "select custno, custname1 from custmst order by custname1";
+                string query = "select costorder, ordstxt from costorder where delflag = ''";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3488,12 +3488,12 @@ namespace MvcSchoolWebApp.Controllers
                 {
                     while (da.obj_reader.Read())
                     {
-                        if (da.obj_reader["custno"].ToString().Trim() != "")
+                        if (da.obj_reader["costorder"].ToString().Trim() != "")
                         {
                             items.Add(new SelectListItem
                             {
-                                Text = da.obj_reader["custname1"].ToString(),
-                                Value = da.obj_reader["custno"].ToString().Trim()
+                                Text = da.obj_reader["ordstxt"].ToString(),
+                                Value = da.obj_reader["costorder"].ToString().Trim()
                             });
                         }
                     }
@@ -3567,11 +3567,11 @@ namespace MvcSchoolWebApp.Controllers
                 da.CreateConnection();
                 string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");
                 string startdate = convertservertousertimezone(DateTime.Now.AddDays(-2).ToString()).ToString("yyyy-MM-dd");
-                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, e2.remarks, e2.remarkstout, ct.custname1 from emp0280 e2 "+
+                string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, e2.remarks, e2.remarkstout, ct.ordstxt from emp0280 e2 " +
                                "inner join emppers ep on e2.empid = ep.empid "+
-                               "inner join custmst ct on e2.clientid = ct.custno "+
+                               "inner join costorder ct on e2.clientid = ct.costorder " +
                                "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"' "+
-                               "and ep.delind <> 'X' and e2.delind <> 'X' order by e2.begdate";
+                               "and ep.delind <> 'X' and e2.delind <> 'X' and ct.delflag = '' order by e2.begdate  ";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
@@ -3590,7 +3590,7 @@ namespace MvcSchoolWebApp.Controllers
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd dd-MMMM-yyyy"),
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
                             checkouttime = enddate,
-                            client = da.obj_reader["custname1"].ToString(),
+                            client = da.obj_reader["ordstxt"].ToString(),
                             remarks = da.obj_reader["remarks"].ToString(),
                             remarkstout = da.obj_reader["remarkstout"].ToString()
                         });
@@ -3629,11 +3629,11 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 string query = "select e2.empid, ep.firstname + ' ' + ep.lastname as name, e2.begdate, e2.tinlat, e2.tinlong, "+
-                                "e2.toutlat, toutlong, e2.enddate, cst.custname1, e2.isactive from emppers ep "+
+                                "e2.toutlat, toutlong, e2.enddate, cst.ordstxt, e2.isactive from emppers ep " +
                                 "inner join emp0280 e2 on ep.empid = e2.empid "+
-                                "inner join custmst cst on e2.clientid = cst.custno "+
+                                "inner join costorder cst on e2.clientid = cst.costorder " +
                                 "where e2.delind <> 'X' and ep.delind <> 'X' and "+
-                                "e2.begdate >= '"+currdate+"' and e2.begdate < '"+adddate+"' order by e2.begdate";
+                                "e2.begdate >= '"+currdate+"' and e2.begdate < '"+adddate+ "' and cst.delflag = '' order by e2.begdate ";
 
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
@@ -3659,7 +3659,7 @@ namespace MvcSchoolWebApp.Controllers
                             tinlong = da.obj_reader["tinlong"].ToString(),
                             toutlat = da.obj_reader["toutlat"].ToString(),
                             toutlong = da.obj_reader["toutlong"].ToString(),
-                            client = da.obj_reader["custname1"].ToString()
+                            client = da.obj_reader["ordstxt"].ToString()
                         });
                     }
                     da.obj_reader.Close();

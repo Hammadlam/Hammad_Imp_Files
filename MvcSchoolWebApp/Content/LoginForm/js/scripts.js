@@ -1,8 +1,6 @@
-jQuery(document).ready(function () {
-
-    /*
-        Fullscreen background
-    */
+var ctx = document.getElementById("wrap");
+debugger
+if (ctx != null) {
     $.backstretch([
                     "Content/LoginForm/img/backgrounds/Business Image 1a.jpg?n=1",
                     "Content/LoginForm/img/backgrounds/Business Image 1b.jpg?n=1",
@@ -101,9 +99,4 @@ jQuery(document).ready(function () {
         });
 
     });
-
-
-});
-
-
-
+}
