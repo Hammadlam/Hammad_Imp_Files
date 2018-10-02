@@ -83,7 +83,7 @@ namespace MvcSchoolWebApp.Controllers
             conn.Open();
             string earea = "select distinct earea from empmain where empid = '" + user_id + "' and delind <> 'X'";
             SqlCommand cmd = new SqlCommand(earea, conn);
-            string rptid = "ZHR001";
+            string rptid = "HR2003";
             ReportsController rc = new ReportsController();
             string[] arr = new string[7];
             arr[0] = ess.empid;
