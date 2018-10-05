@@ -3,6 +3,7 @@
     ViewBag.Title = "UploadTimetable";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src=@Url.Content("~/Content/js/UploadTimeTable.js?n=1") asp-append-version="true"></script>
 
 @using (Html.BeginForm("UploadTimetable", "TimeTable", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

@@ -416,6 +416,212 @@
 
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+
+    <script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1") asp-append-version="true"></script>
+    <!-- jQuery 2.2.3 -->
+    @*<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1") asp-append-version="true"></script>*@
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1") asp-append-version="true"></script>
+    <!-- FastClick -->
+   
+    <!-- Sparkline -->
+    <!-- jvectormap -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js?n=1") asp-append-version="true"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <!-- ChartJS 1.0.1 -->
+    
+    <script src=@Url.Content("~/Content/js/moment.min.js?n=1") asp-append-version="true"></script>
+
+    <script src=@Url.Content("~/Content/js/bootstrap-datetimepicker.min.js") asp-append-version="true"></script>
+
+    <script src=@Url.Content("~/Content/js/jquery.monthpicker.min.js?n=1") asp-append-version="true"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- AdminLTE for demo purposes -->
+    <script src=@Url.Content("~/Content/dbtheme/dist/js/demo.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/jquery.metisMenu.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/jquery.peity.min.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/grid.locale-en.js?n=1") asp-append-version="true"></script>
+
+    <script src=@Url.Content("~/Content/js/jquery.jqGrid.min.js?n=1") asp-append-version="true"></script>
+    @*<script src=@Url.Content("~/Content/js/pace.min.js?n=1")></script>*@
+    @*<script src=@Url.Content("~/Content/js/jquery-ui.min.js?n=1") asp-append-version="true"></script>*@
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap-datepicker.js?n=1") asp-append-version="true"></script>
+    <!-- AdminLTE App -->
+    @*<script src=@Url.Content("~/Content/dbtheme/dist/js/app.min.js?n=1") asp-append-version="true"></script>*@
+    @*<script src=@Url.Content("~/Scripts/jquery.validate.min.js") asp-append-version="true"></script>*@
+
+    @*<script src=@Url.Content("~/Content/js/summernote.min.js?n=1") asp-append-version="true"></script>*@
+    <script src=@Url.Content("~/Content/js/jasny-bootstrap.min.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/dropzone.js?n=1") asp-append-version="true"></script>
+
+    @*<script src=@Url.Content("~/Content/js/jquery.validate.min.js") asp-append-version="true"></script>*@
+    <script src=@Url.Content("~/Content/dbtheme/plugins/daterangepicker/moment.min.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/fullcalendar/fullcalendar.min.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/daterangepicker/daterangepicker.js") asp-append-version="true"></script>
+
+    <script src=@Url.Content("~/Content/js/ChangePassword.js?n=1") asp-append-version="true"></script>
+    
+    <script src=@Url.Content("~/Content/Avatar/avatar1.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/Avatar/resample.js?n=1") asp-append-version="true"></script>
+
+    @*<script src=@Url.Content("~/Content/js/jquery.validate.min.js?n=1") asp-append-version="true"></script>*@
+    <script src=@Url.Content("~/Content/js/popup.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/js/Bootstrapmodal.js?n=1") asp-append-version="true"></script>
+
+    <script src=@Url.Content("~/Content/dbtheme/dist/js/file-upload.js") asp-append-version="true"></script>
+
+    <!-- Data Tables -->
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/jquery.dataTables.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.bootstrap.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.responsive.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.tableTools.min.js?n=1") asp-append-version="true"></script>
+    
+    
+    <!-- Bootstrap 3.3.6 -->
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1") asp-append-version="true"></script>
+
+    
+    <script type="text/javascript">
+        @ViewBag.scriptcall2
+        @ViewBag.call_alert
+
+        /******************************* Refresh Notifications Start *****************************/
+        window.setInterval(function (e) {
+            $.ajax({
+                url: encodeURI("../Message/RefreshMsg"),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.num != null) {
+
+                        $("#nof_layout").html(data.num);
+                        if (data.notf != null) {
+                            debugger
+                            for (var i = 0; i < Object.keys(data.notf).length; i++) {
+                                if (data.notf[i].recordno == null && data.notf[i].Groupid == null) {
+                                    data.notf[i].recordno = "";
+                                    data.notf[i].Groupid = "";
+                                }
+                                var alldata = data.notf[i].MsgId + "?" + data.notf[i].Groupid + "?" + data.notf[i].recordno;
+                                $("#notf_menu").prepend('<li style="background-color:#e5e5e5;border:1px solid #ffffff;"> <a id="MsgSubject" onclick="GetMsgid(this);" value=' + alldata + '> <label style="font-weight:600; color:#ca434d;">' + data.notf[i].senderId + '</label><br /> ' + data.notf[i].Subject + ' <p class="pull-right msg-time"> ' + data.notf[i].msgdate + ' </p> </a> </li>');
+                            }
+                            var x = document.getElementById("snackbar");
+                            x.className = "show";
+                            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                        }
+                    }
+                    else {
+
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
+        }, 10000);
+
+        /******************************* Refresh Notifications End *****************************/
+
+
+        function destroy_session() {
+            window.location.href = "/dashboard/destroy_session";
+        }
+
+
+
+        function Demo(anchor) {
+            var value = anchor.getAttribute('value')
+            $.ajax({
+                type: 'POST',
+                url: '/result/fncresulttype',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                    //alert("Error in assigning dataToSave" + err.responseText);
+                }
+            });
+        }
+
+        function down(anchor) {
+            var value = anchor.getAttribute('value')
+            $.ajax({
+                type: 'POST',
+                url: '/download/fundownload',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                }
+            });
+        }
+
+        function redirectpersonalinfo(anchor) {
+            var value = anchor.getAttribute('value');
+            $.ajax({
+                type: 'POST',
+                url: '/personalinfo/funcpersonal',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                }
+            });
+        }
+
+        $("#popupform_prsnlinfo").submit(function (e) {
+            e.preventDefault();
+            var value = $("#popupform_prsnlinfo input:radio:checked").val();
+            $.ajax({
+                type: 'POST',
+                url: '/personalinfo/funcpersonal',
+                data: "dataToSave=" + value,
+                success: function (result) {
+                    debugger
+                    window.location.href = result;
+                },
+                error: function (err, result) {
+                }
+            });
+        });
+
+        function GetMsgid(anchor) {
+            var value = anchor.getAttribute('value')
+
+            $.ajax({
+                type: 'POST',
+                url: '/Message/GetMsgId',
+                data: "sendmsgid=" + value,
+                success: function (result) {
+                    if (result != "") {
+                        var getid = result;
+                        window.location.href = getid;
+                    }
+                },
+                error: function (err, result) {
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $(".treeview ul li").on('click', 'li', function () {
+                debugger
+                $(".treeview").removeClass("active");
+                // adding classname 'active' to current click li
+                $(this).parent("treeview").addClass("active");
+            });
+        });
+
+    </script>
+
 </head>
 <body class="hold-transition skin-blue-light sidebar-collapse  sidebar-mini">
 
@@ -1738,182 +1944,43 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @*@RenderSection("scripts", required: false)*@
 
-    <!-- jQuery 2.2.3 -->
-    <script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1") asp-append-version="true"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-    <!-- Bootstrap 3.3.6 -->
-
-    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1") asp-append-version="true"></script>
-    <!-- FastClick -->
-    <script src=@Url.Content("~/Content/dbtheme/plugins/fastclick/fastclick.js?n=1") asp-append-version="true"></script>
-    <!-- AdminLTE App -->
     <script src=@Url.Content("~/Content/dbtheme/dist/js/app.min.js?n=1") asp-append-version="true"></script>
-    <!-- Sparkline -->
     <script src=@Url.Content("~/Content/dbtheme/plugins/sparkline/jquery.sparkline.min.js?n=1") asp-append-version="true"></script>
-    <!-- jvectormap -->
-    <script src=@Url.Content("~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js?n=1") asp-append-version="true"></script>
-    <!-- SlimScroll 1.3.0 -->
+    
+    <script src=@Url.Content("~/Content/dbtheme/plugins/fastclick/fastclick.js?n=1") asp-append-version="true"></script>
+    
     <script src=@Url.Content("~/Content/dbtheme/plugins/slimScroll/jquery.slimscroll.min.js?n=1") asp-append-version="true"></script>
-    <!-- ChartJS 1.0.1 -->
+
     <script src=@Url.Content("~/Content/js/Chart.min.js?n=1") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/moment.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/bootstrap-datetimepicker.min.js") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/jquery.monthpicker.min.js?n=1") asp-append-version="true"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- AdminLTE for demo purposes -->
-    <script src=@Url.Content("~/Content/dbtheme/dist/js/demo.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/jquery.metisMenu.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/jquery.peity.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/grid.locale-en.js?n=1") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/jquery.jqGrid.min.js?n=1") asp-append-version="true"></script>
-    @*<script src=@Url.Content("~/Content/js/pace.min.js?n=1")></script>*@
     <script src=@Url.Content("~/Content/js/jquery-ui.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap-datepicker.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Scripts/jquery.validate.min.js") asp-append-version="true"></script>
-
     <script src=@Url.Content("~/Content/js/summernote.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/jasny-bootstrap.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/dropzone.js?n=1") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/jquery.validate.min.js") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/daterangepicker/moment.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/fullcalendar/fullcalendar.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/daterangepicker/daterangepicker.js") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/ChangePassword.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/iChecks/icheck.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/Avatar/avatar1.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/Avatar/resample.js?n=1") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/jquery.validate.min.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/popup.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Bootstrapmodal.js?n=1") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/dbtheme/dist/js/file-upload.js") asp-append-version="true"></script>
-
-    <!-- Data Tables -->
-    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/jquery.dataTables.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.bootstrap.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.responsive.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/dbtheme/plugins/datatables/dataTables.tableTools.min.js?n=1") asp-append-version="true"></script>
-
-    @*******************************Pages Scripts**********************************@
-    <script src=@Url.Content("~/Content/js/CampusCapacity.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/CampusStatus.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/CampusStrength.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/AttendanceUpload.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/ViewAttendance.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/studentdashboardjs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/TeacherDashboard.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/download.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/WeeklyLesson.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/EventSchedular.js?n=2") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/FeeChalan.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/feehistoryjs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/feestatusjs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/ActivityGrade.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/AssignmentUpload.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/Email.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Finance.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Human_Resource.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/MarksUpload.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Purchase.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Sales.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/TeacherAttendance.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/ClassWisepersonal.js?n=1") asp-append-version="true"></script>
+    @*<script src=@Url.Content("~/Content/js/custom-chart.js?n=1") asp-append-version="true"></script>*@
+        
+    @*******************************Pages Scripts**********************************@
+    <script src=@Url.Content("~/Content/js/TeacherAttendance.js?n=1") asp-append-version="true"></script>    
     <script src=@Url.Content("~/Content/js/StudentProfile.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/PPCambridge.js?n=1") asp-append-version="true"></script>
     <script src=@Url.Content("~/Content/js/PPMatric.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/customjs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/PublishResult.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/ClassTimetablejs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/MasterTimetablejs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/TeacherTimetablejs.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/UploadTimeTable.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/loanRequest.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/loanAppr.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/leaveRequest.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/leaveAppr.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/WeeklyLessonPP.js?n=3") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/resigAppr.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/masterDashboard.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/purRequisit.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/SaleOrder.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/TimeSheet.js?n=6") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Operations.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/Profile.js?n=2") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=2") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/DailyTmshtReport.js?n=2") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/HRDoc.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/AccountDoc.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/ERPDoc.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/AOneDoc.js?n=1") asp-append-version="true"></script>
-    <script src=@Url.Content("~/Content/js/BOneDoc.js?n=1") asp-append-version="true"></script>
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap-datepicker.js?n=1") asp-append-version="true"></script>    
+
+    <script src=@Url.Content("~/Content/js/custom-chart.js?n =1") asp-append-version="true"></script>    
+    @*<script src=@Url.Content("~/Content/js/FinalReport.js?n=1") asp-append-version="true"></script>*@
+    @*<script src=@Url.Content("~/Content/js/FinalReport.js?n =1") asp-append-version="true"></script>*@
+    <!-- Bootstrap 3.3.6 -->
+    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n =1") asp-append-version="true"></script>
     @*******************************Pages Scripts**********************************@
 
-
     <script type="text/javascript">
-        @ViewBag.scriptcall2
-        @ViewBag.call_alert
-
-        /******************************* Refresh Notifications Start *****************************/
-        window.setInterval(function (e) {
-            $.ajax({
-                url: encodeURI("../Message/RefreshMsg"),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    if (data.num != null) {
-
-                        $("#nof_layout").html(data.num);
-                        if (data.notf != null) {
-                            debugger
-                            for (var i = 0; i < Object.keys(data.notf).length; i++) {
-                                if (data.notf[i].recordno == null && data.notf[i].Groupid == null) {
-                                    data.notf[i].recordno = "";
-                                    data.notf[i].Groupid = "";
-                                }
-                                var alldata = data.notf[i].MsgId + "?" + data.notf[i].Groupid + "?" + data.notf[i].recordno;
-                                $("#notf_menu").prepend('<li style="background-color:#e5e5e5;border:1px solid #ffffff;"> <a id="MsgSubject" onclick="GetMsgid(this);" value=' + alldata + '> <label style="font-weight:600; color:#ca434d;">' + data.notf[i].senderId + '</label><br /> ' + data.notf[i].Subject + ' <p class="pull-right msg-time"> ' + data.notf[i].msgdate + ' </p> </a> </li>');
-                            }
-                            var x = document.getElementById("snackbar");
-                            x.className = "show";
-                            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-                        }
-                    }
-                    else {
-
-                    }
-                },
-                error: function (error) {
-
-                }
-            });
-        }, 10000);
-
-        /******************************* Refresh Notifications End *****************************/
-
-
-        function destroy_session() {
-            window.location.href = "/dashboard/destroy_session";
-        }
-
         $(document).ready(function () {
-
             $('.summernote').summernote();
             $('.note-toolbar .note-fontsize, .note-toolbar .note-color, .note-toolbar .note-para .dropdown-menu li:first, .note-toolbar .note-line-height').remove();
             $('#press').click(function () {
@@ -1923,7 +1990,6 @@
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
-
         });
 
         var edit = function () {
@@ -1943,99 +2009,6 @@
             $('.summernote').summernote();
             $('#ChangePassword').modal('show');
         }
-
-        function Demo(anchor) {
-            var value = anchor.getAttribute('value')
-            $.ajax({
-                type: 'POST',
-                url: '/result/fncresulttype',
-                data: "dataToSave=" + value,
-                success: function (result) {
-                    window.location.href = result;
-                },
-                error: function (err, result) {
-                    //alert("Error in assigning dataToSave" + err.responseText);
-                }
-            });
-        }
-
-        function down(anchor) {
-            var value = anchor.getAttribute('value')
-            $.ajax({
-                type: 'POST',
-                url: '/download/fundownload',
-                data: "dataToSave=" + value,
-                success: function (result) {
-                    window.location.href = result;
-                },
-                error: function (err, result) {
-                }
-            });
-        }
-
-        function redirectpersonalinfo(anchor) {
-            var value = anchor.getAttribute('value');
-            $.ajax({
-                type: 'POST',
-                url: '/personalinfo/funcpersonal',
-                data: "dataToSave=" + value,
-                success: function (result) {
-                    window.location.href = result;
-                },
-                error: function (err, result) {
-                }
-            });
-        }
-
-        $("#popupform_prsnlinfo").submit(function (e) {
-            e.preventDefault();
-            var value = $("#popupform_prsnlinfo input:radio:checked").val();
-            $.ajax({
-                type: 'POST',
-                url: '/personalinfo/funcpersonal',
-                data: "dataToSave=" + value,
-                success: function (result) {
-                    debugger
-                    window.location.href = result;
-                },
-                error: function (err, result) {
-                }
-            });
-        });
-
-        function GetMsgid(anchor) {
-            var value = anchor.getAttribute('value')
-
-            $.ajax({
-                type: 'POST',
-                url: '/Message/GetMsgId',
-                data: "sendmsgid=" + value,
-                success: function (result) {
-                    if (result != "") {
-                        var getid = result;
-                        window.location.href = getid;
-                    }
-                },
-                error: function (err, result) {
-                }
-            });
-        }
-
-        $(document).ready(function () {
-            $(".treeview ul li").on('click', 'li', function () {
-                debugger
-                $(".treeview").removeClass("active");
-                // adding classname 'active' to current click li
-                $(this).parent("treeview").addClass("active");
-            });
-        });
-
-    </script>
-
-    <script src=@Url.Content("~/Content/js/custom-chart.js?n=1") asp-append-version="true"></script>
-
-    <script src=@Url.Content("~/Content/js/FinalReport.js?n=1") asp-append-version="true"></script>
-    <!-- Bootstrap 3.3.6 -->
-    <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1") asp-append-version="true"></script>
+    </script>    
 </body>
 </html>

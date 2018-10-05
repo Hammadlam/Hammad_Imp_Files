@@ -40,7 +40,7 @@
                                             <label>Pick a Month</label>
                                         </div>
                                         <div class="col-md-7">
-                                            @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewReportMonthECR", @id = "ViewReportMonthECR", @required = true })
+                                            @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewReportMonthECR", @id = "ViewReportMonthECR", @required = true, @onkeypress = "return false;", @autocomplete = "off" })
                                         </div>
                                     </div>
                                 </div>
@@ -59,6 +59,6 @@
         </div>
     </div>
 </section>
-
+<script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=2") asp-append-version="true"></script>
 
 

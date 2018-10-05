@@ -229,7 +229,6 @@ function getemployeeattendancehistory() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            debugger
             $('#empattendance_table').jqGrid('clearGridData');
             $("#empattendance_table").jqGrid("GridUnload");
             $('#empattendance_table').jqGrid('setGridParam', { data: data });

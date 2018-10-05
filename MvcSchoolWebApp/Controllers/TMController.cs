@@ -82,7 +82,11 @@ namespace MvcSchoolWebApp.Controllers
             if (isactive == true)
             {
                 ViewBag.disabletimein = true;
-                tsm.clientid = db.getclientid(user_id,dateId);
+                tsm.clientid = db.getclientid(user_id, dateId);
+            }
+            else
+            {
+                tsm.clientid = "150046";
             }
             return View(tsm);
         }
@@ -116,6 +120,10 @@ namespace MvcSchoolWebApp.Controllers
             {
                 ViewBag.disabletimein = true;
                 tsm.clientid = db.getclientid(user_id, dateId);
+            }
+            else
+            {
+                tsm.clientid = "150046";
             }
             return View(tsm);
         }

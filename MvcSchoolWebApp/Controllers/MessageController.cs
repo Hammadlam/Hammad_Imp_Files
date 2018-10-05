@@ -108,7 +108,7 @@ namespace MvcSchoolWebApp.Controllers
             string msgId = getdata[0];
             SqlConnection con = new SqlConnection(cs);
             con.Open();
-            SqlCommand cmd = new SqlCommand("select notfcase from inbox where msgid = '"+msgId+"'",con);
+            SqlCommand cmd = new SqlCommand("select notfcase from inbox where msgid = '" + msgId + "'", con);
             string notfcase = cmd.ExecuteScalar().ToString().Trim();
             string url;
             if (notfcase == "")
@@ -118,7 +118,7 @@ namespace MvcSchoolWebApp.Controllers
             }
             else
             {
-                cmd = new SqlCommand("select pagepath from znotificationcase where notfcase = '"+notfcase+"'", con);
+                cmd = new SqlCommand("select pagepath from znotificationcase where notfcase = '" + notfcase + "'", con);
                 string pagepath = (string)cmd.ExecuteScalar() ?? "";
 
                 switch (notfcase)
@@ -178,7 +178,7 @@ namespace MvcSchoolWebApp.Controllers
                 {
 
                     cmd.CommandText = "insert into inbox(msgid,recordno,subject,message,sender,recip,cc,unread,status,dbtimestmp,chatviewid) values((select ISNULL(MAX(msgid),0)+1 from inbox),'1','" + title + "',@message,'" + user_id + "','" + sendTo + "',' ','X',' ','" + insertdate + "','" + chatviewId + "')";
-                    cmd.Parameters.AddWithValue("@message",msg);
+                    cmd.Parameters.AddWithValue("@message", msg);
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = "insert into chatview (chatviewid,msgid,userid,Isview) values('" + chatviewId + "',(select ISNULL(MAX(msgid),0) from inbox),'" + user_id + "',' ')";
@@ -214,7 +214,7 @@ namespace MvcSchoolWebApp.Controllers
                         int recordno = Convert.ToInt16(cmd.ExecuteScalar());
                         for (int i = 0; i < totalid.Length; i++)
                         {
-                            cmd.CommandText = "insert into schgrpinbox(groupid, msgid, recordno, sender, recip, status, unread, dbtimestmp) values('" + groupid + "', '1', '" + recordno + "', '" + user_id + "', '" + totalid[i] + "', ' ', 'X', '"+insertdate+"')";
+                            cmd.CommandText = "insert into schgrpinbox(groupid, msgid, recordno, sender, recip, status, unread, dbtimestmp) values('" + groupid + "', '1', '" + recordno + "', '" + user_id + "', '" + totalid[i] + "', ' ', 'X', '" + insertdate + "')";
                             cmd.ExecuteNonQuery();
                         }
 
@@ -261,27 +261,27 @@ namespace MvcSchoolWebApp.Controllers
                 if (groupid == "" && recordno == "")
                 {
                     //query = "select distinct msgid, message, inbox.recordno, subject, img.imagepath, (Select top(1)(CONVERT(varchar, inbox.dbtimestmp, 109)) from inbox where msgid = '" + msgId+"' and status <> 'X') as Date, DATENAME(weekday, inbox.dbtimestmp) as Day , (select count(msgid) from inbox where msgid = '"+msgId+ "' and status<> 'X') as countRecord, sender, (ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' ' + sp.lastname) as stdname from inbox left join emppers ep on ep.empid = inbox.sender left join stdpers sp on sp.stdid = inbox.sender left join emp0170 as e17 on e17.empid = inbox.sender  left join imageobj as img on e17.imageid = img.imageid  where msgid = '" + msgId+"' and status<> 'X' group by msgid,message,subject,inbox.dbtimestmp,sender,inbox.recordno,status,ep.firstname,ep.lastname, sp.firstname, sp.lastname, img.imagepath order by recordno ASC";
-                    query = " select msgid, message, inbox.recordno, subject, img.imageobj, inbox.dbtimestmp  as Date, "+
-                            "inbox.filepath, (select count(msgid) from inbox "+
-                            " where msgid = '"+msgId+"' and status <> 'X') as countRecord, sender, "+
-                            "(ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' ' + sp.lastname) as stdname from inbox "+
-                            " left join emppers ep on ep.empid = inbox.sender "+
-                            " left join stdpers sp on sp.stdid = inbox.sender "+                                                                                        
-                            "left join emp0170 as e17 on e17.empid = inbox.sender "+
-                            "left join imageobj as img on e17.imageid = img.imageid "+
-                            " where msgid = '"+msgId+"' and status<> 'X' and ep.delind <> 'X' and(e17.delind <> 'X' OR e17.delind is null) "+
+                    query = " select msgid, message, inbox.recordno, subject, img.imageobj, inbox.dbtimestmp  as Date, " +
+                            "inbox.filepath, (select count(msgid) from inbox " +
+                            " where msgid = '" + msgId + "' and status <> 'X') as countRecord, sender, " +
+                            "(ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' ' + sp.lastname) as stdname from inbox " +
+                            " left join emppers ep on ep.empid = inbox.sender " +
+                            " left join stdpers sp on sp.stdid = inbox.sender " +
+                            "left join emp0170 as e17 on e17.empid = inbox.sender " +
+                            "left join imageobj as img on e17.imageid = img.imageid " +
+                            " where msgid = '" + msgId + "' and status<> 'X' and ep.delind <> 'X' and(e17.delind <> 'X' OR e17.delind is null) " +
                             " order by recordno ASC";
                 }
                 else
                 {
-                    query = "select distinct ib.sender, (ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' '+ sp.lastname) as stdname, img.imagepath, dtl.grouptxt, msg.subject, msg.filepath, ib.recordno, msg.msgtxt as message, ib.dbtimestmp as Date, (select count(distinct recordno) from schgrpinbox where msgid = '1' and groupid = '100001' and status <> 'X'  and recip = '30121') as countRecord from schgrpmsg msg inner join schgrpinbox ib on msg.groupid = ib.groupid and msg.msgid = ib.msgid and ib.recordno = msg.recordno inner join schgrpdtl dtl on dtl.groupid = msg.groupid left join stdpers sp on sp.stdid = ib.sender left join emppers ep on ep.empid = ib.sender  left join emp0170 as e17 on e17.empid = ib.sender  left join imageobj as img on e17.imageid = img.imageid where msg.groupid = '" + groupid+"' and msg.msgid = '"+msgId+"' and ib.recip = '"+user_id+"' and ib.status <> 'X' order by ib.dbtimestmp ASC";
+                    query = "select distinct ib.sender, (ep.firstname + ' ' + ep.lastname) as empname, (sp.firstname + ' '+ sp.lastname) as stdname, img.imagepath, dtl.grouptxt, msg.subject, msg.filepath, ib.recordno, msg.msgtxt as message, ib.dbtimestmp as Date, (select count(distinct recordno) from schgrpinbox where msgid = '1' and groupid = '100001' and status <> 'X'  and recip = '30121') as countRecord from schgrpmsg msg inner join schgrpinbox ib on msg.groupid = ib.groupid and msg.msgid = ib.msgid and ib.recordno = msg.recordno inner join schgrpdtl dtl on dtl.groupid = msg.groupid left join stdpers sp on sp.stdid = ib.sender left join emppers ep on ep.empid = ib.sender  left join emp0170 as e17 on e17.empid = ib.sender  left join imageobj as img on e17.imageid = img.imageid where msg.groupid = '" + groupid + "' and msg.msgid = '" + msgId + "' and ib.recip = '" + user_id + "' and ib.status <> 'X' order by ib.dbtimestmp ASC";
                 }
                 SqlDataAdapter sdr = new SqlDataAdapter(query, con);
                 con.Open();
                 DataSet ds = new DataSet();
                 sdr.Fill(ds);
                 int countrecord = Convert.ToInt32(ds.Tables[0].Rows[0]["countRecord"]);
-                ViewBag.Subject = ds.Tables[0].Rows[ds.Tables[0].Rows.Count-1]["subject"].ToString();
+                ViewBag.Subject = ds.Tables[0].Rows[ds.Tables[0].Rows.Count - 1]["subject"].ToString();
                 if (groupid == "" && recordno == "")
                 {
                     ViewBag.Sender = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["empname"].ToString()) ? ds.Tables[0].Rows[0]["stdname"].ToString() : ds.Tables[0].Rows[0]["empname"].ToString();
@@ -302,7 +302,7 @@ namespace MvcSchoolWebApp.Controllers
                         var base64 = Convert.ToBase64String(header);
                         imgsrc = string.Format("data:image/gif;base64,{0}", base64);
                     }
-                    
+
                     Msglst.Add(new MessageCls()
                     {
                         Message = ds.Tables[0].Rows[i]["message"].ToString(),
@@ -323,7 +323,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             string path = "";
             Stream stream;
-            
+
 
             string MsgId = Session["MsgId"].ToString();
             string[] getdata = MsgId.Split('?');
@@ -335,7 +335,7 @@ namespace MvcSchoolWebApp.Controllers
             DatabaeseClass dc = new DatabaeseClass();
             string insertdate = dc.convertedinsertdate(DateTime.Now.ToString()).ToString();
             string increment = "";
-            
+
 
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -395,10 +395,10 @@ namespace MvcSchoolWebApp.Controllers
                         string query = "select subject from inbox where msgid='" + MsgId + "'";
                         SqlCommand cmd = new SqlCommand(query, con);
                         Msgsub = cmd.ExecuteScalar().ToString();
-                        string query3 = "insert into inbox(msgid,recordno,subject,message,sender,recip,cc,unread,status,dbtimestmp,chatviewid,filepath,notfcase) values(@msgid,'"+ insrecord + "',@msgsub,@message,'" + sender + "','" + receiver + "', ' ', 'X', ' ', '" + insertdate + "', '" + MsgId + "','"+path+"','')";
+                        string query3 = "insert into inbox(msgid,recordno,subject,message,sender,recip,cc,unread,status,dbtimestmp,chatviewid,filepath,notfcase) values(@msgid,'" + insrecord + "',@msgsub,@message,'" + sender + "','" + receiver + "', ' ', 'X', ' ', '" + insertdate + "', '" + MsgId + "','" + path + "','')";
                         SqlCommand cmd3 = new SqlCommand(query3, con);
                         cmd3.Parameters.AddWithValue("@msgid", MsgId);
-                        cmd3.Parameters.AddWithValue("@msgsub",Msgsub);
+                        cmd3.Parameters.AddWithValue("@msgsub", Msgsub);
                         cmd3.Parameters.AddWithValue("@message", message);
                         cmd3.ExecuteNonQuery();
 
@@ -485,14 +485,14 @@ namespace MvcSchoolWebApp.Controllers
                         int incrementno = Convert.ToInt16(cmd2.ExecuteScalar());
                         for (int i = 0; i < totalids.Length; i++)
                         {
-                            cmd2.CommandText = "insert into schgrpinbox (groupid, msgid, recordno, sender, recip, status, unread, dbtimestmp) values (@groupid, '1', '" + incrementno + "', '" + sender + "', '" + totalids[i] + "', '', 'X', '"+ insertdate + "')";
+                            cmd2.CommandText = "insert into schgrpinbox (groupid, msgid, recordno, sender, recip, status, unread, dbtimestmp) values (@groupid, '1', '" + incrementno + "', '" + sender + "', '" + totalids[i] + "', '', 'X', '" + insertdate + "')";
                             cmd2.Parameters.AddWithValue("@groupid", groupid);
                             cmd2.ExecuteNonQuery();
                             cmd2.Parameters.Clear();
                         }
-                        cmd2.CommandText = "insert into schgrpmsg (groupid, msgid, recordno, subject, msgtxt,filepath) values (@groupid, '1', '" + incrementno + "', (select subject from schgrpmsg where groupid = @groupid and msgid = '1' and recordno = (select max(recordno) from schgrpmsg where groupid = @groupid and msgid = '1')), @grpmessage, '"+path+"' )";
+                        cmd2.CommandText = "insert into schgrpmsg (groupid, msgid, recordno, subject, msgtxt,filepath) values (@groupid, '1', '" + incrementno + "', (select subject from schgrpmsg where groupid = @groupid and msgid = '1' and recordno = (select max(recordno) from schgrpmsg where groupid = @groupid and msgid = '1')), @grpmessage, '" + path + "' )";
                         cmd2.Parameters.AddWithValue("@groupid", groupid);
-                        cmd2.Parameters.AddWithValue("@grpmessage",message);
+                        cmd2.Parameters.AddWithValue("@grpmessage", message);
                         cmd2.ExecuteNonQuery();
 
                         cmd2.CommandText = "update schgrpinbox set unread = '' where groupid = '" + groupid + "' and recordno = '" + incrementno + "' and recip = '" + user_id + "'";
@@ -529,7 +529,6 @@ namespace MvcSchoolWebApp.Controllers
                 List<MessageCls> list = msgobj.GetNotifications();
                 var unread_msg = from m in list orderby m.fullmsgdate descending where m.unread == true select m;
                 list = unread_msg.ToList<MessageCls>();
-
                 if (list.Count == 0)
                 {
                     list = null;
@@ -539,7 +538,16 @@ namespace MvcSchoolWebApp.Controllers
                     if (last_msg_dt == null)
                     {
                         db = new DatabaeseClass();
-                        last_msg_dt =  db.convertservertopsttimezone(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        last_msg_dt = db.convertservertopsttimezone(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        var new_msgs = from m in list orderby m.fullmsgdate where Convert.ToDateTime(m.fullmsgdate) > last_msg_dt select m;
+                        if (new_msgs.Count() == 0)
+                        {
+                            list = null;
+                        }
+                        else
+                        {
+                            list = new_msgs.ToList<MessageCls>();
+                        }
                     }
                     else
                     {
@@ -547,18 +555,11 @@ namespace MvcSchoolWebApp.Controllers
                         for (int i = 0; i < list.Count; i++)
                         {
                             if (Convert.ToDateTime(list[i].fullmsgdate) > last_msg_dt)
-                            {//orderby m.fullmsgdate descending 
-                                //list[i].fullmsgdate;
-
+                            {
                                 var new_msgs = from m in list orderby m.fullmsgdate where Convert.ToDateTime(m.fullmsgdate) > last_msg_dt select m;
-                                
                                 list = new_msgs.ToList<MessageCls>();
-                                
                                 new_msg_count++;
-                                
-                                //list[i].msgdate = Convert.ToDateTime(list[i].msgdate).ToString("");
                             }
-
                         }
                         if (new_msg_count == 0)
                         {
@@ -569,21 +570,8 @@ namespace MvcSchoolWebApp.Controllers
                             db = new DatabaeseClass();
                             last_msg_dt = db.convertservertopsttimezone(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
-                        
                     }
                 }
-                
-                //last_msg_dt = list
-                //for (int i =0; i<list.Count;i++)
-                //{
-                //    if (list[i].unread == true)
-                //    {
-                //        list.Add(new MessageCls
-                //        {
-                            
-                //        });
-                //    }
-                //}
                 string nof = msgobj.NumberofNotifications();
                 inprocess = false;
                 return Json(new { notf = list, num = nof }, JsonRequestBehavior.AllowGet);
@@ -592,7 +580,6 @@ namespace MvcSchoolWebApp.Controllers
             {
                 return null;
             }
-            
         }
 
         public ActionResult DelMsg(string sendrcdid)
@@ -639,7 +626,7 @@ namespace MvcSchoolWebApp.Controllers
                         }
                         else
                         {
-                            cmd.CommandText = "update schgrpinbox set status = 'X' where groupid = '"+groupid+"' and msgid = '"+msgid+"' and recordno = '"+sendrcdid+"' and recip = '"+user_id+"'";
+                            cmd.CommandText = "update schgrpinbox set status = 'X' where groupid = '" + groupid + "' and msgid = '" + msgid + "' and recordno = '" + sendrcdid + "' and recip = '" + user_id + "'";
                             cmd.ExecuteNonQuery();
                         }
                         trans.Commit();
@@ -696,7 +683,7 @@ namespace MvcSchoolWebApp.Controllers
                 }
                 else
                 {
-                    query = "update schgrpinbox set status = 'X' where groupid = '"+groupid+"' and msgid = '"+msgid+"' and recip = '"+user_id+"'";
+                    query = "update schgrpinbox set status = 'X' where groupid = '" + groupid + "' and msgid = '" + msgid + "' and recip = '" + user_id + "'";
                 }
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);

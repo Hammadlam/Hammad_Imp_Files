@@ -45,7 +45,8 @@
                                                         <label>Date</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                       @Html.TextBoxFor(model => model.month, "Day", new { @Value = ViewBag.date, placeholder = "Date", @class = "date-day form-control m-b", @name = "DateTMR", @id = "DateTMR", @required = true })
+
+                                                       @Html.TextBoxFor(model => model.month, "Day", new { @Value = ViewBag.date, placeholder = "Date", @class = "date-day form-control m-b", @name = "DateTMR", @id = "DateTMR", @required = true, @onkeypress = "return false;", @autocomplete = "off" })
                                                     </div>
                                                 </div>
                                             }
@@ -117,7 +118,7 @@
         </div>
     </div>
 </section>
-
+<script src=@Url.Content("~/Content/js/DailyTmshtReport.js?n=2") asp-append-version="true"></script>
 
 
 

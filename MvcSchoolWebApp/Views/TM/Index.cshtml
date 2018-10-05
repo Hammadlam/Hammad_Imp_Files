@@ -2,6 +2,10 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap-datepicker.js?n=1") asp-append-version="true"></script>*@
+@*<script src=@Url.Content("~/Content/js/bootstrap-datetimepicker.min.js") asp-append-version="true"></script>*@
+
+
 <section class="content">
     <!-- Info boxes -->
     <div class="row">
@@ -63,7 +67,7 @@
                                             <label>Pick a Month</label>
                                         </div>
                                         <div class="col-md-7">
-                                            @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true })
+                                            @Html.TextBoxFor(model => model.month, "Month", new { @Value = DateTime.Now.ToString("MMMM yyyy"), placeholder = "Month", @class = "date-month form-control m-b", @name = "ViewAttendaceDateTMR", @id = "ViewAttendaceDateTMR", @required = true, @onkeypress = "return false;", @autocomplete = "off" })
                                         </div>
                                     </div>
                                 </div>
@@ -123,3 +127,4 @@
         </div>
     </div>
 </section>
+<script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=2") asp-append-version="true"></script>

@@ -32,12 +32,12 @@ namespace MvcSchoolWebApp.Controllers
         {
             List<LoginModel> item = new List<LoginModel>();
             List<Users> user_dtl = new List<Users>();
+            
             string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, e17.recordno, "+
-                            "usr.menuprof, img.imageobj, mpd.menustat, mpd.menulabel, mpd.menuid, "+
+                            "usr.menuprof, mpd.menustat, mpd.menulabel, mpd.menuid, "+
                             "mpd.tcode, std.eareatxt from usr01 usr "+
                             "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof "+
                             "left join emp0170 e17 on e17.empid = usr.userid "+
-                            "left join imageobj img on img.imageid = e17.imageid "+
                             "inner join earea std on usr.acdtitle = std.earea "+
                             "where userid = '"+username+"' and(e17.recordno = "+
                             "(select max(recordno) from emp0170 where empid = '"+username+"') OR e17.recordno is null) "+
@@ -46,6 +46,7 @@ namespace MvcSchoolWebApp.Controllers
             da.OpenConnection();
             da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
             da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            bool loginsuccess = false;
             if (da.obj_reader.HasRows)
             {
                 while (da.obj_reader.Read())
@@ -53,22 +54,15 @@ namespace MvcSchoolWebApp.Controllers
                     string pass = da.obj_reader["passwd"].ToString().Trim();
                     if (pass == password)
                     {
+                        loginsuccess = true;
                         if (user_dtl.Count == 0)
-                        {
-                            string imgsrc = "";
-                            if (da.obj_reader["imageobj"].ToString() != "")
-                            {
-                                byte[] header = (byte[])da.obj_reader["imageobj"];
-                                var base64 = Convert.ToBase64String(header);
-                                imgsrc = string.Format("data:image/gif;base64,{0}", base64);
-                            }
+                        {                           
 
                             user_dtl.Add(new Users
                             {
                                 user_id = da.obj_reader["userid"].ToString().Trim(),
                                 user_earea = da.obj_reader["acdtitle"].ToString().Trim(),
                                 user_fullname = da.obj_reader["fname"].ToString() + " " + da.obj_reader["lname"].ToString(),
-                                user_image = imgsrc,
                                 user_role = da.obj_reader["eareatxt"].ToString()
                             });
                         }
@@ -92,6 +86,35 @@ namespace MvcSchoolWebApp.Controllers
                         });
                     }
                 }
+                da.obj_reader.Close();
+                string img_query =  "select imageobj from imageobj img " +
+                                    "inner join emp0170 e1 on img.imageid = e1.imageid " +
+                                    "where e1.empid = '"+username+"'";
+                if (loginsuccess)
+                {
+                    da.InitializeSQLCommandObject(da.GetCurrentConnection, img_query);
+                    da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                    string imgsrc = "";
+                    if (da.obj_reader.HasRows)
+                    {
+                        while (da.obj_reader.Read())
+                        {
+                            
+                            if (da.obj_reader["imageobj"].ToString() != "")
+                            {
+                                byte[] header = (byte[])da.obj_reader["imageobj"];
+                                var base64 = Convert.ToBase64String(header);
+                                imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                                user_dtl[0].user_image = imgsrc;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        user_dtl[0].user_image = imgsrc;
+                    }
+                }
+                
                 da.CloseConnection();
                 if (user_dtl.Count > 0)
                 {
