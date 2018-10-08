@@ -1,0 +1,346 @@
+﻿#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 15%;
+    bottom: 10%;
+    font-size: 17px;
+}
+
+    #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+@@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 10%;
+        opacity: 1;
+    }
+}
+
+@@-webkit-keyframes fadeout {
+    from {
+        bottom: 10%;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 10%;
+        opacity: 1;
+    }
+}
+
+
+
+@@keyframes fadeout {
+    from {
+        bottom: 10%;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+/*New CSS*/
+
+.skin-blue-light .main-header .navbar {
+    /*background-color:rgb(0,51,153);*/
+    background-color: rgb(55,94,151);
+}
+
+.skin-blue-light .wrapper, .skin-blue-light .main-sidebar, .skin-blue-light .left-side {
+    /*background-color:rgb(68, 105, 179);*/
+    background-color: rgb(175, 20, 20);
+}
+
+.skin-blue-light .main-header .logo {
+    background-color: rgb(236,118,0);
+}
+
+.skin-blue-light .main-header #logo {
+    background-color: rgb(236,118,0);
+    width: 19%;
+}
+
+.skin-blue-light .main-header .logo:hover {
+    background-color: rgb(236,118,0);
+}
+
+.skin-blue-light .sidebar-menu > li > .treeview-menu {
+    background: #d3f0f7;
+}
+
+.sidebar > li > a {
+    color: white;
+}
+
+/*span {
+            color: white;
+        }*/
+
+.skin-blue-light .sidebar a:hover {
+    text-decoration: none;
+}
+
+.treeview:active {
+    background-color: rgb(68, 105, 179);
+}
+
+.skin-blue-light .sidebar-menu > li:hover > a, .skin-blue-light .sidebar-menu > li.active > a {
+    background-color: rgb(57, 80, 128);
+}
+
+li a i.fa {
+    color: black;
+}
+
+.sidebar-menu > li > a > .fa, .sidebar-menu > li > a > .glyphicon, .sidebar-menu > li > a > .ion {
+    color: white;
+}
+
+.nav li a i.fa {
+    color: white;
+}
+
+.main-header .sidebar-toggle {
+    color: white;
+}
+
+.main-sidebar span {
+    color: white;
+}
+
+.main-header .logo .logo-lg {
+    display: block;
+    float: left;
+    margin-top: -13px;
+}
+
+.sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
+    display: block;
+    margin-top: -13px;
+    float: left;
+    margin-left: -13px;
+    margin-right: -15px;
+    font-size: 18px;
+}
+
+.user-panel > .info > a {
+    font-size: 10px;
+}
+
+.user-panel > .info {
+    padding: 5px 5px 5px 10px;
+    line-height: 1;
+    position: absolute;
+    left: 55px;
+}
+
+.sidebar-menu li ul li a span {
+    color: #101010;
+}
+
+.skin-blue-light .main-header li.user-header {
+    background-color: #4468b3;
+}
+
+.sidebar-menu .treeview-menu {
+    width: 230px !important;
+}
+
+
+
+/*End New CSS*/
+
+
+.skin-blue .main-header li.user-header {
+    background-color: #223480;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #f9a814e0;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+}
+
+.skin-blue .main-header .navbar {
+    background-color: #223480;
+}
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #223480;
+}
+
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a {
+    color: #fff;
+    background: #f9a814e0;
+    border-left-color: #13a6ec;
+}
+
+.profbtn {
+    margin-left: 15px;
+}
+
+.home-button {
+    margin-top: 5px;
+}
+
+/* SO TABLE CSS */
+
+.tbheadpad {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.users {
+    table-layout: auto;
+    width: 100%;
+    white-space: nowrap;
+}
+
+    .users td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+/* Column widths are based on these cells */
+.row-A {
+    width: 9%;
+}
+
+.row-B {
+    width: 9%;
+}
+
+.row-C {
+    width: 9%;
+}
+
+.row-D {
+    width: 9%;
+}
+
+.row-E {
+    width: 9%;
+}
+
+.row-F {
+    width: 9%;
+}
+
+.row-G {
+    width: 9%;
+}
+
+.row-H {
+    width: 9%;
+}
+
+.row-I {
+    width: 9%;
+}
+
+.row-J {
+    width: 9%;
+}
+
+.row-K {
+    width: 9%;
+}
+/*  END HERE*/
+
+#btn-signout > a:hover, #btn-profile > a:hover {
+    background-color: #d2322d;
+}
+
+body {
+    background-color: #e6e6e6;
+}
+
+#myModal2 {
+    position: fixed;
+    width: 60%;
+    height: 10%;
+    margin-top: 10%;
+    margin-left: 20%;
+}
+
+.modal2 {
+    background: none;
+}
+
+#myModal3 {
+    position: fixed;
+    width: 60%;
+    height: 10%;
+    margin-top: 10%;
+    margin-left: 20%;
+    /*overflow-y: hidden;*/
+    /*z-index:3000;*/
+}
+
+#myModal4 {
+    position: fixed;
+    width: 60%;
+    height: 10%;
+    margin-top: 10%;
+    margin-left: 20%;
+}
+
+.modal3 {
+    background: none;
+}
+
+.modal-dialog {
+    position: static;
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+    padding: 0;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+
+.msg-time {
+    color: #1a0dab;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+input[type="text"] {
+    background-color: #e8f1f7 !important;
+}
+
+.main-header .logo {
+    height: 53px;
+}

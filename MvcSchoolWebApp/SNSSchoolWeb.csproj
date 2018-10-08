@@ -400,6 +400,7 @@
     <Content Include="Content\css\jasny-bootstrap.min.css" />
     <Content Include="Content\css\jqgrid.css" />
     <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\Layout.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\style.min.css" />
     <Content Include="Content\css\summernote-bs3.css" />
@@ -1362,6 +1363,7 @@
     <Content Include="Content\js\jquery.slimscroll.min.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\jstz-1.0.4.min.js" />
+    <Content Include="Content\js\Layout.js" />
     <Content Include="Content\js\LeaveAppr.js" />
     <Content Include="Content\js\leaveRequest.js" />
     <Content Include="Content\js\LoanAppr.js" />
