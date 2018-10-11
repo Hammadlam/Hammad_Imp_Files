@@ -88,10 +88,10 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox " style="border: 1px solid #d2d6de; display:none;" id="attendanceViewTMRA_div">
+            <div class="ibox " style="border: 1px solid #d2d6de; display:none;" id="attendanceViewTMRA_div_c">
                 <div class="ibox-content">
-                    <div class="attendanceViewTMR_jqGrid">
-                        <table id="attendanceViewTMRA_table"></table>
+                    <div class="attendanceViewTMR_jqGrid_c">
+                        <table id="attendanceViewTMRA_table_c"></table>
                         <div id="pager_list_TMR"></div>
                     </div>
                     @*@using (Html.BeginForm("CreatePdf", "TM", FormMethod.Post))
@@ -126,5 +126,21 @@
             </div>
         </div>
     </div>
+    <div class="modal inmodal" id="empTMRA_dialogue" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Are you sure you want to Continue?</h4>
+                </div>
+                <div class="modal-footer" style="margin-top:0;">
+                    <form id="empTMRA_dialogue_frm" name="popupform" method="post" action="">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <input type="submit" name="submit" value="Proceed" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=2") asp-append-version="true"></script>
+<script src=@Url.Content("~/Content/js/TimeSheetReport.js?n=3") asp-append-version="true"></script>

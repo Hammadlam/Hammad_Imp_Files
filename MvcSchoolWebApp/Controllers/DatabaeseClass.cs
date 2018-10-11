@@ -32,15 +32,15 @@ namespace MvcSchoolWebApp.Controllers
         {
             List<LoginModel> item = new List<LoginModel>();
             List<Users> user_dtl = new List<Users>();
-            
-            string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, e17.recordno, "+
-                            "usr.menuprof, mpd.menustat, mpd.menulabel, mpd.menuid, "+
-                            "mpd.tcode, std.eareatxt from usr01 usr "+
-                            "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof "+
-                            "left join emp0170 e17 on e17.empid = usr.userid "+
-                            "inner join earea std on usr.acdtitle = std.earea "+
-                            "where userid = '"+username+"' and(e17.recordno = "+
-                            "(select max(recordno) from emp0170 where empid = '"+username+"') OR e17.recordno is null) "+
+
+            string query = "select usr.userid, usr.passwd, usr.fname, usr.lname, usr.acdtitle, e17.recordno, " +
+                            "usr.menuprof, mpd.menustat, mpd.menulabel, mpd.menuid, " +
+                            "mpd.tcode, std.eareatxt from usr01 usr " +
+                            "inner join menuprofdtl mpd on usr.menuprof = mpd.menuprof " +
+                            "left join emp0170 e17 on e17.empid = usr.userid " +
+                            "inner join earea std on usr.acdtitle = std.earea " +
+                            "where userid = '" + username + "' and(e17.recordno = " +
+                            "(select max(recordno) from emp0170 where empid = '" + username + "') OR e17.recordno is null) " +
                             "order by mpd.menuid";
             da.CreateConnection();
             da.OpenConnection();
@@ -56,7 +56,7 @@ namespace MvcSchoolWebApp.Controllers
                     {
                         loginsuccess = true;
                         if (user_dtl.Count == 0)
-                        {                           
+                        {
 
                             user_dtl.Add(new Users
                             {
@@ -66,7 +66,7 @@ namespace MvcSchoolWebApp.Controllers
                                 user_role = da.obj_reader["eareatxt"].ToString()
                             });
                         }
-                        
+
 
                         item.Add(new LoginModel
                         {
@@ -87,9 +87,9 @@ namespace MvcSchoolWebApp.Controllers
                     }
                 }
                 da.obj_reader.Close();
-                string img_query =  "select imageobj from imageobj img " +
+                string img_query = "select imageobj from imageobj img " +
                                     "inner join emp0170 e1 on img.imageid = e1.imageid " +
-                                    "where e1.empid = '"+username+"'";
+                                    "where e1.empid = '" + username + "'";
                 if (loginsuccess)
                 {
                     da.InitializeSQLCommandObject(da.GetCurrentConnection, img_query);
@@ -99,7 +99,7 @@ namespace MvcSchoolWebApp.Controllers
                     {
                         while (da.obj_reader.Read())
                         {
-                            
+
                             if (da.obj_reader["imageobj"].ToString() != "")
                             {
                                 byte[] header = (byte[])da.obj_reader["imageobj"];
@@ -114,7 +114,7 @@ namespace MvcSchoolWebApp.Controllers
                         user_dtl[0].user_image = imgsrc;
                     }
                 }
-                
+
                 da.CloseConnection();
                 if (user_dtl.Count > 0)
                 {
@@ -130,7 +130,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             String dbTime = date;
             DateTime time = DateTime.Parse(dbTime);
-            string user_timezone = (string) System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
+            string user_timezone = (string)System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
             string lang = CultureInfo.CurrentCulture.Name;
             var abbreviations = TZNames.GetNamesForTimeZone(user_timezone, lang);
 
@@ -193,7 +193,7 @@ namespace MvcSchoolWebApp.Controllers
         {
             String dbTime = date;
             DateTime time = DateTime.Parse(dbTime);
-            string user_timezone = (string) System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
+            string user_timezone = (string)System.Web.HttpContext.Current.Session["usr_timezone"] ?? usr_timezone;
             string lang = CultureInfo.CurrentCulture.Name;
             var abbreviations = TZNames.GetNamesForTimeZone(user_timezone, lang);
 
@@ -783,12 +783,12 @@ namespace MvcSchoolWebApp.Controllers
                 }
                 else
                 {
-                        pro.empid = pro.status = pro.dob = pro.designation = pro.city = pro.district = pro.zipcode =
-                        pro.paddress = pro.paddress2 = pro.firstname = pro.fathername = pro.lastname =
-                        pro.secondname = pro.middlename = pro.fullname = pro.birthplace = pro.joiningdate =
-                        pro.todate = pro.title = pro.gender = pro.phone = pro.roletxt = pro.addtype =
-                        pro.nic = pro.nationality = " - ";
-                        pro.image = "~/Content/Avatar/avatar2.png";
+                    pro.empid = pro.status = pro.dob = pro.designation = pro.city = pro.district = pro.zipcode =
+                    pro.paddress = pro.paddress2 = pro.firstname = pro.fathername = pro.lastname =
+                    pro.secondname = pro.middlename = pro.fullname = pro.birthplace = pro.joiningdate =
+                    pro.todate = pro.title = pro.gender = pro.phone = pro.roletxt = pro.addtype =
+                    pro.nic = pro.nationality = " - ";
+                    pro.image = "~/Content/Avatar/avatar2.png";
                 }
             }
             catch (Exception ex)
@@ -1094,9 +1094,9 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 da.CreateConnection();
-                string query = "select isactive from emp0280 where empid = '"+empid+"' and "+
-                               "begdate >= '"+ date.ToString("yyyy/MM/dd") + "' and begdate < '"+ date.AddDays(1).ToString("yyyy/MM/dd") +"' "+
-                               "and isactive = 'X'";
+                string query = "select isactive from emp0280 where empid = '" + empid + "' and " +
+                               "begdate >= '" + date.ToString("yyyy/MM/dd") + "' and begdate < '" + date.AddDays(1).ToString("yyyy/MM/dd") + "' " +
+                               "and isactive = 'X' and delind <> 'X'";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
                 da.obj_reader = da.obj_sqlcommand.ExecuteReader();
@@ -1130,12 +1130,14 @@ namespace MvcSchoolWebApp.Controllers
         {
             string nextdate = "";
             DateTime currtime;
-            if (dateId == "") {
+            if (dateId == "")
+            {
                 currtime = convertservertousertimezone(DateTime.Now.ToString());
                 dateId = currtime.ToString("yyyy/MM/dd");
                 nextdate = currtime.AddDays(1).ToString("yyyy/MM/dd");
             }
-            else {
+            else
+            {
                 if (user_role == "1000")
                 {
                     DateTime custtime = DateTime.Parse(dateId);
@@ -3402,10 +3404,11 @@ namespace MvcSchoolWebApp.Controllers
             string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select begdate, enddate, clientid, ordstxt, isactive, remarks, remarkstout from emp0280 " +
-                                "inner join costorder on emp0280.clientid = costorder.costorder " +
-                                "where empid = '"+empid+"' and begdate >= '"+prevmonth+"' and begdate < '"+month+ "' and delind <> 'X' and costorder.delflag = '' order by begdate asc ";
-
+                string query = "select ep.firstname + '' + ep.lastname as name, e28.begdate, e28.enddate, clientid, ordstxt, isactive, remarks, remarkstout " +
+                "from emp0280 e28 inner join emppers ep on ep.empid = e28.empid " +
+                "inner join costorder on e28.clientid = costorder.costorder " +
+                "where e28.empid = '"+ empid +"' and e28.begdate >= '" + prevmonth + "' and e28.begdate < '" + month + "' and e28.delind <> 'X' " +
+                "and ep.delind <> 'X' and costorder.delflag = '' order by e28.begdate asc ";
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3418,10 +3421,11 @@ namespace MvcSchoolWebApp.Controllers
                         string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
                         if (da.obj_reader["isactive"].ToString().Trim() == "X")
                             enddate = "-";
-                        
+
                         items.Add(new Timesheetmodal
                         {
-                            serial = i,
+                            id = i,
+                            employeename = da.obj_reader["name"].ToString(),
                             date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
                             day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
                             checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
@@ -3460,8 +3464,8 @@ namespace MvcSchoolWebApp.Controllers
             {
                 string query = "select ep.firstname + ' ' + ep.lastname as name, c.ordstxt, Count(attd.clientid) as NoofVisit from emp0280 attd " +
                                 "inner join costorder c on attd.clientid = c.costorder " +
-                                "inner join emppers ep on attd.empid = ep.empid "+
-                                "where attd.clientid <> '0343' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '"+prevmonth+"' and attd.begdate < '"+thismonth+ "' and c.delflag = '' "+
+                                "inner join emppers ep on attd.empid = ep.empid " +
+                                "where attd.clientid <> '150046' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '" + prevmonth + "' and attd.begdate < '" + thismonth + "' and c.delflag = '' " +
                                 "group by attd.clientid, c.ordstxt, ep.firstname, ep.lastname " +
                                 "order by name asc";
 
@@ -3473,11 +3477,11 @@ namespace MvcSchoolWebApp.Controllers
                 {
                     while (da.obj_reader.Read())
                     {
-                       items.Add(new Timesheetmodal
+                        items.Add(new Timesheetmodal
                         {
-                           Name = da.obj_reader["name"].ToString(),
-                           client = da.obj_reader["ordstxt"].ToString(),
-                           noofvisit = da.obj_reader["NoofVisit"].ToString()
+                            Name = da.obj_reader["name"].ToString(),
+                            client = da.obj_reader["ordstxt"].ToString(),
+                            noofvisit = da.obj_reader["NoofVisit"].ToString()
                         });
                     }
                     da.obj_reader.Close();
@@ -3543,11 +3547,11 @@ namespace MvcSchoolWebApp.Controllers
             try
             {
                 da.CreateConnection();
-                string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' "+
-                                "from emppers as ep "+
-                                "where ep.delind <> 'X' and ep.empid not in ( "+
-                                "Select empid from emp0351 as e51 "+
-                                "where e51.delind <> 'X' and e51.payblock = 'X') "+
+                string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' " +
+                                "from emppers as ep " +
+                                "where ep.delind <> 'X' and ep.empid not in ( " +
+                                "Select empid from emp0351 as e51 " +
+                                "where e51.delind <> 'X' and e51.payblock = 'X') " +
                                 "order by empname ASC";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3591,9 +3595,9 @@ namespace MvcSchoolWebApp.Controllers
                 string currdate = convertservertousertimezone(DateTime.Now.AddDays(1).ToString()).ToString("yyyy-MM-dd");
                 string startdate = convertservertousertimezone(DateTime.Now.AddDays(-2).ToString()).ToString("yyyy-MM-dd");
                 string query = "select ep.firstname + ' ' +  ep.lastname as empname, e2.isactive, e2.begdate, e2.enddate, e2.remarks, e2.remarkstout, ct.ordstxt from emp0280 e2 " +
-                               "inner join emppers ep on e2.empid = ep.empid "+
+                               "inner join emppers ep on e2.empid = ep.empid " +
                                "inner join costorder ct on e2.clientid = ct.costorder " +
-                               "where e2.empid = '"+empid+"' and e2.begdate >= '"+startdate+"' and e2.begdate < '"+currdate+"' "+
+                               "where e2.empid = '" + empid + "' and e2.begdate >= '" + startdate + "' and e2.begdate < '" + currdate + "' " +
                                "and ep.delind <> 'X' and e2.delind <> 'X' and ct.delflag = '' order by e2.begdate  ";
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
@@ -3651,12 +3655,12 @@ namespace MvcSchoolWebApp.Controllers
             string adddate = dateid.AddDays(1).ToString("yyyy-MM-dd");
             try
             {
-                string query = "select e2.empid, ep.firstname + ' ' + ep.lastname as name, e2.begdate, e2.tinlat, e2.tinlong, "+
+                string query = "select e2.empid, ep.firstname + ' ' + ep.lastname as name, e2.begdate, e2.tinlat, e2.tinlong, " +
                                 "e2.toutlat, toutlong, e2.enddate, cst.ordstxt, e2.isactive from emppers ep " +
-                                "inner join emp0280 e2 on ep.empid = e2.empid "+
+                                "inner join emp0280 e2 on ep.empid = e2.empid " +
                                 "inner join costorder cst on e2.clientid = cst.costorder " +
-                                "where e2.delind <> 'X' and ep.delind <> 'X' and "+
-                                "e2.begdate >= '"+currdate+"' and e2.begdate < '"+adddate+ "' and cst.delflag = '' order by e2.begdate ";
+                                "where e2.delind <> 'X' and ep.delind <> 'X' and " +
+                                "e2.begdate >= '" + currdate + "' and e2.begdate < '" + adddate + "' and cst.delflag = '' order by e2.begdate ";
 
                 da.CreateConnection();
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);

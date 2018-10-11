@@ -2740,8 +2740,9 @@ namespace MvcSchoolWebApp.Controllers
             DateTime insertdate = dc.convertedinsertdate(DateTime.Now.ToString());
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
             con.Open();
-            string query1 = "update emp0280 set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestamp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
-                "where clientid = '" + clientid + "' and empid = '" + empid + "' and begdate = '" + date.ToString("yyyy-MM-dd") + "'";
+            string query1 = "update emp0280 set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestmp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                "where clientid = '" + clientid + "' and empid = '" + empid + "' and begdate > '" + date.ToString("yyyy-MM-dd") + "' "+
+                "and begdate < '"+date.AddDays(1).ToString("yyyy-MM-dd")+"'";
             using (SqlTransaction trans = con.BeginTransaction())
             {
                 SqlCommand command = con.CreateCommand();

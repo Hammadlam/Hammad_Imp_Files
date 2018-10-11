@@ -1,5 +1,4 @@
 ﻿$("#viewAttendanceTMRForm").submit(function (e) {
-    debugger
     $.ajax({
         url: encodeURI("../TM/getAttendanceFillJQGrid"),
         data: {
@@ -9,23 +8,22 @@
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            $('#attendanceViewTMRA_table').jqGrid('clearGridData');
+            $('#attendanceViewTMRA_table_c').jqGrid('clearGridData');
             //var role = data[data.length - 1].user_role;
             //var caption = data[data.length - 1].Caption;
-            $('#attendanceViewTMRA_table').jqGrid('setGridParam', { data: data });
-            $("#attendanceViewTMRA_div").show();
-            $("#attendanceViewTMRA_table").jqGrid('setGridState', 'visible');//or 'hidden' 
+            $('#attendanceViewTMRA_table_c').jqGrid('setGridParam', { data: data });
+            $("#attendanceViewTMRA_div_c").show();
+            $("#attendanceViewTMRA_table_c").jqGrid('setGridState', 'visible');//or 'hidden' 
 
-            var $screensize = $("#attendanceViewTMRA_div").width() - 42;
+            var $screensize = $("#attendanceViewTMRA_div_c").width() - 42;
             var $size = ($screensize / 100);
 
-            $("#attendanceViewTMRA_table").jqGrid({
+            $("#attendanceViewTMRA_table_c").jqGrid({
                 datatype: "local",
-                loadonce: true,
-                colNames: ['Date', 'Day', 'Check In', 'Check Out','Client Id', 'Client', 'Remarks (Time in)', 'Remarks (Time out)'],
+                colNames: ['Action', 'Employee Name', 'Date', 'Day', 'Check In', 'Check Out', 'Client Id', 'Client', 'Remarks (Time in)', 'Remarks (Time out)'],
                 colModel: [
-                    //{ name: 'action', index: 'action', editable: false, width: $size * 15, align: 'left', resizable: false },
-                    //{ name: 'serial', index: 'serial', editable: false, width: $size * 15, align: 'left', resizable: false },
+                    { name: 'status', index: 'status', editable: false, width: $size * 8, align: 'left', resizable: false },
+                    { name: 'employeename', index: 'employeename', width: $size * 22, resizable: false, align: 'left' },
                     { name: 'date', index: 'date', editable: false, width: $size * 15, resizable: false },
                     { name: 'day', index: 'day', editable: false, width: $size * 10, resizable: false },
                     { name: 'checkintime', index: 'checkintime', editable: false, width: $size * 10, resizable: false, align: 'center' },
@@ -35,37 +33,52 @@
                     { name: 'remarks', index: 'remarks', editable: false, width: $size * 30,  resizable: false },
                     { name: 'remarkstout', index: 'remarkstout', editable: false, width: $size * 30,  resizable: false }
                 ],
+                gridComplete: function () {
+                    var ids = jQuery("#attendanceViewTMRA_table_c").getDataIDs();
+                    for (var i = 0; i < ids.length; i++) {
+                        var cl = ids[i];
+                        //Download = "&nbsp;<input style='height:18px;width:75px;' type='button' onclick='getSelectedRows()' class='btn btn-xs btn-danger' value='Download' />";
+                        Delete = "<i style='margin-left:15%; color:#e60000' title='Delete' class='fa fa-trash-o fa-lg' onclick='confirm_dialogue_TMRA()'></i>";
+                        jQuery("#attendanceViewTMRA_table_c").setRowData(ids[i], { status: Delete });
+
+                    }
+                },
                 data: data,
                 styleUI: 'Bootstrap',
                 mtype: 'GET',
                 height: 250,
                 autoheight: true,
                 autowidth: true,
+                rowNum: 10,
+                //rowList: [10, 20, 30],
                 viewrecords: true,
+                iconSet: "fontAwesome",
                 sortorder: "desc",
+                threeStateSort: true,
                 sortIconsBeforeText: true,
                 headertitles: true,
-                caption: "Monthly Attendance",
+                caption: "Monthly Time Sheet",
                 pager: "#pager_list_TMR",
-                viewrecords: true,
                 hidegrid: false,
-                shrinkToFit: false
-                
+                shrinkToFit: false,
+                loadonce: true                
             }).trigger('reloadGrid', [{ current: true }]);
         },
         error: function (error) {
             show_err_alert_js('No Record Found');
-            $("#attendanceViewTMR_div").css("display", "none");
+            $("#attendanceViewTMRA_div_c").css("display", "none");
         }
     });
     return false;
-    $("#attendanceViewTMRA_table").setSelection(4, true);
+    $("#attendanceViewTMRA_table_c").setSelection(4, true);
     $(window).bind('resize', function () {
-        var width = $('.attendanceViewTMR_jqGrid').width();
+        var width = $('.attendanceViewTMR_jqGrid_c').width();
 
-        $('#attendanceViewTMRA_table').setGridWidth(width, false);
+        $('#attendanceViewTMRA_table_c').setGridWidth(width, false);
     });
 });
+
+
 
 $("#btn_createreport").click(function (e) {
     $.ajax({
@@ -104,10 +117,22 @@ $("#ViewReportECRForm").submit(function (e) {
     });
 });
 
-function deletedtime() {
-    var selRowId = $('#attendanceViewTMR_table').jqGrid('getGridParam', 'selrow');
-    var date = $('#attendanceViewTMR_table').jqGrid('getCell', selRowId, 'date');
-    var clientid = $('#attendanceViewTMR_table').jqGrid('getCell', selRowId, 'date');
+function confirm_dialogue_TMRA() {
+    $('.summernote').summernote();
+    $('#empTMRA_dialogue').modal('show');
+}
+
+$("#empTMRA_dialogue_frm").submit(function (e) {
+    e.preventDefault();
+    $('#empTMRA_dialogue').modal('hide');
+    getDeletedTMRA();
+});
+
+function getDeletedTMRA() {
+
+    var selRowId = $('#attendanceViewTMRA_table_c').jqGrid('getGridParam', 'selrow');
+    var date = $('#attendanceViewTMRA_table_c').jqGrid('getCell', selRowId, 'date');
+    var clientid = $('#attendanceViewTMRA_table_c').jqGrid('getCell', selRowId, 'clientid');
     var empid = $("#txtEmpNameTMR > option:selected").attr("value");
 
 
@@ -121,10 +146,14 @@ function deletedtime() {
         },
         success: function (data) {
             if (data)
-                $('#attendanceViewTMR_table').delRowData(selRowId[0]);
+            {
+                show_suc_alert_js('Successfully Deleted');
+                $('#attendanceViewTMRA_table_c').delRowData(selRowId[0]);
+            }
             else
                 show_err_alert_js('You Do Not Have Rights');
         }
     });
+
 
 }

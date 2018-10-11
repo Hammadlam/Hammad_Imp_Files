@@ -619,7 +619,7 @@ namespace MvcSchoolWebApp.Controllers
         public JsonResult DeleteTime(DateTime date, string clientid, string empid)
         {
             DatabaseInsertClass din = new DatabaseInsertClass();
-            if (empid == "")
+            if (empid == null)
                 return Json(false, JsonRequestBehavior.AllowGet);
             else
                 return Json(din.UpdateTimeSheet(date, clientid, empid), JsonRequestBehavior.AllowGet);
