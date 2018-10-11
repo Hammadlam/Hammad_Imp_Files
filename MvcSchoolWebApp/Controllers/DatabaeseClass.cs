@@ -3025,7 +3025,7 @@ namespace MvcSchoolWebApp.Controllers
                                 "inner join eposhdr as epos on eorg.pos = epos.pos " +
                                 "inner join eesubgrp as esub on ep.eesubgrp = esub.eesubgrp " +
                                 "inner join emp0011 as e11 on ep.empid = e11.empid " +
-                                "where ep.empid = '" + userid + "'";
+                                "where ep.empid = '" + userid + "' and eorg.delind <> 'X' ";
 
                 da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
                 da.OpenConnection();
