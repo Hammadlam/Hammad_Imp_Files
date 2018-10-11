@@ -220,7 +220,7 @@
                             <a href="~/Event/Index"><i class="fa fa-calendar"></i></a>
                         </li>
 
-                        @{
+                        @*@{
                             var lst = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
                             if (lst[0].earea.ToString().Trim() == "1000" || lst[0].earea.ToString().Trim() == "2000")
                             {
@@ -230,7 +230,7 @@
                                     </a>
                                 </li>
                             }
-                        }
+                        }*@
 
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" title="Notifications">

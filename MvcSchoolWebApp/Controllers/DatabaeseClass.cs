@@ -3404,7 +3404,7 @@ namespace MvcSchoolWebApp.Controllers
             string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select ep.firstname + '' + ep.lastname as name, e28.begdate, e28.enddate, clientid, ordstxt, isactive, remarks, remarkstout " +
+                string query = "select ep.firstname + ' ' + ep.lastname as name, e28.begdate, e28.enddate, clientid, ordstxt, isactive, remarks, remarkstout " +
                 "from emp0280 e28 inner join emppers ep on ep.empid = e28.empid " +
                 "inner join costorder on e28.clientid = costorder.costorder " +
                 "where e28.empid = '"+ empid +"' and e28.begdate >= '" + prevmonth + "' and e28.begdate < '" + month + "' and e28.delind <> 'X' " +

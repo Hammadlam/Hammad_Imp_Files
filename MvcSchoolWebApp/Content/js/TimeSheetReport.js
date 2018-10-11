@@ -49,7 +49,7 @@
                 height: 250,
                 autoheight: true,
                 autowidth: true,
-                rowNum: 10,
+                //rowNum: 10,
                 //rowList: [10, 20, 30],
                 viewrecords: true,
                 iconSet: "fontAwesome",
@@ -58,7 +58,6 @@
                 sortIconsBeforeText: true,
                 headertitles: true,
                 caption: "Monthly Time Sheet",
-                pager: "#pager_list_TMR",
                 hidegrid: false,
                 shrinkToFit: false,
                 loadonce: true                
