@@ -291,6 +291,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HRController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -1324,6 +1325,7 @@
     <Content Include="Content\js\AccountDoc.js" />
     <Content Include="Content\js\ActivityGrade.js" />
     <Content Include="Content\js\AOneDoc.js" />
+    <Content Include="Content\js\ApplicantForm.js" />
     <Content Include="Content\js\Assignment.js" />
     <Content Include="Content\js\AssignmentUpload.js" />
     <Content Include="Content\js\AttendanceUpload.js" />
@@ -1729,6 +1731,7 @@
     <Content Include="Views\CompanyDoc\BOneDoc.cshtml" />
     <Content Include="Views\CompanyDoc\ERPDoc.cshtml" />
     <Content Include="Views\CompanyDoc\HRDoc.cshtml" />
+    <Content Include="Views\HR\Applicantform.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
