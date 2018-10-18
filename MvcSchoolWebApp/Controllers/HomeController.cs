@@ -540,19 +540,6 @@ namespace MvcSchoolWebApp.Controllers
             return View();
         }
 
-        public ActionResult Human_Resource()
-        {
-            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-            if (list[37].menustat != "X")
-            {
-                return RedirectToAction("Index", "dashboard");
-            }
-
-            ViewBag.msglist = msgobj.GetNotifications();
-            ViewBag.TotalNotification = msgobj.NumberofNotifications();
-            return View();
-        }
-
         public ActionResult Admission()
         {
             ViewBag.msglist = msgobj.GetNotifications();

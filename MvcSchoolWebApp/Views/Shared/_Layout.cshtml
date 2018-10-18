@@ -70,7 +70,7 @@
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @*@RenderSection("scripts", required: false)*@
 
     <script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1") asp-append-version="true"></script>
@@ -221,16 +221,16 @@
                         </li>
 
                         @*@{
-                            var lst = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                            if (lst[0].earea.ToString().Trim() == "1000" || lst[0].earea.ToString().Trim() == "2000")
-                            {
-                                <li class="dropdown messages-menu" title="Publish Result">
-                                    <a href="~/Result/PublishResult">
-                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            }
-                        }*@
+                                var lst = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                if (lst[0].earea.ToString().Trim() == "1000" || lst[0].earea.ToString().Trim() == "2000")
+                                {
+                                    <li class="dropdown messages-menu" title="Publish Result">
+                                        <a href="~/Result/PublishResult">
+                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                }
+                            }*@
 
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" title="Notifications">
@@ -835,6 +835,42 @@
                                                             Response.Write("window.location.href = '" + url + "'</script>");
                                                         }
                     }
+
+                    @{
+                        try
+                        {
+                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                            if (list[41].menustat == "X")
+                            {
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-users"></i> <span>Human Resource</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        @{
+                                            if (list[74].menustat == "X")
+                                            {
+                                                <li>
+                                                    <a href="~/HR/Applicantform">
+                                                        <i class="fa fa-file"></i><span>Applicant Form</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                string url = "/dashboard";
+                                                Response.Write("<script type='text/javascript'>");
+                                                Response.Write("window.location.href = '" + url + "'</script>");
+                                            }
+                    }
                     @{
                         try
                         {
@@ -1124,11 +1160,6 @@
                                             </a>
                                         </li>
                                         <li><a href="~/home/sales"><i class="fa fa-bar-chart"></i><span>Sales</span></a></li>
-                                        <li>
-                                            <a href="~/home/human_resource">
-                                                <i class="fa fa-users"></i><span>Human Resource</span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
                             }
