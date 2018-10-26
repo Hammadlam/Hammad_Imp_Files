@@ -30,8 +30,8 @@
                     { name: 'checkouttime', index: 'checkouttime', editable: false, width: $size * 10, resizable: false, align: 'center' },
                     { name: 'clientid', index: 'clientid', editable: false, width: $size * 05, resizable: false, hidden: true },
                     { name: 'client', index: 'client', editable: false, width: $size * 30, resizable: false },
-                    { name: 'remarks', index: 'remarks', editable: false, width: $size * 30,  resizable: false },
-                    { name: 'remarkstout', index: 'remarkstout', editable: false, width: $size * 30,  resizable: false }
+                    { name: 'remarks', index: 'remarks', editable: false, width: $size * 30, resizable: false, classes: 'wrap' },
+                    { name: 'remarkstout', index: 'remarkstout', editable: false, width: $size * 30, resizable: false, classes: 'wrap' }
                 ],
                 gridComplete: function () {
                     var ids = jQuery("#attendanceViewTMRA_table_c").getDataIDs();
@@ -49,7 +49,7 @@
                 height: 250,
                 autoheight: true,
                 autowidth: true,
-                //rowNum: 10,
+                rowNum: 300,
                 //rowList: [10, 20, 30],
                 viewrecords: true,
                 iconSet: "fontAwesome",

@@ -44,6 +44,7 @@ $(document).ready(function (e) {
         confirm_dialogue_attd();
     });
 
+    //ess confrm attandance Button
     $("#essempattd_dialogue_frm").submit(function (e) {
         e.preventDefault();
         $('#empattd_dialogue').modal('hide');

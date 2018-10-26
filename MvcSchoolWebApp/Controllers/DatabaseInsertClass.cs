@@ -2741,8 +2741,8 @@ namespace MvcSchoolWebApp.Controllers
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
             con.Open();
             string query1 = "update emp0280 set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestmp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
-                "where clientid = '" + clientid + "' and empid = '" + empid + "' and begdate > '" + date.ToString("yyyy-MM-dd") + "' "+
-                "and begdate < '"+date.AddDays(1).ToString("yyyy-MM-dd")+"'";
+                "where clientid = '" + clientid + "' and empid = '" + empid + "' and begdate > '" + date.ToString("yyyy-MM-dd") + "' " +
+                "and begdate < '" + date.AddDays(1).ToString("yyyy-MM-dd") + "'";
             using (SqlTransaction trans = con.BeginTransaction())
             {
                 SqlCommand command = con.CreateCommand();
@@ -2814,32 +2814,111 @@ namespace MvcSchoolWebApp.Controllers
             DatabaeseClass dc = new DatabaeseClass();
             DateTime insertdate = dc.convertedinsertdate(DateTime.Now.ToString());
 
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
-                con.Open();
-                string query1 = "update corpdoc set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestamp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
-                    "where filename = '" + filename + "' and doccategory = '"+ category +"'";
-                using (SqlTransaction trans = con.BeginTransaction())
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+            string query1 = "update corpdoc set delind = 'X', upduser = '" + user_role + "', upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime= '" + insertdate.ToString("HH:mm:ss") + "', dbtimestamp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                "where filename = '" + filename + "' and doccategory = '" + category + "'";
+            using (SqlTransaction trans = con.BeginTransaction())
+            {
+                SqlCommand command = con.CreateCommand();
+                command.Connection = con;
+                command.Transaction = trans;
+                try
                 {
-                    SqlCommand command = con.CreateCommand();
-                    command.Connection = con;
-                    command.Transaction = trans;
-                    try
-                    {
-                        command.CommandText = query1;
-                        command.ExecuteNonQuery();
-                        trans.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                    }
-                    finally
-                    {
-                        trans.Dispose();
-                        con.Close();
-                    }
+                    command.CommandText = query1;
+                    command.ExecuteNonQuery();
+                    trans.Commit();
                 }
-                return true;
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                }
+                finally
+                {
+                    trans.Dispose();
+                    con.Close();
+                }
+            }
+            return true;
+        }
+
+        public void insertAPPForm(string user_id, string[] basicinfo, string[] contactinfo)
+        {
+            DatabaeseClass dc = new DatabaeseClass();
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+            DateTime insertdate = dc.convertedinsertdate(DateTime.Now.ToString());
+            string norng = "select [status] from norange where norngid = '01' and norngobj = 'aplid' ";
+
+            SqlCommand command = new SqlCommand(norng, con);
+            int aplidold = Convert.ToInt32(command.ExecuteScalar());
+            int aplidnew = aplidold + 1;
+            SqlTransaction trans;
+            SqlCommand cmd = con.CreateCommand();
+            trans = con.BeginTransaction();
+            try
+            {
+                cmd.Connection = con;
+                cmd.Transaction = trans;
+
+                /* Number range table update*/
+                cmd.CommandText = "update norange set [status] = '" + aplidnew + "' , dbtimestmp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                                  "where norngid = '01' and norngobj = 'aplid' and [status] = '" + aplidold + "'";
+                cmd.ExecuteNonQuery();
+
+                /* Apl0010 Table Insert ~ aarea, subarea */
+                cmd.CommandText = "insert into apl0010 ( aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                  "delind, creuser, credate, cretime, upduser, " +
+                                  "upddate, updtime, aarea, asubarea, agroup, asubgrp, dbtimestmp) " +
+                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
+                                  "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
+                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "','3000','10','1','04','"+ insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                cmd.ExecuteNonQuery();
+
+                /* Apl0100 Table Insert ~ basic info*/
+                cmd.CommandText = "insert apl0100 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                  "delind, creuser, credate, cretime, upduser, " +
+                                  "upddate, updtime, formadd, lastname, midname, " +
+                                  "firstname, birthname, initials, secname, idnumber, " +
+                                  "gender, nationality, commlang, birthdate, birthplace, " +
+                                  "cobirth, [state], maritalstat, dbtimestmp) " +
+                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
+                                  "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
+                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', ' ', ' ', " +
+                                  "'" + basicinfo[0] + "','" + basicinfo[0] + "',' ',' ','" + basicinfo[1] + "', " +
+                                  "'" + basicinfo[2] + "','PK','UR','" + basicinfo[4] + "','"+ basicinfo[5] + "', " +
+                                  "'PK', ' ', '" + basicinfo[3] + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                cmd.ExecuteNonQuery();
+
+                /* Apl0110 Table Insert ~ contact info*/
+                cmd.CommandText = "insert into apl0110 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                  "delind, creuser, credate, cretime, upduser, " +
+                                  "upddate, updtime, careof, street1, street2, " +
+                                  "zipcode, district, city, ctry, phone, " +
+                                  "phone2, phone3, phone4, phone5, linkedin, " +
+                                  "skype, email, col0, col1, dbtimestmp) " +
+                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
+                                  "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
+                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', '" + contactinfo[0] + "','" + contactinfo[1] + "', " +
+                                  "' ', ' ', '" + contactinfo[2] + "','" + contactinfo[3] + "', '" + contactinfo[5] + "' , " +
+                                  "'" + contactinfo[6] + "','" + contactinfo[7] + "',' ', ' ', '" + contactinfo[8] + "', " +
+                                  "'" + contactinfo[9] + "','" + contactinfo[4] + "',' ',' ','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                cmd.ExecuteNonQuery();
+                trans.Commit();
+                HomeController.popup_status = "Success";
+
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                HomeController.popup_status = "Error";
+            }
+            finally
+            {
+                trans.Dispose();
+                con.Close();
+            }
         }
     }
 }

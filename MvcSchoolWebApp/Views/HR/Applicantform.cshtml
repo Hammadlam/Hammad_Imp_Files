@@ -5,9 +5,31 @@
 }
 
 <style>
+    .content-wrapper {
+        background-color: #ffffff !important;
+    }
+
     .nav-tabs-custom > .nav-tabs > li.active > a {
         border-top-color: #3c8dbc !important;
         border-top: 3px solid #3c8dbc !important;
+        border-left-color: #3c8dbc !important;
+        border-right-color: #3c8dbc !important;
+    }
+
+    .ibox-title {
+        border-color: #ffffff !important;
+    }
+
+    #dvborder {
+        border: 0px solid #ffffff !important;
+    }
+
+    .ibox-content {
+        border-color: #ffffff !important;
+    }
+
+    .padding_jqgrid {
+        padding-left: 15px;
     }
 </style>
 
@@ -21,7 +43,6 @@
 
             <div class="ibox float-e-margins">
                 <div id="dvborder">
-
                     <div class="ibox-title ">
                         <ul id="vert_menu">
                             <li>
@@ -37,61 +58,162 @@
                                 </label>
                             </li>
                         </ul>
+                        <div>
 
-
-
+                        </div>
                     </div>
                     <div class="ibox-content">
                         <div class="row">
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs" id="cust-tabs">
-                                    <li class="active"><a class="active" href="#basicinfo" data-toggle="tab">Basic Info</a></li>
-                                    <li><a class="" href="#education" id="id" data-toggle="tab">Education & Institute</a></li>
-                                    <li><a class="" href="#tech-skills" data-toggle="tab">Technical Skills</a></li>
-                                    <li><a class="" href="#fun-skills" data-toggle="tab">Functional Skills</a></li>
-                                    <li><a class="" href="#employer" data-toggle="tab">Employer</a></li>
-                                    <li><a class="" href="#projects" data-toggle="tab">Projects</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="active tab-pane" id="basicinfo">
-                                        <div class="row">
+                            <form role="form" name="APPForm" id="APPForm">
+                                <input id="btnsubmitAPPForm" type="submit" value="Submit" style="float:right;" name="" class="btn btn-sm btn-danger next-btn" />
+                                <div class="nav-tabs-custom">
+                                    <ul class="nav nav-tabs" id="cust-tabs">
+                                        <li class="active"><a class="active" href="#basicinfo" data-toggle="tab">Basic Info</a></li>
+                                        <li><a class="" href="#contactinfo" data-toggle="tab">Contact Info</a></li>
+                                        <li><a class="" href="#skills" data-toggle="tab">Skills</a></li>
+                                        <li><a class="" href="#education" id="educationid" data-toggle="tab">Education</a></li>
+                                        <li><a class="" href="#experience" id="experienceid" data-toggle="tab">Experience</a></li>
+                                        <li><a class="" href="#achievements" data-toggle="tab">Achievements</a></li>
+                                        <li><a class="" href="#projects" id="projectid" data-toggle="tab">Projects</a></li>
+                                        <li><a class="" href="#extracurricular" data-toggle="tab">Extra Curricular</a></li>
+                                        <li><a class="" href="#references" data-toggle="tab">References</a></li>
+                                    </ul>
+
+                                    <div class="tab-content" id="content" style="border: 1px solid #3c8dbc;">
+
+                                        @* Basic Info *@
+                                        <div class="active tab-pane" id="basicinfo">
+                                            <div class="row">
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Name</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Name", @class = "form-control m-b", @name = "txtempnameAPPForm", @id = "txtempnameAPPForm", @required = true })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>CNIC</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "CNIC", @class = "form-control m-b", @name = "txtcnicAPPForm", @id = "txtcnicAPPForm", @required = true})
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Gender</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="col-md-6">
+                                                                <label> <input type="radio" name="gender" value="M" style="display:inline" checked> Male</label>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label><input type="radio" name="gender" value="F" style="display:inline"> Female</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Marital Status</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <select class="form-control m-b" id="martialstatAPPForm">
+                                                                <option value="Single">Single</option>
+                                                                <option value="Married">Married</option>
+                                                                <option value="Divorced">Divorced</option>
+                                                                <option value="Separated">Separated</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Date of Birth</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Date of Birth", @class = "form-control m-b date-day", @name = "txtdobAPPForm", @id = "txtdobAPPForm", @required = true })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Place of Birth</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Place of Birth", @class = "form-control m-b", @name = "txtpobAPPForm", @id = "txtpobAPPForm", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Father Name</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Father Name", @class = "form-control m-b", @name = "txtfathernameAPPForm", @id = "txtfathernameAPPForm" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Father CNIC</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Father CNIC", @class = "form-control m-b", @name = "txtfathercnicAPPForm", @id = "txtfathercnicAPPForm", @required = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @* Contact Info *@
+
+                                        <div class="tab-pane" id="contactinfo">
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Name</label>
+                                                        <label>Permanent Address</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "Name", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtempidLR", @id = "", @readonly = true })
+                                                        @Html.TextAreaFor(m => m.empid, new { @placeholder = "Permanent Address", @class = "form-control m-b", @name = "txtstreet1APPForm", @id = "txtstreet1APPForm", @style = "resize:vertical", @required = true })
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Father Name</label>
+                                                        <label>Current Address</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "Father Name", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtempidLR", @id = "", @readonly = true })
+                                                        @Html.TextAreaFor(m => m.empid, new { @placeholder = "Current Address", @class = "form-control m-b", @name = "txtstreet2APPForm", @id = "txtstreet2APPForm", @style = "resize:vertical"})
                                                     </div>
                                                 </div>
-
                                             </div>
 
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Last Name</label>
+                                                        <label>City</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "Last Name", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtempidLR", @id = "", @readonly = true })
+                                                        @Html.TextBoxFor(model => model.empid, "City", new { @class = "form-control m-b", @name = "txtcityAPPForm", @id = "txtcityAPPForm", @required = true })
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Date of Birth</label>
+                                                        <label>Country Code</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.confrdate, "Date", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtconfrdateLR", @id = "", @required = true, @readonly = true })
+                                                        @Html.TextBoxFor(model => model.confrdate, "Country", new { @class = "form-control m-b", @name = "txtctryAPPForm", @id = "txtctryAPPForm", @required = true })
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,19 +221,19 @@
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>CNIC</label>
+                                                        <label>Contact Email</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "CNIC", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtempidLR", @id = "", @readonly = true })
+                                                        @Html.TextBoxFor(model => model.empid, "Contact Email", new { @type = "email" , @class = "form-control m-b", @name = "txtemailAPPForm", @id = "txtemailAPPForm", @required = true })
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Martial Status</label>
+                                                        <label>Contact Phone 1</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.confrdate, "Martial Status", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtconfrdateLR", @id = "", @required = true, @readonly = true })
+                                                        @Html.TextBoxFor(model => model.confrdate, "Contact Phone 1", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtphone1APPForm", @id = "txtphone1APPForm", @required = true, @title = "Digits Only" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,82 +241,238 @@
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <input id="" type="submit" value="Next" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
+                                                        <label>Contact Phone 2</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.empid, "Contact Phone 2", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtphone2APPForm", @id = "txtphone2APPForm", @title = "Digits Only" })
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Contact Phone 3</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.confrdate, "Contact Phone 3", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtphone3APPForm", @id = "txtphone3APPForm", @title = "Digits Only", @max = "11;" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Linkedin</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.empid, "Linkedin", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtlinkedinAPPForm", @id = "txtlinkedinAPPForm" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+                                                        <label>Skype</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        @Html.TextBoxFor(model => model.confrdate, "Skype", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtskypeAPPForm", @id = "txtskypeAPPForm" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @* Education *@
+                                        <div class="tab-pane" id="education">
+                                            <div class="row">
+                                                <div class="education_jqGrid m-b padding_jqgrid">
+                                                    <table id="education_table"></table>
+                                                    <div id="education_pager_list"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @* Skills *@
+                                        <div class="tab-pane" id="skills">
+                                            <div class="row">
+                                                <div class="row ">
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-5">
+                                                            <label>Please Mention Your Technical Skills(if any)</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Technical Skills", @class = "form-control m-b", @name = "txtObjectWLPP", @id = "", @style = "resize:vertical" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-5">
+                                                            <label>Please Mention Your Functional Skills(if any)</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Functional Skills", @class = "form-control m-b", @name = "txtObjectWLPP", @id = "", @style = "resize:vertical" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @* Experience *@
+                                        <div class="tab-pane" id="experience">
+                                            <div class="row">
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Job Title</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Job Tile", @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtjobtitleEXAPP", @id = "txtjobtitleEXAPP" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Company</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(m => m.empid, new { @placeholder = "Company", @class = "form-control m-b", @name = "txtcompEXAPP", @id = "txtcompEXAPP" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>From Date</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "From Date", @class = "form-control m-b", @name = "txtfromdateEXAPP", @id = "txtfromdateEXAPP" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>To Date</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(m => m.empid, new { @placeholder = "To Date", @class = "form-control m-b", @name = "txttodateEXAPP", @id = "txttodateEXAPP" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Responsibility</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Responsibility", @class = "form-control m-b", @name = "txtrespEXAPP", @id = "txtrespEXAPP", @style = "resize:vertical" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <input id="btnAddEXAPPForm" type="submit" value="Add" name="" class="btn btn-sm btn-success" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="experience_jqGrid m-b padding_jqgrid">
+                                                            <table id="experience_table"></table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @* Projects *@
+                                        <div class="tab-pane" id="projects">
+                                            <div class="row">
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Project Name</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Project Name", @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtprojnamePRAPP", @id = "txtprojnamePRAPP" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Project URL</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(m => m.empid, new { @placeholder = "Project URL", @class = "form-control m-b", @name = "txtprojurlPRAPP", @id = "txtprojurlPRAPP" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Start Date</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "From Date", @class = "form-control m-b", @name = "txtfromdatePRAPP", @id = "txtfromdatePRAPP" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>End Date</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextBoxFor(m => m.empid, new { @placeholder = "To Date", @class = "form-control m-b", @name = "txttodatePRAPP", @id = "txttodatePRAPP" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <label>Description</label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Description", @class = "form-control m-b", @name = "txtdescPRAPP", @id = "txtdescPRAPP", @style = "resize:vertical" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <input id="btnAddPRAPPForm" type="submit" value="Add" name="" class="btn btn-sm btn-success" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="projects_jqGrid m-b padding_jqgrid">
+                                                            <table id="project_table"></table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-5">
+
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- /.tab-pane -->
-
-                                    <div class="tab-pane" id="education">
-                                        <div class="row">
-                                            <div class="education_jqGrid m-b">
-                                                <table id="education_table"></table>
-                                                <div id="education_pager_list"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-md-6">
-                                                <div class="col-md-5">
-                                                    <input id="" type="submit" value="Previous" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
-                                                    <input id="" type="submit" value="Next" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.tab-pane -->
-                                    <div class="tab-pane" id="tech-skills">
-                                        <div class="row">
-                                            <div class="row ">
-                                                <div class="col-md-8">
-                                                    <div class="col-md-5">
-                                                        <label>Please Mention Your Technical Skills(if any)</label>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        @Html.TextAreaFor(m => m.empid, new { @placeholder = "Technical Skills", @class = "form-control m-b", @name = "txtObjectWLPP", @id = "", @required = true, @style = "resize:vertical" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row ">
-                                                <div class="col-md-6">
-                                                    <div class="col-md-5">
-                                                        <input id="" type="submit" value="Previous" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
-                                                        <input id="" type="submit" value="Next" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.tab-pane -->
-
-                                    <div class="tab-pane" id="fun-skills">
-                                        <div class="row">
-                                            <div class="row ">
-                                                <div class="col-md-8">
-                                                    <div class="col-md-5">
-                                                        <label>Please Mention Your Functional Skills(if any)</label>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        @Html.TextAreaFor(m => m.empid, new { @placeholder = "Functional Skills", @class = "form-control m-b", @name = "txtObjectWLPP", @id = "", @required = true, @style = "resize:vertical" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row ">
-                                                <div class="col-md-6">
-                                                    <div class="col-md-5">
-                                                        <input id="" type="submit" value="Previous" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
-                                                        <input id="" type="submit" value="Next" name="" href="#education" class="btn btn-sm btn-danger next-btn" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.tab-pane -->
+                                    <!-- /.tab-content -->
                                 </div>
-                                <!-- /.tab-content -->
-                            </div>
-                            <!-- /.nav-tabs-custom -->
+                                <!-- /.nav-tabs-custom -->
+                            </form>
                         </div>
                     </div>
                 </div>
