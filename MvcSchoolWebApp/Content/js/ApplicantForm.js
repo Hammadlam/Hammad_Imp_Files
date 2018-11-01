@@ -1,29 +1,59 @@
 ﻿
 var mydata = [
-{ institurename: "", date: "", degree: "", majors: "", percentage: "" },
-{ institurename: "", date: "", degree: "", majors: "", percentage: "" },
-{ institurename: "", date: "", degree: "", majors: "", percentage: "" },
-{ institurename: "", date: "", degree: "", majors: " ", percentage: "" }
-
+{ instname: "", sdate: "", fdate: "", degree: "", majors: "", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: "", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: "", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" },
+{ instname: "", sdate: "", fdate: "", degree: "", majors: " ", percentage: "" }
 ];
 
-var $screensize = $("#content").width() - 42;
+var $screensize = $("#content").width() - 180;
 var $size = ($screensize / 100);
+/* Education Grid*/
 $('#educationid').click(function () {
     $("#education_table").jqGrid({
         styleUI: 'Bootstrap',
         height: 250,
-        autoheight: true,
-        autowidth: true,
         //shrinkToFit: true,
         rowNum: 10,
-        colNames: ['Institute Name', 'Date', 'Degree', 'Majors', "Percentage/ GPA"],
+        colNames: ['Qualification Level', 'Institute Name', 'Start Date', 'Finish Date', 'Degree', 'Majors', "Percentage/GPA"],
         colModel: [
-            { name: 'institurename', index: 'institurename', width: $size * 20, search: true, resizable: false, editable: true },
-            { name: 'date', index: 'date', width: $size * 20, search: true, resizable: false, editable: true },
+            {
+                name: 'qualevel', index: 'qualevel', editable: true, align: 'left', resizable: false, width: $size * 15, edittype: "select",
+                formatter: 'select',
+                editoptions: { value: "0123:Undergraduation;0124:Graduation;0125:Post Graduation;0126:Certification", defaultValue: "0123" },
+            },
+            { name: 'instname', index: 'instname', width: $size * 20, search: true, resizable: false, editable: true },
+            {
+                name: 'sdate', index: 'sdate', width: $size * 13, search: true, resizable: false, editable: true,
+                editoptions: {
+                    dataInit: function (element) {
+                        $(element).datepicker({
+                            format: 'dd-MM-yyyy',
+                            autoclose: true
+                        });
+                    }
+                }
+            },
+            {
+                name: 'fdate', index: 'fdate', width: $size * 13, search: true, resizable: false, editable: true,
+                editoptions: {
+                    dataInit: function (element) {
+                        $(element).datepicker({
+                            format: 'dd-MM-yyyy',
+                            autoclose: true
+                        });
+                    }
+                }
+            },
             { name: 'degree', index: 'degree', width: $size * 20, search: true, resizable: false, editable: true },
-            { name: 'majors', index: 'majors', classes: "wrap", width: $size * 20, resizable: false, editable: true },
-            { name: 'percentage', index: 'percentage', width: $size * 20, resizable: false, editable: true }
+            { name: 'majors', index: 'majors', classes: "wrap", width: $size * 15, resizable: false, editable: true },
+            { name: 'percentage', index: 'percentage', width: $size * 15, resizable: false, editable: true }
         ],
         data: mydata,
         datatype: "local",
@@ -239,6 +269,14 @@ $("#btnAddPRAPPForm").click(function () {
 
 var basicinfo = new Array();
 var contactinfo = new Array();
+var skillinfo = new Array();
+var qualevel = new Array();
+var instname = new Array();
+var sdateedu = new Array();
+var fdateedu = new Array();
+var degreeedu = new Array();
+var majors = new Array();
+var gpa = new Array();
 
 $("#APPForm").submit(function (e) {
     e.preventDefault();
@@ -246,25 +284,42 @@ $("#APPForm").submit(function (e) {
 
     basicInfo();
     contactInfo();
-
+    educationInfo();
+    skillInfo();
     $.ajax({
         type: "POST",
         url: encodeURI("../HR/insertAPPForm"),
         data: {
             basicinfo: basicinfo,
-            contactinfo: contactinfo
+            contactinfo: contactinfo,
+            skillinfo: skillinfo,
+            qualevel: qualevel,
+            instname: instname,
+            sdateedu: sdateedu,
+            fdateedu: fdateedu,
+            degreeedu: degreeedu,
+            majors: majors,
+            gpa: gpa
 
         },
         success: function (data) {
 
-            if (data == "Success") {
+            if (data == 1) {
                 waitingDialog.hide();
                 show_suc_alert_js('Form Successfully Uploaded');
                 clearFields();
             }
-            else if (data == "Error") {
+            else if (data == 0) {
                 waitingDialog.hide();
                 show_err_alert_js('Found Some Error! Please Try Again');
+            }
+            else if (data == 2) {
+                waitingDialog.hide();
+                show_err_alert_js('Number Range is not defined.');
+            }
+            else if (data == 3) {
+                waitingDialog.hide();
+                show_err_alert_js('Number Range is exceed.');
             }
             else if (data == "Rights") {
                 waitingDialog.hide();
@@ -306,7 +361,37 @@ function contactInfo() {
     contactinfo[9] = $("#txtskypeAPPForm").val();
 }
 
+function skillInfo() {
+    var i = 0;
+    if ($("#txtTechAPPForm").val() != "") {
+        skillinfo[i] = $("#txtTechAPPForm").val();
+        i++;
+    }
+    if ($("#txtFuncAPPForm").val() != "") {
+        skillinfo[i] = $("#txtFuncAPPForm").val();
+    }
+}
+
+function educationInfo() {
+    var gridRows = $("#education_table").jqGrid('getRowData');
+    for (var i = 0; i < gridRows.length; i++) {
+        if (qualevel[i] != "") {
+            qualevel[i] = gridRows[i].qualevel;
+            instname[i] = gridRows[i].instname;
+            sdateedu[i] = gridRows[i].sdate;
+            fdateedu[i] = gridRows[i].fdate;
+            degreeedu[i] = gridRows[i].degree;
+            majors[i] = gridRows[i].majors;
+            gpa[i] = gridRows[i].percentage;
+        }
+    }
+}
+
 function clearFields() {
+    $('#education_table').jqGrid('clearGridData');
+    $("#education_table").jqGrid("GridUnload");
+    $("#txtFuncAPPForm").val("");
+    $("#txtTechAPPForm").val();
     $("#txtempnameAPPForm").val("");
     $("#txtcnicAPPForm").val("");
     $("#martialstatAPPForm > option:selected").attr("value");

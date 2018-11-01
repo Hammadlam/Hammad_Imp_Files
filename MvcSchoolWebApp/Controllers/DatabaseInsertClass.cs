@@ -2842,82 +2842,146 @@ namespace MvcSchoolWebApp.Controllers
             return true;
         }
 
-        public void insertAPPForm(string user_id, string[] basicinfo, string[] contactinfo)
+        public void insertAPPForm(string user_id, string[] basicinfo, string[] contactinfo, string[] skillinfo, string[] qualevel, string[] instname,
+            DateTime[] sdateedu, DateTime[] fdateedu, string[] degreeedu, string[] majors, string[] gpa)
         {
             DatabaeseClass dc = new DatabaeseClass();
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
             con.Open();
             DateTime insertdate = dc.convertedinsertdate(DateTime.Now.ToString());
-            string norng = "select [status] from norange where norngid = '01' and norngobj = 'aplid' ";
+            string norng = "select [status], rngfrom, rngto from norange where norngid = '01' and norngobj = 'aplid' ";
 
-            SqlCommand command = new SqlCommand(norng, con);
-            int aplidold = Convert.ToInt32(command.ExecuteScalar());
-            int aplidnew = aplidold + 1;
-            SqlTransaction trans;
-            SqlCommand cmd = con.CreateCommand();
-            trans = con.BeginTransaction();
-            try
+            int aplidold = 0, rngfrom = 0, rngto = 0;
+
+            da.CreateConnection();
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, norng);
+            da.OpenConnection();
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
             {
-                cmd.Connection = con;
-                cmd.Transaction = trans;
-
-                /* Number range table update*/
-                cmd.CommandText = "update norange set [status] = '" + aplidnew + "' , dbtimestmp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
-                                  "where norngid = '01' and norngobj = 'aplid' and [status] = '" + aplidold + "'";
-                cmd.ExecuteNonQuery();
-
-                /* Apl0010 Table Insert ~ aarea, subarea */
-                cmd.CommandText = "insert into apl0010 ( aplid, begdate, enddate, asubpagtyp, recordno, " +
-                                  "delind, creuser, credate, cretime, upduser, " +
-                                  "upddate, updtime, aarea, asubarea, agroup, asubgrp, dbtimestmp) " +
-                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
-                                  "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
-                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "','3000','10','1','04','"+ insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-                cmd.ExecuteNonQuery();
-
-                /* Apl0100 Table Insert ~ basic info*/
-                cmd.CommandText = "insert apl0100 (aplid, begdate, enddate, asubpagtyp, recordno, " +
-                                  "delind, creuser, credate, cretime, upduser, " +
-                                  "upddate, updtime, formadd, lastname, midname, " +
-                                  "firstname, birthname, initials, secname, idnumber, " +
-                                  "gender, nationality, commlang, birthdate, birthplace, " +
-                                  "cobirth, [state], maritalstat, dbtimestmp) " +
-                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
-                                  "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
-                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', ' ', ' ', " +
-                                  "'" + basicinfo[0] + "','" + basicinfo[0] + "',' ',' ','" + basicinfo[1] + "', " +
-                                  "'" + basicinfo[2] + "','PK','UR','" + basicinfo[4] + "','"+ basicinfo[5] + "', " +
-                                  "'PK', ' ', '" + basicinfo[3] + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-                cmd.ExecuteNonQuery();
-
-                /* Apl0110 Table Insert ~ contact info*/
-                cmd.CommandText = "insert into apl0110 (aplid, begdate, enddate, asubpagtyp, recordno, " +
-                                  "delind, creuser, credate, cretime, upduser, " +
-                                  "upddate, updtime, careof, street1, street2, " +
-                                  "zipcode, district, city, ctry, phone, " +
-                                  "phone2, phone3, phone4, phone5, linkedin, " +
-                                  "skype, email, col0, col1, dbtimestmp) " +
-                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
-                                  "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
-                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', '" + contactinfo[0] + "','" + contactinfo[1] + "', " +
-                                  "' ', ' ', '" + contactinfo[2] + "','" + contactinfo[3] + "', '" + contactinfo[5] + "' , " +
-                                  "'" + contactinfo[6] + "','" + contactinfo[7] + "',' ', ' ', '" + contactinfo[8] + "', " +
-                                  "'" + contactinfo[9] + "','" + contactinfo[4] + "',' ',' ','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-                cmd.ExecuteNonQuery();
-                trans.Commit();
-                HomeController.popup_status = "Success";
-
+                while (da.obj_reader.Read())
+                {
+                    aplidold = Convert.ToInt32(da.obj_reader["status"].ToString());
+                    rngfrom = Convert.ToInt32(da.obj_reader["rngfrom"].ToString());
+                    rngto = Convert.ToInt32(da.obj_reader["rngto"].ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                trans.Rollback();
-                HomeController.popup_status = "Error";
+                HomeController.error_code = 2;
+                return;
             }
-            finally
+            if( aplidold > rngfrom && aplidold < rngto)
             {
-                trans.Dispose();
-                con.Close();
+                int aplidnew = aplidold + 1;
+                SqlTransaction trans;
+                SqlCommand cmd = con.CreateCommand();
+                trans = con.BeginTransaction();
+                try
+                {
+                    cmd.Connection = con;
+                    cmd.Transaction = trans;
+
+                    /* Number range table update*/
+                    cmd.CommandText = "update norange set [status] = '" + aplidnew + "' , dbtimestmp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                                      "where norngid = '01' and norngobj = 'aplid' ";
+                    cmd.ExecuteNonQuery();
+
+                    /* Apl0010 Table Insert ~ aarea, subarea */
+                    cmd.CommandText = "insert into apl0010 ( aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                      "delind, creuser, credate, cretime, upduser, " +
+                                      "upddate, updtime, aarea, asubarea, agroup, asubgrp, dbtimestmp) " +
+                                      "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
+                                      "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
+                                      "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "','3000','10','1','04','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                    cmd.ExecuteNonQuery();
+
+                    /* Apl0100 Table Insert ~ basic info*/
+                    cmd.CommandText = "insert apl0100 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                      "delind, creuser, credate, cretime, upduser, " +
+                                      "upddate, updtime, formadd, lastname, midname, " +
+                                      "firstname, birthname, initials, secname, idnumber, " +
+                                      "gender, nationality, commlang, birthdate, birthplace, " +
+                                      "cobirth, [state], maritalstat, dbtimestmp) " +
+                                      "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
+                                      "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
+                                      "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', ' ', ' ', " +
+                                      "'" + basicinfo[0] + "','" + basicinfo[0] + "',' ',' ','" + basicinfo[1] + "', " +
+                                      "'" + basicinfo[2] + "','PK','UR','" + basicinfo[4] + "','" + basicinfo[5] + "', " +
+                                      "'PK', ' ', '" + basicinfo[3] + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                    cmd.ExecuteNonQuery();
+
+                    /* Apl0110 Table Insert ~ contact info*/
+                    cmd.CommandText = "insert into apl0110 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                      "delind, creuser, credate, cretime, upduser, " +
+                                      "upddate, updtime, careof, street1, street2, " +
+                                      "zipcode, district, city, ctry, phone, " +
+                                      "phone2, phone3, phone4, phone5, linkedin, " +
+                                      "skype, email, col0, col1, dbtimestmp) " +
+                                      "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '1', " +
+                                      "' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "',' ', " +
+                                      "'" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', '" + contactinfo[0] + "','" + contactinfo[1] + "', " +
+                                      "' ', ' ', '" + contactinfo[2] + "','" + contactinfo[3] + "', '" + contactinfo[5] + "' , " +
+                                      "'" + contactinfo[6] + "','" + contactinfo[7] + "',' ', ' ', '" + contactinfo[8] + "', " +
+                                      "'" + contactinfo[9] + "','" + contactinfo[4] + "',' ',' ','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                    cmd.ExecuteNonQuery();
+
+                    /*Apl0531 Table Insert ~ skill info */
+                    for (int i = 0; i < skillinfo.Length; i++)
+                    {
+                        if (skillinfo[i] != "")
+                        {
+                            cmd.CommandText = "insert into apl0531 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                              "lineid, delind, creuser, credate, cretime, " +
+                                              "upduser, upddate, updtime, skillno, aplprof, " +
+                                              "acquisdate, remarks, dbtimestmp) " +
+                                              "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + qualevel[i] + "', '" + (i + 1) + "', " +
+                                              "'" + (i + 1) + "',' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', " +
+                                              "' ','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', ' ', " +
+                                              "'" + insertdate.ToString("yyyy-MM-dd") + "','" + skillinfo[i] + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    /*Apl0520 Table Insert ~ education info */
+                    for (int i = 0; i < qualevel.Length; i++)
+                    {
+                        if (qualevel[i] != "")
+                        {
+                            cmd.CommandText = "insert into apl0520 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                              "lineid, delind, creuser, credate, cretime, " +
+                                              "upduser, upddate, updtime, startdate, finishdate, " +
+                                              "apledu, instdept, instname, instcity, inststate, " +
+                                              "instctry, aplprof, inudfield1, inudfield2, inudfield3, " +
+                                              "inudfield4, dbtimestmp) " +
+                                              "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + qualevel[i] + "', '" + (i + 1) + "', " +
+                                              "'" + (i+1) + "',' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', " +
+                                              "' ','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', '" + sdateedu[i].ToString("yyyy-MM-dd") + "','" + fdateedu[i].ToString("yyyy-MM-dd") + "', " +
+                                              "'" + degreeedu[i] + "',' ', '" + instname[i] + "',' ', ' ', " +
+                                              "'PK', ' ', '" + majors[i] + "','" + gpa[i] + "', ' ', " +
+                                              "' ', '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    trans.Commit();
+                    HomeController.error_code = 1;
+
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    HomeController.error_code = 0;
+                }
+                finally
+                {
+                    trans.Dispose();
+                    con.Close();
+                }
+            }
+            else
+            {
+                HomeController.error_code = 3;
+                return;
             }
         }
     }

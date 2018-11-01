@@ -62,10 +62,10 @@
 
                         </div>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" id="content">
                         <div class="row">
                             <form role="form" name="APPForm" id="APPForm">
-                                <input id="btnsubmitAPPForm" type="submit" value="Submit" style="float:right;" name="" class="btn btn-sm btn-danger next-btn" />
+                                <input id="btnsubmitAPPForm" type="submit" value="Submit" style="float:right;" name="btnsubmitAPPForm" class="btn btn-sm btn-danger next-btn" />
                                 <div class="nav-tabs-custom">
                                     <ul class="nav nav-tabs" id="cust-tabs">
                                         <li class="active"><a class="active" href="#basicinfo" data-toggle="tab">Basic Info</a></li>
@@ -79,7 +79,7 @@
                                         <li><a class="" href="#references" data-toggle="tab">References</a></li>
                                     </ul>
 
-                                    <div class="tab-content" id="content" style="border: 1px solid #3c8dbc;">
+                                    <div class="tab-content" style="border: 1px solid #3c8dbc;">
 
                                         @* Basic Info *@
                                         <div class="active tab-pane" id="basicinfo">
@@ -99,7 +99,7 @@
                                                             <label>CNIC</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "CNIC", @class = "form-control m-b", @name = "txtcnicAPPForm", @id = "txtcnicAPPForm", @required = true})
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "CNIC", @class = "form-control m-b", @name = "txtcnicAPPForm", @id = "txtcnicAPPForm", @required = true })
                                                         </div>
                                                     </div>
 
@@ -193,7 +193,7 @@
                                                         <label>Current Address</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextAreaFor(m => m.empid, new { @placeholder = "Current Address", @class = "form-control m-b", @name = "txtstreet2APPForm", @id = "txtstreet2APPForm", @style = "resize:vertical"})
+                                                        @Html.TextAreaFor(m => m.empid, new { @placeholder = "Current Address", @class = "form-control m-b", @name = "txtstreet2APPForm", @id = "txtstreet2APPForm", @style = "resize:vertical" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,7 +224,7 @@
                                                         <label>Contact Email</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "Contact Email", new { @type = "email" , @class = "form-control m-b", @name = "txtemailAPPForm", @id = "txtemailAPPForm", @required = true })
+                                                        @Html.TextBoxFor(model => model.empid, "Contact Email", new { @type = "email", @class = "form-control m-b", @name = "txtemailAPPForm", @id = "txtemailAPPForm", @required = true })
                                                     </div>
                                                 </div>
 
@@ -233,7 +233,7 @@
                                                         <label>Contact Phone 1</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.confrdate, "Contact Phone 1", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtphone1APPForm", @id = "txtphone1APPForm", @required = true, @title = "Digits Only" })
+                                                        @Html.TextBoxFor(model => model.confrdate, "Contact Phone 1", new { @class = "form-control m-b", @name = "txtphone1APPForm", @id = "txtphone1APPForm", @required = true, @title = "Digits Only" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -244,7 +244,7 @@
                                                         <label>Contact Phone 2</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "Contact Phone 2", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtphone2APPForm", @id = "txtphone2APPForm", @title = "Digits Only" })
+                                                        @Html.TextBoxFor(model => model.empid, "Contact Phone 2", new { @class = "form-control m-b", @name = "txtphone2APPForm", @id = "txtphone2APPForm", @title = "Digits Only" })
                                                     </div>
                                                 </div>
 
@@ -253,7 +253,7 @@
                                                         <label>Contact Phone 3</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.confrdate, "Contact Phone 3", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtphone3APPForm", @id = "txtphone3APPForm", @title = "Digits Only", @max = "11;" })
+                                                        @Html.TextBoxFor(model => model.confrdate, "Contact Phone 3", new { @class = "form-control m-b", @name = "txtphone3APPForm", @id = "txtphone3APPForm", @title = "Digits Only", @max = "11;" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,7 +263,7 @@
                                                         <label>Linkedin</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.empid, "Linkedin", new { @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtlinkedinAPPForm", @id = "txtlinkedinAPPForm" })
+                                                        @Html.TextBoxFor(model => model.empid, "Linkedin", new {  @class = "form-control m-b", @name = "txtlinkedinAPPForm", @id = "txtlinkedinAPPForm" })
                                                     </div>
                                                 </div>
 
@@ -272,7 +272,7 @@
                                                         <label>Skype</label>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        @Html.TextBoxFor(model => model.confrdate, "Skype", new { @Value = ViewBag.confrdate, @class = "form-control m-b", @name = "txtskypeAPPForm", @id = "txtskypeAPPForm" })
+                                                        @Html.TextBoxFor(model => model.confrdate, "Skype", new {  @class = "form-control m-b", @name = "txtskypeAPPForm", @id = "txtskypeAPPForm" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -286,14 +286,11 @@
                                         @* Education *@
                                         <div class="tab-pane" id="education">
                                             <div class="row">
-                                                <div class="education_jqGrid m-b padding_jqgrid">
-                                                    <table id="education_table"></table>
-                                                    <div id="education_pager_list"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row ">
-                                                <div class="col-md-6">
-
+                                                <div class="col-lg-12">
+                                                    <div class="education_jqGrid m-b ">
+                                                        <table id="education_table"></table>
+                                                        <div id="education_pager_list"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,7 +304,7 @@
                                                             <label>Please Mention Your Technical Skills(if any)</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Technical Skills", @class = "form-control m-b", @name = "txtObjectWLPP", @id = "", @style = "resize:vertical" })
+                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Technical Skills", @class = "form-control m-b", @name = "txtTechAPPForm", @id = "txtTechAPPForm", @style = "resize:vertical" })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -317,7 +314,7 @@
                                                             <label>Please Mention Your Functional Skills(if any)</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Functional Skills", @class = "form-control m-b", @name = "txtObjectWLPP", @id = "", @style = "resize:vertical" })
+                                                            @Html.TextAreaFor(m => m.empid, new { @placeholder = "Functional Skills", @class = "form-control m-b", @name = "txtFuncAPPForm", @id = "txtFuncAPPForm", @style = "resize:vertical" })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -338,7 +335,7 @@
                                                             <label>Job Title</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Job Tile", @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtjobtitleEXAPP", @id = "txtjobtitleEXAPP" })
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Job Tile", @class = "form-control m-b", @name = "txtjobtitleEXAPP", @id = "txtjobtitleEXAPP" })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -407,7 +404,7 @@
                                                             <label>Project Name</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Project Name", @Value = ViewBag.empid, @class = "form-control m-b", @name = "txtprojnamePRAPP", @id = "txtprojnamePRAPP" })
+                                                            @Html.TextBoxFor(model => model.empid, new { @placeholder = "Project Name", @class = "form-control m-b", @name = "txtprojnamePRAPP", @id = "txtprojnamePRAPP" })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

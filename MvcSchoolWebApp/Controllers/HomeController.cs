@@ -25,6 +25,7 @@ namespace MvcSchoolWebApp.Controllers
         public static string user_class;
         public static string user_section;
         public static string popup_status;
+        public static int error_code;
         public static List<Users> user_dtl;
 
         private Database.Database da = new Database.Database("Falconlocal");

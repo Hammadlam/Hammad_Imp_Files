@@ -51,11 +51,12 @@ namespace MvcSchoolWebApp.Controllers
             return View();
         }
 
-        public JsonResult insertAPPForm(string[] basicinfo, string[] contactinfo)
+        public JsonResult insertAPPForm(string[] basicinfo, string[] contactinfo, string[] skillinfo, string[] qualevel, string[] instname,
+            DateTime[] sdateedu, DateTime[] fdateedu, string[] degreeedu, string[] majors, string[] gpa)
         {
             din = new DatabaseInsertClass();
-            din.insertAPPForm(user_id,basicinfo, contactinfo);
-            return Json(HomeController.popup_status, JsonRequestBehavior.AllowGet);
+            din.insertAPPForm(user_id, basicinfo, contactinfo, skillinfo, qualevel, instname, sdateedu, fdateedu, degreeedu, majors, gpa);
+            return Json(HomeController.error_code, JsonRequestBehavior.AllowGet);
         }
     }
 }
