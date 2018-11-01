@@ -1330,6 +1330,7 @@
     <Content Include="Content\js\AccountDoc.js" />
     <Content Include="Content\js\ActivityGrade.js" />
     <Content Include="Content\js\AOneDoc.js" />
+    <Content Include="Content\js\ApplicantForm.js" />
     <Content Include="Content\js\Assignment.js" />
     <Content Include="Content\js\AssignmentUpload.js" />
     <Content Include="Content\js\AttendanceUpload.js" />
@@ -1358,7 +1359,6 @@
     <Content Include="Content\js\Finance.js" />
     <Content Include="Content\js\grid.locale-en.js" />
     <Content Include="Content\js\HRDoc.js" />
-    <Content Include="Content\js\Human_Resource.js" />
     <Content Include="Content\js\inspinia.js" />
     <Content Include="Content\js\jasny-bootstrap.min.js" />
     <Content Include="Content\js\jquery-ui.min.js" />
@@ -1679,7 +1679,6 @@
     <Content Include="Views\Home\Finance.cshtml" />
     <Content Include="Views\Home\Purchase.cshtml" />
     <Content Include="Views\Home\Sales.cshtml" />
-    <Content Include="Views\Home\Human_Resource.cshtml" />
     <Content Include="Views\Download\Index.cshtml" />
     <Content Include="Views\personalinfo\Index.cshtml" />
     <Content Include="Views\TimeTable\ClassTimetable.cshtml" />
