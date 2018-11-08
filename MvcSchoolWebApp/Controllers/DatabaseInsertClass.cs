@@ -2926,21 +2926,23 @@ namespace MvcSchoolWebApp.Controllers
                                       "'" + contactinfo[6] + "','" + contactinfo[7] + "',' ', ' ', '" + contactinfo[8] + "', " +
                                       "'" + contactinfo[9] + "','" + contactinfo[4] + "',' ',' ','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
                     cmd.ExecuteNonQuery();
-
-                    /*Apl0531 Table Insert ~ skill info */
-                    for (int i = 0; i < skillinfo.Length; i++)
+                    if (skillinfo != null)
                     {
-                        if (skillinfo[i] != "")
+                        /*Apl0531 Table Insert ~ skill info */
+                        for (int i = 0; i < skillinfo.Length; i++)
                         {
-                            cmd.CommandText = "insert into apl0531 (aplid, begdate, enddate, asubpagtyp, recordno, " +
-                                              "lineid, delind, creuser, credate, cretime, " +
-                                              "upduser, upddate, updtime, skillno, aplprof, " +
-                                              "acquisdate, remarks, dbtimestmp) " +
-                                              "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + qualevel[i] + "', '" + (i + 1) + "', " +
-                                              "'" + (i + 1) + "',' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', " +
-                                              "' ','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', ' ', " +
-                                              "'" + insertdate.ToString("yyyy-MM-dd") + "','" + skillinfo[i] + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-                            cmd.ExecuteNonQuery();
+                            if (skillinfo[i] != "")
+                            {
+                                cmd.CommandText = "insert into apl0531 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                                                  "lineid, delind, creuser, credate, cretime, " +
+                                                  "upduser, upddate, updtime, skillno, aplprof, " +
+                                                  "acquisdate, remarks, dbtimestmp) " +
+                                                  "VALUES('" + aplidnew + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + qualevel[i] + "', '" + (i + 1) + "', " +
+                                                  "'" + (i + 1) + "',' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', " +
+                                                  "' ','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', ' ', ' ', " +
+                                                  "'" + insertdate.ToString("yyyy-MM-dd") + "','" + skillinfo[i] + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                                cmd.ExecuteNonQuery();
+                            }
                         }
                     }
                     /*Apl0520 Table Insert ~ education info */
