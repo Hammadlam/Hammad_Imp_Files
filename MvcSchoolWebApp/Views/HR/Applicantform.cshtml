@@ -87,7 +87,7 @@
                                                 <div class="row ">
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
-                                                            <label>Name</label>
+                                                            <label>Name*</label>
                                                         </div>
                                                         <div class="col-md-7">
                                                             @Html.TextBoxFor(model => model.empid, new { @placeholder = "Name", @class = "form-control m-b", @name = "txtempnameAPPForm", @id = "txtempnameAPPForm", @required = true })
@@ -96,7 +96,7 @@
 
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
-                                                            <label>CNIC</label>
+                                                            <label>CNIC*</label>
                                                         </div>
                                                         <div class="col-md-7">
                                                             @Html.TextBoxFor(model => model.empid, new { @placeholder = "CNIC", @class = "form-control m-b", @name = "txtcnicAPPForm", @id = "txtcnicAPPForm", @required = true })
@@ -108,7 +108,7 @@
                                                 <div class="row ">
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
-                                                            <label>Gender</label>
+                                                            <label>Gender*</label>
                                                         </div>
                                                         <div class="col-md-7">
                                                             <div class="col-md-6">
@@ -122,7 +122,7 @@
 
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
-                                                            <label>Marital Status</label>
+                                                            <label>Marital Status*</label>
                                                         </div>
                                                         <div class="col-md-7">
                                                             <select class="form-control m-b" id="martialstatAPPForm">
@@ -138,7 +138,7 @@
                                                 <div class="row ">
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
-                                                            <label>Date of Birth</label>
+                                                            <label>Date of Birth*</label>
                                                         </div>
                                                         <div class="col-md-7">
                                                             @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Date of Birth", @class = "form-control m-b date-day", @name = "txtdobAPPForm", @id = "txtdobAPPForm", @required = true })
@@ -146,7 +146,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
-                                                            <label>Place of Birth</label>
+                                                            <label>Place of Birth*</label>
                                                         </div>
                                                         <div class="col-md-7">
                                                             @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Place of Birth", @class = "form-control m-b", @name = "txtpobAPPForm", @id = "txtpobAPPForm", @required = true })
@@ -168,7 +168,7 @@
                                                             <label>Father CNIC</label>
                                                         </div>
                                                         <div class="col-md-7">
-                                                            @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Father CNIC", @class = "form-control m-b", @name = "txtfathercnicAPPForm", @id = "txtfathercnicAPPForm", @required = true })
+                                                            @Html.TextBoxFor(model => model.confrdate, new { @placeholder = "Father CNIC", @class = "form-control m-b", @name = "txtfathercnicAPPForm", @id = "txtfathercnicAPPForm" })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -181,7 +181,7 @@
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Permanent Address</label>
+                                                        <label>Permanent Address*</label>
                                                     </div>
                                                     <div class="col-md-7">
                                                         @Html.TextAreaFor(m => m.empid, new { @placeholder = "Permanent Address", @class = "form-control m-b", @name = "txtstreet1APPForm", @id = "txtstreet1APPForm", @style = "resize:vertical", @required = true })
@@ -201,7 +201,7 @@
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>City</label>
+                                                        <label>City*</label>
                                                     </div>
                                                     <div class="col-md-7">
                                                         @Html.TextBoxFor(model => model.empid, "City", new { @class = "form-control m-b", @name = "txtcityAPPForm", @id = "txtcityAPPForm", @required = true })
@@ -210,7 +210,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Country Code</label>
+                                                        <label>Country Code*</label>
                                                     </div>
                                                     <div class="col-md-7">
                                                         @Html.TextBoxFor(model => model.confrdate, "Country", new { @class = "form-control m-b", @name = "txtctryAPPForm", @id = "txtctryAPPForm", @required = true })
@@ -221,7 +221,7 @@
                                             <div class="row ">
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Contact Email</label>
+                                                        <label>Contact Email*</label>
                                                     </div>
                                                     <div class="col-md-7">
                                                         @Html.TextBoxFor(model => model.empid, "Contact Email", new { @type = "email", @class = "form-control m-b", @name = "txtemailAPPForm", @id = "txtemailAPPForm", @required = true })
@@ -230,7 +230,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="col-md-5">
-                                                        <label>Contact Phone 1</label>
+                                                        <label>Contact Phone 1*</label>
                                                     </div>
                                                     <div class="col-md-7">
                                                         @Html.TextBoxFor(model => model.confrdate, "Contact Phone 1", new { @class = "form-control m-b", @name = "txtphone1APPForm", @id = "txtphone1APPForm", @required = true, @title = "Digits Only" })
