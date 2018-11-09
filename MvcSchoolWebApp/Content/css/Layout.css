@@ -344,3 +344,30 @@ input[type="text"] {
 .main-header .logo {
     height: 53px;
 }
+
+.content-wrapper {
+    background-color: #ffffff !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+    border-top-color: #3c8dbc !important;
+    border-top: 3px solid #3c8dbc !important;
+    border-left-color: #3c8dbc !important;
+    border-right-color: #3c8dbc !important;
+}
+
+.ibox-title {
+    border-color: #ffffff !important;
+}
+
+#dvborder {
+    border: 0px solid #ffffff !important;
+}
+
+.ibox-content {
+    border-color: #ffffff !important;
+}
+
+.padding_jqgrid {
+    padding-left: 15px;
+}

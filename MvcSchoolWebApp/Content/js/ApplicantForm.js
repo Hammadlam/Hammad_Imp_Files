@@ -18,9 +18,9 @@ var $size = ($screensize / 100);
 $('#educationid').click(function () {
     $("#education_table").jqGrid({
         styleUI: 'Bootstrap',
-        height: 250,
+        height: 200,
         //shrinkToFit: true,
-        rowNum: 10,
+        rowNum: 5,
         colNames: ['Qualification Level', 'Institute Name', 'Start Date', 'Finish Date', 'Degree', 'Majors', "Percentage/GPA"],
         colModel: [
             {
