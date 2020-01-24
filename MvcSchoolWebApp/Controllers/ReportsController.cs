@@ -344,228 +344,265 @@ namespace MvcSchoolWebApp.Controllers
         public ActionResult ExecuteReport()
         {
 
-            // ***** 13 Sept ***** 
-
-            TempData.Keep("ReportId");
-            TempData.Keep("UpdatedQuery");
-
-            string reportid = TempData["ReportId"].ToString();
-            string UpdatedQuery = TempData["UpdatedQuery"].ToString();
-
-            using (SqlConnection con = new SqlConnection(cs))
+            try
             {
-                string query = "select rptfile from crydtl where reptid = '" + reportid + "'";
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                string rptfilename = cmd.ExecuteScalar().ToString();
-                //Getting Name of RPT file
-                string xmlfilename = rptfilename.Replace(".rpt", ".xml");
-                DataSet ds = new DataSet();
 
-                string query2 = "select cryrptfile.rptfile from cryrptfile inner join crydtl on cryrptfile.reptid = crydtl.reptid where crydtl.reptid ='" + reportid + "'";
-                SqlCommand cmd2 = new SqlCommand(query2, con);
-                cmd2.CommandTimeout = 300;
-                string loadvalue = cmd2.ExecuteScalar().ToString();
-                //Getting xml text from cryquehdr 
-                string VReportPath = Server.MapPath("~/TemporaryReports/");
-                FileStream fs = null;
+                TempData.Keep("ReportId");
+                TempData.Keep("UpdatedQuery");
 
-                if (!System.IO.File.Exists(VReportPath + "\\" + xmlfilename))
+                string reportid = TempData["ReportId"].ToString();
+                string UpdatedQuery = TempData["UpdatedQuery"].ToString();
+
+                using (SqlConnection con = new SqlConnection(cs))
                 {
-                    fs = new FileStream(VReportPath + "\\" + xmlfilename, FileMode.OpenOrCreate);
-                    //Creating Directory if not exist to save xml file temporarily
+                    string query = "select rptfile from crydtl where reptid = '" + reportid + "'";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    string rptfilename = cmd.ExecuteScalar().ToString();
+                    //Getting Name of RPT file
+                    string xmlfilename = rptfilename.Replace(".rpt", ".xml");
+                    DataSet ds = new DataSet();
+
+                    string query2 = "select cryrptfile.rptfile from cryrptfile inner join crydtl on cryrptfile.reptid = crydtl.reptid where crydtl.reptid ='" + reportid + "'";
+                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    cmd2.CommandTimeout = 300;
+                    string loadvalue = cmd2.ExecuteScalar().ToString();
+                    //Getting xml text from cryquehdr 
+                    string VReportPath = Server.MapPath("~/TemporaryReports/");
+                    FileStream fs = null;
+
+                    if (!System.IO.File.Exists(VReportPath + "\\" + xmlfilename))
+                    {
+                        fs = new FileStream(VReportPath + "\\" + xmlfilename, FileMode.OpenOrCreate);
+                        //Creating Directory if not exist to save xml file temporarily
+                    }
+                    else
+                    {
+                        System.IO.File.Delete(VReportPath + "\\" + xmlfilename);
+                        fs = new FileStream(VReportPath + "\\" + xmlfilename, FileMode.OpenOrCreate);
+                    }
+
+                    //Converting xml text into RPT file
+                    byte[] info = new UTF8Encoding(true).GetBytes(loadvalue);
+                    fs.Write(info, 0, info.Length);
+
+                    ADODB.Recordset vrs = new ADODB.Recordset();
+
+                    int vlength = 0;
+
+                    byte[] vfilearr = null;
+                    fs.Close();
+
+                    object oMissing = System.Reflection.Missing.Value;
+
+                    vrs.Open(VReportPath + "\\" + xmlfilename, oMissing);
+
+                    foreach (ADODB.Field vfield in vrs.Fields)
+                    {
+                        vlength = vfield.ActualSize;
+                        vfilearr = (byte[])vfield.GetChunk(vlength);
+                        break;
+                    }
+
+                    System.IO.FileStream fss = null;
+                    if (!System.IO.File.Exists(VReportPath + "\\" + rptfilename))
+                    {
+                        fss = new FileStream(VReportPath + "\\" + rptfilename, FileMode.OpenOrCreate);
+                        //Creating Directory if not exist to save RPT file temporarily
+                    }
+                    else
+                    {
+                        System.IO.File.Delete(VReportPath + "\\" + rptfilename);
+                        fss = new FileStream(VReportPath + "\\" + rptfilename, FileMode.OpenOrCreate);
+                    }
+
+                    fss.Write(vfilearr, 0, vlength);
+                    fss.Close();
+                    System.Data.DataTable dt = new System.Data.DataTable();
+
+                    SqlConnection conn2 = new SqlConnection(cs);
+
+                    conn2.Open();
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = new SqlCommand(UpdatedQuery, conn2); //UpdatedQuery contains report query with parameters
+
+                    ReportDocument rd = new ReportDocument();
+
+                    sda.Fill(dt);
+                    //Fill DataTable from UpdatedQuery
+
+                    string checkpath = VReportPath + "\\" + rptfilename;
+                    rd.Load(VReportPath + "\\" + rptfilename);
+
+                    //DataSet dataset = new DataSet();
+
+                    //sda.Fill(dataset, "AuctionItems");
+
+                     for (int i = 0; i < rd.Database.Tables.Count; i++)
+                    {
+
+                        rd.Database.Tables[i].SetDataSource(dt); //SetDataSource(dt);
+
+                         // rd.SetDataSource(dataset);
+
+                    }
+
+
+                    Response.Buffer = false;
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+
+                    //rd.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Portrait;
+                    //rd.PrintOptions.ApplyPageMargins(new CrystalDecisions.Shared.PageMargins(5, 5, 5, 5));
+                    //rd.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.PaperA4;
+
+                    //Passing DataTable to ReportDocument
+
+                    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(cs);
+                    string servername = builder.DataSource;
+                    string dbname = builder.InitialCatalog;
+                    string username = builder.UserID;
+                    string pass = builder.Password;
+                    //Passing DBConnection to ReportDocument
+                    rd.SetDatabaseLogon(username, pass, servername, dbname);
+                    CrystalDecisions.Shared.ConnectionInfo connInfo = new CrystalDecisions.Shared.ConnectionInfo();
+                    connInfo.ServerName = servername;
+                    connInfo.DatabaseName = dbname;
+                    connInfo.UserID = username;
+                    connInfo.Password = pass;
+
+                    rd.DataSourceConnections.Clear();
+
+                    TableLogOnInfo tableLogOnInfo2 = new TableLogOnInfo();
+                    tableLogOnInfo2.ConnectionInfo = connInfo;
+
+                    foreach (CrystalDecisions.CrystalReports.Engine.Table table in rd.Database.Tables)
+                    {
+                        table.ApplyLogOnInfo(tableLogOnInfo2);
+                        table.LogOnInfo.ConnectionInfo.ServerName = connInfo.ServerName;
+                        table.LogOnInfo.ConnectionInfo.DatabaseName = connInfo.DatabaseName;
+                        table.LogOnInfo.ConnectionInfo.UserID = connInfo.UserID;
+                        table.LogOnInfo.ConnectionInfo.Password = connInfo.Password;
+                    }
+
+                    //int ObjIndex = 0;
+                    //object[] strarray = new object[150];
+                    //string originalformula;
+                    //foreach (FormulaFieldDefinition txtformulafield in rd.DataDefinition.FormulaFields)
+                    //{
+                    //    if (rd.DataDefinition.FormulaFields.Count > 0)
+                    //    {
+                    //        originalformula = txtformulafield.Text;
+                    //        for (int i=0; i<rd.DataDefinition.FormulaFields.Count-1;i++)
+                    //        {
+                    //            object[] a;
+                    //            if (originalformula != null)
+                    //            {
+                    //                string StrBegin = "{";
+                    //                string StrEnd = "}";
+                    //                Boolean boolstart = true;
+                    //                Boolean boolEnd = true;
+                    //                string forfields = originalformula;
+
+                    //                int iIndexOfBegin = forfields.IndexOf(StrBegin);
+                    //                if (iIndexOfBegin != -1)
+                    //                {
+                    //                    if (boolstart != false)
+                    //                    {
+                    //                        iIndexOfBegin -= StrBegin.Length;
+                    //                        forfields = forfields.Substring(iIndexOfBegin + StrBegin.Length);
+                    //                        int iEnd = forfields.IndexOf(StrEnd);
+                    //                        if (iEnd != -1)
+                    //                        {
+                    //                            if (boolEnd != false)
+                    //                            {
+                    //                                iEnd -= StrEnd.Length;
+                    //                                string strchk = "";
+                    //                                strchk = forfields.Substring(1, iEnd);
+                    //                                if (char.IsLetter(strchk[0]))
+                    //                                {
+                    //                                    strarray[ObjIndex] = forfields.Substring(1, iEnd) + ",";
+                    //                                    ObjIndex += 1;
+                    //                                }
+                    //                                if ((iEnd + StrEnd.Length) < forfields.Length)
+                    //                                {
+                    //                                    originalformula = forfields.Substring(iEnd+StrEnd.Length);
+                    //                                }
+
+                    //                            }
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+                    //might be cause of an error
+                    //string getformula = null;
+                    //int getindex;
+                    //foreach (string value in strarray)
+                    //{
+                    //    for (getindex =0; getindex<strarray.Length; getindex++)
+                    //    {
+                    //        getformula = value + strarray[getindex];
+                    //    }
+                    //}
+
+                    //string SqlQueryStr = UpdatedQuery;
+                    //SqlQueryStr = SqlQueryStr.Insert(7,getformula);
+
+                    //CrystalDecisions.ReportAppServer.DataDefModel.Database boDatabase;
+                    //CrystalDecisions.ReportAppServer.DataDefModel.CommandTable commandtable;
+
+                    //foreach (CrystalDecisions.ReportAppServer.DataDefModel.Table boTable in boDatabase.Tables)
+                    //{
+                    //    if (boTable.Name.ToLower() == "command")
+                    //    {
+                    //        commandtable = (CrystalDecisions.ReportAppServer.DataDefModel.CommandTable)boTable;
+                    //    }
+                    //}
+
+                    //commandtable.Name = "Demo";
+                    //commandtable.CommandText = SqlQueryStr;
+                    //rd.SetSQLCommandTable(connInfo, "Demo", SqlQueryStr);
+
+
+                    rd.SetDatabaseLogon(username, pass, servername, dbname);
+
+                    for (int i = 0; i < rd.Subreports.Count; i++)
+                    {
+                        rd.Subreports[i].SetDatabaseLogon(username, pass, servername, dbname);
+                    }
+
+                    //rd.SetSQLCommandTable(connInfo,"demo",UpdatedQuery);
+                    //Passing DBConnection to SubReport
+                    //rd.RecordSelectionFormula = "{@Balances_000011111} = 0";
+
+                    //Stream streams = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+
+                    ////rd.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, "D:\\Falcon House App\\123.pdf");
+                    //System.IO.File.Delete(VReportPath + "\\" + rptfilename);
+                    //System.IO.File.Delete(VReportPath + "\\" + xmlfilename);
+                    //return File(streams, "application/pdf");
+
+
+                    Stream streams = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                    streams.Seek(0, SeekOrigin.Begin);
+                    //Stream streams = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                    return File(streams, "application/pdf");
+
+                    // return File(streams, "application/pdf", rptfilename + ".pdf");
+
+
                 }
-                else
-                {
-                    System.IO.File.Delete(VReportPath + "\\" + xmlfilename);
-                    fs = new FileStream(VReportPath + "\\" + xmlfilename, FileMode.OpenOrCreate);
-                }
 
-                //Converting xml text into RPT file
-                byte[] info = new UTF8Encoding(true).GetBytes(loadvalue);
-                fs.Write(info, 0, info.Length);
+            }
+            catch (Exception ex)
+            {
 
-                ADODB.Recordset vrs = new ADODB.Recordset();
+                throw (ex);
 
-                int vlength = 0;
-
-                byte[] vfilearr = null;
-                fs.Close();
-
-                object oMissing = System.Reflection.Missing.Value;
-
-                vrs.Open(VReportPath + "\\" + xmlfilename, oMissing);
-
-                foreach (ADODB.Field vfield in vrs.Fields)
-                {
-                    vlength = vfield.ActualSize;
-                    vfilearr = (byte[])vfield.GetChunk(vlength);
-                    break;
-                }
-
-                System.IO.FileStream fss = null;
-                if (!System.IO.File.Exists(VReportPath + "\\" + rptfilename))
-                {
-                    fss = new FileStream(VReportPath + "\\" + rptfilename, FileMode.OpenOrCreate);
-                    //Creating Directory if not exist to save RPT file temporarily
-                }
-                else
-                {
-                    System.IO.File.Delete(VReportPath + "\\" + rptfilename);
-                    fss = new FileStream(VReportPath + "\\" + rptfilename, FileMode.OpenOrCreate);
-                }
-
-                fss.Write(vfilearr, 0, vlength);
-                fss.Close();
-                System.Data.DataTable dt = new System.Data.DataTable();
-
-                SqlConnection conn2 = new SqlConnection(cs);
-
-                conn2.Open();
-                SqlDataAdapter sda = new SqlDataAdapter();
-                sda.SelectCommand = new SqlCommand(UpdatedQuery, conn2); //UpdatedQuery contains report query with parameters
-
-                ReportDocument rd = new ReportDocument();
-
-                sda.Fill(dt);
-                //Fill DataTable from UpdatedQuery
-
-                string checkpath = VReportPath + "\\" + rptfilename;
-                rd.Load(VReportPath + "\\" + rptfilename);
-                for (int i = 0; i < rd.Database.Tables.Count; i++)
-                {
-                    rd.Database.Tables[i].SetDataSource(dt); //SetDataSource(dt);
-                }
-
-                //Passing DataTable to ReportDocument
-
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(cs);
-                string servername = builder.DataSource;
-                string dbname = builder.InitialCatalog;
-                string username = builder.UserID;
-                string pass = builder.Password;
-                //Passing DBConnection to ReportDocument
-                rd.SetDatabaseLogon(username, pass, servername, dbname);
-                CrystalDecisions.Shared.ConnectionInfo connInfo = new CrystalDecisions.Shared.ConnectionInfo();
-                connInfo.ServerName = servername;
-                connInfo.DatabaseName = dbname;
-                connInfo.UserID = username;
-                connInfo.Password = pass;
-
-                rd.DataSourceConnections.Clear();
-
-                TableLogOnInfo tableLogOnInfo2 = new TableLogOnInfo();
-                tableLogOnInfo2.ConnectionInfo = connInfo;
-
-                foreach (CrystalDecisions.CrystalReports.Engine.Table table in rd.Database.Tables)
-                {
-                    table.ApplyLogOnInfo(tableLogOnInfo2);
-                    table.LogOnInfo.ConnectionInfo.ServerName = connInfo.ServerName;
-                    table.LogOnInfo.ConnectionInfo.DatabaseName = connInfo.DatabaseName;
-                    table.LogOnInfo.ConnectionInfo.UserID = connInfo.UserID;
-                    table.LogOnInfo.ConnectionInfo.Password = connInfo.Password;
-                }
-                
-                //int ObjIndex = 0;
-                //object[] strarray = new object[150];
-                //string originalformula;
-                //foreach (FormulaFieldDefinition txtformulafield in rd.DataDefinition.FormulaFields)
-                //{
-                //    if (rd.DataDefinition.FormulaFields.Count > 0)
-                //    {
-                //        originalformula = txtformulafield.Text;
-                //        for (int i=0; i<rd.DataDefinition.FormulaFields.Count-1;i++)
-                //        {
-                //            object[] a;
-                //            if (originalformula != null)
-                //            {
-                //                string StrBegin = "{";
-                //                string StrEnd = "}";
-                //                Boolean boolstart = true;
-                //                Boolean boolEnd = true;
-                //                string forfields = originalformula;
-
-                //                int iIndexOfBegin = forfields.IndexOf(StrBegin);
-                //                if (iIndexOfBegin != -1)
-                //                {
-                //                    if (boolstart != false)
-                //                    {
-                //                        iIndexOfBegin -= StrBegin.Length;
-                //                        forfields = forfields.Substring(iIndexOfBegin + StrBegin.Length);
-                //                        int iEnd = forfields.IndexOf(StrEnd);
-                //                        if (iEnd != -1)
-                //                        {
-                //                            if (boolEnd != false)
-                //                            {
-                //                                iEnd -= StrEnd.Length;
-                //                                string strchk = "";
-                //                                strchk = forfields.Substring(1, iEnd);
-                //                                if (char.IsLetter(strchk[0]))
-                //                                {
-                //                                    strarray[ObjIndex] = forfields.Substring(1, iEnd) + ",";
-                //                                    ObjIndex += 1;
-                //                                }
-                //                                if ((iEnd + StrEnd.Length) < forfields.Length)
-                //                                {
-                //                                    originalformula = forfields.Substring(iEnd+StrEnd.Length);
-                //                                }
-
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-
-                //might be cause of an error
-                //string getformula = null;
-                //int getindex;
-                //foreach (string value in strarray)
-                //{
-                //    for (getindex =0; getindex<strarray.Length; getindex++)
-                //    {
-                //        getformula = value + strarray[getindex];
-                //    }
-                //}
-
-                //string SqlQueryStr = UpdatedQuery;
-                //SqlQueryStr = SqlQueryStr.Insert(7,getformula);
-
-                //CrystalDecisions.ReportAppServer.DataDefModel.Database boDatabase;
-                //CrystalDecisions.ReportAppServer.DataDefModel.CommandTable commandtable;
-
-                //foreach (CrystalDecisions.ReportAppServer.DataDefModel.Table boTable in boDatabase.Tables)
-                //{
-                //    if (boTable.Name.ToLower() == "command")
-                //    {
-                //        commandtable = (CrystalDecisions.ReportAppServer.DataDefModel.CommandTable)boTable;
-                //    }
-                //}
-
-                //commandtable.Name = "Demo";
-                //commandtable.CommandText = SqlQueryStr;
-                //rd.SetSQLCommandTable(connInfo, "Demo", SqlQueryStr);
-
-
-                rd.SetDatabaseLogon(username, pass, servername, dbname);
-
-                for (int i = 0; i < rd.Subreports.Count; i++)
-                {
-                    rd.Subreports[i].SetDatabaseLogon(username, pass, servername, dbname);
-                }
-
-                //rd.SetSQLCommandTable(connInfo,"demo",UpdatedQuery);
-                //Passing DBConnection to SubReport
-                //rd.RecordSelectionFormula = "{@Balances_000011111} = 0";
-
-                Stream streams = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-
-                //rd.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, "D:\\Falcon House App\\123.pdf");
-                System.IO.File.Delete(VReportPath + "\\" + rptfilename);
-                System.IO.File.Delete(VReportPath + "\\" + xmlfilename);
-                return File(streams, "application/pdf");
             }
 
         }
@@ -831,7 +868,8 @@ namespace MvcSchoolWebApp.Controllers
             {
                 string query = "SELECT hdr.squery,hdr.sfortotal,dtl.reptname FROM cryquehdr hdr inner join crydtl dtl on dtl.reptid=hdr.sforid WHERE sforid = '" + reportid + "'";
                 con.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                SqlDataAdapter sda = new SqlDataAdapter(query,
+                    con);
                 DataSet dss = new DataSet();
                 sda.Fill(dss);
 
@@ -945,6 +983,10 @@ namespace MvcSchoolWebApp.Controllers
         [HttpPost]
         public string GetDataFromDB(string Moduleid)
         {
+            if (Moduleid == "r7pm") {
+                Moduleid = "r5pr"; }
+
+
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -975,6 +1017,48 @@ namespace MvcSchoolWebApp.Controllers
                 }
             }
         }
+
+
+        [HttpPost]
+        public string GetGraphDataFromDB(string Moduleid)
+        {
+           
+
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand("select gr.graphid as graphid, gd.graphname as graphname from graphhdr gr inner join graphdtl gd on gr.graphid = gd.graphid", con))
+                {
+                    con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+                    List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+                    Dictionary<string, object> row;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        row = new Dictionary<string, object>();
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            row.Add(col.ColumnName, dr[col]);
+                        }
+                        rows.Add(row);
+
+                    }
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    string jsonvalue = jsonSerialiser.Serialize(rows);
+
+                    return jsonvalue;
+                }
+            }
+        }
+
+
+
+
+
         public bool checksquery(string setSquery)
         {
 

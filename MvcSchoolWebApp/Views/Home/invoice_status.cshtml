@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Sales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src=@Url.Content("~/Content/js/Sales.js?n=1") asp-append-version="true"></script>
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+
+                    <div class="ibox-title ">
+
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Purchases
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Invoice Payment Status
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <br /><br />
+                    <div class="downpayment_list">
+
+                        <div class="row">
+
+                            <div class="col-lg-3 p_list">
+                                <p>
+                                    Invoice#:  2100101200
+                                </p>
+                                <p>
+                                    Invoice Date:  24-06-2019
+                                </p>
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+
+                                        <div class="col-lg-6"> Amount</div>
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-3">210,000PKR</div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <br />
+                                        <div class="col-lg-6"> Payment</div>
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-3">0.00PKR</div>
+                                    </div>
+                                    @*<div class="col-lg-12">
+                    <br />
+                    <div class="col-lg-6"> Still to Delivered</div>
+                    <div class="col-lg-3">0EA</div>
+                    <div class="col-lg-3">775,000PKR</div>
+                </div>
+                <div class="col-lg-12">
+                    <br />
+                    <div class="col-lg-6"> Invoice</div>
+                    <div class="col-lg-3">20EA</div>
+                    <div class="col-lg-3">775,000PKR</div>
+                </div>
+                <div class="col-lg-12">
+                    <br />
+                    <div class="col-lg-6"> Down Payment</div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">775,000PKR</div>
+                </div>
+                <div class="col-lg-12">
+                    <br />
+                    <div class="col-lg-6"> Payment</div>
+                    <div class="col-lg-3">20EA</div>
+                    <div class="col-lg-3">775,000PKR</div>
+                </div>*@
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 p_list">
+                                <p>
+                                    Invoice#:  2100101200
+                                </p>
+                                <p>
+                                    Invoice Date:  24-06-2019
+                                </p>
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+
+                                        <div class="col-lg-6"> Amount</div>
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-3">210,000PKR</div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <br />
+                                        <div class="col-lg-6"> Payment</div>
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-3">0.00PKR</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 p_list">
+                                <p>
+                                    Invoice#:  2100101200
+                                </p>
+                                <p>
+                                    Invoice Date:  24-06-2019
+                                </p>
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+
+                                        <div class="col-lg-6"> Amount</div>
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-3">210,000PKR</div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <br />
+                                        <div class="col-lg-6"> Payment</div>
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-3">0.00PKR</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        @*<div class="ibox-content">
+                                <div class="sales_jqGrid m-b">
+                                    <table id="sales_table"></table>
+                                    <div id="sales_pager"></div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .p_list {
+                background: #eaeaea;
+                padding: 10px;
+                margin: 1rem;
+                text-align: inherit;
+                width: 30%;
+            }
+        </style>
+</section>
+

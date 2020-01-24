@@ -88,7 +88,7 @@ $("#downloadform").submit(function (e) {
                     var ids = jQuery("#table_list_down").getDataIDs();
                     for (var i = 0; i < ids.length; i++) {
                         var cl = ids[i];
-                        //Download = "&nbsp;<input style='height:18px;width:75px;' type='button' onclick='getSelectedRows()' class='btn btn-xs btn-danger' value='Download' />";
+                        //Download = "<input style='height:18px;width:75px;' type='button' onclick='getSelectedRows()' class='btn btn-xs btn-danger' value='Download' />";
                         Download = "<i style='margin-left:30%; color:#e60000;' title='Download' class='fa fa-download fa-lg' onclick='getSelectedRows()'></i>";
                         Delete = "<i style='margin-left:15%; color:#e60000' title='Delete' class='fa fa-trash-o fa-lg' onclick='getDeletedRows()'></i>";
                         jQuery("#table_list_down").setRowData(ids[i], { status: Download + Delete });
@@ -191,7 +191,7 @@ function getDeletedRows() {
 //                var cl = ids[i];
 //                //class='btn btn-xs btn-info'
 //                view = "<input style='height:18px;width:75px;' type='button' value='View' class='btn btn-xs btn-primary'>";
-//                download = "&nbsp;<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
+//                download = "<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
 
 //                jQuery("#table_list_down").setRowData(ids[i], { status: view + download })
 //            }
@@ -259,7 +259,7 @@ function getDeletedRows() {
 //                var cl = ids[i];
 //                //class='btn btn-xs btn-info'
 //                view = "<input style='height:18px;width:75px;' type='button' value='View' class='btn btn-xs btn-primary'>";
-//                download = "&nbsp;<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
+//                download = "<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
 
 //                jQuery("#table_list_down").setRowData(ids[i], { status: view + download })
 //            }

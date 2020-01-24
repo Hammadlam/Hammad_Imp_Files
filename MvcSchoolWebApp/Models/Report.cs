@@ -10,8 +10,20 @@ namespace MvcSchoolWebApp.Models
         public int ReportId { get; set; }
         public string ReportName { get; set; }
         public int ReportParam { get; set; }
+        public string empid { get; set; }
 
-    
+        public string empname { get; set; }
+
+        public string costorder { get; set; }
+
+        public string cname { get; set; }
+
+
+        public string visittype { get; set; }
+
+
+        public string typetxt { get; set; }
+
 
     }
 }

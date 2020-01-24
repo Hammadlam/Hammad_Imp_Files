@@ -45,11 +45,12 @@
             margin-top: 10%;
             margin-left: 20%;
             /*overflow-y: hidden;*/
-            display:none;
+            display: none;
             /*z-index:3000;*/
         }
+
         .modal2 {
-            background:none;
+            background: none;
         }
     </style>
 
@@ -73,7 +74,7 @@
 
                             <div class="col-md-7 col-md-offset-5 form-box">
                                 @* image *@
-                               
+
                                 @* login box start *@
                                 <div class="form-top col-md-offset-5 login-div-1">
                                     <div class="form-top-left">
@@ -86,7 +87,7 @@
                                 </div>
 
                                 <div class="form-bottom col-md-offset-5 login-div-2">
-                                    <form role="form" action="" method="post" class="login-form">
+                                    <form role="form" action="" method="post" ids="login-form">
                                         <div class="form-group">
                                             <label class="sr-only" for="form-username">Username</label>
                                             @Html.TextBoxFor(model => model.userName, new { @placeholder = "Username...", @class = "input form-username form-control", @type = "text", @name = "form-username", @required = true })
@@ -97,7 +98,7 @@
                                             @Html.TextBoxFor(model => model.userPassword, new { @placeholder = "Password...", @class = "input form-password form-control", @type = "password", @name = "form-password", @required = true })
                                             @Html.ValidationMessageFor(model => model.userPassword)
                                         </div>
-                                        <button type="submit" class="btn form-control">Sign In</button>
+                                        <button id="btn_login" type="submit" class="btn form-control">Sign In</button>
                                     </form>
                                 </div>
                                 @* login box End *@
@@ -108,20 +109,20 @@
             </div>
         }
     </div>
-    
+
 
     <!-- Javascript -->
-    
+
 
     <script src="~/Content/LoginForm/js/jquery-1.11.1.min.js"></script>
     <script src="~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="~/Content/LoginForm/js/jquery.backstretch.min.js"></script>
     <script src=@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.js")></script>
-    <script src="~/Content/LoginForm/js/scripts.js"></script>
+    <script src="~/Content/LoginForm/js/scripts.js?n=4"></script>
     <script src="~/Content/js/jstz-1.0.4.min.js"></script>
     <script src="~/Content/LoginForm/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Content/js/popup.js"></script> 
-    
+    <script src="~/Content/js/popup.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var timezone = jstz.determine();
@@ -136,16 +137,24 @@
             });
         });
         @ViewBag.call_alert
+
+        $("#btn_login").click(function (e) {
+            $(document).ready(function () {
+                var timezone = jstz.determine();
+                var name = timezone.name();
+
+                $.ajax({
+                    type: 'Get',
+                    url: '@Url.Action("usertimezone", "Login")',
+                    data: { timezoneid: name },
+                    contentType: "application/json; charset=utf-8"
+
+                });
+            });
+        });
     </script>
 
 
 </body>
 
 </html>
-
-
-
-
-
-
-

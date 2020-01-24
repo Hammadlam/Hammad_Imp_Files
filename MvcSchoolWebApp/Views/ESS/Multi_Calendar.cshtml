@@ -1,0 +1,2570 @@
+﻿@model IEnumerable<MvcSchoolWebApp.Models.Report>
+@{
+    ViewBag.Title = "Multi_Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/css/bootstrap-datetimepicker.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale-all.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Schdular Calendar</title>
+
+
+</head>
+<body>
+    <div>
+
+
+
+        @*<div class="row">
+
+            <div class="col-lg-6">
+                <input class="form-control" id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
+            </div>
+
+            <div class="col-lg-6">
+                <select class="form-control" id="switchWeatherTheme">
+                    <option value="weather_one">Weather Conditions</option>
+
+                    <option value="original">Original</option>
+                    <option value="pure">Pure</option>
+                    <option value="orange">Orange</option>
+                    <option value="gray">Gray</option>
+                    <option value="dark">Dark</option>
+                    <option value="desert">Desert</option>
+                    <option value="candy">Candy</option>
+                    <option value="beige">Beige</option>
+                    <option value="blank">Blank</option>
+                    <option value="salmon">Salmon</option>
+
+                    <option value="marine">Marine</option>
+                    <option value="mountains">Mountains</option>
+                </select>
+            </div>
+
+        </div>*@
+
+
+        @*<div id="openviewWeather">
+            <a class="weatherwidget-io" href="https://forecast7.com/en/51d51n0d13/london/" data-label_1="London" data-label_2="Weather" data-font="Roboto" data-icons="Climacons Animated" data-theme="original" data-accent="rgba(1, 1, 1, 0.0)"></a>
+        </div>*@
+
+        <script>
+            !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+        </script>
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+        <div id="contextMenu" class="dropdown clearfix">
+
+        </div>
+
+        <div class="panel panel-default hidden-print">
+            <ul id="vert_menu">
+                <li>
+                    <input type="radio" id="r2" name="r">
+                    <label for="r2">
+                        Scheduler Roster
+                    </label>
+                </li>
+            </ul>
+            <div class="panel-body">
+
+
+                <div class="form-group">
+
+
+                    @{
+
+                        var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+
+                    }
+
+
+
+                    <div class="input-group" style="display:none">
+                        <input class='showHideWeekend' type="checkbox" checked>
+                        <label for="calendar_view">Filter Users</label>
+
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="Supernova Solutions" checked>Supernova Solutions</label>
+
+
+                    </div>
+
+                    @if (user_dtl[0].user_id == "0001" || user_dtl[0].user_id == "0004")
+                    {
+
+
+                <div class="row">
+                    <div class="col-xs-3">
+
+
+                        <select name="Employee-id-filter" id="Employee-id-filter" class="form-control">
+
+                            <option value="">--Select Employee--</option>
+
+                            @foreach (var item in Model)
+
+                            {
+                                if (item.empid != null)
+                                {
+                                    <option value="@item.empid">@item.empname</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+
+
+
+                    <div class="col-xs-2">
+
+
+                        <input type="button" class="btn btn-success" value="Search" onclick="filter()">
+
+                        <input type="button" class="btn btn-warning" value="Reload" onclick="reload()">
+
+                    </div>
+
+  
+
+                </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+
+       
+
+        <div id="wrapper">
+            <div id="loading" style="margin-top:-21px;"></div>
+            <div class="print-visible" id="calendar"></div>
+        </div>
+
+
+    </div>
+
+
+    <!-- ADD EVENT MODAL -->
+
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="newEventModal">
+        <div class="modal-dialog" role="document" style="margin-left: -278px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create New</h4>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="ref_no">Ref No</label>
+                            <input class="inputModal" type="text" name="ref_no" id="ref_no" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4">Employee Name</label>
+
+                            <select name="Employee-id" id="Employee-id" class="inputModal" onchange="filldtl(this.value)">
+
+                                <option value="">--Select Employee--</option>
+
+                                @foreach (var item in Model)
+
+                                {
+                                    if (item.empid != null)
+                                    {
+                                        <option value="@item.empid">@item.empname</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Client-Name">Department</label>
+                            <input class="inputModal" type="text" name="Department-Name" id="Department" disabled />
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="display:none">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Client-Name">Designation</label>
+                            <input class="inputModal" type="text" name="Designation-Name" id="Designation" disabled  />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Client-Name">Client Name</label>
+
+
+
+                            <select class="inputModal" name="Client-id" id="Client-id">
+                                <option value="">--Select Client--</option>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.costorder != null)
+                                    {
+
+                                        <option value="@item.costorder">@item.cname</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Location">Location</label>
+                            <input class="inputModal" type="text" name="Location" id="Location" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="starts-at">Starts at</label>
+                            <input class="inputModal" type="text" name="starts_at" id="starts-at" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="ends-at">Ends at</label>
+                            <input class="inputModal" type="text" name="ends_at" id="ends-at" />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Visit-type">Visit Type</label>
+
+
+
+                            <select class="inputModal" name="Visit-type" id="Visit-type">
+
+
+                                @foreach (var item in Model)
+                                {
+                                    if (item.visittype != null)
+                                    {
+
+                                        <option value="@item.visittype">@item.typetxt</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Visit-With">Visit With</label>
+
+                            <input class="inputModal" type="text" name="Visit-with" id="Visit_with" />
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="add-event-desc">Purpose</label>
+                            <textarea rows="4" cols="50" class="inputModal" name="add-event-purpose" id="add-event-purpose"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="add-event-desc">Remarks</label>
+                            <textarea rows="4" cols="50" class="inputModal" name="add-event-remarks" id="add-event-remarks"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="add-event-desc">Copy at dates</label>
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control date" id="date" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-event">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- EDIT EVENT MODAL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="editEventModal">
+        <div class="modal-dialog" role="document" style="margin-left: -278px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit <span class="eventName"></span></h4>
+                    <input type="hidden" id="editid" />
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="row">
+                        @*<div class="col-xs-12">
+                                <label class="col-xs-4" for="title">All Day Event ?</label>
+                                <input class='allDayEdit' type="checkbox"></label>
+                            </div>*@
+                    </div>
+                    <input type="hidden" value="0" id="isedit" />
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="title">Ref No</label>
+                            <input class="inputModal" type="text" name="ref_no" id="editref_no" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4">Employee Name</label>
+
+                            <select name="Employee-id" id="editEmployee-id" class="inputModal" onchange="filldtl(this.value)">
+                                @foreach (var item in Model)
+
+                                {
+                                    if (item.empid != null)
+                                    {
+                                        <option value="@item.empid">@item.empname</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Client-Name">Department</label>
+                            <input class="inputModal" type="text" name="Department-Name" id="editDepartment" disabled />
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="display:none">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Client-Name">Designation</label>
+                            <input class="inputModal" type="text" name="Designation-Name" id="editDesignation" disabled  />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="starts-at">Starts at</label>
+                            <input class="inputModal" type="text" name="editStartDate" id="editStartDate" />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Client-Name">Client Name</label>
+
+                            <select class="inputModal" name="editClient-id" id="editClient-id">
+                                <option value="">--Select Client--</option>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.costorder != null)
+                                    {
+
+                                        <option value="@item.costorder">@item.cname</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Location">Location</label>
+                            <input class="inputModal" type="text" name="editLocation" id="editLocation" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="ends-at">Ends at</label>
+                            <input class="inputModal" type="text" name="editEndDate" id="editEndDate" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Visit-type">Visit Type</label>
+
+                            <select class="inputModal" name="Visit-type" id="editVisit-type">
+
+                                @foreach (var item in Model)
+                                {
+                                    if (item.visittype != null)
+                                    {
+
+                                        <option value="@item.visittype">@item.typetxt</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="Visit-With">Visit With</label>
+
+                            <input class="inputModal" type="text" name="Visit-with" id="editVisit_with" />
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="add-event-desc">Purpose</label>
+                            <textarea rows="4" cols="50" class="inputModal" name="add-event-purpose" id="edit-event-purpose"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="add-event-desc">Remarks</label>
+                            <textarea rows="4" cols="50" class="inputModal" name="add-event-remarks" id="edit-event-remarks"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4" for="add-event-desc">Copy at dates</label>
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control date" id="editdate" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="deleteEvent">Delete Event</button>
+                    <button type="button" class="btn btn-primary" id="updateEvent">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</body>
+<style>
+
+    .dropNewEvent {
+        font-family: Roboto;
+        font-size: 13px;
+    }
+
+    .popoverTitleCalendar {
+        width: 100%;
+        height: 100%;
+        padding: 15px 15px;
+        font-family: Roboto;
+        font-size: 13px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .popoverInfoCalendar i {
+        font-size: 14px;
+        margin-right: 10px;
+        line-height: inherit;
+        color: #d3d4da;
+    }
+
+    .popoverInfoCalendar p {
+        margin-bottom: 1px;
+    }
+    
+    .popoverDescCalendar {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid #E3E3E3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .popover-title {
+        background: transparent;
+        font-weight: 600;
+        padding: 0 !important;
+        border: none;
+    }
+
+    .popover-content {
+        padding: 15px 15px;
+        font-family: Roboto;
+        font-size: 13px;
+    }
+
+    .inputModal {
+        width: 65%;
+        margin-bottom: 10px;
+    }
+
+    #contextMenu {
+        position: absolute;
+        display: none;
+        z-index: 2;
+    }
+
+        #contextMenu .dropdown-menu {
+            border: none;
+        }
+
+    .opacityWeekend {
+        background-color: #f4f4fb !important;
+    }
+
+    .fc-avatar-image {
+        top: 16px;
+        left: 10px;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        position: absolute;
+        z-index: 2;
+        display:none
+    }
+
+        .fc-avatar-image img {
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+        }
+
+        .fc-avatar-image:before {
+            content: none !important;
+        }
+
+    .fc-day-header {
+        text-transform: uppercase;
+        font-size: 13px;
+        font-family: Roboto;
+        font-weight: 500;
+        color: #505363;
+        background-color: #FAFAFA;
+        padding: 11px 0px !important;
+        text-decoration: none;
+    }
+
+        .fc-day-header a {
+            text-decoration: none !important;
+            color: #505363;
+        }
+
+    .fc-center h2 {
+        text-transform: uppercase;
+        font-size: 18px;
+        font-family: Roboto;
+        font-weight: 500;
+        color: #505363;
+        line-height: 32px;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+        margin-bottom: 22px;
+        padding-top: 22px;
+    }
+
+    .fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+
+    .fc-day {
+        transition: all 0.2s linear;
+    }
+
+        .fc-day:hover {
+            background: #EEF7FF;
+            cursor: pointer;
+            transition: all 0.2s linear;
+        }
+
+    .fc-highlight {
+        background: #EEF7FF;
+        opacity: 0.7;
+    }
+
+    .fc-time-grid-event.fc-short .fc-time:before {
+        content: attr(data-start);
+        display: none;
+    }
+
+    .fc-time-grid-event.fc-short .fc-time span {
+        display: inline-block;
+    }
+
+    .fc-time-grid-event.fc-short .fc-avatar-image {
+        display: none;
+        transition: all 0.3s linear;
+    }
+
+    .fc-time-grid .fc-bgevent, .fc-time-grid .fc-event {
+        border: 1px solid #fff !important;
+    }
+
+    .fc-time-grid-event.fc-short .fc-content {
+        padding: 4px 20px 10px 22px !important;
+    }
+
+    .fc-time-grid-event .fc-avatar-image {
+        top: 9px;
+    }
+
+    .fc-event-vert {
+        min-height: 22px;
+    }
+
+    .fc .fc-axis {
+        vertical-align: middle;
+        padding: 0 4px;
+        white-space: nowrap;
+        font-size: 10px;
+        color: #505362;
+        text-transform: uppercase;
+        text-align: center !important;
+        background-color: #fafafa;
+    }
+
+    .fc-unthemed .fc-event .fc-content, .fc-unthemed .fc-event-dot .fc-content {
+        padding: 10px 20px 10px 22px;
+        font-family: 'Roboto', sans-serif;
+        margin-left: -1px;
+        height: 100%;
+    }
+
+    .fc-event {
+        border: none !important;
+    }
+
+    .fc-day-grid-event .fc-time {
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .fc-unthemed .fc-day-grid td:not(.fc-axis).fc-event-container {
+        padding: 0.2rem 0.5rem;
+    }
+
+    .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead {
+        border-color: #DADFEA;
+    }
+
+    .fc-ltr .fc-h-event .fc-end-resizer, .fc-ltr .fc-h-event .fc-end-resizer:before, .fc-ltr .fc-h-event .fc-end-resizer:after, .fc-rtl .fc-h-event .fc-start-resizer, .fc-rtl .fc-h-event .fc-start-resizer:before, .fc-rtl .fc-h-event .fc-start-resizer:after {
+        left: auto;
+        cursor: e-resize;
+        background: none;
+    }
+
+    .colorAppointment :before {
+        background-color: #9F4AFF;
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: 8px;
+        border-radius: 3px 0 0 3px;
+        top: 0;
+        left: -1px;
+    }
+
+    .colorCheck-in :before {
+        background-color: #ff4747;
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: 8px;
+        border-radius: 3px 0 0 3px;
+        top: 0;
+        left: -1px;
+    }
+
+    .colorCheckout :before {
+        background-color: #FFC400;
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: 8px;
+        border-radius: 3px 0 0 3px;
+        top: 0;
+        left: -1px;
+    }
+
+    .colorInventory :before {
+        background-color: #FE56F2;
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: 8px;
+        border-radius: 3px 0 0 3px;
+        top: 0;
+        left: -1px;
+    }
+
+    .colorValuation :before {
+        background-color: #0DE882;
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: 8px;
+        border-radius: 3px 0 0 3px;
+        top: 0;
+        left: -1px;
+    }
+
+    .colorViewing :before {
+        background-color: #26CBFF;
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+        display: block;
+        content: " ";
+        position: absolute;
+        height: 100%;
+        width: 8px;
+        border-radius: 3px 0 0 3px;
+        top: 0;
+        left: -1px;
+    }
+
+    select.filter {
+        width: 500px !important;
+    }
+
+    .popover {
+        background: #fff !important;
+        color: #2E2F34;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    /*popover header*/
+    .popover-title {
+        background: #F7F7FC;
+        font-weight: 600;
+        padding: 15px 15px 11px;
+        border: none;
+    }
+
+    /*popover arrows*/
+    .popover.top .arrow:after {
+        border-top-color: #fff;
+    }
+
+    .popover.right .arrow:after {
+        border-right-color: #fff;
+    }
+
+    .popover.bottom .arrow:after {
+        border-bottom-color: #fff;
+    }
+
+    .popover.left .arrow:after {
+        border-left-color: #fff;
+    }
+
+    .popover.bottom .arrow:after {
+        border-bottom-color: #fff;
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px; /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+
+    .fc-icon-print::before {
+        font-family: 'Material Icons';
+        content: "\e8ad";
+        font-size: 24px;
+    }
+
+    .fc-printButton-button {
+        padding: 0 3px !important;
+    }
+
+    .media print {
+        .print-visible
+
+    {
+        display: inherit !important;
+    }
+
+    .hidden-print {
+        display: none !important;
+    }
+
+    }
+
+    /*!
+    * Datepicker for Bootstrap v1.5.0 (https://github.com/eternicode/bootstrap-datepicker)
+    *
+    * Copyright 2012 Stefan Petre
+    * Improvements by Andrew Rowls
+    * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+    */
+    .datepicker {
+        padding: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        direction: ltr;
+    }
+
+    .datepicker-inline {
+        width: 220px;
+    }
+
+    .datepicker.datepicker-rtl {
+        direction: rtl;
+    }
+
+        .datepicker.datepicker-rtl table tr td span {
+            float: right;
+        }
+
+    .datepicker-dropdown {
+        top: 0;
+        left: 0;
+    }
+
+        .datepicker-dropdown:before {
+            content: '';
+            display: inline-block;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #999999;
+            border-top: 0;
+            border-bottom-color: rgba(0, 0, 0, 0.2);
+            position: absolute;
+        }
+
+        .datepicker-dropdown:after {
+            content: '';
+            display: inline-block;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #ffffff;
+            border-top: 0;
+            position: absolute;
+        }
+
+        .datepicker-dropdown.datepicker-orient-left:before {
+            left: 6px;
+        }
+
+        .datepicker-dropdown.datepicker-orient-left:after {
+            left: 7px;
+        }
+
+        .datepicker-dropdown.datepicker-orient-right:before {
+            right: 6px;
+        }
+
+        .datepicker-dropdown.datepicker-orient-right:after {
+            right: 7px;
+        }
+
+        .datepicker-dropdown.datepicker-orient-bottom:before {
+            top: -7px;
+        }
+
+        .datepicker-dropdown.datepicker-orient-bottom:after {
+            top: -6px;
+        }
+
+        .datepicker-dropdown.datepicker-orient-top:before {
+            bottom: -7px;
+            border-bottom: 0;
+            border-top: 7px solid #999999;
+        }
+
+        .datepicker-dropdown.datepicker-orient-top:after {
+            bottom: -6px;
+            border-bottom: 0;
+            border-top: 6px solid #ffffff;
+        }
+
+    .datepicker > div {
+        display: none;
+    }
+
+    .datepicker table {
+        margin: 0;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .datepicker td,
+    .datepicker th {
+        text-align: center;
+        width: 20px;
+        height: 20px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: none;
+    }
+
+    .table-striped .datepicker table tr td,
+    .table-striped .datepicker table tr th {
+        background-color: transparent;
+    }
+
+    .datepicker table tr td.day:hover,
+    .datepicker table tr td.day.focused {
+        background: #eeeeee;
+        cursor: pointer;
+    }
+
+    .datepicker table tr td.old,
+    .datepicker table tr td.new {
+        color: #999999;
+    }
+
+    .datepicker table tr td.disabled,
+    .datepicker table tr td.disabled:hover {
+        background: none;
+        color: #999999;
+        cursor: default;
+    }
+
+    .datepicker table tr td.highlighted {
+        background: #d9edf7;
+        border-radius: 0;
+    }
+
+    .datepicker table tr td.today,
+    .datepicker table tr td.today:hover,
+    .datepicker table tr td.today.disabled,
+    .datepicker table tr td.today.disabled:hover {
+        background-color: #fde19a;
+        background-image: -moz-linear-gradient(to bottom, #fdd49a, #fdf59a);
+        background-image: -ms-linear-gradient(to bottom, #fdd49a, #fdf59a);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
+        background-image: -webkit-linear-gradient(to bottom, #fdd49a, #fdf59a);
+        background-image: -o-linear-gradient(to bottom, #fdd49a, #fdf59a);
+        background-image: linear-gradient(to bottom, #fdd49a, #fdf59a);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
+        border-color: #fdf59a #fdf59a #fbed50;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        color: #000;
+    }
+
+        .datepicker table tr td.today:hover,
+        .datepicker table tr td.today:hover:hover,
+        .datepicker table tr td.today.disabled:hover,
+        .datepicker table tr td.today.disabled:hover:hover,
+        .datepicker table tr td.today:active,
+        .datepicker table tr td.today:hover:active,
+        .datepicker table tr td.today.disabled:active,
+        .datepicker table tr td.today.disabled:hover:active,
+        .datepicker table tr td.today.active,
+        .datepicker table tr td.today:hover.active,
+        .datepicker table tr td.today.disabled.active,
+        .datepicker table tr td.today.disabled:hover.active,
+        .datepicker table tr td.today.disabled,
+        .datepicker table tr td.today:hover.disabled,
+        .datepicker table tr td.today.disabled.disabled,
+        .datepicker table tr td.today.disabled:hover.disabled,
+        .datepicker table tr td.today[disabled],
+        .datepicker table tr td.today:hover[disabled],
+        .datepicker table tr td.today.disabled[disabled],
+        .datepicker table tr td.today.disabled:hover[disabled] {
+            background-color: #fdf59a;
+        }
+
+            .datepicker table tr td.today:active,
+            .datepicker table tr td.today:hover:active,
+            .datepicker table tr td.today.disabled:active,
+            .datepicker table tr td.today.disabled:hover:active,
+            .datepicker table tr td.today.active,
+            .datepicker table tr td.today:hover.active,
+            .datepicker table tr td.today.disabled.active,
+            .datepicker table tr td.today.disabled:hover.active {
+                background-color: #fbf069 \9;
+            }
+
+            .datepicker table tr td.today:hover:hover {
+                color: #000;
+            }
+
+            .datepicker table tr td.today.active:hover {
+                color: #fff;
+            }
+
+    .datepicker table tr td.range,
+    .datepicker table tr td.range:hover,
+    .datepicker table tr td.range.disabled,
+    .datepicker table tr td.range.disabled:hover {
+        background: #eeeeee;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+        .datepicker table tr td.range.today,
+        .datepicker table tr td.range.today:hover,
+        .datepicker table tr td.range.today.disabled,
+        .datepicker table tr td.range.today.disabled:hover {
+            background-color: #f3d17a;
+            background-image: -moz-linear-gradient(to bottom, #f3c17a, #f3e97a);
+            background-image: -ms-linear-gradient(to bottom, #f3c17a, #f3e97a);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3c17a), to(#f3e97a));
+            background-image: -webkit-linear-gradient(to bottom, #f3c17a, #f3e97a);
+            background-image: -o-linear-gradient(to bottom, #f3c17a, #f3e97a);
+            background-image: linear-gradient(to bottom, #f3c17a, #f3e97a);
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3c17a', endColorstr='#f3e97a', GradientType=0);
+            border-color: #f3e97a #f3e97a #edde34;
+            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+
+            .datepicker table tr td.range.today:hover,
+            .datepicker table tr td.range.today:hover:hover,
+            .datepicker table tr td.range.today.disabled:hover,
+            .datepicker table tr td.range.today.disabled:hover:hover,
+            .datepicker table tr td.range.today:active,
+            .datepicker table tr td.range.today:hover:active,
+            .datepicker table tr td.range.today.disabled:active,
+            .datepicker table tr td.range.today.disabled:hover:active,
+            .datepicker table tr td.range.today.active,
+            .datepicker table tr td.range.today:hover.active,
+            .datepicker table tr td.range.today.disabled.active,
+            .datepicker table tr td.range.today.disabled:hover.active,
+            .datepicker table tr td.range.today.disabled,
+            .datepicker table tr td.range.today:hover.disabled,
+            .datepicker table tr td.range.today.disabled.disabled,
+            .datepicker table tr td.range.today.disabled:hover.disabled,
+            .datepicker table tr td.range.today[disabled],
+            .datepicker table tr td.range.today:hover[disabled],
+            .datepicker table tr td.range.today.disabled[disabled],
+            .datepicker table tr td.range.today.disabled:hover[disabled] {
+                background-color: #f3e97a;
+            }
+
+                .datepicker table tr td.range.today:active,
+                .datepicker table tr td.range.today:hover:active,
+                .datepicker table tr td.range.today.disabled:active,
+                .datepicker table tr td.range.today.disabled:hover:active,
+                .datepicker table tr td.range.today.active,
+                .datepicker table tr td.range.today:hover.active,
+                .datepicker table tr td.range.today.disabled.active,
+                .datepicker table tr td.range.today.disabled:hover.active {
+                    background-color: #efe24b \9;
+                }
+
+    .datepicker table tr td.selected,
+    .datepicker table tr td.selected:hover,
+    .datepicker table tr td.selected.disabled,
+    .datepicker table tr td.selected.disabled:hover {
+        background-color: #9e9e9e;
+        background-image: -moz-linear-gradient(to bottom, #b3b3b3, #808080);
+        background-image: -ms-linear-gradient(to bottom, #b3b3b3, #808080);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b3b3b3), to(#808080));
+        background-image: -webkit-linear-gradient(to bottom, #b3b3b3, #808080);
+        background-image: -o-linear-gradient(to bottom, #b3b3b3, #808080);
+        background-image: linear-gradient(to bottom, #b3b3b3, #808080);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3b3b3', endColorstr='#808080', GradientType=0);
+        border-color: #808080 #808080 #595959;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+
+        .datepicker table tr td.selected:hover,
+        .datepicker table tr td.selected:hover:hover,
+        .datepicker table tr td.selected.disabled:hover,
+        .datepicker table tr td.selected.disabled:hover:hover,
+        .datepicker table tr td.selected:active,
+        .datepicker table tr td.selected:hover:active,
+        .datepicker table tr td.selected.disabled:active,
+        .datepicker table tr td.selected.disabled:hover:active,
+        .datepicker table tr td.selected.active,
+        .datepicker table tr td.selected:hover.active,
+        .datepicker table tr td.selected.disabled.active,
+        .datepicker table tr td.selected.disabled:hover.active,
+        .datepicker table tr td.selected.disabled,
+        .datepicker table tr td.selected:hover.disabled,
+        .datepicker table tr td.selected.disabled.disabled,
+        .datepicker table tr td.selected.disabled:hover.disabled,
+        .datepicker table tr td.selected[disabled],
+        .datepicker table tr td.selected:hover[disabled],
+        .datepicker table tr td.selected.disabled[disabled],
+        .datepicker table tr td.selected.disabled:hover[disabled] {
+            background-color: #808080;
+        }
+
+            .datepicker table tr td.selected:active,
+            .datepicker table tr td.selected:hover:active,
+            .datepicker table tr td.selected.disabled:active,
+            .datepicker table tr td.selected.disabled:hover:active,
+            .datepicker table tr td.selected.active,
+            .datepicker table tr td.selected:hover.active,
+            .datepicker table tr td.selected.disabled.active,
+            .datepicker table tr td.selected.disabled:hover.active {
+                background-color: #666666 \9;
+            }
+
+    .datepicker table tr td.active,
+    .datepicker table tr td.active:hover,
+    .datepicker table tr td.active.disabled,
+    .datepicker table tr td.active.disabled:hover {
+        background-color: #006dcc;
+        background-image: -moz-linear-gradient(to bottom, #0088cc, #0044cc);
+        background-image: -ms-linear-gradient(to bottom, #0088cc, #0044cc);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+        background-image: -webkit-linear-gradient(to bottom, #0088cc, #0044cc);
+        background-image: -o-linear-gradient(to bottom, #0088cc, #0044cc);
+        background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+        border-color: #0044cc #0044cc #002a80;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+
+        .datepicker table tr td.active:hover,
+        .datepicker table tr td.active:hover:hover,
+        .datepicker table tr td.active.disabled:hover,
+        .datepicker table tr td.active.disabled:hover:hover,
+        .datepicker table tr td.active:active,
+        .datepicker table tr td.active:hover:active,
+        .datepicker table tr td.active.disabled:active,
+        .datepicker table tr td.active.disabled:hover:active,
+        .datepicker table tr td.active.active,
+        .datepicker table tr td.active:hover.active,
+        .datepicker table tr td.active.disabled.active,
+        .datepicker table tr td.active.disabled:hover.active,
+        .datepicker table tr td.active.disabled,
+        .datepicker table tr td.active:hover.disabled,
+        .datepicker table tr td.active.disabled.disabled,
+        .datepicker table tr td.active.disabled:hover.disabled,
+        .datepicker table tr td.active[disabled],
+        .datepicker table tr td.active:hover[disabled],
+        .datepicker table tr td.active.disabled[disabled],
+        .datepicker table tr td.active.disabled:hover[disabled] {
+            background-color: #0044cc;
+        }
+
+            .datepicker table tr td.active:active,
+            .datepicker table tr td.active:hover:active,
+            .datepicker table tr td.active.disabled:active,
+            .datepicker table tr td.active.disabled:hover:active,
+            .datepicker table tr td.active.active,
+            .datepicker table tr td.active:hover.active,
+            .datepicker table tr td.active.disabled.active,
+            .datepicker table tr td.active.disabled:hover.active {
+                background-color: #003399 \9;
+            }
+
+    .datepicker table tr td span {
+        display: block;
+        width: 23%;
+        height: 54px;
+        line-height: 54px;
+        float: left;
+        margin: 1%;
+        cursor: pointer;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+        .datepicker table tr td span:hover {
+            background: #eeeeee;
+        }
+
+        .datepicker table tr td span.disabled,
+        .datepicker table tr td span.disabled:hover {
+            background: none;
+            color: #999999;
+            cursor: default;
+        }
+
+        .datepicker table tr td span.active,
+        .datepicker table tr td span.active:hover,
+        .datepicker table tr td span.active.disabled,
+        .datepicker table tr td span.active.disabled:hover {
+            background-color: #006dcc;
+            background-image: -moz-linear-gradient(to bottom, #0088cc, #0044cc);
+            background-image: -ms-linear-gradient(to bottom, #0088cc, #0044cc);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+            background-image: -webkit-linear-gradient(to bottom, #0088cc, #0044cc);
+            background-image: -o-linear-gradient(to bottom, #0088cc, #0044cc);
+            background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+            border-color: #0044cc #0044cc #002a80;
+            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        }
+
+            .datepicker table tr td span.active:hover,
+            .datepicker table tr td span.active:hover:hover,
+            .datepicker table tr td span.active.disabled:hover,
+            .datepicker table tr td span.active.disabled:hover:hover,
+            .datepicker table tr td span.active:active,
+            .datepicker table tr td span.active:hover:active,
+            .datepicker table tr td span.active.disabled:active,
+            .datepicker table tr td span.active.disabled:hover:active,
+            .datepicker table tr td span.active.active,
+            .datepicker table tr td span.active:hover.active,
+            .datepicker table tr td span.active.disabled.active,
+            .datepicker table tr td span.active.disabled:hover.active,
+            .datepicker table tr td span.active.disabled,
+            .datepicker table tr td span.active:hover.disabled,
+            .datepicker table tr td span.active.disabled.disabled,
+            .datepicker table tr td span.active.disabled:hover.disabled,
+            .datepicker table tr td span.active[disabled],
+            .datepicker table tr td span.active:hover[disabled],
+            .datepicker table tr td span.active.disabled[disabled],
+            .datepicker table tr td span.active.disabled:hover[disabled] {
+                background-color: #0044cc;
+            }
+
+                .datepicker table tr td span.active:active,
+                .datepicker table tr td span.active:hover:active,
+                .datepicker table tr td span.active.disabled:active,
+                .datepicker table tr td span.active.disabled:hover:active,
+                .datepicker table tr td span.active.active,
+                .datepicker table tr td span.active:hover.active,
+                .datepicker table tr td span.active.disabled.active,
+                .datepicker table tr td span.active.disabled:hover.active {
+                    background-color: #003399 \9;
+                }
+
+        .datepicker table tr td span.old,
+        .datepicker table tr td span.new {
+            color: #999999;
+        }
+
+    .datepicker .datepicker-switch {
+        width: 145px;
+    }
+
+    .datepicker .datepicker-switch,
+    .datepicker .prev,
+    .datepicker .next,
+    .datepicker tfoot tr th {
+        cursor: pointer;
+    }
+
+        .datepicker .datepicker-switch:hover,
+        .datepicker .prev:hover,
+        .datepicker .next:hover,
+        .datepicker tfoot tr th:hover {
+            background: #eeeeee;
+        }
+
+    .datepicker .cw {
+        font-size: 10px;
+        width: 12px;
+        padding: 0 2px 0 5px;
+        vertical-align: middle;
+    }
+
+    .input-append.date .add-on,
+    .input-prepend.date .add-on {
+        cursor: pointer;
+    }
+
+        .input-append.date .add-on i,
+        .input-prepend.date .add-on i {
+            margin-top: 3px;
+        }
+
+    .input-daterange input {
+        text-align: center;
+    }
+
+        .input-daterange input:first-child {
+            -webkit-border-radius: 3px 0 0 3px;
+            -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .input-daterange input:last-child {
+            -webkit-border-radius: 0 3px 3px 0;
+            -moz-border-radius: 0 3px 3px 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+    .input-daterange .add-on {
+        display: inline-block;
+        width: auto;
+        min-width: 16px;
+        height: 18px;
+        padding: 4px 5px;
+        font-weight: normal;
+        line-height: 18px;
+        text-align: center;
+        text-shadow: 0 1px 0 #ffffff;
+        vertical-align: middle;
+        background-color: #eeeeee;
+        border: 1px solid #ccc;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .fc-tim {
+        margin-left: 13px;
+    }
+</style>
+</html>
+
+
+
+
+<script>
+
+    $('.date').datepicker({
+        multidate: true,
+
+    });
+
+
+
+
+</script>
+
+<style>
+
+    .datepicker {
+        z-index: 9999999 !important;
+    }
+</style>
+
+<script>
+
+    var timer = null;
+    $('#ref_no').keydown(function () {
+
+        clearTimeout(timer);
+        timer = setTimeout(ref_data, 1000)
+    });
+
+    $('#editref_no').keydown(function () {
+
+        clearTimeout(timer);
+        timer = setTimeout(ref_data, 1000)
+    });
+
+
+    function reload() {
+
+        window.location.reload();
+    }
+
+
+      function filter() {
+
+                var Employeeidfilter = document.getElementById("Employee-id-filter").value;
+
+
+          var moment = $('#calendar').fullCalendar('getDate');
+
+       
+                $.ajax({
+                    type: "GET",
+                    data: { pid: '1', empid:Employeeidfilter,moment:moment.format()},
+            url: encodeURI("../ESS/GetCalendar"),
+            dataType: "json",
+                    success: function (data) {
+
+
+                        if (data.responseText.length > 0) {
+
+
+                            $("#calendar").fullCalendar('removeEvents');
+
+
+
+                            for (var i = 0; i < data.responseText.length; i++) {
+                                var eventData = {
+                                    _id: data.responseText[i].pid,
+                                    title: data.responseText[i].clientname + " - " + data.responseText[i].typetxt,
+                                    avatar: '../../Content/tick.jpg',
+                                    start: data.responseText[i].starttime,
+                                    end: data.responseText[i].endtime,
+                                    description: data.responseText[i].purpose,
+
+                                    visit: data.responseText[i].vwith,
+                                    location: data.responseText[i].location,
+                                    remarks: data.responseText[i].remarks,
+                                    Employeeid: data.responseText[i].empid,
+                                    EmployeeName: data.responseText[i].EmployeeName,
+                                    clientname: data.responseText[i].clientname,
+                                    typetxt: data.responseText[i].typetxt,
+                                    Clientid: data.responseText[i].clientid,
+                                    calendar: calendar,
+                                    type: 'Plan',
+
+                                    className: 'colorAppointment',
+                                    username: 'Supernova Solutions',
+                                    backgroundColor: '#1756ff',
+                                    textColor: '#ffffff',
+
+
+
+                                };
+
+
+
+                                document.getElementsByClassName("fc-time").innerHTML = data.responseText[i].pid;
+
+                                $("#calendar").fullCalendar('renderEvent', eventData, true);
+                                $("#calendar").fullCalendar('refresh');
+
+
+                            }
+
+                        } else {
+
+                        
+                            show_err_alert_js('No Schedule Found');
+
+
+                        }
+
+           
+
+
+            },
+            error: function (data) {
+
+                show_err_alert_js('Error Occured!');
+            },
+
+        });
+               
+
+            }
+
+
+    function ref_data() {
+
+        if (document.getElementById("ref_no").value != '') {
+
+            var str = document.getElementById("ref_no").value;
+
+        } else if (document.getElementById("editref_no").value != '') {
+
+            var str = document.getElementById("editref_no").value;
+        }
+
+
+
+
+        $.ajax({
+            type: "GET",
+            data: { pid: str },
+            url: encodeURI("../ESS/GetCalendar"),
+            dataType: "json",
+            success: function (data) {
+
+
+                for (var i = 0; i < data.responseText.length; i++) {
+
+                    if (document.getElementById("ref_no").value != '') {
+
+                        $('#Location').val(data.responseText[i].location);
+                        $('#Client-id').val(data.responseText[i].clientid);
+                        $('#Visit_with').attr('value', data.responseText[i].vwith);
+                        $('#add-event-purpose').val(data.responseText[i].purpose);
+                        $('#add-event-remarks').val(data.responseText[i].remarks);
+
+
+
+                        $("#Visit-type option").each(function () {
+
+                            if ($(this).val() == data.responseText[i].attype.trim()) {
+                                $(this).prop("selected", true);
+                            }
+                        });
+
+                    } else if (document.getElementById("editref_no").value != '') {
+
+
+                        $('#editLocation').val(data.responseText[i].location);
+                        $('#editClient-id').val(data.responseText[i].clientid);
+                        $('#editVisit_with').attr('value', data.responseText[i].vwith);
+                        $('#edit-event-purpose').val(data.responseText[i].purpose);
+                        $('#edit-event-remarks').val(data.responseText[i].remarks);
+
+
+
+                        $("#editVisit-type option").each(function () {
+
+                            if ($(this).val() == data.responseText[i].attype.trim()) {
+                                $(this).prop("selected", true);
+                            }
+                        });
+
+
+
+                    }
+
+
+
+
+
+                }
+
+
+            },
+            error: function (data) {
+
+                show_err_alert_js('Error Occured!');
+            },
+
+        });
+    }
+
+
+    function filldtl(empid) {
+
+
+        $.ajax({
+            type: "POST",
+            data: { empid: empid },
+            url: encodeURI("../ESS/GetEmpDtl"),
+            dataType: "json",
+            success: function (data) {
+
+                var isedit = document.getElementById("isedit").value;
+
+
+                if (isedit == '1') {
+
+                    document.getElementById("editDepartment").value = data.responseText;
+                    document.getElementById("editDesignation").value = data.responseID;
+
+                } else {
+                    document.getElementById("Department").value = data.responseText;
+                    document.getElementById("Designation").value = data.responseID;
+
+                }
+
+
+
+            },
+            error: function (data) {
+
+                show_err_alert_js('Error Occured!');
+            },
+
+        });
+
+    }
+
+    var newEvent;
+    var editEvent;
+
+
+    $(document).ready(function () {
+
+        var today = new Date();
+
+        var day = today.getDate();
+        var month = (today.getMonth() + 1);
+
+        if (day < 10) {
+            day = '0' + day;
+        }
+
+        if (month < 10) {
+            month = '0' + month;
+        }
+
+
+
+
+
+
+
+        var date = today.getFullYear() + '-' + month + '-' + day;
+
+        var calendar = $('#calendar').fullCalendar({
+            multidate: true,
+            select: 'multiple',
+            //selectable: "multiple",
+            eventRender: function (event, element, view) {
+
+                var startTimeEventInfo = moment(event.start).format('HH:mm');
+                var endTimeEventInfo = moment(event.end).format('HH:mm');
+                var displayEventDate;
+
+                if (event.avatar.length > 1) {
+
+                    element.find(".fc-content").css('padding-left', '0px');
+                    element.find(".fc-content").after($("<div class=\"fc-avatar-image\"></div>").html('<img src=\'' + event.avatar + '\' />'));
+
+                }
+
+                element.find(".fc-content").before($("<div class=\"fc-tim\"></div>").html('Ref No : ' + event._id + ' Name:' + event.EmployeeName));
+
+
+
+                if (event.allDay == false) {
+                    displayEventDate = startTimeEventInfo + " - " + endTimeEventInfo;
+                } else {
+                    displayEventDate = "All Day";
+                }
+
+                element.popover({
+                    title: '<div class="popoverTitleCalendar" style="background-color:' + event.backgroundColor + '; color:' + event.textColor + '">' + event.title + '</div>',
+                    content: '<div class="popoverInfoCalendar">' +
+                        //'<p><strong>Calendar:</strong> ' + event.calendar + '</p>' +
+
+                        '<p><strong>Employee Name:</strong> ' + event.EmployeeName + '</p>' +
+                        '<p><strong>Location:</strong> ' + event.location + '</p>' +
+                        '<p><strong>Time:</strong> ' + displayEventDate + '</p>' +
+                        '<div class="popoverDescCalendar"><strong>Ref no:</strong> ' + event._id + '</div>' +
+                        '</div>',
+                    delay: {
+                        show: "800",
+                        hide: "50"
+                    },
+                    trigger: 'hover',
+                    placement: 'top',
+                    html: true,
+                    container: 'body'
+                });
+
+                if (event.username == "Supernova Solutions") {
+                    element.css('background-color', '#f4516c');
+                }
+                //if (event.username == "Peter Grant") {
+                //    element.css('background-color', '#1756ff');
+                //}
+                //if (event.username == "Adam Rackham") {
+                //    element.css('background-color', '#9816f4');
+                //}
+
+                var show_username, show_type = true, show_calendar = true;
+
+                var username = $('input:checkbox.filter:checked').map(function () {
+                    return $(this).val();
+                }).get();
+                var types = $('#type_filter').val();
+                var calendars = $('#calendar_filter').val();
+
+                show_username = username.indexOf(event.username) >= 0;
+
+                if (types && types.length > 0) {
+                    if (types[0] == "all") {
+                        show_type = true;
+                    } else {
+                        show_type = types.indexOf(event.type) >= 0;
+                    }
+                }
+
+                if (calendars && calendars.length > 0) {
+                    if (calendars[0] == "all") {
+                        show_calendar = true;
+                    } else {
+                        show_calendar = calendars.indexOf(event.calendar) >= 0;
+                    }
+                }
+
+                return show_username && show_type && show_calendar;
+
+            },
+            customButtons: {
+                printButton: {
+                    icon: 'print',
+                    click: function () {
+                        window.print();
+                    }
+                }
+            },
+            header: {
+                left: 'today, prevYear, nextYear, printButton',
+                center: 'prev, title, next',
+                //right: 'month,agendaWeek,agendaDay,listWeek'
+
+
+            },
+            views: {
+                month: {
+                    columnFormat: 'dddd'
+                },
+                agendaWeek: {
+                    columnFormat: 'ddd D/M',
+                    eventLimit: false
+                },
+                agendaDay: {
+                    columnFormat: 'dddd',
+                    eventLimit: false
+                },
+                listWeek: {
+                    columnFormat: ''
+                }
+            },
+
+            loading: function (bool) {
+
+
+                //alert('events are being rendered');
+            },
+            eventAfterAllRender: function (view) {
+                if (view.name == "month") {
+                    $(".fc-content").css('height', 'auto');
+
+                }
+            },
+            eventLimitClick: function (cellInfo, event) {
+
+
+            },
+            eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
+                $('.popover.fade.top').remove();
+            },
+            eventDragStart: function (event, jsEvent, ui, view) {
+                var draggedEventIsAllDay;
+                draggedEventIsAllDay = event.allDay;
+            },
+            eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+                $('.popover.fade.top').remove();
+            },
+            unselect: function (jsEvent, view) {
+                //$(".dropNewEvent").hide();
+            },
+            dayClick: function (startDate, jsEvent, view) {
+
+                //var today = moment();
+                //var startDate;
+
+                //if(view.name == "month"){
+
+                //  startDate.set({ hours: today.hours(), minute: today.minutes() });
+                //  alert('Clicked on: ' + startDate.format());
+
+                //}
+
+            },
+            select: function (startDate, endDate, jsEvent, view) {
+
+                var today = moment();
+                var startDate;
+                var endDate;
+                if (view.name == "month") {
+                    startDate.set({ hours: today.hours(), minute: today.minutes() });
+                    startDate = moment(startDate).format('ddd DD MMM YYYY HH:mm');
+                    endDate = moment(endDate).subtract('days', 1);
+                    endDate.set({ hours: today.hours() + 1, minute: today.minutes() });
+                    endDate = moment(endDate).format('ddd DD MMM YYYY HH:mm');
+                } else {
+                    startDate = moment(startDate).format('ddd DD MMM YYYY HH:mm');
+                    endDate = moment(endDate).format('ddd DD MMM YYYY HH:mm');
+                }
+
+                var $contextMenu = $("#contextMenu");
+
+                var HTMLContent = '<ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">' +
+                    '<li onclick=\'newEvent("' + startDate + '","' + endDate + '","' + "Appointment" + '")\'> <a tabindex="-1" href="#">Add</a></li>' +
+                    //'<li onclick=\'newEvent("' + startDate + '","' + endDate + '","' + "Check-in" + '")\'> <a tabindex="-1" href="#">Add Check-In</a></li>' +
+                    //'<li onclick=\'newEvent("' + startDate + '","' + endDate + '","' + "Checkout" + '")\'> <a tabindex="-1" href="#">Add Checkout</a></li>' +
+                    //'<li onclick=\'newEvent("' + startDate + '","' + endDate + '","' + "Inventory" + '")\'> <a tabindex="-1" href="#">Add Inventory</a></li>' +
+                    //'<li onclick=\'newEvent("' + startDate + '","' + endDate + '","' + "Valuation" + '")\'> <a tabindex="-1" href="#">Add Valuation</a></li>' +
+                    //'<li onclick=\'newEvent("' + startDate + '","' + endDate + '","' + "Viewing" + '")\'> <a tabindex="-1" href="#">Add Viewing</a></li>' +
+                    '<li class="divider"></li>' +
+                    '<li><a tabindex="-1" href="#">Close</a></li>' +
+                    '</ul>';
+
+                $(".fc-body").unbind('click');
+                $(".fc-body").on('click', 'td', function (e) {
+
+                    document.getElementById('contextMenu').innerHTML = (HTMLContent);
+
+                    $contextMenu.addClass("contextOpened");
+                    $contextMenu.css({
+                        display: "block",
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                    return false;
+
+                });
+
+
+
+
+
+
+                $contextMenu.on("click", "a", function (e) {
+                    e.preventDefault();
+                    $contextMenu.removeClass("contextOpened");
+                    $contextMenu.hide();
+                });
+
+                $('body').on('click', function () {
+                    $contextMenu.hide();
+                    $contextMenu.removeClass("contextOpened");
+                });
+
+                //newEvent(startDate, endDate);
+
+            },
+            eventClick: function (event, jsEvent, view) {
+
+
+                editEvent(event);
+
+            },
+            locale: 'en-GB',
+            timezone: "local",
+            nextDayThreshold: "09:00:00",
+            allDaySlot: true,
+            displayEventTime: true,
+            displayEventEnd: true,
+            firstDay: 1,
+            weekNumbers: false,
+            selectable: true,
+            weekNumberCalculation: "ISO",
+            eventLimit: true,
+            eventLimitClick: 'week', //popover
+            navLinks: true,
+            defaultDate: moment(date),
+            timeFormat: 'HH:mm',
+            defaultTimedEventDuration: '01:00:00',
+            editable: false,
+            minTime: '00:00:00',
+            maxTime: '00:00:00',
+            slotLabelFormat: 'HH:mm',
+            weekends: true,
+            nowIndicator: true,
+            dayPopoverFormat: 'dddd DD/MM',
+            longPressDelay: 0,
+            eventLongPressDelay: 0,
+            selectLongPressDelay: 0,
+
+
+
+        });
+
+
+        
+
+        $.ajax({
+            type: "GET",
+            data: { pid: '0' },
+            url: encodeURI("../ESS/GetCalendar"),
+            dataType: "json",
+            success: function (data) {
+
+
+                for (var i = 0; i < data.responseText.length; i++) {
+
+
+
+                    var eventData = {
+                        _id: data.responseText[i].pid,
+                        title: data.responseText[i].clientname + " - " + data.responseText[i].typetxt,
+                        avatar: '../../Content/tick.jpg',
+                        start: data.responseText[i].starttime,
+                        end: data.responseText[i].endtime,
+                        description: data.responseText[i].purpose,
+
+                        visit: data.responseText[i].vwith,
+                        location: data.responseText[i].location,
+                        remarks: data.responseText[i].remarks,
+                        Employeeid: data.responseText[i].empid,
+                        EmployeeName: data.responseText[i].EmployeeName,
+                        clientname: data.responseText[i].clientname,
+                        typetxt: data.responseText[i].typetxt,
+                        Clientid: data.responseText[i].clientid,
+                        calendar: calendar,
+                        type: 'Plan',
+
+                        className: 'colorAppointment',
+                        username: 'Supernova Solutions',
+                        backgroundColor: '#1756ff',
+                        textColor: '#ffffff',
+
+
+
+                    };
+
+                    document.getElementsByClassName("fc-time").innerHTML = data.responseText[i].pid+" Name : ";
+
+                    $("#calendar").fullCalendar('renderEvent', eventData, true);
+
+                }
+
+
+
+
+
+            },
+            error: function (data) {
+
+                show_err_alert_js('Error Occured!');
+            },
+
+        });
+
+
+
+
+
+        $('.filter').on('change', function () {
+            $('#calendar').fullCalendar('rerenderEvents');
+        });
+
+        $("#type_filter").select2({
+            placeholder: "Filter Types",
+            allowClear: true
+        });
+
+        $("#calendar_filter").select2({
+            placeholder: "Filter Calendars",
+            allowClear: true
+        });
+
+        $("#starts-at, #ends-at").datetimepicker({
+            format: 'ddd DD MMM YYYY HH:mm'
+        });
+
+        //var minDate = moment().subtract(0, 'days').millisecond(0).second(0).minute(0).hour(0);
+
+        $(" #editStartDate, #editEndDate").datetimepicker({
+            format: 'ddd DD MMM YYYY HH:mm'
+            //minDate: minDate
+        });
+
+        //CREATE NEW EVENT CALENDAR
+
+        newEvent = function (start, end, eventType) {
+
+            var colorEventyType;
+
+            if (eventType == "Appointment") {
+                colorEventyType = "colorAppointment";
+            }
+            else if (eventType == "Check-in") {
+                colorEventyType = "colorCheck-in";
+            }
+            else if (eventType == "Checkout") {
+                colorEventyType = "colorCheckout";
+            }
+            else if (eventType == "Inventory") {
+                colorEventyType = "colorInventory";
+            }
+            else if (eventType == "Valuation") {
+                colorEventyType = "colorValuation";
+            }
+            else if (eventType == "Viewing") {
+                colorEventyType = "colorViewing";
+            }
+
+            $("#contextMenu").hide();
+            $('.eventType').text(eventType);
+            $('input#title').val("");
+            $('#starts-at').val(start);
+            $('#ends-at').val(end);
+            $('#newEventModal').modal('show');
+
+            var statusAllDay;
+            var endDay;
+
+            $('.allDayNewEvent').on('change', function () {
+
+                if ($(this).is(':checked')) {
+                    statusAllDay = true;
+                    var endDay = $('#ends-at').prop('disabled', true);
+                } else {
+                    statusAllDay = false;
+                    var endDay = $('#ends-at').prop('disabled', false);
+                }
+            });
+
+            document.getElementById("isedit").value = 0;
+
+            $('#save-event').unbind();
+            $('#save-event').on('click', function () {
+
+                var startDay = $('#starts-at').val();
+                var Location = $('#Location').val();
+                var purpose = $('#add-event-purpose').val();
+                var remarks = $('#add-event-remarks').val();
+                var Visit_with = $('#Visit_with').val();
+                var Dates = $('#date').val();
+                var Employeeid = $('#Employee-id').val();
+                var Clientid = $('#Client-id').val();
+                var Visittype = $('#Visit-type').val();
+                var VisitName = $("#Visit-type option:selected").text();
+                var ClientName = $("#Client-id option:selected").text();
+                var EmployeeName = $("#Employee-id option:selected").text();
+                var endDay = $('#ends-at').val();
+
+            
+            
+
+                if (!$(".allDayNewEvent").is(':checked')) {
+                    
+                }
+                var calendar = $('#calendar-type').val();
+                var type = eventType;
+
+
+                
+                if (startDay.substr(startDay.length - 5) != "00:00" && endDay.substr(endDay.length - 5) != "00:00") {
+
+
+
+                    if (Employeeid && Clientid && Visittype) {
+
+                        //GENERATE RAMDON ID - JUST FOR TEST - DELETE IT
+                        var eventId = 1 + Math.floor(Math.random() * 1000);
+                        //GENERATE RAMDON ID - JUST FOR TEST - DELETE IT
+
+                        var cdata = [[]];
+
+                        var eventData = {
+                            _id: eventId,
+                            title: ClientName + " - " + VisitName,
+                            avatar: '../../Content/tick.jpg',
+                            start: startDay,
+                            end: endDay,
+                            description: purpose,
+                            visit: Visit_with,
+                            location: Location,
+                            remarks: remarks,
+                            Employeeid: Employeeid,
+                            Clientid: Clientid,
+                            type: type,
+                            EmployeeName: EmployeeName,
+                            Visittype: Visittype,
+                            calendar: calendar,
+                            className: colorEventyType,
+                            username: 'Supernova Solutions',
+                            backgroundColor: '#1756ff',
+                            textColor: '#ffffff',
+                            allDay: statusAllDay
+                        };
+
+                        cdata[0][0] = eventId;
+                        cdata[0][1] = ClientName + VisitName;
+                        cdata[0][2] = startDay;
+                        cdata[0][3] = endDay;
+                        cdata[0][4] = purpose;
+                        cdata[0][5] = Visit_with;
+                        cdata[0][6] = Location;
+                        cdata[0][7] = remarks;
+                        cdata[0][8] = Employeeid;
+                        cdata[0][9] = Clientid;
+                        cdata[0][10] = Visittype;
+
+                        $("#calendar").fullCalendar('renderEvent', eventData, true);
+
+
+
+                        if (Dates != "") {
+
+                            var Dates = Dates.split(',');
+
+
+                            var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+
+
+                            for (var i = 0; i < Dates.length; i++) {
+
+
+                                var now = new Date(Dates[i]);
+
+                                var dd = now.getDate();
+
+                                if (dd < 10) {
+                                    dd = '0' + dd;
+
+                                }
+
+                                var date = days[now.getDay()] + ' ' + dd + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+
+
+                                var eventId = 1 + Math.floor(Math.random() * 2000);
+
+                                var eventData = {
+                                    _id: eventId,
+                                    title: ClientName + " - " + VisitName,
+                                    avatar: '../../Content/tick.jpg',
+                                    start: date + startDay.substring(23, 15),
+                                    end: date + endDay.substring(23, 15),
+                                    description: purpose,
+                                    visit: Visit_with,
+                                    location: Location,
+                                    remarks: remarks,
+                                    Employeeid: Employeeid,
+                                    Clientid: Clientid,
+                                    type: type,
+                                    EmployeeName: EmployeeName,
+                                    Visittype: Visittype,
+                                    calendar: calendar,
+                                    className: colorEventyType,
+                                    username: 'Supernova Solutions',
+                                    backgroundColor: '#1756ff',
+                                    textColor: '#ffffff',
+                                    allDay: statusAllDay
+                                };
+                                $("#calendar").fullCalendar('renderEvent', eventData, true);
+
+
+                                cdata.push([eventId, ClientName + " - " + VisitName, date + startDay.substring(23, 15), date + endDay.substring(23, 15), purpose, Visit_with, Location, remarks, Employeeid, Clientid, Visittype]);
+
+
+
+                            }
+
+                        }
+
+           
+
+
+                        $.ajax({
+                            type: "POST",
+                            data: { cdata: cdata },
+                            url: encodeURI("../ESS/SaveCalendar"),
+                            dataType: "json",
+                            success: function (data) {
+
+                                show_suc_alert_js('Your plan successfuly created!');
+
+                                $('#newEventModal').find('input, textarea').val('');
+                                $('#newEventModal').find('input:checkbox').prop('checked', false);
+                                $('#ends-at').prop('disabled', false);
+                                $('#newEventModal').modal('hide');
+
+                            },
+                            error: function (data) {
+
+                                show_err_alert_js('Error Occured!'+data);
+                            },
+
+                        });
+
+
+
+                    }
+                    else {
+                        show_err_alert_js('Emplpyee name / Client Name / Visit Type can not be blank. Please try again.');
+                    }
+
+                }else {
+                    show_err_alert_js('Starts at / End at Name can not be 00:00 Please try again.');
+                }
+
+
+            });
+
+
+            var Location = $('#Location').val('');
+            var purpose = $('#add-event-purpose').val('');
+            var remarks = $('#add-event-remarks').val('');
+            var Employeeid = $('#Employee-id').val('');
+            var Clientid = $('#Client-id').val('');
+            var Visittype = $('#Visit-type').val('');
+
+        }
+
+        //EDIT EVENT CALENDAR
+
+        editEvent = function (event, element, view) {
+
+
+            document.getElementById("isedit").value = 1;
+
+            $('.popover.fade.top').remove();
+            $(element).popover("hide");
+
+            //$(".dropdown").hide().css("visibility", "hidden");
+
+            if (event.allDay == true) {
+
+                $('#editEventModal').find('#editEndDate').attr("disabled", true);
+                $('#editEventModal').find('#editEndDate').val("");
+                $(".allDayEdit").prop('checked', true);
+            } else {
+
+                $('#editEventModal').find('#editEndDate').attr("disabled", false);
+                $('#editEventModal').find('#editEndDate').val(event.end.format('ddd DD MMM YYYY HH:mm'));
+                $(".allDayEdit").prop('checked', false);
+            }
+
+            $('.allDayEdit').on('change', function () {
+
+                if ($(this).is(':checked')) {
+                    $('#editEventModal').find('#editEndDate').attr("disabled", true);
+                    $('#editEventModal').find('#editEndDate').val("");
+                    $(".allDayEdit").prop('checked', true);
+                } else {
+                    $('#editEventModal').find('#editEndDate').attr("disabled", false);
+                    $(".allDayEdit").prop('checked', false);
+                }
+            });
+
+
+
+
+
+            $.ajax({
+                type: "GET",
+                data: { pid: event._id },
+                url: encodeURI("../ESS/GetCalendar"),
+                dataType: "json",
+                async: false,
+                success: function (data) {
+
+
+                    for (var i = 0; i < data.responseText.length; i++) {
+
+
+                        $('#edit-event-remarks').val(data.responseText[i].remarks);
+                        $('#editid').val(data.responseText[i].pid);
+
+                        $("#editVisit-type option").each(function () {
+
+                            if ($(this).val() == data.responseText[i].attype.trim()) {
+                                $(this).prop("selected", true);
+                            }
+                        });
+
+
+                        $('#editVisit_with').val(data.responseText[i].vwith);
+
+                        $("#editEmployee-id option").each(function () {
+                            if ($(this).val() == data.responseText[i].empid.trim()) {
+                                $(this).prop("selected", true);
+
+                                filldtl(data.responseText[i].empid);
+                            }
+                        });
+
+
+
+
+                    }
+
+
+
+                },
+                error: function (data) {
+
+                    show_err_alert_js('Error Occured!');
+                },
+
+            });
+
+
+            $('#editStartDate').val(event.start.format('ddd DD MMM YYYY HH:mm'));
+            $('#editEndDate').val(event.end.format('ddd DD MMM YYYY HH:mm'));
+
+            $('#editClient-Name').val(event.Client);
+            $('#editLocation').val(event.Location);
+            $('#edit-calendar-type').val(event.calendar);
+            $('#edit-event-desc').val(event.description);
+            $('.eventName').text(event.title);
+            $('#editClient-id').val(event.Clientid);
+            $('#edit-event-purpose').val(event.description);
+
+
+            $('#editEventModal').modal('show');
+            $('#updateEvent').unbind();
+
+
+
+
+
+
+            $('#updateEvent').on('click', function () {
+                var statusAllDay;
+                if ($(".allDayEdit").is(':checked')) {
+                    statusAllDay = true;
+                } else {
+                    statusAllDay = false;
+                }
+
+                var VisitName = $("#editVisit-type option:selected").text();
+                var ClientName = $("#editClient-id option:selected").text();
+
+                var title = ClientName + " - " + VisitName;
+                var startDate = $('input#editStartDate').val();
+                var endDate = $('input#editEndDate').val();
+                var calendar = $('#edit-calendar-type').val();
+                var purpose = $('#edit-event-purpose').val();
+                var editClient_id = $('#editClient-id').val();
+                var editLocation = $('#editLocation').val();
+                var editVisit_type = $('#editVisit-type').val();
+                var editVisit_with = $('#editVisit_with').val();
+                var editevent_remarks = $('#edit-event-remarks').val();
+                var editEmployeeid = $('#editEmployee-id').val();
+                var editid = $('#editid').val();
+                   var EmployeeName = $("#editEmployee-id option:selected").text();
+
+                $('#editEventModal').modal('hide');
+                var eventData;
+
+                if (editClient_id && editEmployeeid) {
+
+
+
+                    event.title = title
+                    event.start = startDate
+                    event.end = endDate
+                    event.calendar = calendar
+                    event.description = purpose
+                    event.EmployeeName = EmployeeName
+
+                    event.allDay = statusAllDay
+                    $("#calendar").fullCalendar('updateEvent', event);
+
+
+
+
+
+                    var cdata = [[]];
+
+                    cdata[0][0] = editid;
+                    cdata[0][2] = startDate;
+                    cdata[0][3] = endDate;
+                    cdata[0][4] = purpose;
+                    cdata[0][5] = editVisit_with;
+                    cdata[0][8] = editClient_id;
+                    cdata[0][9] = editLocation;
+                    cdata[0][10] = editVisit_type;
+                    cdata[0][11] = editVisit_with;
+                    cdata[0][12] = editevent_remarks;
+                    cdata[0][13] = editEmployeeid;
+
+
+
+
+                    $.ajax({
+                        type: "POST",
+                        data: { cdata: cdata },
+                        url: encodeURI("../ESS/UpdateCalendar"),
+                        dataType: "json",
+                        success: function (data) {
+
+                        },
+                        error: function (data) {
+
+                            show_err_alert_js('Error Occured!');
+                        },
+
+                    });
+
+                } else {
+                    show_err_alert_js('Emplpyee name / Client Name / Visit Type can not be blank. Please try again.');
+
+                }
+
+
+                $('input#editStartDate').val('');
+                $('input#editEndDate').val('');
+                $('#edit-calendar-type').val('');
+                $('#edit-event-purpose').val('');
+                $('#editClient-id').val('');
+                $('#editLocation').val('');
+                $('#editVisit-type').val('');
+                $('#editVisit_with').val('');
+                $('#edit-event-remarks').val('');
+                $('#editEmployee-id').val('');
+                $('#editid').val('');
+
+
+            });
+
+            $('#deleteEvent').on('click', function () {
+
+
+                $('#deleteEvent').unbind();
+                if (event._id.includes("_fc")) {
+                    $("#calendar").fullCalendar('removeEvents', [event._id]);
+
+                } else {
+                    $("#calendar").fullCalendar('removeEvents', [event._id]);
+
+                }
+
+
+
+                $.ajax({
+                    type: "GET",
+                    data: { id: event._id },
+                    url: encodeURI("../ESS/DeleteCalendar"),
+                    dataType: "json",
+                    success: function (data) {
+
+                        show_suc_alert_js('Plan Deleted');
+                    },
+                    error: function (data) {
+
+                        show_err_alert_js('Error Occured!');
+                    },
+
+                });
+
+                $('#editEventModal').modal('hide');
+            });
+        }
+
+
+        //SET DEFAULT VIEW CALENDAR
+
+        var defaultCalendarView = $("#calendar_view").val();
+
+        if (defaultCalendarView == 'month') {
+            $('#calendar').fullCalendar('changeView', 'month');
+        } else if (defaultCalendarView == 'agendaWeek') {
+            $('#calendar').fullCalendar('changeView', 'agendaWeek');
+        } else if (defaultCalendarView == 'agendaDay') {
+            $('#calendar').fullCalendar('changeView', 'agendaDay');
+        } else if (defaultCalendarView == 'listWeek') {
+            $('#calendar').fullCalendar('changeView', 'listWeek');
+        }
+
+        $('#calendar_view').on('change', function () {
+
+            var defaultCalendarView = $("#calendar_view").val();
+            $('#calendar').fullCalendar('changeView', defaultCalendarView);
+
+        });
+
+        //SET MIN TIME AGENDA
+
+        $('#calendar_start_time').on('change', function () {
+
+            var minTimeAgendaView = $(this).val();
+            $('#calendar').fullCalendar('option', { minTime: minTimeAgendaView });
+
+        });
+
+        //SET MAX TIME AGENDA
+
+        $('#calendar_end_time').on('change', function () {
+
+            var maxTimeAgendaView = $(this).val();
+            $('#calendar').fullCalendar('option', { maxTime: maxTimeAgendaView });
+
+        });
+
+        //SHOW - HIDE WEEKENDS
+
+        var activeInactiveWeekends = false;
+        checkCalendarWeekends();
+
+        $('.showHideWeekend').on('change', function () {
+            checkCalendarWeekends();
+        });
+
+        function checkCalendarWeekends() {
+
+            if ($('.showHideWeekend').is(':checked')) {
+                activeInactiveWeekends = true;
+                $('#calendar').fullCalendar('option', {
+                    weekends: activeInactiveWeekends
+                });
+            } else {
+                activeInactiveWeekends = false;
+                $('#calendar').fullCalendar('option', {
+                    weekends: activeInactiveWeekends
+                });
+            }
+
+        }
+
+
+
+    });
+
+
+
+
+
+</script>

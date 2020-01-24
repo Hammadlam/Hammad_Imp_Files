@@ -1,5 +1,21 @@
 ﻿
 $(document).ready(function () {
+
+   
+
+
+    // code to read selected table row cell data (values).
+    $("#purchase_table").on('click', '#view', function () {
+        // get the current row
+        var currentRow = $(this).closest("tr");
+
+        var ReportsId = currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+
+
+        window.location.href = "/Reports/FlexData?reportid=" + ReportsId
+
+    });
+
     loaddata_purchase();
 });
 
@@ -11,8 +27,9 @@ function loaddata_purchase() {
         autowidth: true,
         //autoheight: true,
         height: 270,
-        postData: { Moduleid: "r7sm" },
+        postData: { Moduleid: "r5pr" },
         serializeGridData: function (postData) {
+        
             return JSON.stringify(postData);
         },
 
@@ -31,15 +48,22 @@ function loaddata_purchase() {
         ],
 
         gridComplete: function () {
+
             var ids = jQuery("#purchase_table").getDataIDs();
+
+
             for (var i = 0; i < ids.length; i++) {
                 var cl = ids[i];
 
-                view = "<input style='height:18px;width:75px;' type='button' value='View' onclick=\"getSelectedRow_purchase();\" class='btn btn-xs btn-danger'>";
 
+                view = "<input id='view' style='height:20px;width:75px;' type='button' value='View'  class='btn btn-xs btn-danger'>";
+         
                 jQuery("#purchase_table").setRowData(ids[i], { act: view })
             }
         },
+
+
+
 
         pager: '#purchase_pager',
         rowNum: 10,
@@ -70,6 +94,10 @@ function loaddata_purchase() {
         $('#purchase_table').setGridWidth(width, false);
     });
 
+
+    var selRowId = $('#purchase_table').jqGrid('getGridParam', 'selrow');
+    var ReportsId = $('#purchase_table').jqGrid('getCell', selRowId, 'reportid');
+
 }
 
 function getSelectedRow_purchase() {
@@ -85,3 +113,5 @@ function getSelectedRow_purchase() {
     }
 
 } 
+
+

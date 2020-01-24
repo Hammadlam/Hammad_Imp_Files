@@ -331,7 +331,7 @@ $(window).bind('resize', function () {
 //        //        var cl = ids[i];
 //        //        //class='btn btn-xs btn-info'
 //        //        view = "<input style='height:18px;width:75px;' type='button' onclick='getOnClick()' value='View' class='btn btn-xs btn-primary'>";
-//        //        download = "&nbsp;<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
+//        //        download = "<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
 
 //        //        jQuery("#table_list_2").setRowData(ids[i], { status: view + download })
 //        //    }

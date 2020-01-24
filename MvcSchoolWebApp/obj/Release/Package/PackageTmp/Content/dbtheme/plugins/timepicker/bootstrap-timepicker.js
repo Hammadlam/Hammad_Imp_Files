@@ -284,14 +284,14 @@
       templateContent = '<table>'+
          '<tr>'+
            '<td><a href="#" data-action="incrementHour"><i class="' + this.upArrowStyle + '"></i></a></td>'+
-           '<td class="separator">&nbsp;</td>'+
+           '<td class="separator"></td>'+
            '<td><a href="#" data-action="incrementMinute"><i class="' + this.upArrowStyle + '"></i></a></td>'+
            (this.showSeconds ?
-             '<td class="separator">&nbsp;</td>'+
+             '<td class="separator"></td>'+
              '<td><a href="#" data-action="incrementSecond"><i class="' + this.upArrowStyle + '"></i></a></td>'
            : '') +
            (this.showMeridian ?
-             '<td class="separator">&nbsp;</td>'+
+             '<td class="separator"></td>'+
              '<td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="' + this.upArrowStyle + '"></i></a></td>'
            : '') +
          '</tr>'+
@@ -304,7 +304,7 @@
             '<td>'+ secondTemplate +'</td>'
            : '') +
            (this.showMeridian ?
-            '<td class="separator">&nbsp;</td>'+
+            '<td class="separator"></td>'+
             '<td>'+ meridianTemplate +'</td>'
            : '') +
          '</tr>'+
@@ -313,11 +313,11 @@
            '<td class="separator"></td>'+
            '<td><a href="#" data-action="decrementMinute"><i class="' + this.downArrowStyle + '"></i></a></td>'+
            (this.showSeconds ?
-            '<td class="separator">&nbsp;</td>'+
+            '<td class="separator"></td>'+
             '<td><a href="#" data-action="decrementSecond"><i class="' + this.downArrowStyle + '"></i></a></td>'
            : '') +
            (this.showMeridian ?
-            '<td class="separator">&nbsp;</td>'+
+            '<td class="separator"></td>'+
             '<td><a href="#" data-action="toggleMeridian"><i class="' + this.downArrowStyle + '"></i></a></td>'
            : '') +
          '</tr>'+

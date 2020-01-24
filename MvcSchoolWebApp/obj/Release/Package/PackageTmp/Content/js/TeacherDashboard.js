@@ -1,19 +1,19 @@
 ﻿$(function () {
-    $.ajax({
-        url: encodeURI("../dashboard/getClasswiseTestJson/"),
-        dataType: 'json',
-        async: false
-    }).done(function (data) {
-        GetClassTestChart(data);
-    });
+    //$.ajax({
+    //    url: encodeURI("../dashboard/getClasswiseTestJson/"),
+    //    dataType: 'json',
+    //    async: false
+    //}).done(function (data) {
+    //    GetClassTestChart(data);
+    //});
 
-    $.ajax({
-        url: encodeURI("../dashboard/getOverallTestJson/"),
-        dataType: 'json',
-        async: false
-    }).done(function (data) {
-        GetOverAllTestChart(data);
-    });
+    //$.ajax({
+    //    url: encodeURI("../dashboard/getOverallTestJson/"),
+    //    dataType: 'json',
+    //    async: false
+    //}).done(function (data) {
+    //    GetOverAllTestChart(data);
+    //});
 });
 
 function GetClassTestChart(data) {

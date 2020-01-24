@@ -4633,7 +4633,7 @@ DayGrid.mixin({
 
 		titleHtml =
 			'<span class="fc-title">' +
-				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
+				(htmlEscape(event.title || '') || '') + // we always want one line of height
 			'</span>';
 		
 		return '<a class="' + classes.join(' ') + '"' +
@@ -7692,7 +7692,7 @@ function Header(calendar, options) {
 					var button;
 
 					if (buttonName == 'title') {
-						groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
+						groupChildren = groupChildren.add($('<h2></h2>')); // we always want it to take up height
 						isOnlyButtons = false;
 					}
 					else {

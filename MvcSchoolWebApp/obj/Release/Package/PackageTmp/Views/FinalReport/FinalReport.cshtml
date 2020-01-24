@@ -131,7 +131,9 @@
     </div>
     @*}*@
 </section>
-<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>
+@*<script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n=1")></script>*@
+<script src=@Url.Content("~/Content/js/FinalReport.js?n=1") asp-append-version="true"></script>
+
 <script>
     $(document).ready(function (e) {
         $("#txtClassRF")[0].selectedIndex = 0;

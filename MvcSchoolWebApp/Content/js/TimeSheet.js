@@ -108,6 +108,15 @@ function insertempattendance() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            if (data == false) {
+
+                waitingDialog.hide();
+
+                $("#btntimeout").removeAttr("disabled");
+                $("#btntimein").removeAttr("disabled");
+                show_err_alert_js("Location must be required to perform action");
+                return;
+            }
             $("#txtremarksTS").val("");
             isactiveemployee();
             waitingDialog.hide();
@@ -320,7 +329,7 @@ var apiGeolocationSuccess = function (position) {
 };
 
 var tryAPIGeolocation = function () {
-    jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function (success) {
+    jQuery.post("http://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function (success) {
         apiGeolocationSuccess({ coords: { latitude: success.location.lat, longitude: success.location.lng } });
     })
   .fail(function (err) {

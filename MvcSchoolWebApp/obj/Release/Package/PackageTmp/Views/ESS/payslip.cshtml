@@ -42,7 +42,7 @@
                                                 <label>Employee Id</label>
                                             </div>
                                             <div class="col-md-7">
-                                                @Html.TextBoxFor(model => model.empid, new { @type = "text", @class = "form-control m-b", @name = "txtempidPS", @id = "txtempidPS", @placeholder = "Employee Id", @requried = "true", @readonly = "true" })
+                                                @Html.TextBoxFor(model => model.empid, new { @type = "text", @class = "form-control m-b", @name = "txtempidPS", @id = "txtempidPS", @placeholder = "Employee Id", @requried = "true",  @readonly = true , @onmousedown="return false;" })
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                                                 <label>Society</label>
                                             </div>
                                             <div class="col-md-7">
-                                                @Html.TextBoxFor(model => model.society, new { @type = "text", @class = "form-control m-b", @name = "txteareaPS", @id = "txteareaPS", @requried = "true", @disabled = "true" })
+                                                @Html.TextBoxFor(model => model.society, new { @type = "text", @class = "form-control m-b", @name = "txteareaPS", @id = "txteareaPS", @requried = "true",  @readonly = true , @onmousedown="return false;" })
                                             </div>
                                         </div>
                                     </div>

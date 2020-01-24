@@ -161,6 +161,242 @@ namespace MvcSchoolWebApp.Controllers
             }
         }
 
+       
+        public string updateCalender(string[][] data)
+        {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+
+            SqlTransaction trans;
+            SqlCommand cmd = con.CreateCommand();
+            trans = con.BeginTransaction();
+            DatabaeseClass db = new DatabaeseClass();
+            DateTime insertdate = db.convertedinsertdate(DateTime.Now.ToString());
+
+            var status = "success";
+
+            try
+            {
+                cmd.Connection = con;
+                cmd.Transaction = trans;
+
+                if (data != null)
+                {
+                    int i = 0;
+
+                    foreach (string[] subArray in data)
+                    {
+
+
+                        DateTime startDay = Convert.ToDateTime(subArray[2]);
+
+                        DateTime endDay = Convert.ToDateTime(subArray[3]);
+
+
+
+                        TimeSpan ts = endDay - startDay;
+
+                        cmd.CommandText = "update emp0290 set empid='" + subArray[13] + "', begdate='" + startDay + "' , enddate = '" + endDay + "', subpagtype = '', recordno = '" + (i + 1) + "' , " +
+                                          "delind = '" + (i + 1) + "'," +
+                                          "upddate = '" + insertdate.ToString("yyyy-MM-dd") + "', updtime = '" + insertdate.ToString("HH:mm:ss") + "', starttime = '" + startDay + "', endtime = '" + endDay + "', " +
+                                          "tothours = '" + ts.TotalHours + "', remarks =  '" + subArray[12] + "', location = '" + subArray[9] + "', clientid = '" + subArray[8] + "', " +
+                                          "purpose='" + subArray[4] + "' , vwith = '" + subArray[11] + "', attype = '" + subArray[10] + "',  dbtimestmp = '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "' where pid = '" + subArray[0] + "'";
+
+
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+
+
+
+
+                }
+
+
+                trans.Commit();
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                status = "false";
+            }
+            finally
+            {
+                trans.Dispose();
+                con.Close();
+            }
+
+            return status;
+
+        }
+
+        public void insertCalender(string[][] data)
+        {
+            var user_id = System.Web.HttpContext.Current.Session["User_Id"].ToString();
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+
+            SqlTransaction trans;
+            SqlCommand cmd = con.CreateCommand();
+            trans = con.BeginTransaction();
+            DatabaeseClass db = new DatabaeseClass();
+            DateTime insertdate = db.convertedinsertdate(DateTime.Now.ToString());
+
+            try
+            {
+                cmd.Connection = con;
+                cmd.Transaction = trans;
+
+                if (data != null)
+                {
+                    int i = 0;
+
+                    foreach (string[] subArray in data)
+                    {
+                        // foreach (string i in subArray)
+                        // {
+
+
+
+                        DateTime startDay = Convert.ToDateTime(subArray[2]);
+
+                        DateTime endDay = Convert.ToDateTime(subArray[3]);
+
+
+
+                        TimeSpan ts = endDay - startDay;
+
+                        cmd.CommandText = "insert into emp0290 (empid, begdate, enddate, subpagtype, recordno, " +
+                                          "delind, creuser, credate, cretime, " +
+                                          "upduser, upddate, updtime, attype, starttime, endtime, " +
+                                          "tothours, remarks, location, clientid, tinusr, " +
+                                          "tinlat, tinlong, toutusr, toutlat, toutlong, " +
+                                          "purpose, dbtimestmp,pid,vwith) " +
+                                          "VALUES('" + subArray[8] + "','" + startDay + "','" + endDay + "',' ', '" + (i + 1) + "', " +
+                                          "'" + (i + 1) + "','"+ user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', " +
+                                          "' ','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', '" + subArray[10] + "', '" + startDay + "','" + endDay + "', " +
+                                          "'" + ts.TotalHours + "','" + subArray[7] + "', '" + subArray[6] + "','" + subArray[9] + "', ' ', " +
+                                          "' ', ' ', ' ',' ', ' ', " +
+                                          "'" + subArray[4] + "', '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + subArray[0] + "', '" + subArray[5] + "')";
+
+
+                        cmd.ExecuteNonQuery();
+
+
+
+
+                        //}
+                    }
+
+
+                    // for (int i = 0; i < data.Length; i++)
+                    //{
+
+                    //     for (int j = 0; j < data.Length; j++)
+                    //     { 
+
+
+                    //     }
+                    //                 if (instname[i] != "")
+                    //                 {
+                    //                     cmd.CommandText = "insert into apl0520 (aplid, begdate, enddate, asubpagtyp, recordno, " +
+                    //                                       "lineid, delind, creuser, credate, cretime, " +
+                    //                                       "upduser, upddate, updtime, startdate, finishdate, " +
+                    //                                       "apledu, instdept, instname, instcity, inststate, " +
+                    //                                       "instctry, aplprof, inudfield1, inudfield2, inudfield3, " +
+                    //                                       "inudfield4, dbtimestmp) " +
+                    //                                       "VALUES('" + aplid + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "','" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "',' ', '" + (i + 1) + "', " +
+                    //                                       "'" + (i + 1) + "',' ','" + user_id + "','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', " +
+                    //                                       "' ','" + insertdate.ToString("yyyy-MM-dd") + "','" + insertdate.ToString("HH:mm:ss") + "', '" + sdateedu[i].ToString("yyyy-MM-dd") + "','" + fdateedu[i].ToString("yyyy-MM-dd") + "', " +
+                    //                                       "'" + degreeedu[i] + "',' ', '" + instname[i] + "',' ', ' ', " +
+                    //                                       "'PK', ' ', '" + majors[i] + "','" + gpa[i] + "', ' ', " +
+                    //                                       "' ', '" + insertdate.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+
+
+                    //                     cmd.ExecuteNonQuery();
+                    //                }
+                    //     }
+
+                }
+
+
+                trans.Commit();
+
+
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+
+            }
+            finally
+            {
+                trans.Dispose();
+                con.Close();
+            }
+        }
+
+
+        
+
+
+        public void updateApl(string userid)
+        {
+            var user_id = System.Web.HttpContext.Current.Session["User_Id"].ToString();
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+
+            SqlTransaction trans;
+            SqlCommand cmd = con.CreateCommand();
+            trans = con.BeginTransaction();
+            DatabaeseClass db = new DatabaeseClass();
+            DateTime insertdate = db.convertedinsertdate(DateTime.Now.ToString());
+
+            try
+            {
+                cmd.Connection = con;
+                cmd.Transaction = trans;
+
+                
+                    int i = 0;
+
+                 
+
+                        cmd.CommandText = "update apl0610 set status = '1' where email = '"+ userid + "' ";
+
+
+                        cmd.ExecuteNonQuery();
+
+
+
+
+                trans.Commit();
+
+
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+
+            }
+            finally
+            {
+                trans.Dispose();
+                con.Close();
+            }
+        }
+
+
+
+
         public string popnotification(string[] reciparray, string sender, string subject, string notificationcase)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
