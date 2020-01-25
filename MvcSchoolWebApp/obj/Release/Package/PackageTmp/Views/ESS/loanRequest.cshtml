@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src=@Url.Content("~/Content/js/loanRequest.js?n=1") asp-append-version="true"></script>
 
 <section class="content">
     @using (Html.BeginForm("loanRequest", "ESS", FormMethod.Post))
@@ -38,10 +39,7 @@
 
                             <div class="ibox-content">
                                 <div class="row">
-
-
                                     <div class="row ">
-
                                         <div class="col-md-6">
                                             <div class="col-md-5">
                                                 <label>Employee Id</label>

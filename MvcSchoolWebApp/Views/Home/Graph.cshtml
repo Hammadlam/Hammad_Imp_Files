@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/Graph.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+</head>
+<style>
+
+    .grph .active ul {
+        display: block !important;
+    }
+
+    .btn-primary {
+        background-color: #2A3F54;
+    }
+
+    .Filters label {
+        display: block;
+        margin: 10px 0px;
+    }
+
+    .graph-btn {
+        margin-top: 4rem;
+    }
+
+    .multiselect-container.dropdown-menu {
+        height: 150px;
+        overflow-y: scroll;
+    }
+
+    /*.dataTables_scrollFoot {
+            height: 20rem;
+        }*/
+
+    .filter-label {
+        display: inline-block;
+        width: 18%;
+        margin: 10px 10px;
+    }
+
+    .col-filters {
+        display: none;
+    }
+
+    #detail_table_wrapper {
+        margin-top: 2rem;
+    }
+
+    .dataTables_scrollFoot input[type="checkbox"] {
+        position: relative !important;
+        width: 20%;
+        margin-right: 1rem;
+    }
+
+    #myModal3 {
+        position: fixed;
+        width: 60%;
+        height: 10%;
+        font-size: 16px;
+        margin-left: 20%;
+        opacity: 0.8;
+    }
+
+    /* span.ellipise {
+            overflow: hidden;
+            width: 55%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            margin: 0;
+            vertical-align: bottom;
+        }
+
+        .sidebar-footer, .mycontainer
+        {
+            width:277px !important;
+        }
+
+        .nav.child_menu > li > a {
+            display: inline-block;
+            width: 80%;
+        } */
+
+    #myModal4 {
+        position: fixed;
+        width: 60%;
+        height: 10%;
+        font-size: 16px;
+        margin-left: 20%;
+        opacity: 0.8;
+    }
+
+    .current {
+        background-color: white;
+    }
+</style>
+<body>
+    <div>
+        <div class="right_col" role="main">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2></h2>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="title">
+                                <h1>Charts</h1>
+                                <h3></h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 gr_filters">
+                                <!-- Filters Section -->
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+        <script src="~/Scripts/Graph_filters.js"></script>
+        <script src="~/Scripts/Graph.js"></script>
+
+
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+    </div>
+</body>
+</html>

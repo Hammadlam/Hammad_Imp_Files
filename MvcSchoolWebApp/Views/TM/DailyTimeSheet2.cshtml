@@ -1,0 +1,124 @@
+﻿@model MvcSchoolWebApp.Models.Timesheetmodal
+@{
+    ViewBag.Title = "DailyTimeSheet2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="ibox float-e-margins">
+                <div>
+
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Time Management
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Daily Time Sheet Report (Machine)
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="row">
+                            <form role="form" id="frmcreatedailyrpt2">
+                                <div class="row ">
+                                    @{
+                                        try
+                                        {
+                                            var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                                            if (list[0].earea.Trim() == "1000")
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="col-md-5">
+                                                        <label>Date</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+
+                                                        @Html.TextBoxFor(model => model.month, "Day", new { @Value = ViewBag.date, placeholder = "Date", @class = "date-day form-control m-b", @name = "DateTMR", @id = "DateTMR", @required = true, @onkeypress = "return false;", @autocomplete = "off" })
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+
+                                            string url = "/dashboard";
+                                            Response.Write("<script type='text/javascript'>");
+                                            Response.Write("window.location.href = '" + url + "'</script>");
+                                            Response.Flush();
+                                        }
+
+                                    }
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-md-5">
+                                            <input id="Btncreaterpt2" type="submit" value="Submit" name="btnEnter" class="btn btn-sm btn-default form-submitbtn" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox " id="attendanceViewTMR_div">
+                <div class="ibox-content">
+                    <div class="attendanceViewTMR_jqGrid">
+                        <table id="attendanceViewTMR_table"></table>
+                        <div id="pager_list_TMR"></div>
+                    </div>
+                    @*@using (Html.BeginForm("CreatePdf", "TM", FormMethod.Post))
+                        {*@
+
+                    @try
+                    {
+                        var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                        if (list[0].earea.Trim() == "1000")
+                        {
+
+                            <div class="row ">
+                                <div class="col-md-4">
+                                    <div class="col-md-5">
+                                        <input id="btn_createreport2" type="submit" class="btn btn-danger" name="name" value="Create Report" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        string url = "/dashboard";
+                        Response.Write("<script type='text/javascript'>");
+                        Response.Write("window.location.href = '" + url + "'</script>");
+                        Response.Flush();
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src=@Url.Content("~/content/js/DailyTimeSheet2.js") asp-append-version="true"></script>
+
+
+

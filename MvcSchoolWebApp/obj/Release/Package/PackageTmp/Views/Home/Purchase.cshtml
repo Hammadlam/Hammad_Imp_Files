@@ -1,8 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Purchase";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src=@Url.Content("~/Content/js/Purchase.js?n=1") asp-append-version="true"></script>
 
 <section class="content">
     <div class="row">
@@ -22,14 +22,14 @@
                             <li>
                                 <input type="radio" id="r2" name="r">
                                 <label for="r2">
-                                   Purchase & Inventory
+                                    Purchase & Inventory
                                 </label>
                             </li>
                         </ul>
                     </div>
 
                     <div class="ibox-content">
-                        <div class="purchase_jqGrid m-b">
+                        <div class="purchase_jqGrid m-b">s
                             <table id="purchase_table"></table>
                             <div id="purchase_pager"></div>
                         </div>
@@ -39,4 +39,3 @@
         </div>
     </div>
 </section>
-

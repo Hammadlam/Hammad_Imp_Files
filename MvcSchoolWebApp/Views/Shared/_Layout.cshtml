@@ -137,12 +137,37 @@
     <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n=1") asp-append-version="true"></script>
 
 
-    <script type="text/javascript">
+
+        <script type="text/javascript">
+
         @ViewBag.scriptcall2
         @ViewBag.call_alert
 
     </script>
     <script src=@Url.Content("~/Content/js/Layout.js?n=1") asp-append-version="true"></script>
+
+    <script language="javascript">
+
+        document.onmousedown = disableclick;
+        status = "Right Click Disabled";
+    function disableclick(event) {
+        if (event.button == 2) {
+
+        return false;
+    }
+}
+
+    $(document).keydown(function (event) {
+    if (event.keyCode == 123) { // Prevent F12
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+        return false;
+    }
+});
+
+ 
+
+    </script>
 
 </head>
 <body class="hold-transition skin-blue-light sidebar-collapse  sidebar-mini">
@@ -671,7 +696,7 @@
                                                     }
                                                 </ul>
                                             </li>
-                                                        }
+                                        }
 
 
 
@@ -739,7 +764,7 @@
                                                     }
                                                 </ul>
                                             </li>
-                                                        }
+                                        }
 
 
 
@@ -781,7 +806,7 @@
                                                 </ul>
                                             </li>
 
-                                                        }
+                                        }
 
                                         @if (list[36].menustat == "X")
                                         {
@@ -820,19 +845,19 @@
                                                 </ul>
                                             </li>
 
-                                                        }
+                                        }
                                     </ul>
                                 </li>
-                                                            }
+                            }
 
-                                                        }
+                        }
 
-                                                        catch (Exception)
-                                                        {
-                                                            string url = "/dashboard";
-                                                            Response.Write("<script type='text/javascript'>");
-                                                            Response.Write("window.location.href = '" + url + "'</script>");
-                                                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
 
                     @{
@@ -861,14 +886,14 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
                     @{
                         try
@@ -903,6 +928,16 @@
                                                         </a>
                                                     </li>
                                                 }
+                                                if (list[65].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/machine">
+                                                            <i class="fa fa-file-text" aria-hidden="true"></i><span> Time Sheet Report (Machine) </span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+
                                                 if (list[44].menustat == "X")
                                                 {
                                                     <li>
@@ -945,14 +980,14 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
 
                     @{
@@ -989,12 +1024,29 @@
                                                         </a>
                                                     </li>
                                                 }
+                                                if (list[62].menustat == "X")
+                                                {
+                                                    <li>
+                                                        <a href="~/TM/machine">
+                                                            <i class="fa fa-file-text" aria-hidden="true"></i><span> Time Sheet Report (Machine) </span>
+                                                        </a>
+                                                    </li>
+                                                }
+
 
                                                 <li>
                                                     <a href="~/TM/Dailytimesheet">
                                                         <i class="fa fa-file-text"></i><span> Daily Time Sheet Report</span>
                                                     </a>
                                                 </li>
+
+
+                                                <li>
+                                                    <a href="~/TM/Dailytimesheet2">
+                                                        <i class="fa fa-file-text"></i><span> Daily Time Sheet Report (Machine)</span>
+                                                    </a>
+                                                </li>
+
                                                 if (list[66].menustat == "X")
                                                 {
                                                     <li>
@@ -1039,14 +1091,14 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
 
                     @{
@@ -1127,14 +1179,14 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
 
                     @{
@@ -1159,8 +1211,78 @@
                                             </a>
                                         </li>
                                         <li><a href="~/home/sales"><i class="fa fa-bar-chart"></i><span>Sales</span></a></li>
+
+                                        <li>
+                                            <a href="~/home/hr"><i class="fa fa-bar-chart"></i><span>HR</span></a>
+                                        </li>
+
+                                        <li>
+                                            <a href="~/home/chart"><i class="fa fa-bar-chart"></i><span>Chart</span></a>
+                                        </li>
+
+
                                     </ul>
                                 </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-file"></i> <span>Scheduler Calendar</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+
+                                        <li><a href="~/ESS/Multi_Calendar"> <i class="fa fa-line-chart"></i><span>Scheduler Calendar</span></a></li>
+
+
+
+
+
+                                    </ul>
+                                </li>
+
+
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-file"></i> <span>Applicant</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+
+                                        <li><a href="~/ESS/Applicant_List"> <i class="fa fa-file"></i><span>Applicant List</span></a></li>
+
+
+                                    </ul>
+                                </li>
+
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-file"></i> <span>Purchases</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+
+                                        <li>
+                                            <a href="~/TM/mssTimeMgmt">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i><span> Invoice Processing </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="~/home/purchase_order">
+
+                                                <i class="fa fa-archive"></i><span>Down Payment</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="~/home/Down_payment"><i class="fa fa-bar-chart"></i><span>Purchase Order</span></a></li>
+                                        <li><a href="~/home/invoice_status"><i class="fa fa-bar-chart"></i><span>Invoice Payment Status</span></a></li>
+                                    </ul>
+                                </li>
+
                             }
                         }
                         catch (Exception)
@@ -1214,14 +1336,14 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
 
                     @{
@@ -1259,14 +1381,14 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
 
                     @{
@@ -1328,60 +1450,60 @@
                                         }
                                     </ul>
                                 </li>
-                                                }
-                                            }
-                                            catch (Exception)
-                                            {
-                                                string url = "/dashboard";
-                                                Response.Write("<script type='text/javascript'>");
-                                                Response.Write("window.location.href = '" + url + "'</script>");
-                                            }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string url = "/dashboard";
+                            Response.Write("<script type='text/javascript'>");
+                            Response.Write("window.location.href = '" + url + "'</script>");
+                        }
                     }
                     @*@{
-                            try
-                            {
-                                var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
-                                if (list[60].menustat == "X")
+            try
+            {
+                var list = HttpContext.Current.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+                if (list[60].menustat == "X")
+                {
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user"></i> <span>Time Management</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            @{
+                                try
                                 {
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="fa fa-user"></i> <span>Time Management</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            @{
-                                                try
-                                                {
-                                                    @*if (list[61].menustat == "X")
-                                                    {
-                                                        <li>
-                                                            <a href="~/TM/TimeSheet">
-                                                                <i class="fa fa-users"></i><span> Time Sheet </span>
-                                                            </a>
-                                                        </li>
-                                                    }
+                                    @*if (list[61].menustat == "X")
+                                    {
+                                        <li>
+                                            <a href="~/TM/TimeSheet">
+                                                <i class="fa fa-users"></i><span> Time Sheet </span>
+                                            </a>
+                                        </li>
+                                    }
 
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    string url = "/dashboard";
-                                                    Response.Write("<script type='text/javascript'>");
-                                                    Response.Write("window.location.href = '" + url + "'</script>");
-                                                }
-                                            }
-                                        </ul>
-                                    </li>
-                                                    }
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    string url = "/dashboard";
-                                                    Response.Write("<script type='text/javascript'>");
-                                                    Response.Write("window.location.href = '" + url + "'</script>");
-                                                }
-                        }*@
+                                }
+                                catch (Exception)
+                                {
+                                    string url = "/dashboard";
+                                    Response.Write("<script type='text/javascript'>");
+                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                }
+                            }
+                        </ul>
+                    </li>
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    string url = "/dashboard";
+                                    Response.Write("<script type='text/javascript'>");
+                                    Response.Write("window.location.href = '" + url + "'</script>");
+                                }
+        }*@
                 </ul>
             </section>
             <!-- /.sidebar -->

@@ -401,7 +401,7 @@ namespace MvcSchoolWebApp.Controllers
             DatabaseModel dm = new DatabaseModel();
             try
             {
-                string tablename;
+               // string tablename;
                 string query = "select distinct classid, classtxt, Cast(Substring(classid,2,LEN(classid)) as Integer) from Schclass " +
                                 "where campusid = '" + campusId + "'";
                 string new_query = "";
@@ -3397,6 +3397,64 @@ namespace MvcSchoolWebApp.Controllers
         }
 
         [HandleError]
+        public List<Timesheetmodal> FillTimeSheetAttendanceMachine(string empid, DateTime dateid)
+        {
+            List<Timesheetmodal> items = new List<Timesheetmodal>();
+            string month = dateid.ToString("yyyy-MM") + "-26";
+            string prevmonth = dateid.AddMonths(-1).ToString("yyyy-MM") + "-26";
+            try
+            {
+                string query = "select ep.firstname + ' ' + ep.lastname as name, e24.begdate, e24.enddate " +
+                "from emp0240 e24  " +
+                "inner join emppers ep on ep.empid = e24.empid   " +
+                "where e24.empid = '" + empid + "' and e24.begdate >= '" + prevmonth + "' and e24.begdate < '" + month + "' and e24.delind <> 'X' " +
+                "and ep.delind <> 'X' order by e24.begdate asc ";
+
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    int i = 1;
+                    while (da.obj_reader.Read())
+                    {
+                        string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
+
+                    
+                            enddate = "-";
+
+                        items.Add(new Timesheetmodal
+                        {
+                            id = i,
+                            employeename = da.obj_reader["name"].ToString(),
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
+                            checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
+                            checkouttime = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt"),
+                 
+                        });
+                        i++;
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FStdA. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
+
+        [HandleError]
         public List<Timesheetmodal> FillTimeSheetAttendance(string empid, DateTime dateid)
         {
             List<Timesheetmodal> items = new List<Timesheetmodal>();
@@ -3454,6 +3512,78 @@ namespace MvcSchoolWebApp.Controllers
             return items;
         }
 
+
+        public List<Timesheetmodal> FillDailyReport2(DateTime dateid)
+        {
+            List<Timesheetmodal> items = new List<Timesheetmodal>();
+            string currdate = dateid.ToString("yyyy-MM-dd");
+            string adddate = dateid.AddDays(1).ToString("yyyy-MM-dd");
+            try
+            {
+                string query = "select e2.empid, ep.firstname + ' ' + ep.lastname as name, e2.begdate, " +
+                " e2.enddate, e2.delind from emppers ep " +
+                                "inner join emp0240 e2 on ep.empid = e2.empid " +
+                                "where e2.delind <> 'X' and ep.delind <> 'X' and " +
+                                "e2.begdate >= '" + currdate + "' and e2.begdate < '" + adddate + "'  order by e2.begdate ";
+                //string query = "select e2.empid,ep.firstname,ep.lastname, e2.begdate," +
+                //                 "e2.enddate, cst.ordstxt from emppers ep" +
+                //                "inner join emp0240 e2 on ep.empid = e2.empid" +
+                //                "inner join emp0280 e3 on e3.empid = e3.empid" +
+                //                 "inner join costorder cst on e3.clientid = cst.costorder" +
+                //               " where e2.delind <> 'X' and ep.delind <> 'X' and" +
+                //               " e2.begdate >='" + currdate + "' and e2.begdate < '" + adddate + "' and cst.delflag = '' order by e2.begdate";
+
+                //string query = "select e2.empid, e2.begdate, " +
+                //                " e2.enddate, cst.ordstxt, e2.isactive from emppers ep " +
+                //                "inner join emp0240 e2 on ep.empid = e2.empid " +
+                //                "inner join costorder cst on e2.clientid = cst.costorder " +
+                //                "where e2.delind <> 'X' and ep.delind <> 'X' and " +
+                //                "e2.begdate >= '" + currdate + "' and e2.begdate < '" + adddate + "' and cst.delflag = '' order by e2.begdate ";
+
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+                        string enddate = Convert.ToDateTime(da.obj_reader["enddate"]).ToString("hh:mm tt");
+                        if (da.obj_reader["delind"].ToString().Trim() == "X")
+                            enddate = "-";
+
+                        items.Add(new Timesheetmodal
+                        {
+                            empid = da.obj_reader["empid"].ToString(),
+                            employeename = da.obj_reader["name"].ToString(),
+                            checkintime = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("hh:mm tt"),
+                            checkouttime = enddate,
+                            date = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dd-MMMM-yyyy"),
+                            day = Convert.ToDateTime(da.obj_reader["begdate"]).ToString("dddd"),
+                            //tinlat = da.obj_reader["tinlat"].ToString(),
+                            //tinlong = da.obj_reader["tinlong"].ToString(),
+                            //toutlat = da.obj_reader["toutlat"].ToString(),
+                            //toutlong = da.obj_reader["toutlong"].ToString(),
+                            //client = da.obj_reader["ordstxt"].ToString()
+                        });
+                    }
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    da.CloseConnection();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing DBClass-FStdA. Error Details: " + ex.Message);
+            }
+            return items;
+        }
+
         [HandleError]
         public List<Timesheetmodal> FillTimeSheetConveyance(DateTime month)
         {
@@ -3462,11 +3592,11 @@ namespace MvcSchoolWebApp.Controllers
             string prevmonth = month.AddMonths(-1).ToString("yyyy-MM") + "-26";
             try
             {
-                string query = "select ep.firstname + ' ' + ep.lastname as name, c.ordstxt, Count(attd.clientid) as NoofVisit from emp0280 attd " +
+                string query = "select ep.firstname + ' ' + ep.lastname as name, c.ordstxt, Count(attd.clientid) as NoofVisit , c.userdef3 as TotalKM,c.userdef4 as RatePerKM, c.userdef1 as RatePerVisit , (Count(attd.clientid) * c.userdef1) as Total  from emp0280 attd " +
                                 "inner join costorder c on attd.clientid = c.costorder " +
                                 "inner join emppers ep on attd.empid = ep.empid " +
                                 "where attd.clientid <> '150046' and ep.delind <> 'X' and attd.delind <> 'X' and attd.begdate >= '" + prevmonth + "' and attd.begdate < '" + thismonth + "' and c.delflag = '' " +
-                                "group by attd.clientid, c.ordstxt, ep.firstname, ep.lastname " +
+                                "group by attd.clientid, c.ordstxt, ep.firstname, ep.lastname , c.userdef1 ,c.userdef3,c.userdef4 " +
                                 "order by name asc";
 
                 da.CreateConnection();
@@ -3481,7 +3611,12 @@ namespace MvcSchoolWebApp.Controllers
                         {
                             Name = da.obj_reader["name"].ToString(),
                             client = da.obj_reader["ordstxt"].ToString(),
-                            noofvisit = da.obj_reader["NoofVisit"].ToString()
+                            noofvisit = da.obj_reader["NoofVisit"].ToString(),
+                            totalkm = da.obj_reader["TotalKM"].ToString(),
+                            rateperkm = da.obj_reader["RatePerKM"].ToString(),
+                            rates = da.obj_reader["RatePerVisit"].ToString(),
+                            total = da.obj_reader["Total"].ToString()
+
                         });
                     }
                     da.obj_reader.Close();

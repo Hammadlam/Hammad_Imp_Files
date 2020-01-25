@@ -190,7 +190,7 @@ function getDeleted_C_Timetable() {
 //                var cl = ids[i];
 //                //class='btn btn-xs btn-info'
 //                view = "<input style='height:18px;width:75px;' type='button' value='View' class='btn btn-xs btn-primary'>";
-//                download = "&nbsp;<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
+//                download = "<input style='height:18px;width:75px;' type='button' class='btn btn-xs btn-primary' value='Download' />";
 
 //                jQuery("#classtimetable_grid").setRowData(ids[i], { status: view + download })
 //            }

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERM Live", "MvcSchoolWebApp\ERM Live.csproj", "{FB2564E0-622A-42DD-9806-D278D3073367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Debug|x86.ActiveCfg = Debug|x86
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Debug|x86.Build.0 = Debug|x86
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Release|x86.ActiveCfg = Release|x86
+		{FB2564E0-622A-42DD-9806-D278D3073367}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D77270A3-BA5E-4A64-81B6-623B9A00368A}
+	EndGlobalSection
+EndGlobal

@@ -34,5 +34,9 @@ namespace MvcSchoolWebApp.Models
         public string noofvisit { get; set; }
         public string remarks { get; set; }
         public string remarkstout { get; set; }
+        public string rates { get; set; }
+        public string total { get; set; }
+        public string totalkm { get; set; }
+        public string rateperkm { get; set; }
     }
 }

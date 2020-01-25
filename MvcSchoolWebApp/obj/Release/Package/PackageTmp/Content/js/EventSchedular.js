@@ -25,7 +25,7 @@ function FetchEventAndRenderCalendar() {
             GenerateCalender(events);
         },
         error: function (error) {
-            alert('failed');
+            //alert('failed');
         }
     });
 
@@ -76,7 +76,7 @@ $('#btnDelete').click(function () {
                 });
             },
             error: function () {
-                alert('Failed');
+                //alert('Failed');
             }
         })
     }

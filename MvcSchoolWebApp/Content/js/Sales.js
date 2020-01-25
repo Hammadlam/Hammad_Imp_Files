@@ -1,6 +1,19 @@
 ﻿
 $(document).ready(function () {
     loaddata_sales();
+
+    // code to read selected table row cell data (values).
+    $("#sales_table").on('click', '#view', function () {
+        // get the current row
+        var currentRow = $(this).closest("tr");
+
+        var ReportsId = currentRow.find("td:eq(1)").text().trim(); // get current row 2nd TD
+
+
+        window.location.href = "/Reports/FlexData?reportid=" + ReportsId
+
+    });
+
 });
 
 function loaddata_sales() {
@@ -35,7 +48,7 @@ function loaddata_sales() {
             for (var i = 0; i < ids.length; i++) {
                 var cl = ids[i];
 
-                view = "<input style='height:18px;width:75px;' type='button' value='View' onclick=\"getSelectedRow_sales();\" class='btn btn-xs btn-danger'>";
+                view = "<input id='view' style='height:18px;width:75px;' type='button' value='View' class='btn btn-xs btn-danger'>";
 
                 jQuery("#sales_table").setRowData(ids[i], { act: view })
             }

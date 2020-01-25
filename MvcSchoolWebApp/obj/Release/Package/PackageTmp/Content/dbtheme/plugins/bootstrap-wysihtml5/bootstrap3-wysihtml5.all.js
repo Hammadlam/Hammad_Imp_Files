@@ -4827,7 +4827,7 @@ wysihtml5.browser = (function() {
         '<': '&lt;',
         '>': '&gt;',
         '"': "&quot;",
-        '\t':"&nbsp; "
+        '\t':" "
       };
   wysihtml5.lang.string = function(str) {
     str = String(str);
@@ -4877,7 +4877,7 @@ wysihtml5.browser = (function() {
           html = html.replace(/(?:\r\n|\r|\n)/g, '<br />');
         }
         if (convertSpaces) {
-          html = html.replace(/  /gi, "&nbsp; ");
+          html = html.replace(/  /gi, " ");
         }
         return html;
       }
@@ -8429,8 +8429,8 @@ wysihtml5.quirks.ensureProperClearing = (function() {
     var element = this;
     setTimeout(function() {
       var innerHTML = element.innerHTML.toLowerCase();
-      if (innerHTML == "<p>&nbsp;</p>" ||
-          innerHTML == "<p>&nbsp;</p><p>&nbsp;</p>") {
+      if (innerHTML == "<p></p>" ||
+          innerHTML == "<p></p><p></p>") {
         element.innerHTML = "";
       }
     }, 0);
@@ -11527,7 +11527,7 @@ wysihtml5.commands.formatCode = {
           for (row = 0; row < value.rows; row ++) {
               html += '<tr>';
               for (col = 0; col < value.cols; col ++) {
-                  html += "<td>&nbsp;</td>";
+                  html += "<td></td>";
               }
               html += '</tr>';
           }

@@ -12,11 +12,17 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using MvcSchoolWebApp.Controllers;
+using System.Collections;
+using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net;
+using System.Web.Script.Serialization;
 
 namespace MvcSchoolWebApp.Controllers
 {
     public class ESSController : Controller
     {
+        public Database.Database da = new Database.Database("Falconlocal");
         MessageCls msgobj = new MessageCls();
         public static string user_role;
         public static string user_id;
@@ -107,6 +113,433 @@ namespace MvcSchoolWebApp.Controllers
             //System.IO.Stream stream = rc.getrptstream(rptid, updatedquery);
             return File(stream, "application/pdf");
         }
+        [HttpPost]
+        public JsonResult SaveCalendar(string[][] cdata)
+        {
+           
+
+
+            din = new DatabaseInsertClass();
+
+            din.insertCalender(cdata);
+
+            return Json(true);
+
+
+        }
+
+        [HttpPost]
+             public JsonResult UpdateApl(string userid)
+        {
+
+            din = new DatabaseInsertClass();
+
+            din.updateApl(userid);
+
+            return Json(true);
+
+
+        }
+
+        [HttpPost]
+        public string GetAppl(string aplid)
+        {
+            string query;
+
+            if (aplid == "0") {
+
+                query = "select RTRIM(usr01.title)+' ' + RTRIM(usr01.fname) + ' ' + usr01.lname as Name , usr01.userid from usr03 inner join usr01 on usr03.userid = usr01.userid where paramid = 'APL'";
+
+            }
+            else
+            {
+
+                query = "select usr01.title , usr01.fname,usr01.lname  , usr01.userid  from usr03 join usr01 on usr03.userid = usr01.userid	where paramid = 'APL' and usr01.userid = '" + aplid + "'";
+
+
+            }
+
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+                    List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+                    Dictionary<string, object> row;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        row = new Dictionary<string, object>();
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            row.Add(col.ColumnName, dr[col]);
+                        }
+                        rows.Add(row);
+
+                    }
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    string jsonvalue = jsonSerialiser.Serialize(rows);
+
+                    return jsonvalue;
+                }
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult GetEmpDtl(string empid)
+        {
+
+
+            ArrayList arryList1 = new ArrayList();
+            ArrayList arryList = new ArrayList();
+
+            try
+            {
+
+
+                // string tablename;
+                string query = "select esub.eesubgrptxt, epos.postxt from empmain as ep inner join emporg as eorg on ep.empid = eorg.empid inner join eposhdr as epos on eorg.pos = epos.pos inner join eesubgrp as esub on ep.eesubgrp = esub.eesubgrp where ep.empid = '" + empid + "' and eorg.delind <> 'X'";
+
+                da.CreateConnection();
+                da.OpenConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+
+                    Dictionary<string, object> row;
+
+                    while (da.obj_reader.Read())
+                    {
+
+                        arryList1.Add(da.obj_reader["eesubgrptxt"].ToString());
+                        arryList.Add(da.obj_reader["postxt"].ToString());
+
+                    }
+                    da.obj_reader.Close();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    return Json(new { success = false, responseText = "not found" }, JsonRequestBehavior.AllowGet); ;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing" + ex.Message);
+            }
+
+
+
+            return Json(new { success = true, responseText = arryList1, responseID = arryList }, JsonRequestBehavior.AllowGet);
+
+        }
+        [HttpGet]
+        public JsonResult DeleteCalendar(string id)
+        {
+            try
+            {
+                // string tablename;
+                string query = "delete from emp0290 where pid = '" + id + "'";
+                da.CreateConnection();
+                da.OpenConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.obj_sqlcommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult UpdateCalendar(string[][] cdata)
+        {
+            din = new DatabaseInsertClass();
+
+            string status = din.updateCalender(cdata);
+
+
+            return Json(status);
+        }
+
+
+
+
+        [HttpGet]
+        public JsonResult GetCalendar(string pid , string empid = null , string moment = null)
+        {
+            var user_id = System.Web.HttpContext.Current.Session["User_Id"].ToString();
+
+            string[] arr = new string[20];
+
+            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            ArrayList arryList1 = new ArrayList();
+            try
+
+            {
+                string query;
+
+
+                
+
+
+                if (pid == "0")
+                {
+
+                    query = "select *  from emp0290  join emppers on emp0290.empid = emppers.empid join visittype on emp0290.attype = visittype.visittype join costorder on emp0290.clientid = costorder.costorder where emp0290.creuser = '" + user_id + "'";
+               
+                }else if (pid == "1")
+                {
+
+                    DateTime date = DateTime.Parse(moment);
+                    string month = date.ToString("MM");
+                    string year = date.ToString("yyyy");
+
+
+                    query = "select *  from emp0290  join emppers on emp0290.empid = emppers.empid join visittype on emp0290.attype = visittype.visittype join costorder on emp0290.clientid = costorder.costorder where emp0290.empid = '" + empid + "' and MONTH(emp0290.begdate) = '"+ month + "' and YEAR(emp0290.begdate) = '"+ year + "'";
+                }
+                else
+                {
+
+                    query = "select *  from emp0290  join emppers on emp0290.empid = emppers.empid join visittype on emp0290.attype = visittype.visittype join costorder on emp0290.clientid = costorder.costorder where pid = '" + pid + "'";
+                }
+
+
+
+                da.CreateConnection();
+                da.OpenConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+
+                    Dictionary<string, object> row;
+
+                    while (da.obj_reader.Read())
+                    {
+                        row = new Dictionary<string, object>();
+
+                        row.Add("attype", da.obj_reader["attype"].ToString());
+                        row.Add("typetxt", da.obj_reader["typetxt"].ToString());
+                        row.Add("starttime", da.obj_reader["starttime"].ToString());
+                        row.Add("endtime", da.obj_reader["endtime"].ToString());
+                        row.Add("remarks", da.obj_reader["remarks"].ToString());
+                        row.Add("location", da.obj_reader["location"].ToString());
+                        row.Add("clientid", da.obj_reader["clientid"].ToString());
+                        row.Add("clientname", da.obj_reader["ordstxt"].ToString());
+                        row.Add("purpose", da.obj_reader["purpose"].ToString());
+                        row.Add("pid", da.obj_reader["pid"].ToString());
+                        row.Add("vwith", da.obj_reader["vwith"].ToString());
+                        row.Add("empid", da.obj_reader["empid"].ToString());
+                        row.Add("EmployeeName", da.obj_reader["firstname"].ToString() + " " + da.obj_reader["midname"].ToString() + " " + da.obj_reader["lastname"].ToString());
+                        rows.Add(row);
+                        //arryList1.Add(da.obj_reader["empid"].ToString());
+                        //arryList1.Add(da.obj_reader["empid"].ToString());
+
+                    }
+                    da.obj_reader.Close();
+                }
+                else
+                {
+                    da.obj_reader.Close();
+                    //return items;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Occured: While Processing" + ex.Message);
+            }
+
+
+            //string isoJson = JsonConvert.SerializeObject(rows, new IsoDateTimeConverter());
+
+
+            //return isoJson;
+
+            return Json(new { success = true, responseText = rows }, JsonRequestBehavior.AllowGet);
+
+
+
+
+
+        }
+        public ActionResult Applicant_List()
+
+        {
+
+            return View();
+        
+        
+        }
+
+
+
+            public ActionResult Multi_Calendar()
+        
+        {
+
+            var list = new List<Report>();
+
+            List<Report> listuser = new List<Report>();
+            Report users = new Report();
+
+            string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emppers as ep where ep.delind <> 'X' and ep.empid not in (Select empid from emp0351 as e51 where e51.delind <> 'X' and e51.payblock = 'X') order by empname ASC";
+            da.CreateConnection();
+            da.OpenConnection();
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                    listuser.Add(new Report
+                    {
+                        empid = da.obj_reader["empid"].ToString().Trim(),
+                        empname = da.obj_reader["empname"].ToString()
+                    });
+                }
+
+            }
+
+            da.obj_reader.Close();
+
+
+            //var client = new List<Clientmodel>();
+
+            //List<Clientmodel> listclient = new List<Clientmodel>();
+            //Clientmodel clients = new Clientmodel();
+
+
+            query = "select costorder, ordstxt from costorder";
+
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                    listuser.Add(new Report
+                    {
+                        costorder = da.obj_reader["costorder"].ToString(),
+                        cname = da.obj_reader["ordstxt"].ToString()
+                    });
+                }
+
+            }
+
+            da.obj_reader.Close();
+
+            query = "select visittype, typetxt from visittype";
+
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                    listuser.Add(new Report
+                    {
+                        visittype = da.obj_reader["visittype"].ToString(),
+                        typetxt = da.obj_reader["typetxt"].ToString()
+                    });
+                }
+
+            }
+
+
+
+
+            return View(listuser);
+        }
+
+
+        public ActionResult View_Calendar()
+
+        {
+
+            var list = new List<Report>();
+
+            List<Report> listuser = new List<Report>();
+            Report users = new Report();
+
+            string query = "select distinct ep.empid, ep.firstname + ' ' + ep.midname + ' ' + ep.lastname as 'empname' from emppers as ep where ep.delind <> 'X' and ep.empid not in (Select empid from emp0351 as e51 where e51.delind <> 'X' and e51.payblock = 'X') order by empname ASC";
+            da.CreateConnection();
+            da.OpenConnection();
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                    listuser.Add(new Report
+                    {
+                        empid = da.obj_reader["empid"].ToString().Trim(),
+                        empname = da.obj_reader["empname"].ToString()
+                    });
+                }
+
+            }
+
+            da.obj_reader.Close();
+
+
+
+
+            query = "select costorder, ordstxt from costorder";
+
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                    listuser.Add(new Report
+                    {
+                        costorder = da.obj_reader["costorder"].ToString(),
+                        cname = da.obj_reader["ordstxt"].ToString()
+                    });
+                }
+
+            }
+
+            da.obj_reader.Close();
+
+            query = "select visittype, typetxt from visittype";
+
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                    listuser.Add(new Report
+                    {
+                        visittype = da.obj_reader["visittype"].ToString(),
+                        typetxt = da.obj_reader["typetxt"].ToString()
+                    });
+                }
+
+            }
+
+
+
+
+            return View("Multi_Calendar", listuser);
+        }
+
+
+
+
 
         public ActionResult leaveRequest()
         {          

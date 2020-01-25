@@ -20,6 +20,7 @@
         text-align: left;
     }
 </style>
+<script src=@Url.Content("~/Content/js/Profile.js?n=2") asp-append-version="true"></script>
 
 @using (Html.BeginForm())
 {
@@ -38,7 +39,7 @@
 
                         <div class="ibox-title">
                             <h3>
-                                Supernova Solution /75400 Karachi
+                                SuperNova Solutions / 75400 Karachi
                             </h3>
 
                         </div>
@@ -63,10 +64,10 @@
                             <div class="row">
                                 <div class="row" style="margin-top: 10px;">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-lg-12">
-                                        <i class="glyphicon glyphicon-circle-arrow-down btn-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i class="glyphicon glyphicon-circle-arrow-down btn-lg"></i>
                                         <b style="font-family:Arial">Genral Company Information </b>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button type="button" id="btnEdit"> <img src="~/Content/dbtheme/dist/img/dl.png" class="cust-icon" /> Edit</button>
+                                        
+                                        <button type="button" id="btnEdit" style="display:none;"> <img src="~/Content/dbtheme/dist/img/dl.png" class="cust-icon" /> Edit</button>
                                         <img src="/Content/dbtheme/dist/img/ic.jpg" class="pull-right cust-icon" style="margin-top:5px; margin-right:5px;" />
                                     </div>
 
@@ -77,27 +78,26 @@
                                             <div style="margin-left: 20px; margin-top: 20px; font-family: Arial; font-size: small">
                                                 <div class="row">
                                                     <div class="col-xs-3">
-                                                        Name 1:
+                                                        <label>
+                                                            Name 1:
+                                                        </label>
                                                     </div>
                                                     <div class="col-xs-5">
-                                                        <label id="lblName1">Supernova Solutions</label>
-                                                        <input type="text" id="txtName1" class="form-control input-sm " />
+                                                        <label id="lblName1">SuperNova Solutions</label>
+                                                        <input type="text" id="txtName1" style="display:none;" class="form-control input-sm " />
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-xs-3">
-                                                        Name 2:
+                                                        <label>
+                                                            Name 2:
+                                                        </label>
                                                     </div>
                                                     <div class="col-xs-5">
                                                         <label id="lblName2"></label>
-                                                        <input type="text" id="txtName2" class="form-control input-sm" />
+                                                        <input type="text" id="txtName2" style="display:none;" class="form-control input-sm" />
                                                     </div>
                                                 </div>
-                                                @*<p>
-                                                        Name 1:
-                                                        <label>SuperNova Solutions</label>
-                                                    </p>
-                                                    <p>Name 2:</p>*@
                                             </div>
                                             <div style="margin-left: 10px;">
                                                 <b>Partner Finder</b>
@@ -124,79 +124,230 @@
                                                     <div style="margin-left: 10px; margin-top: 10px; font-family: Arial; font-size:small; ">
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Street 2:</p>
+                                                                <label>
+                                                                    ID:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
-                                                                <label id="lblStrt1">Main Shahra -e- Faisal</label>
+                                                                @Html.Label(Model.empid, new {id = "lblempid" })
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>*@
+                                                                <input type="text" id="txtempid" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Name:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.fullname, new { id = "lblfullname" })
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>*@
+                                                                <input type="text" id="txtfullname" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Last Name:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.lastname, new { id = "lblemplastname" })
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>*@
+                                                                <input type="text" id="txtemplastname" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Father Name:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.fathername, new { id = "lblempfathername" })
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>*@
+                                                                <input type="text" id="txtempfathername" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    D.O.B.:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.dob, new { id = "lblempdob" })
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>*@
+                                                                <input type="text" id="txtempdob" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    CNIC:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.nic, new { id = "lblcnic" })
+                                                                @*<label id="lblCtry">PK</label>*@
+                                                                <input type="text" id="txtcnic" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Joining Date:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.joiningdate, new { id = "lbljoindate" })
+                                                                @*<label id="lblCtry">PK</label>*@
+                                                                <input type="text" id="txtjoindate" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Gender:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.gender, new { id = "lblgender" })
+                                                                @*<label id="lblCtry">PK</label>*@
+                                                                <input type="text" id="txtgender" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Designation:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.designation, new { id = "lbldesignation" })
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>*@
+                                                                <input type="text" id="txtdesignation" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Contact Number:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.district, new { id = "lblPhone" })
+                                                                @*<label id="lblPhone">PK  213 438 7249</label>*@
+                                                                <input type="text" id="txtPhone" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Mailing Address:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @*@Html.Label(Model.paddress, new { id = "lblStrt2" })*@
+
+                                                                <label id="lblStrt2">@ViewBag.address</label>
+                                                                <input type="text" id="txtStrt2" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        @*<div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Street 2:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.paddress2)
+                                                                @*<label id="lblStrt1">Main Shahra -e- Faisal</label>
                                                                 <input type="text" id="txtStrt1" class="form-control input-sm" />
                                                             </div>
-                                                        </div>
+                                                        </div>*@
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Street/House Num:</p>
+                                                                <label>
+                                                                    Postal/Zip Code:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
-                                                                <label id="lblStrt2">206 Park Avenue</label>
-                                                                <input type="text" id="txtStrt2" class="form-control input-sm" />
+                                                                @Html.Label(Model.zipcode, new { id = "lblZip" })
+                                                                @*<label id="lblZip">7540</label>*@
+                                                                <input type="text" id="txtZip" style="display:none;" class="form-control input-sm" />
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Street4:</p>
+                                                                <label>
+                                                                    City:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.city, new { id = "lblCity" })
+                                                                @*<label id="lblCity">Karachi</label>*@
+                                                                <input type="text" id="txtCity" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Country:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.nationality, new { id = "lblCtry" })
+                                                                @*<label id="lblCtry">PK</label>*@
+                                                                <input type="text" id="txtCtry" style="display:none;" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>
+
+                                                        @*<div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Street/House Num:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-xs-6 txt-align-lft">
+                                                                @Html.Label(Model.paddress)
+                                                                @*<label id="lblStrt2">206 Park Avenue</label>
+                                                                <input type="text" id="txtStrt2" class="form-control input-sm" />
+                                                            </div>
+                                                        </div>*@
+                                                        @*<div class="row">
+                                                            <div class="col-xs-6 txt-align-rgt">
+                                                                <label>
+                                                                    Street4:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
                                                                 <label id="lblStrt4">....</label>
                                                                 <input type="text" id="txtStrt4" class="form-control input-sm" />
                                                             </div>
                                                         </div>
+                                                        
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Postal/Zip Code:</p>
-                                                            </div>
-                                                            <div class="col-xs-6 txt-align-lft">
-                                                                <label id="lblZip">7540</label>
-                                                                <input type="text" id="txtZip" class="form-control input-sm" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-6 txt-align-rgt">
-                                                                <p>City:</p>
-                                                            </div>
-                                                            <div class="col-xs-6 txt-align-lft">
-                                                                <label id="lblCity">Karachi</label>
-                                                                <input type="text" id="txtCity" class="form-control input-sm" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-6 txt-align-rgt">
-                                                                <p>State Province:</p>
+                                                                <label>
+                                                                    State Province:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
                                                                 <label id="lblProv">Pakistan</label>
                                                                 <input type="text" id="txtProv" class="form-control input-sm" />
                                                             </div>
                                                         </div>
+                                                        
+                                                        
+                                                        
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Country:</p>
-                                                            </div>
-                                                            <div class="col-xs-6 txt-align-lft">
-                                                                <label id="lblCtry">PK</label>
-                                                                <input type="text" id="txtCtry" class="form-control input-sm" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Telephone:</p>
-                                                            </div>
-                                                            <div class="col-xs-6 txt-align-lft">
-                                                                <label id="lblPhone">PK  213 438 7249</label>
-                                                                <input type="text" id="txtPhone" class="form-control input-sm" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Telefex:</p>
+                                                                <label>
+                                                                    Telefex:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
                                                                 <label id="lblFex">PK  (92) (21) (345-2)</label>
@@ -205,7 +356,9 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Email:</p>
+                                                                <label>
+                                                                    Email:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
                                                                 <label id="lblEmail">info@supernova.com.pk</label>
@@ -214,13 +367,15 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xs-6 txt-align-rgt">
-                                                                <p>Company Website:</p>
+                                                                <label>
+                                                                    Company Website:
+                                                                </label>
                                                             </div>
                                                             <div class="col-xs-6 txt-align-lft">
                                                                 <label id="lblWeb">www.supernova.com.pk</label>
                                                                 <input type="text" id="txtWeb" class="form-control input-sm" />
                                                             </div>
-                                                        </div>
+                                                        </div>*@
 
                                                     </div>
 

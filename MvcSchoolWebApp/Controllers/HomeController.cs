@@ -12,6 +12,11 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using MvcSchoolWebApp.Data;
 using System.Configuration;
+using System.Web.Services;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace MvcSchoolWebApp.Controllers
 {
@@ -27,6 +32,7 @@ namespace MvcSchoolWebApp.Controllers
         public static string popup_status;
         public static int error_code;
         public static List<Users> user_dtl;
+        public static string gr_id;
 
         private Database.Database da = new Database.Database("Falconlocal");
         Data.data data = new data();
@@ -317,6 +323,22 @@ namespace MvcSchoolWebApp.Controllers
             postedFile.SaveAs(path + filename);
             return path + filename;
         }
+
+        public ActionResult Hr()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+
+            if (list[37].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
+
+            ViewBag.msglist = msgobj.GetNotifications();
+            ViewBag.TotalNotification = msgobj.NumberofNotifications();
+            return View();
+        }
+
+
         public ActionResult Assignment()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
@@ -502,6 +524,173 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.date = db.converteddisplaydate(DateTime.Now.ToString()).ToString("MMMM yyyy");
             return View(attendance);
         }
+        [HttpPost]
+        public static List<graph> DetailCustomerAPIAsync(string id)
+        {
+            List<graph> cust = new List<graph>();
+
+            //List<UserModel> user_session = (List<UserModel>)HttpContext.Current.Session["Login"];
+            //string userid = user_session[0].userid;
+
+            //UserModel u = new UserModel();
+            //u.userid = userid;
+            graph d = new graph();
+
+            //d.custno = "";
+            //d.custname1 = "";
+            //d.custgrptxt = "";
+            //d.CustomerClassification = "";
+            //d.visittype = "";
+            //d.SalesRep = "";
+            //d.VisitWith = "";
+            ////d.plan_date = "";
+            //d.status = "";
+            //d.meetingwith = "";
+            //d.vagenda = "";
+            //d.feedback = "";
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //POST Method  
+
+
+                string postBody = JsonConvert.SerializeObject(d);
+                HttpContent content = new StringContent(postBody, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("api/Dashboard/displayReport1", content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Get the URI of the created resource.  
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    cust = JsonConvert.DeserializeObject<List<graph>>(result);
+
+                }
+            }
+            return cust;
+        }
+        [HttpPost]
+        public JsonResult DisplayGraphAPIAsync(string id)
+        {
+            List<graph> graph = new List<graph>();
+
+            //List<UserModel> user_session = (List<UserModel>)HttpContext.Current.Session["Login"];
+            //string userid = user_session[0].userid;
+
+            // Dashboard d = new Dashboard();
+            graph d = new graph();
+            d.sforid = id;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                string postBody = JsonConvert.SerializeObject(d);
+                HttpContent content = new StringContent(postBody, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("api/Dashboard/displayGraphCount", content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Get the URI of the created resource.  
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    graph = JsonConvert.DeserializeObject<List<graph>>(result);
+
+                }
+            }
+            return Json(graph);
+        }
+
+        [HttpPost]
+        public JsonResult DisplayApplyGraphFilters(string[] filter)
+        {
+            List<graph> graph = new List<graph>();
+
+            //List<UserModel> user_session = (List<UserModel>)HttpContext.Current.Session["Login"];
+            //string userid = user_session[0].userid;
+
+            // Dashboard d = new Dashboard();
+            graph d = new graph();
+            d.sforid = gr_id;
+            d.filters = filter;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                string postBody = JsonConvert.SerializeObject(d);
+                HttpContent content = new StringContent(postBody, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("api/Dashboard/displayGraphCount", content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Get the URI of the created resource.  
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    graph = JsonConvert.DeserializeObject<List<graph>>(result);
+
+                }
+            }
+            return Json(graph);
+        }
+
+        [HttpPost]
+        public JsonResult DisplayGraphFilters(string id)
+        {
+            List<graph> graph = new List<graph>();
+
+            //List<UserModel> user_session = (List<UserModel>)HttpContext.Current.Session["Login"];
+            //string userid = user_session[0].userid;
+
+            // Dashboard d = new Dashboard();
+            graph d = new graph();
+            d.module_id = id;
+            gr_id = id;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                string postBody = JsonConvert.SerializeObject(d);
+                HttpContent content = new StringContent(postBody, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("api/Dashboard/displayGraphfilter", content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Get the URI of the created resource.  
+                    string result = response.Content.ReadAsStringAsync().Result;
+                    graph = JsonConvert.DeserializeObject<List<graph>>(result);
+
+                }
+            }
+            return Json(graph);
+        }
+
+
+        public ActionResult Graph()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+            if (list[37].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
+
+            //   DisplayGraphAPIAsync("ch15");
+
+            // ViewBag.msglist = msgobj.GetNotifications();
+            // ViewBag.TotalNotification = msgobj.NumberofNotifications();
+            return View();
+        }
+
 
         public ActionResult Finance()
         {
@@ -528,7 +717,10 @@ namespace MvcSchoolWebApp.Controllers
             ViewBag.TotalNotification = msgobj.NumberofNotifications();
             return View();
         }
-        public ActionResult Sales()
+
+
+
+        public ActionResult Chart()
         {
             var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
             if (list[37].menustat != "X")
@@ -541,6 +733,58 @@ namespace MvcSchoolWebApp.Controllers
             return View();
         }
 
+
+
+        public ActionResult Sales()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+
+            if (list[37].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
+
+            ViewBag.msglist = msgobj.GetNotifications();
+            ViewBag.TotalNotification = msgobj.NumberofNotifications();
+            return View();
+        }
+
+        public ActionResult invoice_status()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+            if (list[37].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
+
+           // ViewBag.msglist = msgobj.GetNotifications();
+           // ViewBag.TotalNotification = msgobj.NumberofNotifications();
+            return View();
+        }
+        public ActionResult purchase_order()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+            if (list[37].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
+
+            // ViewBag.msglist = msgobj.GetNotifications();
+            // ViewBag.TotalNotification = msgobj.NumberofNotifications();
+            return View();
+        }
+        public ActionResult Down_payment()
+        {
+            var list = HttpContext.Session["User_Rights"] as List<MvcSchoolWebApp.Models.LoginModel>;
+            if (list[37].menustat != "X")
+            {
+                return RedirectToAction("Index", "dashboard");
+            }
+
+            // ViewBag.msglist = msgobj.GetNotifications();
+            // ViewBag.TotalNotification = msgobj.NumberofNotifications();
+            return View();
+        }
         public ActionResult Admission()
         {
             ViewBag.msglist = msgobj.GetNotifications();
