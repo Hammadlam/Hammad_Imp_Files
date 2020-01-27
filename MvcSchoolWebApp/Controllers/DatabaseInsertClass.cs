@@ -347,7 +347,7 @@ namespace MvcSchoolWebApp.Controllers
         
 
 
-        public void updateApl(string userid)
+        public void updateApl(string userid, string act)
         {
             var user_id = System.Web.HttpContext.Current.Session["User_Id"].ToString();
 
@@ -368,9 +368,20 @@ namespace MvcSchoolWebApp.Controllers
                 
                     int i = 0;
 
+                string action = ""; 
+
+                if (act == "0") {
+
+                    action = "rejected";
+
+                } else if (act == "1") {
+
+                    action = "accepted";
+
+                }
                  
 
-                        cmd.CommandText = "update apl0610 set status = '1' where email = '"+ userid + "' ";
+                        cmd.CommandText = "update apl0120 set sstatus = '"+action+"' where jobkey = '"+ userid + "' ";
 
 
                         cmd.ExecuteNonQuery();

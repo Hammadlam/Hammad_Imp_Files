@@ -12,18 +12,18 @@ $(document).ready(function () {
         // get the current row
         var currentRow = $(this).closest("tr");
 
-        var userid = currentRow.find("td:eq(2)").text(); // get current row 2nd TD
+        var reqno = currentRow.find("td:eq(6)").text(); // get current row 2nd TD
 
 
 
         $.ajax({
             type: "POST",
-            data: { userid: userid,reject:'1'},
+            data: { reqno: reqno, act:'0'},
             url: encodeURI("../ESS/UpdateApl"),
             dataType: "json",
             success: function (data) {
 
-                show_suc_alert_js('Applicant has been selected');
+                show_err_alert_js('Applicant has been rejected');
 
             },
             error: function (data) {
@@ -46,11 +46,11 @@ $(document).ready(function () {
         // get the current row
         var currentRow = $(this).closest("tr");
 
-        var userid = currentRow.find("td:eq(2)").text(); // get current row 2nd TD
+        var reqno = currentRow.find("td:eq(6)").text(); // get current row 2nd TD
 
         $.ajax({
             type: "POST",
-            data: { userid: userid, reject: '1' },
+            data: { reqno: reqno, act: '1' },
             url: encodeURI("../ESS/UpdateApl"),
             dataType: "json",
             success: function (data) {
@@ -65,12 +65,11 @@ $(document).ready(function () {
 
         });
 
-
-
-
         waitingDialog.hide();
 
     });
+
+
 
 
     loaddata_purchase('0');
@@ -93,14 +92,23 @@ function loaddata_purchase(aplid) {
         ajaxGridOptions: { contentType: "application/json" },
         loadonce: true,
 
-        colNames: ['Action', 'Name', 'Email'],
+        colNames: ['Action', 'Name', 'Email', "Position", 'Location','Documents','Req No'],
         colModel: [
-            { name: 'act', index: 'act', width: 220, sortable: false, resizable: true },
-            { name: 'Name', index: 'Id', resizable: false, width: 550, resizable: true, },
-            { name: 'userid', index: 'Name', resizable: false, width: 350, resizable: true },
+            { name: 'act', index: 'act', width: 150, sortable: false, resizable: true },
 
-            //{ name: 'Gender', index: 'Gender', width: 160, formatter: 'select', editable: true, edittype: "select", editoptions: { value: "0:select;1:male;2:female" } },
-            //{ name: 'IsClosed', index: 'IsClosed', width: 180, editable: true, edittype: "checkbox", editoptions: { value: "true:false", formatter: "checkbox" } },
+            { name: 'Name', index: 'Name', resizable: false, width: 200, resizable: true, },
+
+            { name: 'email', index: 'email', resizable: false, width: 300, resizable: true },
+
+            { name: 'postxt', index: 'postxt', resizable: false, width: 180, resizable: true },
+
+            { name: 'location', index: 'location', resizable: false, width: 100, resizable: true, },
+
+            { name: 'Documents', index: 'Documents', width: 100, sortable: false, resizable: true },
+
+            { name: 'reqno', index: 'reqno', width: 110, sortable: false, resizable: true },
+
+
 
         ],
 
@@ -113,11 +121,15 @@ function loaddata_purchase(aplid) {
                 var cl = ids[i];
 
 
-                view = "<input id='Reject' style='height:20px;width:75px;' type='button' value='Reject'  class='btn btn-xs btn-danger'>";
+                view = "<input id='Reject' style='height:20px;width:60px;' type='button' value='Reject'  class='btn btn-xs btn-danger'>";
 
-                view1 = "<input id='Accepted' style='height:20px;width:75px;' type='button' value='Accepted'  class='btn btn-xs btn-success'>";
+                view1 = "<input id='Accepted' style='height:20px;width:60px;' type='button' value='Accepted'  class='btn btn-xs btn-success'>";
 
-                jQuery("#Applicant_table").setRowData(ids[i], { act: view +'  '+ view1})
+                cv = "<a href='../ESS/CvView'  target='_blank' class='btn btn-xs btn-warning' style='height:20px;width:75px;'>Resume</a>";
+
+                jQuery("#Applicant_table").setRowData(ids[i], { act: view + '  ' + view1 })
+
+                jQuery("#Applicant_table").setRowData(ids[i], { Documents: cv  })
 
             }
         },

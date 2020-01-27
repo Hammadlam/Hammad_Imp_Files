@@ -129,17 +129,38 @@ namespace MvcSchoolWebApp.Controllers
         }
 
         [HttpPost]
-             public JsonResult UpdateApl(string userid)
+             public JsonResult UpdateApl(string reqno , string act)
         {
 
             din = new DatabaseInsertClass();
 
-            din.updateApl(userid);
+            din.updateApl(reqno, act);
 
             return Json(true);
 
 
         }
+
+
+
+        [HttpGet]
+        public void CvView(string userid)
+        {
+
+            string FilePath = Server.MapPath("resume-samples.pdf");
+            WebClient User = new WebClient();
+            Byte[] FileBuffer = User.DownloadData(FilePath);
+            if (FileBuffer != null)
+            {
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                Response.BinaryWrite(FileBuffer);
+            }
+
+
+        }
+
+        
 
         [HttpPost]
         public string GetAppl(string aplid)
@@ -148,13 +169,13 @@ namespace MvcSchoolWebApp.Controllers
 
             if (aplid == "0") {
 
-                query = "select RTRIM(usr01.title)+' ' + RTRIM(usr01.fname) + ' ' + usr01.lname as Name , usr01.userid from usr03 inner join usr01 on usr03.userid = usr01.userid where paramid = 'APL'";
+                query = "select req.reqno , usr01.userid  as email , apl.aplid,pos.postxt, loc.charvalue as location, req.reqstat as Status, RTRIM(usr01.title)+' ' + RTRIM(usr01.fname) + ' ' + usr01.lname as Name from eposhdr as Pos left join areqmst as req on pos.pos = req.pos  inner join apl0120 as apl on apl.jobkey = req.reqno inner join usr03 on apl.aplid = usr03.paramvalue inner join usr01 on usr03.userid = usr01.userid left join charvalue as loc on loc.classobj = req.classobj left join charistic as Char on loc.charistic = char.charistic where 1=1 and char.charistic = 'LOCATION'";
 
             }
             else
             {
 
-                query = "select usr01.title , usr01.fname,usr01.lname  , usr01.userid  from usr03 join usr01 on usr03.userid = usr01.userid	where paramid = 'APL' and usr01.userid = '" + aplid + "'";
+                query = "select req.reqno , usr01.userid  as email , apl.aplid,pos.postxt, loc.charvalue as location, req.reqstat as Status, RTRIM(usr01.title)+' ' + RTRIM(usr01.fname) + ' ' + usr01.lname as Name from eposhdr as Pos left join areqmst as req on pos.pos = req.pos  inner join apl0120 as apl on apl.jobkey = req.reqno inner join usr03 on apl.aplid = usr03.paramvalue inner join usr01 on usr03.userid = usr01.userid left join charvalue as loc on loc.classobj = req.classobj left join charistic as Char on loc.charistic = char.charistic where 1=1 and char.charistic = 'LOCATION' and paramid = 'APL' and usr01.userid = '" + aplid + "'";
 
 
             }
