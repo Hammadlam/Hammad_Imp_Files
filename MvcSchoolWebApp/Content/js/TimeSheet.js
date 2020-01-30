@@ -108,15 +108,15 @@ function insertempattendance() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            if (data == false) {
+            //if (data == false) {
 
-                waitingDialog.hide();
+            //    waitingDialog.hide();
 
-                $("#btntimeout").removeAttr("disabled");
-                $("#btntimein").removeAttr("disabled");
-                show_err_alert_js("Location must be required to perform action");
-                return;
-            }
+            //    $("#btntimeout").removeAttr("disabled");
+            //    $("#btntimein").removeAttr("disabled");
+            //    show_err_alert_js("Location must be required to perform action");
+            //    return;
+            //}
             $("#txtremarksTS").val("");
             isactiveemployee();
             waitingDialog.hide();
