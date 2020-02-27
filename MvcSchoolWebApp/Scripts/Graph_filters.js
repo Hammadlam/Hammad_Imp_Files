@@ -32,7 +32,7 @@ function get_filters() {
             console.log(filter_col);
 
             for (var i = 1; i < filter_col.length; i++) {
-                debugger
+               
                 text = "<div class='col-md-4'>" +
                     "<select class='" + filter_col[i] + " form-control multiple-checkboxes' multiple='multiple'></select></div>";
 
@@ -42,7 +42,7 @@ function get_filters() {
             }
 
             for (var i = 0; i < result.length; i++) {
-                debugger
+                
                 text = "<option value='" + result[i].filter_val + "' > " + result[i].filter_val + "</option>";
 
                 $("." + result[i].filter_name).append(text);
@@ -55,7 +55,7 @@ function get_filters() {
             $('.gr_filters').append(text);
 
             $('.aply_filtr').click(function () {
-                debugger
+                
                 get_filterval();
                 applyfilter();
 
@@ -100,7 +100,7 @@ function applyfilter() {
     var val = JSON.stringify(filters);
     var vendorname = [];
     var invcount = [];
-    debugger
+    
 
     $.ajax({
         type: "POST",
@@ -109,7 +109,7 @@ function applyfilter() {
         data: '{filter: ' + val + '}',
         dataType: "json",
         success: function (result, status) {
-            debugger
+            
             for (var i = 0; i < result.length; i++) {
 
                 vendorname.push(result[i].Vendername);

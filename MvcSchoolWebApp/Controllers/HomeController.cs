@@ -550,7 +550,7 @@ namespace MvcSchoolWebApp.Controllers
             //d.feedback = "";
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com/");
+                client.BaseAddress = new Uri("http://snova786-002-site9.etempurl.com//");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -585,7 +585,7 @@ namespace MvcSchoolWebApp.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com");
+                client.BaseAddress = new Uri("http://snova786-002-site9.etempurl.com/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -620,7 +620,7 @@ namespace MvcSchoolWebApp.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com");
+                client.BaseAddress = new Uri("http://snova786-002-site9.etempurl.com/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -655,7 +655,7 @@ namespace MvcSchoolWebApp.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://snova786-002-site18.etempurl.com");
+                client.BaseAddress = new Uri("http://snova786-002-site9.etempurl.com/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
