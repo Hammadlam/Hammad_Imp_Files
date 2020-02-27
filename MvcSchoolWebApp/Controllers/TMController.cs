@@ -135,20 +135,21 @@ namespace MvcSchoolWebApp.Controllers
         {
             DatabaseInsertClass dc = new DatabaseInsertClass();
             db = new DatabaeseClass();
-            //if (lattd != null || lngtd != null)
-            //{
+            if (lattd != null || lngtd != null)
+            {
 
                 dc.InsertEmployeeAttendance(empid, clientid, date, time, type, remarks, lattd, lngtd);
 
                 return Json(db.GetEmployeeAttendanceHistory(empid), JsonRequestBehavior.AllowGet);
 
-            //}
-            //else {
+            }
+            else
+            {
 
-            //    return Json(false, JsonRequestBehavior.AllowGet);
-            //}
-          
-           
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+
         }
 
         public JsonResult filluserinformation(string empid)
