@@ -41,7 +41,7 @@ namespace MvcSchoolWebApp.Controllers
                 }
                 else if (user_dtl[0].user_earea == "3000")
                 {
-                    filterContext.Result = new RedirectResult("~/dashboard/TeacherDashboard");
+                    filterContext.Result = new RedirectResult("~/TM/essTimeMgmt");
                 }
             }
 
