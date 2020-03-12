@@ -63,6 +63,7 @@ namespace MvcSchoolWebApp.Models
         public string prtxt { get; set; }
         public string entterm { get; set; }
         public string status { get; set; }
+        public DateTime month { get; set; }
 
     }
 }

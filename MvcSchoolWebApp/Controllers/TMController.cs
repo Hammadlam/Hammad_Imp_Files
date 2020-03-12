@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using iTextSharp.text;
+using ClosedXML.Excel;
 using iTextSharp.text.pdf;
 using MvcSchoolWebApp.Data;
 using MvcSchoolWebApp.Models;
@@ -148,6 +150,178 @@ namespace MvcSchoolWebApp.Controllers
 
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+
+
+        }
+
+        public void FetchDataFromDbAndGenerateExcelFile(DateTime infoEntered)
+        {
+
+            string constr = ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                con.Open();
+
+                SqlCommand emp = new SqlCommand("select ep.empid  as id, concat(ep.firstname,ep.midname,ep.lastname)as name from emppers ep where  ep.delind <> 'X' and ep.empid not in (select empid from emp0351)", con);
+
+                SqlDataReader emprdr = emp.ExecuteReader();
+
+
+                string[] empid = new string[100];
+                string[] empname = new string[100];
+                string[] bdate = new string[31];
+                string[] weekdaytxt = new string[31];
+
+                int i = 0; int k = 0;
+                while (emprdr.Read())
+                {
+
+                    empid[i] = emprdr["id"].ToString();
+                    empname[i] = emprdr["name"].ToString();
+                    i++;
+
+                }
+
+                emprdr.Close();
+                string month = infoEntered.ToString("yyyy-MM") + "-25";
+                string prevmonth = infoEntered.AddMonths(-1).ToString("yyyy-MM") + "-26";
+
+                using (SqlCommand cal = new SqlCommand("select caldate, weekdaytxt from calndr where (calndr.caldate) >= '" + prevmonth + "' And   (calndr.caldate) <= '" + month + "' order by caldate", con))
+                {
+                    using (SqlDataReader rdr = cal.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            DateTime myString = Convert.ToDateTime(rdr["caldate"]); //The 0 stands for "the 0'th column", so the first column of the result.
+                                                                                    // Do somthing with this rows string, for example to put them in to a list
+                            bdate[k] = myString.Date.ToString("MM/dd/yyyy");
+
+                            weekdaytxt[k] = rdr["weekdaytxt"].ToString();
+
+                            k++;
+                        }
+
+                    }
+                }
+
+                DataTable dt = new DataTable();
+
+                for (int j = 0; j < empid.Length; j++)
+                {
+                    if (empid[j] != "" && empid[j] != null)
+                    {
+
+
+                        for (int l = 0; l < bdate.Length; l++)
+                        {
+
+
+
+                            using (SqlCommand cmd = new SqlCommand("select distinct emp0280.empid as empid, concat(emppers.firstname,emppers.midname,emppers.lastname) as name, CONVERT(date, emp0280.begdate) as Datee,CONVERT(time, emp0280.begdate) as TimeIn, CONVERT(time, emp0280.enddate) as TimeOut,eposhdr.postxt as Title, datename(dw, emp0280.begdate) as DayName, costorder.ordstxt as ClientName, emp0280.remarks from emp0280 inner join emppers on emppers.empid = emp0280.empid inner join emporg on emppers.empid = emporg.empid inner join eposhdr on emporg.pos =  eposhdr.pos inner join costorder on emp0280.clientid = costorder.costorder where 1=1 and emporg.delind = '' and emp0280.delind = '' and emppers.delind = '' and CAST(emp0280.begdate AS date) = '" + bdate[l] + "' and emp0280.empid = '" + empid[j] + "' ", con))
+                            {
+                                using (SqlDataReader sda = cmd.ExecuteReader())
+
+                                {
+
+                                    //while (sda.Read())
+                                    //{
+
+                                    //}
+
+                                    if (sda.HasRows)
+                                    {
+
+
+
+                                        dt.Load(sda);
+                                    }
+                                    else
+                                    {
+
+                                        DataRow dr = null;
+                                        int a = dt.Rows.Count;
+                                        if (a > 0)
+                                        {
+
+                                            System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Yellow);
+
+                                            dr = dt.NewRow(); // have new row on each iteration
+                                            dr["empid"] = empid[j];
+                                            dr["name"] = empname[j];
+                                            // dr["Datee"] = " 00:00:00.00";/* bdate[l]*/
+                                            dr["TimeIn"] = " 00:00:00.00"/*DateTime.Parse(bdate[l])*/ ;
+                                            // dr["TimeOut"] = /*bdate[l] +*/ " 00:00:00.000";
+                                            dr["Title"] = "";
+                                            dr["DayName"] = weekdaytxt[l];
+                                            dr["ClientName"] = "";
+                                            dr["remarks"] = "";
+
+                                            dt.Rows.Add(dr);
+                                        }
+                                    }
+
+
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dt, "emptimesht");
+
+
+
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.Charset = "";
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("content-disposition", "attachment;filename=MonthlyTimeSheet.xlsx");
+                    using (MemoryStream MyMemoryStream = new MemoryStream())
+                    {
+                        wb.SaveAs(MyMemoryStream);
+                        MyMemoryStream.WriteTo(Response.OutputStream);
+                        Response.Flush();
+                        Response.End();
+
+                    }
+                }
+
+
+
+
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExportExcel()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ExportExcel1(ESSModel model)
+        {
+            DateTime infoEntered = model.month;
+
+            //string month = string.Empty;
+            // string year = string.Empty;
+
+
+            //string[] data = infoEntered.Split(new char[0]);
+
+            //month = data[0];
+            //year = data[1];
+            // month = ConvertMonthToNumber(infoEntered);
+            FetchDataFromDbAndGenerateExcelFile(infoEntered);
+
+            return null;
+
 
 
         }
