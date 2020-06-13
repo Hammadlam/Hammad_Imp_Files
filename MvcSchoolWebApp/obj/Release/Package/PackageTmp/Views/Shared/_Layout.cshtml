@@ -168,6 +168,14 @@
  
 
     </script>
+    <style>
+
+
+        .cus {
+            margin-top: -36px;
+            margin-left: -28px;
+        }
+    </style>
 
 </head>
 <body class="hold-transition skin-blue-light sidebar-collapse  sidebar-mini">
@@ -1054,7 +1062,17 @@
                                                             <i class="fa fa-file-pdf-o"></i><span> Conveyance Report</span>
                                                         </a>
                                                     </li>
+
+                                                    <li>
+                                                        <a href="~/TM/ExportExcel">
+                                                            <i class="fa fa-file-pdf-o"></i><span> Monthly Excel</span>
+                                                        </a>
+                                                    </li>
                                                 }
+
+
+
+
 
 
                                                 if (list[48].menustat == "X")
@@ -1282,6 +1300,26 @@
                                         <li><a href="~/home/invoice_status"><i class="fa fa-bar-chart"></i><span>Invoice Payment Status</span></a></li>
                                     </ul>
                                 </li>
+
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-file"></i> <span>Notification</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+
+                                        <li>
+                                            <a href="~/ESS/notification">
+                                                <i class="fa fa-circle-o-notch" aria-hidden="true"></i><span> Create Notifications </span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+
 
                             }
                         }

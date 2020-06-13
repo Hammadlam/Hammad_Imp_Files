@@ -128,6 +128,113 @@ namespace MvcSchoolWebApp.Controllers
 
         }
 
+
+        public ActionResult Expense()
+        {
+
+            return View();
+
+        }
+
+        public ActionResult notification()
+        {
+           
+
+            List<Notification> dpt = new List<Notification>();
+            try
+            {
+
+
+            var list = HttpContext.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+            string user_id = list[0].user_id;
+
+
+            string query = "select distinct dept , emppers.secname  from  usr01 join emppers on usr01.userid = emppers.empid   where emppers.delind != 'X' and  dept not in ('SAP A1','Implementa','Sales','Developmen','') and floor != ''  order by dept";
+
+
+            da.CreateConnection();
+            da.InitializeSQLCommandObject(da.GetCurrentConnection, query);
+            da.OpenConnection();
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+            if (da.obj_reader.HasRows)
+            {
+                while (da.obj_reader.Read())
+                {
+                   
+                        dpt.Add(new Notification
+                        {
+                            dept = da.obj_reader["dept"].ToString(),
+                            secname = da.obj_reader["secname"].ToString(),
+
+
+
+                        });
+
+
+                }
+            }
+
+                da.obj_reader.Close();
+                da.CloseConnection();
+
+
+                string query1 = "select codeid , codedesc from coding";
+                da.CreateConnection();
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, query1);
+                da.OpenConnection();
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+                if (da.obj_reader.HasRows)
+                {
+                    while (da.obj_reader.Read())
+                    {
+
+                        dpt.Add(new Notification
+                        {
+                            codeid = da.obj_reader["codeid"].ToString(),
+                            codedesc = da.obj_reader["codedesc"].ToString(),
+
+
+
+                        });
+
+
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+
+            }
+
+
+
+            return View(dpt);
+
+        }
+
+
+        
+            [HttpPost]
+             public JsonResult GenerateNotification(DateTime txtdatestr, DateTime txtdateend,string Requirement_text , string depart , string priority, string coding)
+        {
+
+            var list = HttpContext.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+            string user_fullname = list[0].user_fullname;
+
+            din = new DatabaseInsertClass();
+
+            string status = din.insertNotification(txtdatestr,  txtdateend,  Requirement_text,  depart,  priority,  coding, user_fullname);
+
+            return Json(status);
+
+
+        }
+
         [HttpPost]
              public JsonResult UpdateApl(string reqno , string act)
         {

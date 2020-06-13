@@ -1,0 +1,570 @@
+﻿@model IEnumerable<MvcSchoolWebApp.Models.Notification>
+
+@{
+    ViewBag.Title = "mssTimeMgmt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<head>
+    @*
+        <link href="~/Content/bootstrap.min.css?n=1" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+    @*
+        <script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n =1") asp-append-version="true"></script>*@
+    @*
+        <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n =1") asp-append-version="true"></script>*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+    <style>
+        #myImg {
+            width: 100%;
+            height: 30rem;
+            border: 2px solid #e76129;
+            background: #eaeaea;
+        }
+
+        tr th {
+            background-color: #00769C;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Notification
+                                </label>
+                            </li>
+
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    @{var user_dtl = HttpContext.Current.Session["User_Dtl"] as List<MvcSchoolWebApp.Models.Users>;
+
+                                     @user_dtl[0].user_fullname
+
+                                            }
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <form id="">
+                            <div class="row">
+                                <div class="col-md-10">
+                                 
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+
+                                            <label>Coding</label><br />
+
+                                        </div>
+
+                                        <div class="col-md-4">
+
+                                       
+                                            <select id="coding" class="form-control m-b">
+                                                <option>--select coding--</option>
+                                                @foreach (var item in Model)
+                                                {
+                                                    if (item.codeid !=  null) {
+                                                        <option value="@item.codeid">@item.codedesc</option>
+                                                    }
+
+
+                                                }
+
+                                            </select>
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Required Start </label>
+
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+
+                                            <input type="datetime-local" class="form-control m-b"  id="txtdatestr" onkeypress="return false" autocomplete="off" />
+
+                                        </div>
+
+
+                                        <div class="col-md-2">
+                                            <label>Required End </label>
+
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+
+                                            <input type="datetime-local" class="form-control m-b"  id="txtdateend" onkeypress="return false" autocomplete="off" />
+
+                                        </div>
+
+
+
+
+
+
+
+                                    </div>
+
+                                    <div class="row">
+
+
+
+
+                                        <div class="col-md-3">
+                                            <label>
+                                                Department Resp
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <select class="form-control m-b" id="depart">
+                                                <option>--select department--</option>
+                                                @foreach (var item in Model)
+                                                {
+                                                    if (item.secname != null)
+                                                    {
+                                            <option value="@item.secname">@item.dept</option>
+                                                    }
+
+                                                }
+
+
+                                            </select>
+
+                                        </div>
+
+
+                                        <div class="col-md-1">
+                                            <label>Priority</label>
+                                        </div>
+
+
+                                        <div class="col-md-2" >
+
+
+                                            <select class="form-control m-b" id="priority">
+                                                <option value="High">High</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="Low">Low</option>
+                                            </select>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+                                    <div class="row">
+
+
+
+                                        <div class="col-md-3">
+                                            <label>
+                                                Requirement Description
+                                            </label>
+
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <textarea class="form-control m-b" rows="10" id="Requirement_text"></textarea>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+
+                                    
+                                </div>
+
+                                <div class="col-md-2">
+
+                                    <div class="cus">
+
+
+                                        <button id="id-submit" class="btn btn-success" type="button">Save</button>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</section>
+
+
+
+<script type="text/javascript">
+    // $("#txttimeTS").timepicker();
+</script>
+
+
+
+
+<script>
+
+
+    document.getElementById("id-submit").addEventListener("click", function () {
+
+        waitingDialog.show('Please Wait: This May Take a While');
+
+    
+        var txtdatestr = $('#txtdatestr').val();
+        var txtdateend = $('#txtdateend').val();
+        var coding = $('#coding').val();
+        var Requirement_text = $('#Requirement_text').val();
+        var priority = $("#priority").val();
+        var depart = $("#depart").val();
+
+
+  
+
+        if (txtdatestr == "") {
+            waitingDialog.hide();
+            show_err_alert_js('Required Start can not be empty');
+
+
+            return;
+
+        }
+
+        if (txtdateend == "") {
+
+            show_err_alert_js('Required End can not be empty');
+
+            waitingDialog.hide();
+            return;
+
+        }
+
+
+
+        if (Requirement_text == "") {
+            waitingDialog.hide();
+            show_err_alert_js('Requirement Description can not be empty');
+
+
+            return;
+
+        }
+
+        if (depart == "") {
+            waitingDialog.hide();
+            show_err_alert_js('Department can not be empty');
+
+            return;
+
+        }
+
+
+
+        $.ajax({
+            type: "POST",
+            url: ("../ESS/GenerateNotification"),
+            //contentType: "application/json; charset=utf-8",
+            data: { txtdatestr: txtdatestr, txtdateend: txtdateend, Requirement_text: Requirement_text, depart: depart, priority: priority, coding: coding},
+            success: function (result, status) {
+
+                waitingDialog.hide();
+
+                if (result == "1") {
+
+                    show_suc_alert_js('Successfully Generate Notification');
+
+                } else {
+
+                    show_err_alert_js(status);
+
+                }
+
+
+
+
+            },
+            error: function (xhr, status, error) {
+                waitingDialog.hide();
+
+                show_err_alert_js('Error Occurred While Generate Notification');
+
+
+            }
+
+        });
+
+
+
+
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: ("../VTT/GetImagepath"),
+
+        //    contentType: "application/json; charset=utf-8",
+        //    data: '{img: ' + path + '}',
+        //    data: JSON.stringify({ img: "" }),
+        //    dataType: "json",
+        //    success: function (result, status) {
+
+        //    },
+        //    error: function (xhr, status, error) {
+
+
+        //    }
+
+        //});
+
+
+
+    });
+</script>
+<script>
+
+    //$('#submitForm').click (function (url, callback) {
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.onload = function () {
+    //        var reader = new FileReader();
+    //        reader.onloadend = function () {
+    //            callback(reader.result);
+    //        }
+    //        reader.readAsDataURL(xhr.response);
+    //    };
+    //    xhr.open('GET', url);
+    //    xhr.responseType = 'blob';
+    //    xhr.send();
+    //}
+
+    //('#submitForm').click("C:\Users\Public\Pictures\Sample Pictures\Tulips.jpg", function (dataUrl) {
+    //    console.log('RESULT:', dataUrl)
+    //}))
+
+    purchaseno();
+
+    function purchaseno() {
+
+
+        //var venderno = document.getElementById("txtempnameTS").value;
+
+
+        $.ajax({
+            type: "POST",
+            url: ("../VTT/PurchnoListAPIAsync"),
+            contentType: "application/json; charset=utf-8",
+            //data: JSON.stringify({ venderno: venderno }),
+            dataType: "json",
+            success: function (result, status) {
+
+                document.getElementById("purchaseorder").innerHTML = "";
+
+                var html = '<option value="">--Select Purchase Orde--</option>';
+
+                $("#purchaseorder").append(html);
+
+                for (var i = 0; i < result.length; i++) {
+
+                    if (result[i].purchorderno != null) {
+                        var html = '<option value="' + result[i].purchorderno + '">' + result[i].purchorderno + '</option>';
+
+                        $("#purchaseorder").append(html);
+
+                    }
+
+
+
+
+                }
+
+            },
+            error: function (xhr, status, error) {
+
+
+            }
+
+        });
+
+
+    }
+
+    function validate(str) {
+
+        //let timeout = null;
+
+        //clearTimeout(timeout);
+
+        //timeout = setTimeout(function () {
+
+        //        var currentRow = $(this).closest("tr");
+
+        //    var ReportsId = currentRow.find("td:eq(1)").text().trim(); // get current row 2nd TD
+
+
+        //        alert(ReportsId);
+        //    }, 1000);
+
+
+    }
+
+
+
+
+
+    function calculatetotal(str, str1) {
+        // Get the checkbox
+
+
+
+        var id = str1.split(',');
+
+        var checkBox = document.getElementById(str);
+
+
+
+
+        if (checkBox.checked == true) {
+
+
+
+            document.getElementById("amount").value = Number(document.getElementById("amount").value) + Number(id[0]);
+
+            document.getElementById("sale_tax").value = Number(document.getElementById("sale_tax").value) + Number(id[1]);
+
+
+
+            document.getElementById("total").value = Number(document.getElementById("amount").value) + Number(document.getElementById("sale_tax").value);
+
+
+
+        } else {
+
+
+            document.getElementById("amount").value = Number(document.getElementById("amount").value) - Number(id[0]);
+
+            document.getElementById("sale_tax").value = Number(document.getElementById("sale_tax").value) - Number(id[1]);
+
+
+
+            document.getElementById("total").value = Number(document.getElementById("amount").value) - Number(document.getElementById("sale_tax").value);
+
+        }
+
+
+
+    }
+
+
+
+
+    function purchasedetail() {
+
+        var purchaseorder = document.getElementById("purchaseorder").value;
+        document.getElementById("amount").value = "";
+        document.getElementById("total").value = "";
+        document.getElementById("sale_tax").value = "";
+
+
+        $.ajax({
+            type: "POST",
+            url: ("../VTT/LineItems"),
+            data: { purchaseorder: purchaseorder },
+            dataType: "json",
+            success: function (result, status) {
+
+
+
+                var html = ''; //declare string inside function
+
+                $(".table").find("tr:gt(0)").remove();
+
+                for (var i = 0; i < result.length; i++) {
+
+                    if (result[i].status != "No Data Available") {
+
+
+
+                        html += '<tr>';
+                        html += '<td> <input value="' + result[i].Netvalue + ',' + result[i].staxamount + '"  onclick="calculatetotal(this.id,this.value)" id="' + result[i].matno + '" type="checkbox"  /></td>';
+                        html += '<td>' + result[i].matno + '</td>';
+                        html += '<td>' + result[i].matname + '</td>';
+                        html += '<td>' + result[i].ordqty + '</td>';
+                        html += '<td>' + result[i].netprice + '</td>';
+                        html += '<td>' + result[i].baseunit + '</td>';
+                        html += '<td>' + result[i].Netvalue + '</td>';
+                        html += '<td>' + result[i].staxamount + '</td>';
+                        html += '<td>' + result[i].invcqty + '</td>';
+                        html += '<td>' + result[i].quantity + '</td>';
+                        html += '<td> <input type="text" disabled onkeyup="validate(this.value)" id="' + result[i].matno + "  /></td>';
+
+                        html += '<td>' + result[i].cocode + '</td>';
+
+
+                        html += '</tr>';
+
+
+                    } else {
+
+                        alert(result[i].status);
+
+                    }
+                }
+
+                $('table').append(html);
+
+            },
+            error: function (xhr, status, error) {
+                alert(status);
+
+
+            }
+
+        });
+
+    }
+
+
+</script>
+

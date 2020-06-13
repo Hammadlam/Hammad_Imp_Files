@@ -383,6 +383,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageCls.cs" />
     <Compile Include="Models\MSSModel.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Personalinfo.cs" />
     <Compile Include="Models\PMModel.cs" />
     <Compile Include="Models\PPCambridge.cs" />
@@ -1786,6 +1787,8 @@
     <Content Include="Views\ESS\Multi_Calendar.cshtml" />
     <Content Include="Views\ESS\Applicant_List.cshtml" />
     <Content Include="Views\TM\ExportExcel.cshtml" />
+    <Content Include="Views\ESS\notification.cshtml" />
+    <Content Include="Views\ESS\Expense.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

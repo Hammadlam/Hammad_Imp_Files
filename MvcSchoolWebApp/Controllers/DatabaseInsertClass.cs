@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -346,6 +348,203 @@ namespace MvcSchoolWebApp.Controllers
 
         
 
+
+             public string insertNotification(DateTime txtdatestr, DateTime txtdateend, string Requirement_text, string depart, string priority, string coding, string user_fullname)
+        {
+            var user_id = System.Web.HttpContext.Current.Session["User_Id"].ToString();
+
+            string status = "";
+
+            DatabaeseClass db = new DatabaeseClass();
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Falconlocal"].ConnectionString);
+            con.Open();
+
+            SqlTransaction trans;
+            SqlCommand cmd = con.CreateCommand();
+            trans = con.BeginTransaction();
+
+            try
+            {
+                da.CreateConnection();
+                da.OpenConnection();
+                da.InitializeSQLCommandObject(con, "select * from norange where  norngobj  = 'notifi'");
+            da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+
+            long lst = 0;
+
+            while (da.obj_reader.Read())
+            {
+                if (da.obj_reader["status"].ToString().Trim() == "")
+                {
+
+                    lst = Convert.ToInt64(da.obj_reader["rngfrom"].ToString().Trim());
+
+                }
+                else
+                {
+                    lst = Convert.ToInt64(da.obj_reader["status"]) + 1;
+
+                }
+
+
+
+
+
+            }
+
+
+                da.obj_reader.Close();
+
+                string qupdate = "update norange set status = '" + lst + "' where norngobj = 'notifi' ";
+
+
+                da.InitializeSQLCommandObject(da.GetCurrentConnection, qupdate);
+
+
+                da.obj_sqlcommand.ExecuteScalar();
+
+
+
+
+            
+                string reqstrtime = txtdatestr.ToShortTimeString();
+
+                string reqendtime = txtdateend.ToShortTimeString();
+
+                cmd.Connection = con;
+                cmd.Transaction = trans;
+
+               
+
+
+                cmd.CommandText = "insert into notifi (notifid,descrip,priority,reqdatestr,reqdateend,departres,userid,dbtimestmp,reqstrtime,reqendtime,coding) values ('" + lst + "','" + Requirement_text + "','"+ priority + "','"+ txtdatestr + "','"+ txtdateend + "','"+depart+"','"+ user_id + "','"+ reqstrtime + "','"+ reqstrtime + "','"+ reqendtime + "','"+ coding + "') ";
+
+
+                cmd.ExecuteNonQuery();
+
+
+
+
+
+
+                trans.Commit();
+
+
+
+                da.InitializeSQLCommandObject(con, "select  notifi.departres  ,   usr01.floor as cc ,notifi.descrip, notifi.priority , coding.codedesc , usr01.fname, usr01.lname from notifi  join coding on notifi.coding = coding.codeid  join emppers on notifi.departres = emppers.secname join usr01 on usr01.userid = emppers.empid where notifid = '" + lst + "'  ");
+                da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+
+                string descrip = "";
+                string prio = "";
+                string codedesc = "";
+                string fname = "";
+                string lname = "";
+                string cc = "";
+                string to = "";
+
+                while (da.obj_reader.Read())
+                {
+
+                    descrip = da.obj_reader["descrip"].ToString().Trim();
+                    prio = da.obj_reader["priority"].ToString().Trim();
+                    codedesc = da.obj_reader["codedesc"].ToString().Trim();
+                    fname = da.obj_reader["fname"].ToString().Trim();
+                    lname = da.obj_reader["lname"].ToString().Trim();
+                    cc = da.obj_reader["cc"].ToString().Trim();
+                    to = da.obj_reader["departres"].ToString().Trim();
+                }
+
+                string mailcc = "";
+
+                da.obj_reader.Close();
+                string[] words = null;
+                var str = "";
+
+
+
+                //var fromMail = new MailAddress("supernovasolution206@gmail.com", "SuperNova Solutions"); // set your email hr@supernova.com.pk 
+                //var fromEmailpassword = "supernova@206"; // Set your password welcom@206  
+                //var toEmail = new MailAddress(to);
+
+                //var smtp = new SmtpClient();
+                //smtp.Host = "smtp.gmail.com";
+                //smtp.Port = 2525;
+                //smtp.EnableSsl = true;
+                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                //smtp.UseDefaultCredentials = true;
+                //smtp.Credentials = new NetworkCredential(fromMail.Address, fromEmailpassword);
+
+
+                //var Message = new MailMessage(fromMail, toEmail);
+                //Message.Subject = "Notification - " + codedesc;
+                //Message.Body = "<br/> Dear " + fname + " " + lname + ", <br/><br/>" + Requirement_text + "<br/><br/>Priority : " + priority + "<br/>Required start : " + txtdatestr + " Required end : " + txtdateend + "<br/><br/><br/>Thanks & Regards,<br/>" + user_fullname;
+                //Message.IsBodyHtml = true;
+
+                //if (cc != "X")
+                //{
+
+                //    words = cc.Split(',');
+                //    str = String.Join(",", words);
+
+                //    int i = 0;
+                //    string[] secname = new string[2];
+
+
+                //    string q = "select secname from emppers where empid in (" + str + ") and secname != ''";
+
+                //    da.InitializeSQLCommandObject(con, q);
+                //    da.obj_reader = da.obj_sqlcommand.ExecuteReader();
+
+
+                //    while (da.obj_reader.Read())
+                //    {
+
+
+
+                //        Message.CC.Add(new MailAddress(da.obj_reader["secname"].ToString().Trim()));
+
+                //        i = i + 1;
+
+
+                //    }
+
+                //    mailcc = String.Join(",", secname);
+
+
+
+
+                //}
+
+
+
+
+
+
+                //smtp.Send(Message);
+
+                status = "1";
+
+
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                status = ex.ToString();
+
+            }
+            finally
+            {
+                trans.Dispose();
+                con.Close();
+            }
+
+
+
+            return status;
+
+
+        }
 
         public void updateApl(string userid, string act)
         {

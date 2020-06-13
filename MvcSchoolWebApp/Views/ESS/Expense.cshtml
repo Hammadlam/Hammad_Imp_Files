@@ -1,0 +1,195 @@
+﻿@model MvcSchoolWebApp.Models.Timesheetmodal
+
+@{
+    ViewBag.Title = "mssTimeMgmt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<head>
+    @*
+        <link href="~/Content/bootstrap.min.css?n=1" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+    @*
+        <script src=@Url.Content("~/Content/dbtheme/plugins/jQuery/jquery-2.2.3.min.js?n =1") asp-append-version="true"></script>*@
+    @*
+        <script src=@Url.Content("~/Content/dbtheme/bootstrap/js/bootstrap.min.js?n =1") asp-append-version="true"></script>*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+    <style>
+        #myImg {
+            width: 100%;
+            height: 30rem;
+            border: 2px solid #e76129;
+            background: #eaeaea;
+        }
+
+        tr th {
+            background-color: #00769C;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div id="dvborder">
+                    <div class="ibox-title ">
+                        <ul id="vert_menu">
+                            <li>
+                                <input type="radio" id="r1" name="r">
+                                <label for="r1">
+                                    Expense
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="r2" name="r">
+                                <label for="r2">
+                                    Expense
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ibox-content">
+                        <form id="">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <label>Amount</label>
+
+                                            <input type="text" id="txtempnameTS" class="form-control"  />
+
+                                            <label>Expense Type</label><br />
+                                                                       <select class="form-control m-b" id="purchaseorder">
+
+                                                                           <optgroup label="Travel">
+                                                                               <option value="volvo">Airfate</option>
+                                                                               <option value="saab">Car Rental</option>
+                                                                           </optgroup>
+                                                                           <optgroup label="Transportation">
+                                                                               <option value="mercedes">Fuel</option>
+                                                                               <option value="audi">Parking</option>
+                                                                           </optgroup>
+
+
+                                                                       </select>
+                                        </div>
+
+
+
+                                        @*<div class="col-md-4 col-md-offset-1">
+                                            <label>Purchase Order No</label>
+                                            <select class="form-control m-b">
+                                                <option value="7788917">7788917</option>
+                                                <option value="4505101">4505101</option>
+                                                <option value="2176509">2176509</option>
+                                                <option value="7659013">7659013</option>
+                                            </select>*@
+                                        @*@if (ViewBag.disabletimein == true)
+                                            {
+                                            @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true, @disabled = true })
+                                            }
+                                            else
+                                            {
+                                            @Html.DropDownListFor(m => m.clientid, Model.clientname, new { @class = "form-control m-b", @name = "txtclientnameTS", @id = "txtclientnameTS", @required = true })
+                                            }*@
+
+                                        @*
+                                            </div>*@
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <label>Date </label>
+                                            @Html.TextBoxFor(m => m.date,  new {@type  = "Date" ,  @class = "form-control m-b", @name = "txtdateTS", @id = "txtdateTS", @required = true, @onkeypress = "return false;", @autocomplete = "off" })
+                                        </div>
+
+
+                                        <div class="col-md-4 col-md-offset-1">
+                                            @*<label>Invoice No</label>
+                                                @Html.TextBoxFor(m => m.empdepart, new { @class = "form-control m-b", @name = "txtdepartTS", @id = "txtdepartTS", @required = true, @disabled = true })*@
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10">
+
+                                            @*<label>Invoice No</label>
+                                                @Html.TextBoxFor(m => m.empdesignation, new { @class = "form-control m-b", @name = "txtdesigTS", @id = "txtdesigTS", @required = true, })*@
+                                            <label>Location</label><br />
+                                            <input type="text" class="form-control m-b" id="txtdesigTS" />
+                                        </div>
+                                        <div class="col-md-4 col-md-offset-1">
+                                            @*<label>Time</label>
+                                                @Html.TextBoxFor(m => m.time, new { @class = "form-control m-b", @name = "txttimeTS", @id = "txttimeTS", @required = true, @onkeypress = "return false;", @autocomplete = "off" })*@
+                                        </div>
+                                    </div>
+                                 
+                                    <button id="id-submit-invoice">Move to report</button>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type='file' id="file-img" />
+                                    <br><img id="myImg" src="#" alt="your image" />
+                                    @*/ <p id="mydiv">PAkistan</p>*@
+                                    @*<input type="button" name="submit" value="ImageToBase64" id="submit_image" OnClick="ImageToBase_Click" class="btn btn-danger">
+                                        <input type="button" name="submit" value="Base64ToImage" id="submit_image2" OnClick="BaseToImage_Click" class="btn btn-danger">
+                                        <input type="text" id="submit_image3" Height="146px" TextMode="MultiLine">
+                                        <input type="image" id="image1" Height="157px" style="margin-top: 0px; margin-right*@
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="empattd_dialogue" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Are you sure you want to Continue?</h4>
+                </div>
+                <div class="modal-footer" style="margin-top:0;">
+                    <form id="mssempattd_dialogue_frm" name="popupform" method="post" action="">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <input type="submit" name="submit" value="Proceed" class="btn btn-danger" id="submitForm">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="col-lg-12">
+                <div class="ibox " id="empattendance_div">
+                    <div class="ibox-content" id="empattendance_div">
+                        <div class="empattendance_jqGrid m-b">
+                            <table id="empattendance_table"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+</section>
+
+<style>
+    #myImg {
+        width: 100%;
+        height: 30rem;
+        border: 2px solid #e76129;
+        background: #eaeaea;
+    }
+</style>
+
+
